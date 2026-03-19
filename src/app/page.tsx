@@ -7,6 +7,7 @@ import { Header } from "./components/header";
 import { HeroCarousel } from "./components/hero-carousel";
 import { HeroSection } from "./components/hero-section";
 import { InstagramPosts } from "./components/instagram-posts";
+import { ProductsFeaturedSection } from "./components/products-featured-section";
 import { ProductsSection } from "./components/products-section";
 
 export default function Page() {
@@ -19,6 +20,7 @@ export default function Page() {
 				<CategoryCarousel />
 				<ProductsSection />
 				<FeaturesSection />
+				<ProductsFeaturedSection />
 				<BlogsSection />
 				<InstagramPosts />
 				<Footer />
