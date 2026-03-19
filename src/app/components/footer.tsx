@@ -1,6 +1,5 @@
 "use client";
 
-import { CtaSection } from "./cta-section";
 import { ArrowRight } from "@untitledui/icons";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
@@ -72,7 +71,6 @@ const legalLinks = [
 export function Footer() {
 	return (
 		<footer className="w-full bg-secondary">
-		<CtaSection/>
 
 			{/* Main Footer Content */}
 			<section className="px-4 py-12 md:px-8 lg:px-16">

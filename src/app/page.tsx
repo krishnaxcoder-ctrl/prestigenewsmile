@@ -26,6 +26,7 @@ export default function Page() {
 				<CompareSection />
 				<ProductsFeaturedSection />
 				<BlogsSection />
+				<CtaSection/>
 				<InstagramPosts />
 				<Footer />
 			</main>
