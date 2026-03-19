@@ -80,7 +80,7 @@ export const HeroCarousel = () => {
     return (
         <section className="flex h-[675px] flex-col md:flex-row">
             {/* Content Side - 50% */}
-            <div className="flex w-full flex-col justify-center bg-secondary px-6 py-12 md:w-1/2 md:px-12 md:py-16 lg:px-20 lg:py-24">
+            <div className="flex w-full flex-col justify-end bg-secondary px-6 pb-12 md:w-1/2 md:px-12 md:pb-16 lg:px-20 lg:pb-20">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentIndex}
@@ -89,10 +89,19 @@ export const HeroCarousel = () => {
                         exit="hidden"
                         className="max-w-lg"
                     >
-                        <motion.h2
+                        {/* Subtitle Tag */}
+                        <motion.span
                             custom={0}
                             variants={textVariants}
-                            className="text-display-sm font-semibold text-primary md:text-display-md lg:text-display-lg"
+                            className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-brand-600"
+                        >
+                            Premium Skincare
+                        </motion.span>
+
+                        <motion.h2
+                            custom={0.05}
+                            variants={textVariants}
+                            className="text-display-sm font-semibold leading-tight text-primary md:text-display-md lg:text-display-lg"
                         >
                             {currentSlide.title}{" "}
                             <span className="text-brand-600">{currentSlide.highlight}</span>{" "}
@@ -102,11 +111,32 @@ export const HeroCarousel = () => {
                         <motion.p
                             custom={0.1}
                             variants={textVariants}
-                            className="mt-4 text-md text-tertiary md:mt-6 md:text-lg"
+                            className="mt-5 text-md leading-relaxed text-tertiary md:mt-6 md:text-lg"
                         >
                             Discover our collection of premium skincare products crafted with
-                            natural ingredients for radiant, healthy skin.
+                            natural ingredients for radiant, healthy skin. Experience the
+                            perfect blend of science and nature.
                         </motion.p>
+
+                        {/* Features List */}
+                        <motion.div
+                            custom={0.15}
+                            variants={textVariants}
+                            className="mt-6 flex flex-wrap gap-x-6 gap-y-2"
+                        >
+                            <span className="flex items-center gap-2 text-sm text-secondary">
+                                <span className="size-1.5 rounded-full bg-brand-600" />
+                                100% Natural
+                            </span>
+                            <span className="flex items-center gap-2 text-sm text-secondary">
+                                <span className="size-1.5 rounded-full bg-brand-600" />
+                                Cruelty Free
+                            </span>
+                            <span className="flex items-center gap-2 text-sm text-secondary">
+                                <span className="size-1.5 rounded-full bg-brand-600" />
+                                Dermatologist Tested
+                            </span>
+                        </motion.div>
 
                         <motion.div
                             custom={0.2}
