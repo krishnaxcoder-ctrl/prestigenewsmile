@@ -121,6 +121,21 @@ export function Footer() {
 				</div>
 			</section>
 
+			{/* Brand Text */}
+			<section className="overflow-hidden border-t border-secondary py-8">
+				<div className="mx-auto flex max-w-7xl justify-center px-6">
+					<h2
+						className="select-none whitespace-nowrap text-5xl font-bold uppercase tracking-wider text-transparent sm:text-7xl md:text-8xl lg:text-[150px]"
+						style={{
+							WebkitTextStroke: "1px var(--color-brand-500)",
+							WebkitTextFillColor: "transparent",
+						}}
+					>
+						MONICA
+					</h2>
+				</div>
+			</section>
+
 			{/* Bottom Bar */}
 			<section className="border-t border-secondary px-4 py-6 md:px-8 lg:px-16">
 				<div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
