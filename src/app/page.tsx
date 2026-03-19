@@ -14,7 +14,7 @@ import { ProductsSection } from "./components/products-section";
 
 export default function Page() {
 	return (
-		<>
+		<div className="overflow-x-hidden">
 			<Header />
 			<main>
 				<HeroCarousel />
@@ -29,6 +29,6 @@ export default function Page() {
 				<InstagramPosts />
 				<Footer />
 			</main>
-		</>
+		</div>
 	);
 }
