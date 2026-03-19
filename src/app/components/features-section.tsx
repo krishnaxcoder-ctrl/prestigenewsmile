@@ -59,7 +59,7 @@ export function FeaturesSection() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.7, ease: "easeOut" }}
-                            className={`relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[550px] ${
+                            className={`relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[450px] ${
                                 feature.imagePosition === "right" ? "md:order-2" : "md:order-1"
                             }`}
                         >
@@ -77,7 +77,7 @@ export function FeaturesSection() {
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-100px" }}
-                            className={`flex flex-col justify-center bg-secondary px-6 py-14 md:px-12 md:py-16 lg:px-20 lg:py-20 ${
+                            className={`flex flex-col justify-center bg-secondary px-6 py-10 md:px-12 md:py-12 lg:px-20 lg:py-14 ${
                                 feature.imagePosition === "right" ? "md:order-1" : "md:order-2"
                             }`}
                         >
