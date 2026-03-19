@@ -348,8 +348,8 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                                 onClick={() => setSelectedSize(size)}
                                                 className={`rounded-md px-5 py-2.5 text-sm font-medium transition ${
                                                     selectedSize === size
-                                                        ? "bg-primary text-white"
-                                                        : "border border-secondary text-primary hover:border-primary"
+                                                        ? "bg-gray-900 text-white"
+                                                        : "border border-gray-300 bg-white text-gray-900 hover:border-gray-900"
                                                 }`}
                                             >
                                                 {size}
@@ -385,26 +385,26 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 {/* Quantity & Add to Cart */}
                                 <div className="mt-6 flex items-center gap-3">
                                     {/* Quantity Selector */}
-                                    <div className="flex items-center border border-secondary">
+                                    <div className="flex items-center border border-gray-300">
                                         <button
                                             onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                            className="flex size-11 items-center justify-center text-tertiary transition hover:text-primary"
+                                            className="flex size-11 items-center justify-center text-gray-500 transition hover:text-gray-900"
                                         >
                                             <Minus className="size-4" />
                                         </button>
-                                        <span className="w-10 text-center text-sm font-medium text-primary">
+                                        <span className="w-10 text-center text-sm font-medium text-gray-900">
                                             {quantity}
                                         </span>
                                         <button
                                             onClick={() => setQuantity(quantity + 1)}
-                                            className="flex size-11 items-center justify-center text-tertiary transition hover:text-primary"
+                                            className="flex size-11 items-center justify-center text-gray-500 transition hover:text-gray-900"
                                         >
                                             <Plus className="size-4" />
                                         </button>
                                     </div>
 
                                     {/* Add to Cart Button */}
-                                    <button className="flex flex-1 items-center justify-center gap-2 bg-primary py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-gray-800">
+                                    <button className="flex flex-1 items-center justify-center gap-2 bg-gray-900 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-gray-800">
                                         Add to Cart
                                     </button>
 
@@ -414,7 +414,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                         className={`flex size-11 items-center justify-center border transition ${
                                             isWishlisted
                                                 ? "border-brand-600 bg-brand-50 text-brand-600"
-                                                : "border-secondary text-tertiary hover:border-primary hover:text-primary"
+                                                : "border-gray-300 text-gray-500 hover:border-gray-900 hover:text-gray-900"
                                         }`}
                                     >
                                         <Heart className={`size-5 ${isWishlisted ? "fill-brand-600" : ""}`} />
@@ -422,7 +422,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 </div>
 
                                 {/* Buy Now Button */}
-                                <button className="mt-3 w-full bg-tertiary py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-gray-600">
+                                <button className="mt-3 w-full bg-gray-500 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-gray-600">
                                     Buy Now
                                 </button>
 
