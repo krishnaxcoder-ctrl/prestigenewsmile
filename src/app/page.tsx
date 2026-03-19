@@ -1,5 +1,6 @@
 import { BlogsSection } from "./components/blogs-section";
 import { CategoryCarousel } from "./components/category-carousel";
+import { CompareSection } from "./components/compare-section";
 import { CtaSection } from "./components/cta-section";
 import { FeaturesSection } from "./components/features-section";
 import { Footer } from "./components/footer";
@@ -22,6 +23,7 @@ export default function Page() {
 				<CategoryCarousel />
 				<ProductsSection />
 				<FeaturesSection />
+				<CompareSection />
 				<ProductsFeaturedSection />
 				<BlogsSection />
 				<InstagramPosts />
