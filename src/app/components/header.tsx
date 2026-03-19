@@ -223,7 +223,7 @@ export const Header = () => {
 
             {/* Main Header */}
             <div className="border-b border-secondary">
-                <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:h-18 md:px-8">
+                <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:h-18 md:px-8">
                     {/* Logo */}
                     <a href="/" className="flex shrink-0 items-center">
                         <span className="text-2xl font-semibold tracking-tight text-primary">
@@ -231,9 +231,9 @@ export const Header = () => {
                         </span>
                     </a>
 
-                    {/* Desktop Navigation */}
-                    <nav className="hidden lg:block">
-                        <ul className="flex items-center gap-1">
+                    {/* Desktop Navigation - Centered */}
+                    <nav className="absolute left-1/2 hidden -translate-x-1/2 lg:block">
+                        <ul className="flex items-center gap-2">
                             {navItems.map((item) => (
                                 <li key={item.label}>
                                     {item.label === "Shop" ? (
