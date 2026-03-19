@@ -59,14 +59,14 @@ export function FeaturesSection() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.7, ease: "easeOut" }}
-                            className={`relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[450px] ${
+                            className={`relative aspect-[3/2] overflow-hidden md:aspect-auto md:h-[650px] ${
                                 feature.imagePosition === "right" ? "md:order-2" : "md:order-1"
                             }`}
                         >
                             <img
                                 src={feature.image}
                                 alt={feature.title}
-                                className="size-full object-cover"
+                                className="size-full object-cover object-center"
                             />
                             {/* Subtle overlay gradient */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
