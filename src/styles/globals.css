@@ -39,6 +39,30 @@ body {
     font-kerning: normal;
 }
 
+/* Custom Scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #fba59d transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #fba59d;
+    border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #f98b82;
+}
+
 /* Hide the default expand arrow on Safari.  */
 details summary::-webkit-details-marker {
     display: none;
