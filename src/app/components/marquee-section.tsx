@@ -11,42 +11,49 @@ const marqueeItems = [
     { icon: Globe01, text: "Eco Friendly" },
 ];
 
+function MarqueeContent() {
+    return (
+        <>
+            {marqueeItems.map((item, index) => (
+                <div
+                    key={index}
+                    className="flex shrink-0 items-center gap-6 px-2"
+                >
+                    <div className="flex items-center gap-3">
+                        <item.icon className="size-5 text-brand-200" strokeWidth={2.5} />
+                        <span className="whitespace-nowrap text-lg font-medium tracking-wide text-white">
+                            {item.text}
+                        </span>
+                    </div>
+                    <span className="text-2xl text-brand-300">✦</span>
+                </div>
+            ))}
+        </>
+    );
+}
+
 export function MarqueeSection() {
     return (
-        <section className="my-2.5 overflow-hidden">
-            {/* Rotated marquee container */}
-            <div className="bg-brand-600 py-12 md:py-14" style={{ transform: "rotate(-1deg) scale(1.02)" }}>
-                <div className="relative flex">
-                    {/* First marquee */}
-                    <div className="animate-marquee flex shrink-0 items-center gap-12">
-                        {marqueeItems.map((item, index) => (
-                            <div
-                                key={index}
-                                className="flex shrink-0 items-center gap-4 px-6"
-                            >
-                                <item.icon className="size-5 text-white/90" />
-                                <span className="whitespace-nowrap font-medium uppercase tracking-[0.2em] text-white">
-                                    {item.text}
-                                </span>
-                                <span className="size-2 rounded-full bg-white/50" />
-                            </div>
-                        ))}
-                    </div>
+        <section className="relative overflow-hidden bg-brand-600">
+            {/* Decorative pattern overlay */}
+            <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0" style={{
+                    backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
+                    backgroundSize: '24px 24px'
+                }} />
+            </div>
 
-                    {/* Duplicate for seamless loop */}
-                    <div className="animate-marquee flex shrink-0 items-center gap-12" aria-hidden="true">
-                        {marqueeItems.map((item, index) => (
-                            <div
-                                key={index}
-                                className="flex shrink-0 items-center gap-4 px-6"
-                            >
-                                <item.icon className="size-5 text-white/90" />
-                                <span className="whitespace-nowrap font-medium uppercase tracking-[0.2em] text-white">
-                                    {item.text}
-                                </span>
-                                <span className="size-2 rounded-full bg-white/50" />
-                            </div>
-                        ))}
+            {/* Main marquee */}
+            <div className="relative py-5">
+                <div className="flex">
+                    <div className="animate-marquee flex shrink-0 items-center">
+                        <MarqueeContent />
+                    </div>
+                    <div className="animate-marquee flex shrink-0 items-center" aria-hidden="true">
+                        <MarqueeContent />
+                    </div>
+                    <div className="animate-marquee flex shrink-0 items-center" aria-hidden="true">
+                        <MarqueeContent />
                     </div>
                 </div>
             </div>
@@ -61,7 +68,7 @@ export function MarqueeSection() {
                     }
                 }
                 .animate-marquee {
-                    animation: marquee 25s linear infinite;
+                    animation: marquee 20s linear infinite;
                 }
             `}</style>
         </section>
