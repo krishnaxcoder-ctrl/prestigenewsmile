@@ -36,7 +36,7 @@ export function CompareSection() {
 
     return (
         <section className="bg-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
-            <div className="mx-auto max-w-5xl">
+            <div className="mx-auto max-w-7xl">
                 {/* Header */}
                 <div className="mb-10 text-center md:mb-14">
                     <motion.span
@@ -70,7 +70,7 @@ export function CompareSection() {
                 >
                     <div
                         ref={containerRef}
-                        className="relative aspect-[16/9] cursor-ew-resize select-none overflow-hidden rounded-3xl"
+                        className="relative aspect-[16/9] cursor-ew-resize select-none overflow-hidden"
                         onMouseDown={handleMouseDown}
                         onMouseUp={handleMouseUp}
                         onMouseLeave={handleMouseUp}
