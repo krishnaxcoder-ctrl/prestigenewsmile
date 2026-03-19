@@ -3,6 +3,7 @@ import { CtaSection } from "./components/cta-section";
 import { FeaturesSection } from "./components/features-section";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
+import { HeroSection } from "./components/hero-section";
 import { InstagramPosts } from "./components/instagram-posts";
 
 export default function Page() {
@@ -10,6 +11,7 @@ export default function Page() {
 		<>
 			<Header />
 			<main>
+				<HeroSection />
 				<FeaturesSection />
 				<BlogsSection />
 				<InstagramPosts />

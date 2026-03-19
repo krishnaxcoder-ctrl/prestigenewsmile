@@ -53,7 +53,7 @@ const PromoBanner = () => {
                 <ChevronLeft className="size-4" />
             </button>
 
-            <div className="flex items-center gap-1.5 text-sm tracking-wide">
+            <div className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-widest">
                 <span>{promoSlides[currentSlide].text}</span>
                 {promoSlides[currentSlide].linkText && (
                     <a
