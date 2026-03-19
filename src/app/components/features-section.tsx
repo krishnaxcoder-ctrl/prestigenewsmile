@@ -1,86 +1,165 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
+import { ArrowRight } from "@untitledui/icons";
 
 const features = [
-	{
-		id: 1,
-		subtitle: "Glow Starts Here",
-		title: "Reveal Your",
-		titleHighlight: "Radiance",
-		description:
-			"Nurture your skin with clean, conscious ingredients designed to reveal a naturally luminous, healthy single day.",
-		buttonText: "Shop Now",
-		buttonHref: "#",
-		image: "https://placehold.co/600x500/f8dad3/1f1d1d?text=Feature+1",
-		imagePosition: "left",
-	},
-	{
-		id: 2,
-		title: "5 Key Things to Know Before Buying Skincare",
-		titleHighlight: "Products",
-		buttonText: "Explore",
-		buttonHref: "#",
-		image: "https://placehold.co/600x500/f8dad3/1f1d1d?text=Feature+2",
-		imagePosition: "right",
-	},
+    {
+        id: 1,
+        tag: "Natural Beauty",
+        subtitle: "Glow Starts Here",
+        title: "Reveal Your",
+        titleHighlight: "Natural Radiance",
+        description:
+            "Nurture your skin with clean, conscious ingredients designed to reveal a naturally luminous, healthy glow. Our formulas work in harmony with your skin's natural processes.",
+        highlights: ["Paraben Free", "Vegan Formula", "Clinically Proven"],
+        buttonText: "Shop Collection",
+        buttonHref: "/shop",
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-about-img-01.jpg",
+        imagePosition: "left" as const,
+    },
+    {
+        id: 2,
+        tag: "Expert Guide",
+        subtitle: "Skincare Essentials",
+        title: "5 Key Things to Know Before Buying",
+        titleHighlight: "Skincare Products",
+        description:
+            "Understanding your skin type and needs is the first step to building an effective routine. Learn how to choose products that truly work for you.",
+        highlights: ["Know Your Skin Type", "Check Ingredients", "Patch Test First"],
+        buttonText: "Read More",
+        buttonHref: "/blog",
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-about-img-02.jpg",
+        imagePosition: "right" as const,
+    },
 ];
 
-export function FeaturesSection() {
-	return (
-		<section className="bg-primary">
-			<div className="flex flex-col">
-				{features.map((feature) => (
-					<div
-						key={feature.id}
-						className={`grid grid-cols-1 md:grid-cols-2 ${
-							feature.imagePosition === "right" ? "" : ""
-						}`}
-					>
-						{/* Image - conditionally ordered */}
-						<div
-							className={`relative aspect-square overflow-hidden md:aspect-auto ${
-								feature.imagePosition === "right" ? "md:order-2" : "md:order-1"
-							}`}
-						>
-							<img
-								src={feature.image}
-								alt={feature.title}
-								className="size-full object-cover"
-							/>
-						</div>
+const fadeIn = {
+    hidden: { opacity: 0, filter: "blur(8px)" },
+    visible: (delay: number) => ({
+        opacity: 1,
+        filter: "blur(0px)",
+        transition: { duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+    }),
+};
 
-						{/* Content */}
-						<div
-							className={`flex flex-col justify-center gap-6 px-6 py-12 md:px-12 lg:px-20 ${
-								feature.imagePosition === "right" ? "md:order-1" : "md:order-2"
-							}`}
-						>
-							{feature.subtitle && (
-								<span className="text-sm uppercase tracking-widest text-tertiary">
-									{feature.subtitle}
-								</span>
-							)}
-							<h2 className="text-2xl font-medium text-primary md:text-3xl lg:text-4xl">
-								{feature.title}{" "}
-								{feature.titleHighlight && (
-									<span className="text-brand-secondary">
-										{feature.titleHighlight}
-									</span>
-								)}
-							</h2>
-							{feature.description && (
-								<p className="text-base text-tertiary">{feature.description}</p>
-							)}
-							<div>
-								<Button href={feature.buttonHref} color="primary" size="md">
-									{feature.buttonText}
-								</Button>
-							</div>
-						</div>
-					</div>
-				))}
-			</div>
-		</section>
-	);
+export function FeaturesSection() {
+    return (
+        <section className="bg-primary">
+            <div className="flex flex-col">
+                {features.map((feature, index) => (
+                    <div
+                        key={feature.id}
+                        className="grid grid-cols-1 md:grid-cols-2"
+                    >
+                        {/* Image */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 1.05 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.7, ease: "easeOut" }}
+                            className={`relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[550px] ${
+                                feature.imagePosition === "right" ? "md:order-2" : "md:order-1"
+                            }`}
+                        >
+                            <img
+                                src={feature.image}
+                                alt={feature.title}
+                                className="size-full object-cover"
+                            />
+                            {/* Subtle overlay gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                        </motion.div>
+
+                        {/* Content */}
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            className={`flex flex-col justify-center bg-secondary px-6 py-14 md:px-12 md:py-16 lg:px-20 lg:py-20 ${
+                                feature.imagePosition === "right" ? "md:order-1" : "md:order-2"
+                            }`}
+                        >
+                            <div className="max-w-lg">
+                                {/* Tag */}
+                                <motion.span
+                                    custom={0}
+                                    variants={fadeIn}
+                                    className="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700"
+                                >
+                                    {feature.tag}
+                                </motion.span>
+
+                                {/* Subtitle */}
+                                {feature.subtitle && (
+                                    <motion.span
+                                        custom={0.05}
+                                        variants={fadeIn}
+                                        className="mt-5 block text-sm font-medium uppercase tracking-widest text-tertiary"
+                                    >
+                                        {feature.subtitle}
+                                    </motion.span>
+                                )}
+
+                                {/* Title */}
+                                <motion.h2
+                                    custom={0.1}
+                                    variants={fadeIn}
+                                    className="mt-3 text-display-xs font-semibold leading-tight text-primary md:text-display-sm lg:text-display-md"
+                                >
+                                    {feature.title}{" "}
+                                    <span className="text-brand-600">
+                                        {feature.titleHighlight}
+                                    </span>
+                                </motion.h2>
+
+                                {/* Description */}
+                                {feature.description && (
+                                    <motion.p
+                                        custom={0.15}
+                                        variants={fadeIn}
+                                        className="mt-5 text-md leading-relaxed text-tertiary md:text-lg"
+                                    >
+                                        {feature.description}
+                                    </motion.p>
+                                )}
+
+                                {/* Highlights */}
+                                {feature.highlights && (
+                                    <motion.div
+                                        custom={0.2}
+                                        variants={fadeIn}
+                                        className="mt-6 flex flex-wrap gap-x-5 gap-y-2"
+                                    >
+                                        {feature.highlights.map((highlight, i) => (
+                                            <span
+                                                key={i}
+                                                className="flex items-center gap-2 text-sm font-medium text-secondary"
+                                            >
+                                                <span className="size-1.5 rounded-full bg-brand-600" />
+                                                {highlight}
+                                            </span>
+                                        ))}
+                                    </motion.div>
+                                )}
+
+                                {/* Button */}
+                                <motion.div custom={0.25} variants={fadeIn} className="mt-8">
+                                    <Button
+                                        href={feature.buttonHref}
+                                        color="primary"
+                                        size="lg"
+                                        iconTrailing={ArrowRight}
+                                    >
+                                        {feature.buttonText}
+                                    </Button>
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
 }

@@ -42,7 +42,7 @@ const fadeInUp = {
 
 export const CategoryCarousel = () => {
     return (
-        <section className="px-4 py-16 md:py-24">
+        <section className="px-4 py-16 md:py-16">
             <div className="mx-auto max-w-7xl">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {categories.map((category, index) => (
