@@ -1,12 +1,12 @@
 "use client";
 
 export function InstagramPosts() {
-	const placeholderImages = [
-		"https://placehold.co/400x400/e2e8f0/64748b?text=1",
-		"https://placehold.co/400x400/e2e8f0/64748b?text=2",
-		"https://placehold.co/400x400/e2e8f0/64748b?text=3",
-		"https://placehold.co/400x400/e2e8f0/64748b?text=4",
-		"https://placehold.co/400x400/e2e8f0/64748b?text=5",
+	const instagramImages = [
+		"https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-01.jpg",
+		"https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-01.jpg",
+		"https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-02.jpg",
+		"https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-04.jpg",
+		"https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-03.jpg",
 	];
 
 	return (
@@ -15,7 +15,7 @@ export function InstagramPosts() {
 				#Instagram
 			</h2>
 			<div className="grid grid-cols-2 gap-0 sm:grid-cols-3 md:grid-cols-5">
-				{placeholderImages.map((src, index) => (
+				{instagramImages.map((src, index) => (
 					<a
 						key={index}
 						href="https://instagram.com"
