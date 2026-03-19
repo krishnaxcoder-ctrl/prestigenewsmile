@@ -9,27 +9,25 @@ import {
     ShoppingBag01,
     Minus,
     Plus,
-    Check,
     Truck01,
-    RefreshCw01,
-    Shield01,
-    ChevronRight,
-    Share07,
+    HelpCircle,
+    Package,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 
-// Mock product data - in real app, fetch based on slug
+// Mock product data
 const allProducts = [
     {
         slug: "pure-protect",
         name: "Pure Protect",
         category: "Premium Face Oil",
-        price: 45.00,
+        price: 46.00,
         originalPrice: 57.00,
         rating: 5,
         reviews: 128,
-        description: "A luxurious face oil that deeply nourishes and protects your skin. Formulated with natural ingredients to restore radiance and maintain a healthy, youthful glow.",
+        inStock: true,
+        description: "Our Detox Clay is a luxurious, purifying pink clay mask designed to deeply detoxify, clarify, and brighten your skin while gently restoring balance and hydration. This creamy, mineral-rich clay draws out impurities, excess oil, and toxins without over-drying, thanks to its soothing botanical blend and natural hydrators. Ideal for weekly use, it leaves skin feeling refreshed, pores refined, and complexion visibly clearer.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-16-01.png",
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-16-02.jpg",
@@ -37,13 +35,15 @@ const allProducts = [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-14-02.jpg",
         ],
         badges: ["Hot Deal"],
-        sizes: ["30ml", "50ml", "100ml"],
+        sizes: ["180 ML", "300 ML"],
+        colors: ["#C4A484", "#E8B298", "#F5D5C8"],
         features: [
-            "100% Natural Ingredients",
-            "Dermatologist Tested",
-            "Cruelty Free",
-            "Paraben Free",
+            "Infused with premium pink clay, vitamins, antioxidants, and soothing botanicals to detoxify and nourish skin.",
+            "Creamy, easy-to-apply texture that dries comfortably and rinses off smoothly.",
+            "Free from parabens, sulfates, harsh chemicals, and synthetic fragrances.",
+            "Suitable for all skin types, including oily, combination, acne-prone, and sensitive skin.",
         ],
+        benefits: "Revive your skin with our Detox Clay — it powerfully purifies pores, absorbs excess sebum, and gently exfoliates to reveal smoother, brighter, more even-toned skin while maintaining essential moisture. Regular use helps minimize blackheads, reduce inflammation, calm breakouts, and fade dullness for a noticeably clearer and healthier complexion.",
     },
     {
         slug: "pure-glow-mask",
@@ -53,6 +53,7 @@ const allProducts = [
         originalPrice: 75.00,
         rating: 5,
         reviews: 95,
+        inStock: true,
         description: "An intensive face mask that delivers instant radiance and long-lasting hydration. Perfect for all skin types, this mask transforms dull skin into a luminous complexion.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-15-01.png",
@@ -61,22 +62,25 @@ const allProducts = [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-02.jpg",
         ],
         badges: ["Sale", "Hot Deal"],
-        sizes: ["50g", "100g", "150g"],
+        sizes: ["50g", "100g"],
+        colors: ["#F5D5C8", "#E8B298", "#D4A574"],
         features: [
-            "Instant Glow Effect",
-            "Deep Hydration",
-            "Suitable for All Skin Types",
-            "Natural Extracts",
+            "Instant glow effect with deep hydration formula.",
+            "Suitable for all skin types including sensitive skin.",
+            "Natural extracts and botanical ingredients.",
+            "Paraben-free and cruelty-free formulation.",
         ],
+        benefits: "Experience radiant, youthful skin with our intensive glow mask. It deeply nourishes, hydrates, and revitalizes tired skin for a luminous, healthy complexion.",
     },
     {
         slug: "blend-sponge",
         name: "Blend Sponge",
         category: "Renew Hand Sanitizer",
-        price: 70.00,
-        originalPrice: 77.00,
+        price: 46.00,
+        originalPrice: 55.00,
         rating: 4,
         reviews: 64,
+        inStock: true,
         description: "Professional-grade beauty sponge designed for flawless makeup application. The unique texture ensures seamless blending for a natural, airbrushed finish.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-14-01.png",
@@ -85,13 +89,15 @@ const allProducts = [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-16-02.jpg",
         ],
         badges: ["Hot Deal"],
-        sizes: ["Single", "Pack of 3", "Pack of 5"],
+        sizes: ["Single", "Pack of 3"],
+        colors: ["#FFB6C1", "#F5D5C8", "#E8B298"],
         features: [
-            "Ultra-Soft Material",
-            "Latex Free",
-            "Reusable & Washable",
-            "Professional Quality",
+            "Ultra-soft material for gentle application.",
+            "Latex-free and hypoallergenic.",
+            "Reusable and easy to clean.",
+            "Professional quality for flawless results.",
         ],
+        benefits: "Achieve a flawless, airbrushed makeup finish with our professional-grade beauty sponge. Perfect for blending foundation, concealer, and powder.",
     },
     {
         slug: "night-lip-balm",
@@ -101,6 +107,7 @@ const allProducts = [
         originalPrice: 64.00,
         rating: 4,
         reviews: 82,
+        inStock: true,
         description: "An overnight lip treatment that repairs and hydrates while you sleep. Wake up to soft, supple lips with this nourishing formula enriched with natural oils.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-01.png",
@@ -109,13 +116,15 @@ const allProducts = [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-6-02.jpg",
         ],
         badges: ["Sale", "Hot Deal"],
-        sizes: ["10g", "20g", "30g"],
+        sizes: ["10g", "20g"],
+        colors: ["#E8B298", "#C4A484", "#F5D5C8"],
         features: [
-            "Overnight Repair",
-            "Natural Oils",
-            "Long-Lasting Moisture",
-            "Vitamin E Enriched",
+            "Overnight repair formula with natural oils.",
+            "Long-lasting moisture and protection.",
+            "Vitamin E enriched for nourishment.",
+            "Gentle formula for sensitive lips.",
         ],
+        benefits: "Wake up to perfectly soft, hydrated lips. Our overnight treatment deeply nourishes and repairs while you sleep.",
     },
     {
         slug: "soft-skin-bar",
@@ -125,6 +134,7 @@ const allProducts = [
         originalPrice: 35.00,
         rating: 4,
         reviews: 156,
+        inStock: true,
         description: "A gentle cleansing bar that leaves skin feeling soft and refreshed. Formulated with moisturizing ingredients to cleanse without stripping natural oils.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-10-01.png",
@@ -133,30 +143,83 @@ const allProducts = [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-14-02.jpg",
         ],
         badges: ["Sale", "Hot Deal"],
-        sizes: ["100g", "200g", "300g"],
+        sizes: ["100g", "200g"],
+        colors: ["#F5D5C8", "#FFB6C1", "#E8B298"],
         features: [
-            "Gentle Cleansing",
-            "Moisturizing Formula",
-            "Natural Fragrance",
-            "pH Balanced",
+            "Gentle cleansing without stripping moisture.",
+            "Moisturizing formula for soft skin.",
+            "Natural fragrance and ingredients.",
+            "pH balanced for all skin types.",
         ],
+        benefits: "Experience gentle yet effective cleansing that leaves your skin feeling soft, smooth, and refreshed without dryness.",
+    },
+    {
+        slug: "daily-glow-lotion",
+        name: "Daily Glow Lotion",
+        category: "Premium Face Oil",
+        price: 46.00,
+        originalPrice: 55.00,
+        rating: 4,
+        reviews: 89,
+        inStock: true,
+        description: "A lightweight daily lotion that provides all-day hydration and a natural glow.",
+        images: [
+            "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-6-01.png",
+            "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-6-02.jpg",
+            "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-10-02.jpg",
+            "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-02.jpg",
+        ],
+        badges: ["Sale", "Hot Deal"],
+        sizes: ["100ml", "200ml"],
+        colors: ["#E8B298", "#F5D5C8", "#C4A484"],
+        features: [
+            "Lightweight, non-greasy formula.",
+            "All-day hydration and protection.",
+            "Natural glow-enhancing ingredients.",
+            "Quick-absorbing texture.",
+        ],
+        benefits: "Keep your skin hydrated and glowing all day with our lightweight daily lotion.",
+    },
+    {
+        slug: "monica-blush",
+        name: "Monica Blush",
+        category: "Hydra Glow Serum",
+        price: 46.00,
+        originalPrice: 52.00,
+        rating: 3,
+        reviews: 45,
+        inStock: true,
+        description: "A beautiful blush that gives you a natural, rosy glow.",
+        images: [
+            "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-3-01.png",
+            "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-3-02.jpg",
+            "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-6-02.jpg",
+            "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-10-02.jpg",
+        ],
+        badges: ["Hot Deal"],
+        sizes: ["5g", "10g"],
+        colors: ["#FFB6C1", "#F5D5C8", "#E8B298"],
+        features: [
+            "Natural, buildable color.",
+            "Long-lasting formula.",
+            "Silky smooth texture.",
+            "Suitable for all skin tones.",
+        ],
+        benefits: "Add a beautiful, natural flush to your cheeks with our silky smooth blush formula.",
     },
 ];
 
-function StarRating({ rating, reviews }: { rating: number; reviews: number }) {
+function StarRating({ rating }: { rating: number }) {
     return (
-        <div className="flex items-center gap-2">
-            <div className="flex items-center gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                    <Star01
-                        key={i}
-                        className={`size-5 ${
-                            i < rating ? "fill-warning-400 text-warning-400" : "text-tertiary"
-                        }`}
-                    />
-                ))}
-            </div>
-            <span className="text-sm text-tertiary">({reviews} reviews)</span>
+        <div className="flex items-center gap-0.5">
+            {[...Array(5)].map((_, i) => (
+                <Star01
+                    key={i}
+                    className={`size-4 ${
+                        i < rating ? "fill-warning-400 text-warning-400" : "text-tertiary"
+                    }`}
+                />
+            ))}
         </div>
     );
 }
@@ -166,23 +229,37 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
     const [selectedImage, setSelectedImage] = useState(0);
     const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
+    const [selectedColor, setSelectedColor] = useState(product.colors[0]);
     const [quantity, setQuantity] = useState(1);
     const [isWishlisted, setIsWishlisted] = useState(false);
+    const [activeTab, setActiveTab] = useState("description");
 
-    const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+    const freeShippingThreshold = 120;
+    const amountToFreeShipping = freeShippingThreshold - product.price;
 
     return (
         <div className="overflow-x-hidden">
             <Header />
             <main className="bg-primary">
-                {/* Breadcrumb */}
-                <div className="border-b border-secondary px-4 py-4 md:px-8 lg:px-16">
-                    <div className="mx-auto max-w-7xl">
-                        <nav className="flex items-center gap-2 text-sm text-tertiary">
+                {/* Hero Header */}
+                <div className="relative bg-brand-50 py-12 md:py-16">
+                    <div className="absolute inset-0 overflow-hidden">
+                        <img
+                            src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-01.jpg"
+                            alt=""
+                            className="size-full object-cover opacity-20"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-brand-50 via-brand-50/95 to-brand-50/80" />
+                    </div>
+                    <div className="relative mx-auto max-w-7xl px-4 text-center md:px-8 lg:px-16">
+                        <h1 className="text-2xl font-semibold uppercase tracking-[0.2em] text-primary md:text-3xl">
+                            Shop Detail
+                        </h1>
+                        <nav className="mt-4 flex items-center justify-center gap-2 text-sm text-tertiary">
                             <a href="/" className="transition hover:text-brand-600">Home</a>
-                            <ChevronRight className="size-4" />
-                            <a href="/shop" className="transition hover:text-brand-600">Shop</a>
-                            <ChevronRight className="size-4" />
+                            <span>/</span>
+                            <a href="/shop" className="transition hover:text-brand-600">{product.category}</a>
+                            <span>/</span>
                             <span className="text-primary">{product.name}</span>
                         </nav>
                     </div>
@@ -192,51 +269,23 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-                            {/* Image Gallery */}
+                            {/* Image Gallery - Thumbnails on Left */}
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.5 }}
+                                className="flex gap-4"
                             >
-                                {/* Main Image */}
-                                <div className="relative aspect-square overflow-hidden rounded-3xl bg-secondary">
-                                    <img
-                                        src={product.images[selectedImage]}
-                                        alt={product.name}
-                                        className="size-full object-cover"
-                                    />
-                                    {/* Badges */}
-                                    <div className="absolute left-4 top-4 flex flex-col gap-2">
-                                        {product.badges.map((badge) => (
-                                            <span
-                                                key={badge}
-                                                className={`rounded-full px-3 py-1.5 text-xs font-semibold uppercase ${
-                                                    badge === "Sale"
-                                                        ? "bg-error-500 text-white"
-                                                        : "bg-brand-600 text-white"
-                                                }`}
-                                            >
-                                                {badge}
-                                            </span>
-                                        ))}
-                                        {discount > 0 && (
-                                            <span className="rounded-full bg-success-500 px-3 py-1.5 text-xs font-semibold text-white">
-                                                -{discount}%
-                                            </span>
-                                        )}
-                                    </div>
-                                </div>
-
-                                {/* Thumbnail Gallery */}
-                                <div className="mt-4 grid grid-cols-4 gap-3">
+                                {/* Thumbnails */}
+                                <div className="flex flex-col gap-3">
                                     {product.images.map((image, index) => (
                                         <button
                                             key={index}
                                             onClick={() => setSelectedImage(index)}
-                                            className={`relative aspect-square overflow-hidden rounded-xl bg-secondary transition ${
+                                            className={`relative size-20 shrink-0 overflow-hidden rounded-lg bg-secondary transition md:size-24 ${
                                                 selectedImage === index
-                                                    ? "ring-2 ring-brand-600 ring-offset-2"
-                                                    : "hover:opacity-80"
+                                                    ? "ring-2 ring-primary ring-offset-2"
+                                                    : "opacity-70 hover:opacity-100"
                                             }`}
                                         >
                                             <img
@@ -247,6 +296,15 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                                         </button>
                                     ))}
                                 </div>
+
+                                {/* Main Image */}
+                                <div className="relative flex-1 overflow-hidden rounded-2xl bg-secondary">
+                                    <img
+                                        src={product.images[selectedImage]}
+                                        alt={product.name}
+                                        className="size-full object-cover"
+                                    />
+                                </div>
                             </motion.div>
 
                             {/* Product Info */}
@@ -254,48 +312,43 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.5, delay: 0.1 }}
-                                className="flex flex-col"
                             >
-                                <p className="text-sm font-medium uppercase tracking-wider text-brand-600">
+                                <p className="text-xs font-medium uppercase tracking-[0.15em] text-tertiary">
                                     {product.category}
                                 </p>
 
-                                <h1 className="mt-2 text-display-xs font-semibold text-primary md:text-display-sm">
+                                <h2 className="mt-2 text-2xl font-semibold uppercase tracking-wider text-primary md:text-3xl">
                                     {product.name}
-                                </h1>
+                                </h2>
 
-                                <div className="mt-4">
-                                    <StarRating rating={product.rating} reviews={product.reviews} />
-                                </div>
-
-                                {/* Price */}
-                                <div className="mt-6 flex items-center gap-3">
-                                    <span className="text-2xl font-bold text-primary md:text-3xl">
+                                <div className="mt-4 flex items-center justify-between">
+                                    <span className="text-2xl font-semibold text-primary">
                                         ${product.price.toFixed(2)}
                                     </span>
-                                    {product.originalPrice > product.price && (
-                                        <span className="text-lg text-tertiary line-through">
-                                            ${product.originalPrice.toFixed(2)}
-                                        </span>
-                                    )}
+                                    <StarRating rating={product.rating} />
                                 </div>
 
-                                <p className="mt-6 text-md leading-relaxed text-tertiary">
-                                    {product.description}
-                                </p>
+                                {/* In Stock Badge */}
+                                {product.inStock && (
+                                    <span className="mt-4 inline-block rounded bg-success-500 px-3 py-1 text-xs font-semibold text-white">
+                                        In Stock
+                                    </span>
+                                )}
 
                                 {/* Size Selection */}
-                                <div className="mt-8">
-                                    <p className="mb-3 text-sm font-medium text-primary">Size</p>
-                                    <div className="flex flex-wrap gap-3">
+                                <div className="mt-6">
+                                    <p className="mb-3 text-xs font-medium uppercase tracking-wider text-primary">
+                                        Size : {selectedSize}
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
                                         {product.sizes.map((size) => (
                                             <button
                                                 key={size}
                                                 onClick={() => setSelectedSize(size)}
-                                                className={`rounded-xl px-5 py-3 text-sm font-medium transition ${
+                                                className={`rounded-md px-5 py-2.5 text-sm font-medium transition ${
                                                     selectedSize === size
-                                                        ? "bg-brand-600 text-white"
-                                                        : "border border-secondary bg-secondary text-primary hover:border-brand-600"
+                                                        ? "bg-primary text-white"
+                                                        : "border border-secondary text-primary hover:border-primary"
                                                 }`}
                                             >
                                                 {size}
@@ -304,114 +357,243 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                                     </div>
                                 </div>
 
+                                {/* Color Selection */}
+                                <div className="mt-6">
+                                    <p className="mb-3 text-xs font-medium uppercase tracking-wider text-primary">
+                                        Color : <span className="normal-case text-tertiary">Dirty Pink</span>
+                                    </p>
+                                    <div className="flex items-center gap-3">
+                                        {product.colors.map((color) => (
+                                            <button
+                                                key={color}
+                                                onClick={() => setSelectedColor(color)}
+                                                className={`size-7 rounded-full transition ${
+                                                    selectedColor === color
+                                                        ? "ring-2 ring-primary ring-offset-2"
+                                                        : "hover:scale-110"
+                                                }`}
+                                                style={{ backgroundColor: color }}
+                                            />
+                                        ))}
+                                    </div>
+                                    <button className="mt-2 text-xs text-tertiary underline hover:text-primary">
+                                        Clear
+                                    </button>
+                                </div>
+
                                 {/* Quantity & Add to Cart */}
-                                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                                <div className="mt-6 flex items-center gap-3">
                                     {/* Quantity Selector */}
-                                    <div className="flex items-center rounded-xl border border-secondary">
+                                    <div className="flex items-center border border-secondary">
                                         <button
                                             onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                            className="flex size-12 items-center justify-center text-tertiary transition hover:text-primary"
+                                            className="flex size-11 items-center justify-center text-tertiary transition hover:text-primary"
                                         >
-                                            <Minus className="size-5" />
+                                            <Minus className="size-4" />
                                         </button>
-                                        <span className="w-12 text-center text-md font-medium text-primary">
+                                        <span className="w-10 text-center text-sm font-medium text-primary">
                                             {quantity}
                                         </span>
                                         <button
                                             onClick={() => setQuantity(quantity + 1)}
-                                            className="flex size-12 items-center justify-center text-tertiary transition hover:text-primary"
+                                            className="flex size-11 items-center justify-center text-tertiary transition hover:text-primary"
                                         >
-                                            <Plus className="size-5" />
+                                            <Plus className="size-4" />
                                         </button>
                                     </div>
 
                                     {/* Add to Cart Button */}
-                                    <Button
-                                        color="primary"
-                                        size="xl"
-                                        iconLeading={ShoppingBag01}
-                                        className="flex-1"
-                                    >
+                                    <button className="flex flex-1 items-center justify-center gap-2 bg-primary py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-gray-800">
                                         Add to Cart
-                                    </Button>
+                                    </button>
 
                                     {/* Wishlist Button */}
                                     <button
                                         onClick={() => setIsWishlisted(!isWishlisted)}
-                                        className={`flex size-14 shrink-0 items-center justify-center rounded-xl border transition ${
+                                        className={`flex size-11 items-center justify-center border transition ${
                                             isWishlisted
                                                 ? "border-brand-600 bg-brand-50 text-brand-600"
-                                                : "border-secondary text-tertiary hover:border-brand-600 hover:text-brand-600"
+                                                : "border-secondary text-tertiary hover:border-primary hover:text-primary"
                                         }`}
                                     >
-                                        <Heart className={`size-6 ${isWishlisted ? "fill-brand-600" : ""}`} />
-                                    </button>
-
-                                    {/* Share Button */}
-                                    <button className="flex size-14 shrink-0 items-center justify-center rounded-xl border border-secondary text-tertiary transition hover:border-brand-600 hover:text-brand-600">
-                                        <Share07 className="size-6" />
+                                        <Heart className={`size-5 ${isWishlisted ? "fill-brand-600" : ""}`} />
                                     </button>
                                 </div>
 
-                                {/* Features */}
-                                <div className="mt-8 grid grid-cols-2 gap-3">
-                                    {product.features.map((feature, index) => (
-                                        <div
-                                            key={index}
-                                            className="flex items-center gap-2 text-sm text-secondary"
-                                        >
-                                            <Check className="size-5 text-success-500" />
-                                            {feature}
-                                        </div>
-                                    ))}
+                                {/* Buy Now Button */}
+                                <button className="mt-3 w-full bg-tertiary py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-gray-600">
+                                    Buy Now
+                                </button>
+
+                                {/* Links */}
+                                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+                                    <button className="flex items-center gap-2 text-tertiary transition hover:text-primary">
+                                        <Truck01 className="size-4" />
+                                        Delivery & Return
+                                    </button>
+                                    <button className="flex items-center gap-2 text-tertiary transition hover:text-primary">
+                                        <HelpCircle className="size-4" />
+                                        Ask A Question
+                                    </button>
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-tertiary">Share:</span>
+                                        {["f", "in", "X", "in"].map((social, i) => (
+                                            <button
+                                                key={i}
+                                                className="text-tertiary transition hover:text-primary"
+                                            >
+                                                {social}
+                                            </button>
+                                        ))}
+                                    </div>
                                 </div>
 
-                                {/* Delivery Info */}
-                                <div className="mt-8 grid grid-cols-1 gap-4 rounded-2xl bg-secondary p-6 sm:grid-cols-3">
-                                    <div className="flex items-center gap-3">
-                                        <div className="flex size-12 items-center justify-center rounded-full bg-brand-100">
-                                            <Truck01 className="size-6 text-brand-600" />
-                                        </div>
-                                        <div>
-                                            <p className="text-sm font-medium text-primary">Free Shipping</p>
-                                            <p className="text-xs text-tertiary">On orders over $50</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <div className="flex size-12 items-center justify-center rounded-full bg-brand-100">
-                                            <RefreshCw01 className="size-6 text-brand-600" />
-                                        </div>
-                                        <div>
-                                            <p className="text-sm font-medium text-primary">Easy Returns</p>
-                                            <p className="text-xs text-tertiary">30-day return policy</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                        <div className="flex size-12 items-center justify-center rounded-full bg-brand-100">
-                                            <Shield01 className="size-6 text-brand-600" />
-                                        </div>
-                                        <div>
-                                            <p className="text-sm font-medium text-primary">Secure Payment</p>
-                                            <p className="text-xs text-tertiary">100% secure checkout</p>
-                                        </div>
-                                    </div>
+                                {/* Free Shipping Notice */}
+                                <div className="mt-6 flex items-center gap-2 rounded-lg bg-secondary px-4 py-3">
+                                    <Package className="size-5 text-tertiary" />
+                                    <span className="text-sm text-tertiary">
+                                        Spend <span className="font-semibold text-primary">${amountToFreeShipping.toFixed(0)}</span> More To Get Free Shipping
+                                    </span>
                                 </div>
                             </motion.div>
                         </div>
                     </div>
                 </section>
 
-                {/* Related Products */}
-                <section className="border-t border-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
+                {/* Tabs Section */}
+                <section className="border-t border-secondary px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
-                        <h2 className="mb-10 text-center text-display-xs font-semibold text-primary md:text-display-sm">
-                            You May Also <span className="text-brand-600">Like</span>
-                        </h2>
+                        {/* Tab Headers */}
+                        <div className="flex gap-8 border-b border-secondary">
+                            {[
+                                { id: "description", label: "Description" },
+                                { id: "additional", label: "Additional Information" },
+                                { id: "reviews", label: "Reviews" },
+                            ].map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`relative pb-4 text-sm font-medium uppercase tracking-wider transition ${
+                                        activeTab === tab.id
+                                            ? "text-primary"
+                                            : "text-tertiary hover:text-primary"
+                                    }`}
+                                >
+                                    {tab.label}
+                                    {activeTab === tab.id && (
+                                        <motion.div
+                                            layoutId="activeTab"
+                                            className="absolute inset-x-0 bottom-0 h-0.5 bg-primary"
+                                        />
+                                    )}
+                                </button>
+                            ))}
+                        </div>
 
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                        {/* Tab Content */}
+                        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2">
+                            <div>
+                                {activeTab === "description" && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <p className="leading-relaxed text-tertiary">
+                                            {product.description}
+                                        </p>
+
+                                        <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
+                                            Product Features
+                                        </h3>
+                                        <ul className="mt-4 space-y-3">
+                                            {product.features.map((feature, index) => (
+                                                <li key={index} className="flex items-start gap-2 text-sm text-tertiary">
+                                                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
+                                                    {feature}
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                        <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
+                                            Beauty Benefits
+                                        </h3>
+                                        <p className="mt-4 leading-relaxed text-tertiary">
+                                            {product.benefits}
+                                        </p>
+                                    </motion.div>
+                                )}
+
+                                {activeTab === "additional" && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <table className="w-full text-sm">
+                                            <tbody>
+                                                <tr className="border-b border-secondary">
+                                                    <td className="py-3 font-medium text-primary">Weight</td>
+                                                    <td className="py-3 text-tertiary">0.5 kg</td>
+                                                </tr>
+                                                <tr className="border-b border-secondary">
+                                                    <td className="py-3 font-medium text-primary">Dimensions</td>
+                                                    <td className="py-3 text-tertiary">10 × 10 × 15 cm</td>
+                                                </tr>
+                                                <tr className="border-b border-secondary">
+                                                    <td className="py-3 font-medium text-primary">Size</td>
+                                                    <td className="py-3 text-tertiary">{product.sizes.join(", ")}</td>
+                                                </tr>
+                                                <tr className="border-b border-secondary">
+                                                    <td className="py-3 font-medium text-primary">Color</td>
+                                                    <td className="py-3 text-tertiary">Dirty Pink, Nude, Coral</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </motion.div>
+                                )}
+
+                                {activeTab === "reviews" && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <p className="text-tertiary">
+                                            {product.reviews} reviews for {product.name}
+                                        </p>
+                                    </motion.div>
+                                )}
+                            </div>
+
+                            {/* Image */}
+                            <div className="hidden overflow-hidden rounded-2xl lg:block">
+                                <img
+                                    src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-04.jpg"
+                                    alt="Beauty"
+                                    className="size-full object-cover"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Related Products */}
+                <section className="bg-primary px-4 py-16 md:px-8 md:py-24 lg:px-16">
+                    <div className="mx-auto max-w-7xl">
+                        <div className="mb-10 text-center">
+                            <p className="text-xs font-medium uppercase tracking-[0.2em] text-tertiary">
+                                Explore Our Range
+                            </p>
+                            <h2 className="mt-2 text-2xl font-semibold uppercase tracking-wider text-primary md:text-3xl">
+                                Related Products
+                            </h2>
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {allProducts
                                 .filter((p) => p.slug !== product.slug)
-                                .slice(0, 4)
+                                .slice(0, 3)
                                 .map((relatedProduct) => (
                                     <motion.a
                                         key={relatedProduct.slug}
@@ -422,22 +604,40 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                                         transition={{ duration: 0.5 }}
                                         className="group"
                                     >
-                                        <div className="relative aspect-square overflow-hidden rounded-2xl bg-secondary">
+                                        <div className="relative aspect-[850/1000] overflow-hidden bg-secondary">
                                             <img
                                                 src={relatedProduct.images[0]}
                                                 alt={relatedProduct.name}
-                                                className="size-full object-cover transition duration-500 group-hover:scale-110"
+                                                className="size-full object-cover transition duration-500 group-hover:scale-105"
                                             />
+                                            {/* Badges */}
+                                            <div className="absolute left-4 top-4 flex flex-col gap-2">
+                                                {relatedProduct.badges.map((badge) => (
+                                                    <span
+                                                        key={badge}
+                                                        className={`rounded px-3 py-1 text-xs font-semibold uppercase ${
+                                                            badge === "Sale"
+                                                                ? "bg-error-500 text-white"
+                                                                : "bg-primary text-white"
+                                                        }`}
+                                                    >
+                                                        {badge}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
-                                        <div className="mt-4">
-                                            <p className="text-sm text-tertiary">{relatedProduct.category}</p>
-                                            <h3 className="mt-1 font-semibold text-primary transition group-hover:text-brand-600">
-                                                {relatedProduct.name}
-                                            </h3>
-                                            <p className="mt-1 font-medium text-secondary">
-                                                ${relatedProduct.price.toFixed(2)}
+                                        <div className="mt-4 flex items-center justify-between">
+                                            <p className="text-xs uppercase tracking-wider text-tertiary">
+                                                {relatedProduct.category}
                                             </p>
+                                            <StarRating rating={relatedProduct.rating} />
                                         </div>
+                                        <h3 className="mt-2 text-sm font-semibold uppercase tracking-wider text-primary transition group-hover:text-brand-600">
+                                            {relatedProduct.name}
+                                        </h3>
+                                        <p className="mt-1 font-medium text-primary">
+                                            ${relatedProduct.price.toFixed(2)}
+                                        </p>
                                     </motion.a>
                                 ))}
                         </div>
