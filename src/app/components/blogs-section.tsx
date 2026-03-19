@@ -12,7 +12,7 @@ const blogPosts = [
         title: "Essential Daily Skincare Rituals for Long-Lasting Radiance",
         excerpt:
             "Discover the morning and evening routines that dermatologists swear by for maintaining healthy, glowing skin year-round.",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-blog-img-01.jpg",
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-01.jpg",
         href: "/blog/skincare-rituals",
     },
     {
@@ -22,7 +22,7 @@ const blogPosts = [
         title: "Mastering the Art of Natural Makeup for a Luminous Glow",
         excerpt:
             "Learn how to enhance your natural features with minimal products for an effortlessly beautiful, radiant look.",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-blog-img-02.jpg",
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-02.jpg",
         href: "/blog/natural-makeup",
     },
 ];

@@ -16,7 +16,7 @@ const features = [
         highlights: ["Paraben Free", "Vegan Formula", "Clinically Proven"],
         buttonText: "Shop Collection",
         buttonHref: "/shop",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-about-img-01.jpg",
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-01.jpg",
         imagePosition: "left" as const,
     },
     {
@@ -30,7 +30,7 @@ const features = [
         highlights: ["Know Your Skin Type", "Check Ingredients", "Patch Test First"],
         buttonText: "Read More",
         buttonHref: "/blog",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-about-img-02.jpg",
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-03.jpg",
         imagePosition: "right" as const,
     },
 ];
