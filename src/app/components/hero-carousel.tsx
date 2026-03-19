@@ -158,6 +158,7 @@ export const HeroCarousel = () => {
 
             {/* Slider Side - 50% */}
             <div className="relative w-full overflow-hidden md:w-1/2">
+                {/* Image Slider */}
                 <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                         key={currentIndex}
@@ -174,25 +175,97 @@ export const HeroCarousel = () => {
                             alt={`${currentSlide.title} ${currentSlide.highlight} ${currentSlide.subtitle}`}
                             className="size-full object-cover"
                         />
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Navigation Arrows */}
-                <button
-                    onClick={prevSlide}
-                    className="absolute left-4 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-md backdrop-blur-sm transition duration-100 ease-linear hover:bg-white md:size-12"
-                    aria-label="Previous slide"
-                >
-                    <ChevronLeft className="size-5 md:size-6" />
-                </button>
+                {/* Top Badge */}
+                <div className="absolute left-6 top-6 z-10">
+                    <motion.div
+                        key={`badge-${currentIndex}`}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 0.2 }}
+                        className="rounded-full bg-white/95 px-4 py-2 shadow-lg backdrop-blur-sm"
+                    >
+                        <span className="text-xs font-semibold uppercase tracking-wider text-brand-600">
+                            New Collection 2026
+                        </span>
+                    </motion.div>
+                </div>
 
-                <button
-                    onClick={nextSlide}
-                    className="absolute right-4 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-primary shadow-md backdrop-blur-sm transition duration-100 ease-linear hover:bg-white md:size-12"
-                    aria-label="Next slide"
-                >
-                    <ChevronRight className="size-5 md:size-6" />
-                </button>
+                {/* Bottom Content Overlay */}
+                <div className="absolute inset-x-0 bottom-0 z-10 p-6 md:p-8">
+                    <div className="flex items-end justify-between">
+                        {/* Slide Info */}
+                        <motion.div
+                            key={`info-${currentIndex}`}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4, delay: 0.1 }}
+                        >
+                            <p className="text-sm font-medium text-white/80">
+                                {String(currentIndex + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
+                            </p>
+                            <h3 className="mt-1 text-xl font-semibold text-white md:text-2xl">
+                                {currentSlide.title} {currentSlide.highlight}
+                            </h3>
+                        </motion.div>
+
+                        {/* Navigation Arrows */}
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={prevSlide}
+                                className="flex size-11 items-center justify-center rounded-full border-2 border-white/30 bg-white/10 text-white backdrop-blur-sm transition duration-200 hover:border-white hover:bg-white hover:text-primary md:size-12"
+                                aria-label="Previous slide"
+                            >
+                                <ChevronLeft className="size-5" />
+                            </button>
+                            <button
+                                onClick={nextSlide}
+                                className="flex size-11 items-center justify-center rounded-full border-2 border-white/30 bg-white/10 text-white backdrop-blur-sm transition duration-200 hover:border-white hover:bg-white hover:text-primary md:size-12"
+                                aria-label="Next slide"
+                            >
+                                <ChevronRight className="size-5" />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="mt-5 flex gap-2">
+                        {slides.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => {
+                                    setDirection(index > currentIndex ? 1 : -1);
+                                    setCurrentIndex(index);
+                                }}
+                                className="group relative h-1 flex-1 overflow-hidden rounded-full bg-white/30"
+                                aria-label={`Go to slide ${index + 1}`}
+                            >
+                                <motion.div
+                                    className="absolute inset-y-0 left-0 bg-white"
+                                    initial={{ width: "0%" }}
+                                    animate={{
+                                        width: index === currentIndex ? "100%" : index < currentIndex ? "100%" : "0%"
+                                    }}
+                                    transition={{
+                                        duration: index === currentIndex ? 5 : 0.3,
+                                        ease: index === currentIndex ? "linear" : "easeOut"
+                                    }}
+                                />
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Decorative Corner Element */}
+                <div className="absolute right-0 top-0 z-10">
+                    <svg className="size-24 text-white/10" viewBox="0 0 100 100" fill="currentColor">
+                        <polygon points="100,0 100,100 0,0" />
+                    </svg>
+                </div>
             </div>
         </section>
     );
