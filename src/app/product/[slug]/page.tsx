@@ -44,6 +44,20 @@ const allProducts = [
             "Suitable for all skin types, including oily, combination, acne-prone, and sensitive skin.",
         ],
         benefits: "Revive your skin with our Detox Clay — it powerfully purifies pores, absorbs excess sebum, and gently exfoliates to reveal smoother, brighter, more even-toned skin while maintaining essential moisture. Regular use helps minimize blackheads, reduce inflammation, calm breakouts, and fade dullness for a noticeably clearer and healthier complexion.",
+        additionalInfo: {
+            weight: "180g / 300g",
+            dimensions: "8 × 8 × 12 cm",
+            ingredients: "Kaolin Clay, Pink Clay, Rosehip Oil, Vitamin E, Aloe Vera Extract, Chamomile Extract, Hyaluronic Acid, Jojoba Oil",
+            shelfLife: "24 months",
+            madeIn: "France",
+            skinType: "All Skin Types",
+            usage: "Apply to clean, dry face. Leave for 10-15 minutes. Rinse with warm water. Use 2-3 times weekly.",
+        },
+        customerReviews: [
+            { name: "Sarah M.", rating: 5, date: "March 12, 2026", title: "Amazing results!", comment: "I've been using this for a month and my skin has never looked better. The texture is so luxurious and it really does pull out impurities. Highly recommend!", avatar: "https://randomuser.me/api/portraits/women/1.jpg", verified: true },
+            { name: "Emily R.", rating: 5, date: "March 8, 2026", title: "Holy grail product", comment: "This mask is incredible! I have combination skin and it balances everything perfectly. My pores look so much smaller after each use.", avatar: "https://randomuser.me/api/portraits/women/2.jpg", verified: true },
+            { name: "Jessica L.", rating: 4, date: "February 28, 2026", title: "Great for oily skin", comment: "Really helps control my oily T-zone. The only reason I'm not giving 5 stars is because I wish it came in a larger size!", avatar: "https://randomuser.me/api/portraits/women/3.jpg", verified: true },
+        ],
     },
     {
         slug: "pure-glow-mask",
@@ -54,7 +68,7 @@ const allProducts = [
         rating: 5,
         reviews: 95,
         inStock: true,
-        description: "An intensive face mask that delivers instant radiance and long-lasting hydration. Perfect for all skin types, this mask transforms dull skin into a luminous complexion.",
+        description: "An intensive face mask that delivers instant radiance and long-lasting hydration. Perfect for all skin types, this mask transforms dull skin into a luminous complexion. Enriched with pearl extract and vitamin C, this mask works to brighten and even out skin tone while deeply nourishing from within.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-15-01.png",
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-15-02.jpg",
@@ -71,17 +85,31 @@ const allProducts = [
             "Paraben-free and cruelty-free formulation.",
         ],
         benefits: "Experience radiant, youthful skin with our intensive glow mask. It deeply nourishes, hydrates, and revitalizes tired skin for a luminous, healthy complexion.",
+        additionalInfo: {
+            weight: "50g / 100g",
+            dimensions: "6 × 6 × 8 cm",
+            ingredients: "Pearl Extract, Vitamin C, Niacinamide, Squalane, Glycerin, Green Tea Extract, Collagen, Peptides",
+            shelfLife: "18 months",
+            madeIn: "South Korea",
+            skinType: "All Skin Types",
+            usage: "Apply evenly to face and neck. Leave for 15-20 minutes. Rinse or leave overnight for intensive treatment.",
+        },
+        customerReviews: [
+            { name: "Amanda K.", rating: 5, date: "March 15, 2026", title: "Instant glow!", comment: "This mask gives me the most beautiful glow! I use it before special events and always get compliments on my skin.", avatar: "https://randomuser.me/api/portraits/women/4.jpg", verified: true },
+            { name: "Michelle T.", rating: 5, date: "March 10, 2026", title: "Worth every penny", comment: "A bit pricey but the results are worth it. My skin looks so radiant and healthy after each use.", avatar: "https://randomuser.me/api/portraits/women/5.jpg", verified: true },
+            { name: "Rachel B.", rating: 4, date: "March 1, 2026", title: "Great for dry skin", comment: "Perfect for my dry skin. It's so hydrating and leaves my face feeling plump and dewy.", avatar: "https://randomuser.me/api/portraits/women/6.jpg", verified: true },
+        ],
     },
     {
         slug: "blend-sponge",
         name: "Blend Sponge",
-        category: "Renew Hand Sanitizer",
+        category: "Beauty Tools",
         price: 46.00,
         originalPrice: 55.00,
         rating: 4,
         reviews: 64,
         inStock: true,
-        description: "Professional-grade beauty sponge designed for flawless makeup application. The unique texture ensures seamless blending for a natural, airbrushed finish.",
+        description: "Professional-grade beauty sponge designed for flawless makeup application. The unique texture ensures seamless blending for a natural, airbrushed finish. Made from ultra-soft, latex-free material that expands when wet for the perfect bounce and blend.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-14-01.png",
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-14-02.jpg",
@@ -98,17 +126,31 @@ const allProducts = [
             "Professional quality for flawless results.",
         ],
         benefits: "Achieve a flawless, airbrushed makeup finish with our professional-grade beauty sponge. Perfect for blending foundation, concealer, and powder.",
+        additionalInfo: {
+            weight: "20g per sponge",
+            dimensions: "5.5 × 4 × 4 cm",
+            ingredients: "Non-latex polyurethane foam, Antimicrobial coating",
+            shelfLife: "Replace every 3 months",
+            madeIn: "USA",
+            skinType: "All Skin Types",
+            usage: "Dampen sponge before use. Bounce and blend product onto skin. Clean after each use with mild soap.",
+        },
+        customerReviews: [
+            { name: "Lisa H.", rating: 5, date: "March 14, 2026", title: "Best sponge ever!", comment: "I've tried so many beauty sponges and this one is by far the best. Super soft and blends everything perfectly.", avatar: "https://randomuser.me/api/portraits/women/7.jpg", verified: true },
+            { name: "Nicole P.", rating: 4, date: "March 5, 2026", title: "Great quality", comment: "Really good quality sponge. Lasts longer than drugstore options and gives a much better finish.", avatar: "https://randomuser.me/api/portraits/women/8.jpg", verified: true },
+            { name: "Stephanie W.", rating: 4, date: "February 25, 2026", title: "Smooth application", comment: "Makes my foundation look so smooth and natural. The pack of 3 is great value.", avatar: "https://randomuser.me/api/portraits/women/9.jpg", verified: true },
+        ],
     },
     {
         slug: "night-lip-balm",
         name: "Night Lip Balm",
-        category: "Modern Nail Polish",
+        category: "Lip Care",
         price: 55.00,
         originalPrice: 64.00,
         rating: 4,
         reviews: 82,
         inStock: true,
-        description: "An overnight lip treatment that repairs and hydrates while you sleep. Wake up to soft, supple lips with this nourishing formula enriched with natural oils.",
+        description: "An overnight lip treatment that repairs and hydrates while you sleep. Wake up to soft, supple lips with this nourishing formula enriched with natural oils. This intensive balm creates a protective barrier that locks in moisture and actively repairs dry, chapped lips overnight.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-01.png",
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-02.jpg",
@@ -125,17 +167,31 @@ const allProducts = [
             "Gentle formula for sensitive lips.",
         ],
         benefits: "Wake up to perfectly soft, hydrated lips. Our overnight treatment deeply nourishes and repairs while you sleep.",
+        additionalInfo: {
+            weight: "10g / 20g",
+            dimensions: "3 × 3 × 2 cm",
+            ingredients: "Shea Butter, Coconut Oil, Vitamin E, Beeswax, Jojoba Oil, Rosehip Seed Oil, Honey Extract, Lanolin",
+            shelfLife: "12 months",
+            madeIn: "Australia",
+            skinType: "All Lip Types",
+            usage: "Apply generously to lips before bed. Can also be used during the day for extra hydration.",
+        },
+        customerReviews: [
+            { name: "Olivia J.", rating: 5, date: "March 13, 2026", title: "Bye bye chapped lips!", comment: "This lip balm is a game changer! I used to wake up with dry, cracked lips but now they're always soft and smooth.", avatar: "https://randomuser.me/api/portraits/women/10.jpg", verified: true },
+            { name: "Hannah D.", rating: 4, date: "March 7, 2026", title: "Really moisturizing", comment: "Super hydrating and lasts all night. Love the subtle scent too.", avatar: "https://randomuser.me/api/portraits/women/11.jpg", verified: true },
+            { name: "Grace F.", rating: 4, date: "February 20, 2026", title: "Great for winter", comment: "Perfect for the cold months when my lips get extra dry. A little goes a long way.", avatar: "https://randomuser.me/api/portraits/women/12.jpg", verified: true },
+        ],
     },
     {
         slug: "soft-skin-bar",
         name: "Soft Skin Bar",
-        category: "Renew Hand Sanitizer",
+        category: "Body Care",
         price: 30.00,
         originalPrice: 35.00,
         rating: 4,
         reviews: 156,
         inStock: true,
-        description: "A gentle cleansing bar that leaves skin feeling soft and refreshed. Formulated with moisturizing ingredients to cleanse without stripping natural oils.",
+        description: "A gentle cleansing bar that leaves skin feeling soft and refreshed. Formulated with moisturizing ingredients to cleanse without stripping natural oils. This artisanal soap bar is cold-pressed and infused with botanical extracts for a luxurious cleansing experience.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-10-01.png",
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-10-02.jpg",
@@ -152,6 +208,20 @@ const allProducts = [
             "pH balanced for all skin types.",
         ],
         benefits: "Experience gentle yet effective cleansing that leaves your skin feeling soft, smooth, and refreshed without dryness.",
+        additionalInfo: {
+            weight: "100g / 200g",
+            dimensions: "7 × 5 × 3 cm",
+            ingredients: "Olive Oil, Coconut Oil, Shea Butter, Lavender Essential Oil, Oat Extract, Vitamin E, Glycerin",
+            shelfLife: "24 months",
+            madeIn: "Italy",
+            skinType: "All Skin Types, Sensitive Skin Friendly",
+            usage: "Lather with water and massage onto wet skin. Rinse thoroughly. Suitable for face and body.",
+        },
+        customerReviews: [
+            { name: "Megan C.", rating: 5, date: "March 11, 2026", title: "So gentle!", comment: "Finally a soap that doesn't dry out my sensitive skin! It smells amazing and leaves my skin so soft.", avatar: "https://randomuser.me/api/portraits/women/13.jpg", verified: true },
+            { name: "Ashley R.", rating: 4, date: "March 3, 2026", title: "Great everyday soap", comment: "Love using this for my daily shower. The lather is rich and creamy and it rinses off clean.", avatar: "https://randomuser.me/api/portraits/women/14.jpg", verified: true },
+            { name: "Jennifer M.", rating: 4, date: "February 18, 2026", title: "Natural and effective", comment: "Appreciate that it's made with natural ingredients. Works well for my whole family.", avatar: "https://randomuser.me/api/portraits/women/15.jpg", verified: true },
+        ],
     },
     {
         slug: "daily-glow-lotion",
@@ -162,7 +232,7 @@ const allProducts = [
         rating: 4,
         reviews: 89,
         inStock: true,
-        description: "A lightweight daily lotion that provides all-day hydration and a natural glow.",
+        description: "A lightweight daily lotion that provides all-day hydration and a natural glow. Formulated with hyaluronic acid and niacinamide, this fast-absorbing lotion delivers intense moisture without feeling heavy or greasy. Perfect as a base for makeup or worn alone for a healthy, dewy finish.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-6-01.png",
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-6-02.jpg",
@@ -179,17 +249,31 @@ const allProducts = [
             "Quick-absorbing texture.",
         ],
         benefits: "Keep your skin hydrated and glowing all day with our lightweight daily lotion.",
+        additionalInfo: {
+            weight: "100ml / 200ml",
+            dimensions: "5 × 5 × 15 cm",
+            ingredients: "Hyaluronic Acid, Niacinamide, Squalane, Aloe Vera, Green Tea Extract, Vitamin C, Ceramides",
+            shelfLife: "18 months",
+            madeIn: "Japan",
+            skinType: "All Skin Types",
+            usage: "Apply to clean face and neck morning and evening. Gently massage until fully absorbed.",
+        },
+        customerReviews: [
+            { name: "Christina L.", rating: 5, date: "March 9, 2026", title: "Perfect daily moisturizer", comment: "This is my go-to moisturizer! Light enough for summer but still keeps my skin hydrated all day.", avatar: "https://randomuser.me/api/portraits/women/16.jpg", verified: true },
+            { name: "Samantha G.", rating: 4, date: "March 2, 2026", title: "Great under makeup", comment: "Works beautifully under my foundation. No pilling and keeps my makeup looking fresh.", avatar: "https://randomuser.me/api/portraits/women/17.jpg", verified: true },
+            { name: "Victoria S.", rating: 4, date: "February 22, 2026", title: "Nice glow", comment: "Gives a subtle glow without being shiny. Love the lightweight feel.", avatar: "https://randomuser.me/api/portraits/women/18.jpg", verified: true },
+        ],
     },
     {
         slug: "monica-blush",
         name: "Monica Blush",
-        category: "Hydra Glow Serum",
+        category: "Makeup",
         price: 46.00,
         originalPrice: 52.00,
         rating: 3,
         reviews: 45,
         inStock: true,
-        description: "A beautiful blush that gives you a natural, rosy glow.",
+        description: "A beautiful blush that gives you a natural, rosy glow. This silky-smooth powder blush blends effortlessly for a seamless, buildable color that lasts all day. Infused with micro-fine pigments for a natural flush that complements every skin tone.",
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-3-01.png",
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-3-02.jpg",
@@ -206,6 +290,20 @@ const allProducts = [
             "Suitable for all skin tones.",
         ],
         benefits: "Add a beautiful, natural flush to your cheeks with our silky smooth blush formula.",
+        additionalInfo: {
+            weight: "5g / 10g",
+            dimensions: "5 × 5 × 2 cm",
+            ingredients: "Mica, Talc, Silica, Iron Oxides, Vitamin E, Jojoba Oil, Rose Extract",
+            shelfLife: "24 months",
+            madeIn: "France",
+            skinType: "All Skin Types",
+            usage: "Smile and apply to the apples of cheeks. Blend upward toward temples for a natural flush.",
+        },
+        customerReviews: [
+            { name: "Brittany N.", rating: 4, date: "March 6, 2026", title: "Pretty color", comment: "The color is beautiful and natural-looking. Goes on smoothly but I wish it lasted a bit longer.", avatar: "https://randomuser.me/api/portraits/women/19.jpg", verified: true },
+            { name: "Katherine E.", rating: 3, date: "February 27, 2026", title: "Decent blush", comment: "It's okay. The pigment is nice but I find I need to reapply throughout the day.", avatar: "https://randomuser.me/api/portraits/women/20.jpg", verified: true },
+            { name: "Diana V.", rating: 3, date: "February 15, 2026", title: "Good for natural looks", comment: "Great for an everyday natural look. The staying power could be better though.", avatar: "https://randomuser.me/api/portraits/women/21.jpg", verified: true },
+        ],
     },
 ];
 
@@ -492,14 +590,15 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                         </div>
 
                         {/* Tab Content */}
-                        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2">
-                            <div>
-                                {activeTab === "description" && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
+                        <div className="mt-10">
+                            {activeTab === "description" && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="grid grid-cols-1 gap-10 lg:grid-cols-2"
+                                >
+                                    <div>
                                         <p className="leading-relaxed text-tertiary">
                                             {product.description}
                                         </p>
@@ -510,7 +609,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                         <ul className="mt-4 space-y-3">
                                             {product.features.map((feature, index) => (
                                                 <li key={index} className="flex items-start gap-2 text-sm text-tertiary">
-                                                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
+                                                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand-500" />
                                                     {feature}
                                                 </li>
                                             ))}
@@ -522,59 +621,185 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                         <p className="mt-4 leading-relaxed text-tertiary">
                                             {product.benefits}
                                         </p>
-                                    </motion.div>
-                                )}
 
-                                {activeTab === "additional" && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
+                                        <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
+                                            How To Use
+                                        </h3>
+                                        <p className="mt-4 leading-relaxed text-tertiary">
+                                            {product.additionalInfo.usage}
+                                        </p>
+                                    </div>
+
+                                    {/* Image */}
+                                    <div className="hidden overflow-hidden rounded-2xl lg:block">
+                                        <img
+                                            src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-04.jpg"
+                                            alt="Beauty"
+                                            className="size-full object-cover"
+                                        />
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {activeTab === "additional" && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="grid grid-cols-1 gap-10 lg:grid-cols-2"
+                                >
+                                    <div>
+                                        <h3 className="mb-6 text-sm font-semibold uppercase tracking-wider text-primary">
+                                            Product Specifications
+                                        </h3>
                                         <table className="w-full text-sm">
                                             <tbody>
                                                 <tr className="border-b border-secondary">
-                                                    <td className="py-3 font-medium text-primary">Weight</td>
-                                                    <td className="py-3 text-tertiary">0.5 kg</td>
+                                                    <td className="w-1/3 py-4 font-medium text-primary">Weight</td>
+                                                    <td className="py-4 text-tertiary">{product.additionalInfo.weight}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
-                                                    <td className="py-3 font-medium text-primary">Dimensions</td>
-                                                    <td className="py-3 text-tertiary">10 × 10 × 15 cm</td>
+                                                    <td className="py-4 font-medium text-primary">Dimensions</td>
+                                                    <td className="py-4 text-tertiary">{product.additionalInfo.dimensions}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
-                                                    <td className="py-3 font-medium text-primary">Size</td>
-                                                    <td className="py-3 text-tertiary">{product.sizes.join(", ")}</td>
+                                                    <td className="py-4 font-medium text-primary">Size Options</td>
+                                                    <td className="py-4 text-tertiary">{product.sizes.join(", ")}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
-                                                    <td className="py-3 font-medium text-primary">Color</td>
-                                                    <td className="py-3 text-tertiary">Dirty Pink, Nude, Coral</td>
+                                                    <td className="py-4 font-medium text-primary">Skin Type</td>
+                                                    <td className="py-4 text-tertiary">{product.additionalInfo.skinType}</td>
+                                                </tr>
+                                                <tr className="border-b border-secondary">
+                                                    <td className="py-4 font-medium text-primary">Shelf Life</td>
+                                                    <td className="py-4 text-tertiary">{product.additionalInfo.shelfLife}</td>
+                                                </tr>
+                                                <tr className="border-b border-secondary">
+                                                    <td className="py-4 font-medium text-primary">Made In</td>
+                                                    <td className="py-4 text-tertiary">{product.additionalInfo.madeIn}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </motion.div>
-                                )}
 
-                                {activeTab === "reviews" && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <p className="text-tertiary">
-                                            {product.reviews} reviews for {product.name}
+                                        <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
+                                            Ingredients
+                                        </h3>
+                                        <p className="text-sm leading-relaxed text-tertiary">
+                                            {product.additionalInfo.ingredients}
                                         </p>
-                                    </motion.div>
-                                )}
-                            </div>
 
-                            {/* Image */}
-                            <div className="hidden overflow-hidden rounded-2xl lg:block">
-                                <img
-                                    src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-04.jpg"
-                                    alt="Beauty"
-                                    className="size-full object-cover"
-                                />
-                            </div>
+                                        <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
+                                            How To Use
+                                        </h3>
+                                        <p className="text-sm leading-relaxed text-tertiary">
+                                            {product.additionalInfo.usage}
+                                        </p>
+                                    </div>
+
+                                    {/* Image */}
+                                    <div className="hidden overflow-hidden rounded-2xl lg:block">
+                                        <img
+                                            src={product.images[1]}
+                                            alt={product.name}
+                                            className="size-full object-cover"
+                                        />
+                                    </div>
+                                </motion.div>
+                            )}
+
+                            {activeTab === "reviews" && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    {/* Reviews Header */}
+                                    <div className="mb-8 flex flex-col gap-6 border-b border-secondary pb-8 md:flex-row md:items-center md:justify-between">
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-primary">
+                                                Customer Reviews
+                                            </h3>
+                                            <div className="mt-2 flex items-center gap-3">
+                                                <StarRating rating={product.rating} />
+                                                <span className="text-sm text-tertiary">
+                                                    Based on {product.reviews} reviews
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <Button color="secondary" size="md">
+                                            Write a Review
+                                        </Button>
+                                    </div>
+
+                                    {/* Reviews List */}
+                                    <div className="space-y-6">
+                                        {product.customerReviews.map((review, index) => (
+                                            <motion.div
+                                                key={index}
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.3, delay: index * 0.1 }}
+                                                className="rounded-xl border border-secondary bg-primary p-6"
+                                            >
+                                                <div className="flex items-start gap-4">
+                                                    {/* Avatar */}
+                                                    <img
+                                                        src={review.avatar}
+                                                        alt={review.name}
+                                                        className="size-12 shrink-0 rounded-full object-cover"
+                                                    />
+                                                    <div className="flex-1">
+                                                        {/* Header */}
+                                                        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                                            <div>
+                                                                <div className="flex items-center gap-2">
+                                                                    <span className="font-semibold text-primary">
+                                                                        {review.name}
+                                                                    </span>
+                                                                    {review.verified && (
+                                                                        <span className="rounded-full bg-success-100 px-2 py-0.5 text-xs font-medium text-success-700">
+                                                                            Verified Purchase
+                                                                        </span>
+                                                                    )}
+                                                                </div>
+                                                                <span className="text-xs text-tertiary">
+                                                                    {review.date}
+                                                                </span>
+                                                            </div>
+                                                            <StarRating rating={review.rating} />
+                                                        </div>
+
+                                                        {/* Review Content */}
+                                                        <h4 className="mt-3 font-medium text-primary">
+                                                            {review.title}
+                                                        </h4>
+                                                        <p className="mt-2 text-sm leading-relaxed text-tertiary">
+                                                            {review.comment}
+                                                        </p>
+
+                                                        {/* Actions */}
+                                                        <div className="mt-4 flex items-center gap-4">
+                                                            <button className="text-xs text-tertiary transition hover:text-primary">
+                                                                Helpful (12)
+                                                            </button>
+                                                            <button className="text-xs text-tertiary transition hover:text-primary">
+                                                                Report
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+
+                                    {/* Load More */}
+                                    <div className="mt-8 text-center">
+                                        <Button color="secondary" size="md">
+                                            Load More Reviews
+                                        </Button>
+                                    </div>
+                                </motion.div>
+                            )}
                         </div>
                     </div>
                 </section>
