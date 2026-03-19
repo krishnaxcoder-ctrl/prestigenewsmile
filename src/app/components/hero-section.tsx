@@ -33,8 +33,8 @@ export const HeroSection = () => {
                 variants={fadeInUp}
                 className="mt-6 flex max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-display-sm font-semibold text-primary md:text-display-md lg:text-display-lg"
             >
-                <span>Experience</span>
-                <span>the synergy</span>
+                <span>EXPERIENCE</span>
+                <span>THE SYNERGY</span>
                 <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-10 md:w-28 lg:h-12 lg:w-32">
                     <img
                         src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/heading-with-img-01.jpg"
@@ -42,8 +42,8 @@ export const HeroSection = () => {
                         className="size-full object-cover"
                     />
                 </span>
-                <span>advanced</span>
-                <span>ingredients</span>
+                <span>ADVANCED</span>
+                <span>INGREDIENTS</span>
                 <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-10 md:w-28 lg:h-12 lg:w-32">
                     <img
                         src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/heading-with-img-02.jpg"
@@ -51,11 +51,11 @@ export const HeroSection = () => {
                         className="size-full object-cover"
                     />
                 </span>
-                <span>minimalist</span>
-                <span>skincare</span>
-                <span>to elevate</span>
-                <span>your daily</span>
-                <span>glow.</span>
+                <span>MINIMALIST</span>
+                <span>SKINCARE</span>
+                <span>TO ELEVATE</span>
+                <span>YOUR DAILY</span>
+                <span>GLOW.</span>
             </motion.div>
         </section>
     );
