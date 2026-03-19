@@ -57,11 +57,11 @@ export function BlogsSection() {
 							<div className="mb-3 flex items-center gap-4">
 								<a
 									href="#"
-									className="text-sm text-brand-secondary transition duration-100 ease-linear hover:underline"
+									className="text-sm uppercase text-brand-secondary transition duration-100 ease-linear hover:underline"
 								>
 									{post.category}
 								</a>
-								<div className="flex items-center gap-1.5 text-sm text-tertiary">
+								<div className="flex items-center gap-1.5  text-sm text-tertiary">
 									<Calendar className="size-4" />
 									{post.date}
 								</div>
