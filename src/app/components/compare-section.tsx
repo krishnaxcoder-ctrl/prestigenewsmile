@@ -54,7 +54,7 @@ export function CompareSection() {
                         whileInView={{ opacity: 1, filter: "blur(0px)" }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.5, delay: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
-                        className="mt-4 text-display-xs font-semibold text-primary md:text-display-sm lg:text-display-md"
+                        className="mt-4 text-display-xs font-semibold uppercase text-primary md:text-display-sm lg:text-display-md"
                     >
                         Real <span className="text-brand-600">Transformations</span>
                     </motion.h2>
