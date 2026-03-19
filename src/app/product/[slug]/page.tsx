@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, use } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import {
@@ -224,8 +224,9 @@ function StarRating({ rating }: { rating: number }) {
     );
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-    const product = allProducts.find((p) => p.slug === params.slug) || allProducts[0];
+export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = use(params);
+    const product = allProducts.find((p) => p.slug === slug) || allProducts[0];
 
     const [selectedImage, setSelectedImage] = useState(0);
     const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
