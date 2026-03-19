@@ -238,7 +238,7 @@ export const Header = () => {
                                 <li key={item.label}>
                                     {item.label === "Shop" ? (
                                         <AriaDialogTrigger>
-                                            <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-3 py-2 text-sm font-medium tracking-wide text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2">
+                                            <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-widest text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2">
                                                 <span>{item.label}</span>
                                                 <ChevronDown className="size-4 text-quaternary transition duration-100 ease-linear in-aria-expanded:-rotate-180" />
                                             </AriaButton>
@@ -262,7 +262,7 @@ export const Header = () => {
                                         </AriaDialogTrigger>
                                     ) : item.label === "Pages" ? (
                                         <AriaDialogTrigger>
-                                            <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-3 py-2 text-sm font-medium tracking-wide text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2">
+                                            <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-widest text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2">
                                                 <span>{item.label}</span>
                                                 <ChevronDown className="size-4 text-quaternary transition duration-100 ease-linear in-aria-expanded:-rotate-180" />
                                             </AriaButton>
@@ -285,7 +285,7 @@ export const Header = () => {
                                     ) : (
                                         <a
                                             href={item.href}
-                                            className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-sm font-medium tracking-wide text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+                                            className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-widest text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
                                         >
                                             {item.label}
                                         </a>
