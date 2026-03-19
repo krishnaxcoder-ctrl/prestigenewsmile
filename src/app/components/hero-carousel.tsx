@@ -78,7 +78,7 @@ export const HeroCarousel = () => {
     };
 
     return (
-        <section className="flex min-h-[500px] flex-col md:min-h-[600px] md:flex-row lg:min-h-[700px]">
+        <section className="flex h-[675px] flex-col md:flex-row">
             {/* Content Side - 50% */}
             <div className="flex w-full flex-col justify-center bg-secondary px-6 py-12 md:w-1/2 md:px-12 md:py-16 lg:px-20 lg:py-24">
                 <AnimatePresence mode="wait">
