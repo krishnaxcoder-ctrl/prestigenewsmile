@@ -591,10 +591,10 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                             </h2>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                             {allProducts
                                 .filter((p) => p.slug !== product.slug)
-                                .slice(0, 3)
+                                .slice(0, 4)
                                 .map((relatedProduct, index) => (
                                     <motion.div
                                         key={relatedProduct.slug}
