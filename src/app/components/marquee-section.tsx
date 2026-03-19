@@ -13,38 +13,41 @@ const marqueeItems = [
 
 export function MarqueeSection() {
     return (
-        <section className="overflow-hidden bg-brand-600 py-4">
-            <div className="relative flex">
-                {/* First marquee */}
-                <div className="animate-marquee flex shrink-0 items-center gap-8">
-                    {marqueeItems.map((item, index) => (
-                        <div
-                            key={index}
-                            className="flex shrink-0 items-center gap-3 px-4"
-                        >
-                            <item.icon className="size-5 text-white/80" />
-                            <span className="whitespace-nowrap text-sm font-semibold uppercase tracking-widest text-white">
-                                {item.text}
-                            </span>
-                            <span className="size-1.5 rounded-full bg-white/40" />
-                        </div>
-                    ))}
-                </div>
+        <section className="my-2.5 overflow-hidden">
+            {/* Rotated marquee container */}
+            <div className="bg-brand-600 py-12 md:py-14" style={{ transform: "rotate(-1deg) scale(1.02)" }}>
+                <div className="relative flex">
+                    {/* First marquee */}
+                    <div className="animate-marquee flex shrink-0 items-center gap-12">
+                        {marqueeItems.map((item, index) => (
+                            <div
+                                key={index}
+                                className="flex shrink-0 items-center gap-4 px-6"
+                            >
+                                <item.icon className="size-5 text-white/90" />
+                                <span className="whitespace-nowrap font-medium uppercase tracking-[0.2em] text-white">
+                                    {item.text}
+                                </span>
+                                <span className="size-2 rounded-full bg-white/50" />
+                            </div>
+                        ))}
+                    </div>
 
-                {/* Duplicate for seamless loop */}
-                <div className="animate-marquee flex shrink-0 items-center gap-8" aria-hidden="true">
-                    {marqueeItems.map((item, index) => (
-                        <div
-                            key={index}
-                            className="flex shrink-0 items-center gap-3 px-4"
-                        >
-                            <item.icon className="size-5 text-white/80" />
-                            <span className="whitespace-nowrap text-sm font-semibold uppercase tracking-widest text-white">
-                                {item.text}
-                            </span>
-                            <span className="size-1.5 rounded-full bg-white/40" />
-                        </div>
-                    ))}
+                    {/* Duplicate for seamless loop */}
+                    <div className="animate-marquee flex shrink-0 items-center gap-12" aria-hidden="true">
+                        {marqueeItems.map((item, index) => (
+                            <div
+                                key={index}
+                                className="flex shrink-0 items-center gap-4 px-6"
+                            >
+                                <item.icon className="size-5 text-white/90" />
+                                <span className="whitespace-nowrap font-medium uppercase tracking-[0.2em] text-white">
+                                    {item.text}
+                                </span>
+                                <span className="size-2 rounded-full bg-white/50" />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
