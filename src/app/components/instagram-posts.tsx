@@ -40,6 +40,42 @@ const instagramPosts = [
         likes: "1.5k",
         comments: "29",
     },
+    {
+        id: 7,
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-16-02.jpg",
+        likes: "3.8k",
+        comments: "85",
+    },
+    {
+        id: 8,
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-15-02.jpg",
+        likes: "2.1k",
+        comments: "52",
+    },
+    {
+        id: 9,
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-14-02.jpg",
+        likes: "4.5k",
+        comments: "108",
+    },
+    {
+        id: 10,
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-02.jpg",
+        likes: "1.9k",
+        comments: "41",
+    },
+    {
+        id: 11,
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-10-02.jpg",
+        likes: "3.3k",
+        comments: "76",
+    },
+    {
+        id: 12,
+        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-6-02.jpg",
+        likes: "2.7k",
+        comments: "63",
+    },
 ];
 
 export function InstagramPosts() {
@@ -90,7 +126,7 @@ export function InstagramPosts() {
             </div>
 
             {/* Instagram Grid */}
-            <div className="grid grid-cols-2 gap-1 sm:grid-cols-3 md:grid-cols-6 md:gap-2">
+            <div className="grid grid-cols-3 gap-1 sm:grid-cols-4 md:grid-cols-6 md:gap-2">
                 {instagramPosts.map((post, index) => (
                     <motion.a
                         key={post.id}
