@@ -69,11 +69,12 @@ export const HeroCarousel = () => {
     };
 
     const textVariants = {
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, filter: "blur(8px)", scale: 0.97 },
         visible: (delay: number) => ({
             opacity: 1,
-            y: 0,
-            transition: { duration: 0.5, delay, ease: "easeOut" },
+            filter: "blur(0px)",
+            scale: 1,
+            transition: { duration: 0.35, delay, ease: [0.25, 0.46, 0.45, 0.94] },
         }),
     };
 
