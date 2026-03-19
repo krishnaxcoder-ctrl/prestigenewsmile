@@ -27,29 +27,7 @@ const products = [
         secondaryImage: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-10-02.jpg",
         href: "/product/soft-skin-bar",
     },
-    {
-        id: 3,
-        name: "Pure Glow Powder",
-        category: "Luxury Face Powder",
-        priceRange: "$65.00 – $84.00",
-        rating: 5,
-        badges: ["Sale", "Hot Deal"],
-        primaryImage: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-6-01.png",
-        secondaryImage: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-6-02.jpg",
-        href: "/product/pure-glow-powder",
-    },
-    {
-        id: 4,
-        name: "Soft Glow Cream",
-        category: "Luxury Face Powder",
-        priceRange: "$66.00 – $75.00",
-        rating: 4,
-        badges: ["Sale", "Hot Deal"],
-        primaryImage: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-3-01.png",
-        secondaryImage: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-3-02.jpg",
-        href: "/product/soft-glow-cream",
-    },
-];
+    ];
 
 const fadeIn = {
     hidden: { opacity: 0, filter: "blur(8px)" },
