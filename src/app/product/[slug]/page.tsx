@@ -582,12 +582,12 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                 {/* Related Products */}
                 <section className="bg-primary px-4 py-16 md:px-8 md:py-24 lg:px-16">
                     <div className="mx-auto max-w-7xl">
-                        <div className="mb-10 text-center">
-                            <p className="text-xs font-medium uppercase tracking-[0.2em] text-tertiary">
+                        <div className="mb-12 text-center md:mb-16">
+                            <span className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
                                 Explore Our Range
-                            </p>
-                            <h2 className="mt-2 text-2xl font-semibold uppercase tracking-wider text-primary md:text-3xl">
-                                Related Products
+                            </span>
+                            <h2 className="mt-4 text-display-xs font-semibold text-primary md:text-display-sm">
+                                Related <span className="text-brand-600">Products</span>
                             </h2>
                         </div>
 
@@ -595,51 +595,98 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                             {allProducts
                                 .filter((p) => p.slug !== product.slug)
                                 .slice(0, 3)
-                                .map((relatedProduct) => (
-                                    <motion.a
+                                .map((relatedProduct, index) => (
+                                    <motion.div
                                         key={relatedProduct.slug}
-                                        href={`/product/${relatedProduct.slug}`}
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.5 }}
+                                        viewport={{ once: true, margin: "-100px" }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
                                         className="group"
                                     >
-                                        <div className="relative aspect-[850/1000] overflow-hidden bg-secondary">
-                                            <img
-                                                src={relatedProduct.images[0]}
-                                                alt={relatedProduct.name}
-                                                className="size-full object-cover transition duration-500 group-hover:scale-105"
-                                            />
+                                        {/* Product Image */}
+                                        <div className="relative aspect-[850/1020] overflow-hidden rounded-2xl bg-secondary">
+                                            <a href={`/product/${relatedProduct.slug}`} className="block size-full">
+                                                {/* Primary Image */}
+                                                <img
+                                                    src={relatedProduct.images[0]}
+                                                    alt={relatedProduct.name}
+                                                    className="absolute inset-0 size-full object-cover transition duration-500 group-hover:opacity-0"
+                                                />
+                                                {/* Secondary Image (on hover) */}
+                                                <img
+                                                    src={relatedProduct.images[1]}
+                                                    alt={relatedProduct.name}
+                                                    className="absolute inset-0 size-full object-cover opacity-0 transition duration-500 group-hover:opacity-100"
+                                                />
+                                            </a>
+
                                             {/* Badges */}
                                             <div className="absolute left-4 top-4 flex flex-col gap-2">
                                                 {relatedProduct.badges.map((badge) => (
                                                     <span
                                                         key={badge}
-                                                        className={`rounded px-3 py-1 text-xs font-semibold uppercase ${
+                                                        className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${
                                                             badge === "Sale"
                                                                 ? "bg-error-500 text-white"
-                                                                : "bg-primary text-white"
+                                                                : "bg-brand-600 text-white"
                                                         }`}
                                                     >
                                                         {badge}
                                                     </span>
                                                 ))}
                                             </div>
+
+                                            {/* Action Buttons */}
+                                            <div className="absolute right-4 top-4 flex flex-col gap-2 opacity-0 transition duration-300 group-hover:opacity-100">
+                                                <button
+                                                    className="flex size-10 items-center justify-center rounded-full bg-white shadow-md transition duration-100 ease-linear hover:bg-brand-50 hover:text-brand-600"
+                                                    aria-label="Add to wishlist"
+                                                >
+                                                    <Heart className="size-5" />
+                                                </button>
+                                            </div>
+
+                                            {/* Add to Cart Button */}
+                                            <div className="absolute inset-x-4 bottom-4 translate-y-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                                <Button
+                                                    href={`/product/${relatedProduct.slug}`}
+                                                    color="primary"
+                                                    size="md"
+                                                    iconLeading={ShoppingBag01}
+                                                    className="w-full justify-center"
+                                                >
+                                                    Select Options
+                                                </Button>
+                                            </div>
                                         </div>
-                                        <div className="mt-4 flex items-center justify-between">
-                                            <p className="text-xs uppercase tracking-wider text-tertiary">
-                                                {relatedProduct.category}
+
+                                        {/* Product Details */}
+                                        <div className="mt-4">
+                                            <div className="flex items-center justify-between">
+                                                <a
+                                                    href={`/product/${relatedProduct.slug}`}
+                                                    className="text-sm text-tertiary transition duration-100 ease-linear hover:text-brand-600"
+                                                >
+                                                    {relatedProduct.category}
+                                                </a>
+                                                <StarRating rating={relatedProduct.rating} />
+                                            </div>
+
+                                            <h3 className="mt-2 text-lg font-semibold text-primary">
+                                                <a
+                                                    href={`/product/${relatedProduct.slug}`}
+                                                    className="transition duration-100 ease-linear hover:text-brand-600"
+                                                >
+                                                    {relatedProduct.name}
+                                                </a>
+                                            </h3>
+
+                                            <p className="mt-1 text-md font-medium text-secondary">
+                                                ${relatedProduct.price.toFixed(2)} – ${relatedProduct.originalPrice.toFixed(2)}
                                             </p>
-                                            <StarRating rating={relatedProduct.rating} />
                                         </div>
-                                        <h3 className="mt-2 text-sm font-semibold uppercase tracking-wider text-primary transition group-hover:text-brand-600">
-                                            {relatedProduct.name}
-                                        </h3>
-                                        <p className="mt-1 font-medium text-primary">
-                                            ${relatedProduct.price.toFixed(2)}
-                                        </p>
-                                    </motion.a>
+                                    </motion.div>
                                 ))}
                         </div>
                     </div>
