@@ -66,35 +66,36 @@ export function BlogsSection() {
         <section className="bg-primary px-4 py-16 md:px-8 md:py-24 lg:px-16">
             <div className="mx-auto max-w-7xl">
                 {/* Header */}
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="mb-12 text-center md:mb-16"
-                >
+                <div className="mb-12 text-center md:mb-16">
                     <motion.span
-                        custom={0}
-                        variants={fadeIn}
+                        initial={{ opacity: 0, filter: "blur(8px)" }}
+                        whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.5, delay: 0, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700"
                     >
                         Our Blog
                     </motion.span>
                     <motion.h2
-                        custom={0.05}
-                        variants={fadeIn}
+                        initial={{ opacity: 0, filter: "blur(8px)" }}
+                        whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.5, delay: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="mt-4 text-display-xs font-semibold text-primary md:text-display-sm lg:text-display-md"
                     >
                         Beauty Tips &{" "}
                         <span className="text-brand-600">Expert Advice</span>
                     </motion.h2>
                     <motion.p
-                        custom={0.1}
-                        variants={fadeIn}
+                        initial={{ opacity: 0, filter: "blur(8px)" }}
+                        whileInView={{ opacity: 1, filter: "blur(0px)" }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="mx-auto mt-4 max-w-2xl text-md text-tertiary md:text-lg"
                     >
                         Stay updated with the latest skincare trends, tips, and tutorials from our beauty experts.
                     </motion.p>
-                </motion.div>
+                </div>
 
                 {/* Blog Grid - 3 Columns */}
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
