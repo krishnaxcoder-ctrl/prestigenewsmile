@@ -130,7 +130,7 @@ export function InstagramSection() {
                 {instagramPosts.map((post, index) => (
                     <motion.a
                         key={post.id}
-                        href="https://instagram.com/prestige.smile.studio"
+                        href="https://www.instagram.com/prestige.smile.studio/"
                         target="_blank"
                         rel="noopener noreferrer"
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -171,7 +171,7 @@ export function InstagramSection() {
                 className="mt-10 text-center"
             >
                 <a
-                    href="https://instagram.com/prestige.smile.studio"
+                    href="https://www.instagram.com/prestige.smile.studio/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:shadow-lg hover:shadow-pink-500/25"

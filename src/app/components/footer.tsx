@@ -39,7 +39,7 @@ const footerLinks = {
 		title: "Contact",
 		links: [
 			{ label: "+41 78 300 06 19", href: "tel:+41783000619" },
-			{ label: "@prestige.smile.studio", href: "https://instagram.com/prestige.smile.studio" },
+			{ label: "@prestige.smile.studio", href: "https://www.instagram.com/prestige.smile.studio/" },
 			{ label: "Ambilly, near Geneva", href: "/contact" },
 			{ label: "Mon-Fri: 10am - 8pm", href: "/contact" },
 			{ label: "Sat: 10am - 7pm", href: "/contact" },
@@ -50,7 +50,7 @@ const footerLinks = {
 };
 
 const socialLinks = [
-	{ icon: Instagram, href: "https://instagram.com/prestige.smile.studio", label: "Instagram" },
+	{ icon: Instagram, href: "https://www.instagram.com/prestige.smile.studio/", label: "Instagram" },
 	{ icon: Facebook, href: "https://facebook.com", label: "Facebook" },
 ];
 
