@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import {
     ChevronDown,
     ChevronLeft,
@@ -58,12 +59,12 @@ const PromoBanner = () => {
             <div className="flex items-center gap-1.5 px-8 text-center text-[10px] font-medium uppercase tracking-widest sm:px-0 sm:text-xs">
                 <span className="line-clamp-1">{promoSlides[currentSlide].text}</span>
                 {promoSlides[currentSlide].linkText && (
-                    <a
+                    <Link
                         href={promoSlides[currentSlide].linkHref}
                         className="font-semibold underline underline-offset-2 transition duration-100 ease-linear hover:opacity-80"
                     >
                         {promoSlides[currentSlide].linkText}
-                    </a>
+                    </Link>
                 )}
             </div>
 
@@ -131,7 +132,7 @@ const ServicesDropdown = () => {
                             <ul className="flex flex-col gap-0.5">
                                 {column.items.map((item) => (
                                     <li key={item.label}>
-                                        <a
+                                        <Link
                                             href={item.href}
                                             className="group block rounded-lg py-2.5 transition duration-100 ease-linear hover:translate-x-1"
                                         >
@@ -141,7 +142,7 @@ const ServicesDropdown = () => {
                                             <span className="mt-0.5 block text-xs text-tertiary">
                                                 {item.description}
                                             </span>
-                                        </a>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>
@@ -160,12 +161,12 @@ const ServicesDropdown = () => {
                             Ambilly, near Geneva — Professional teeth whitening studio
                         </span>
                     </div>
-                    <a
+                    <Link
                         href="/contact"
                         className="text-xs font-semibold uppercase tracking-wider text-brand-secondary transition hover:text-brand-primary"
                     >
                         Book Now →
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -252,12 +253,12 @@ const MobileNav = () => {
                                 </button>
                             </div>
                         ) : (
-                            <a
+                            <Link
                                 href={item.href}
                                 className="block px-4 py-3 text-md font-medium text-primary"
                             >
                                 {item.label}
-                            </a>
+                            </Link>
                         )}
                     </li>
                 ))}
@@ -284,13 +285,13 @@ export const Header = () => {
             <div className="border-b border-secondary">
                 <div className="relative mx-auto flex h-16 max-w-full items-center justify-between px-4 md:h-18 md:px-8">
                     {/* Logo */}
-                    <a href="/" className="flex shrink-0 items-center">
+                    <Link href="/" className="flex shrink-0 items-center">
                         <img
                             src="/logo.svg"
                             alt="Prestige Smile"
                             className="h-8 w-auto sm:h-14"
                         />
-                    </a>
+                    </Link>
 
                     {/* Desktop Navigation - Centered */}
                     <nav className="absolute left-1/2 hidden -translate-x-1/2 lg:block">
@@ -325,12 +326,12 @@ export const Header = () => {
                                             </AriaPopover>
                                         </AriaDialogTrigger>
                                     ) : (
-                                        <a
+                                        <Link
                                             href={item.href}
                                             className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-widest text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
                                         >
                                             {item.label}
-                                        </a>
+                                        </Link>
                                     )}
                                 </li>
                             ))}
@@ -351,12 +352,12 @@ export const Header = () => {
                         </a>
 
                         {/* Book Now Button */}
-                        <a
+                        <Link
                             href="/contact"
                             className="rounded-lg bg-brand-solid px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white transition duration-100 ease-linear hover:bg-brand-700 sm:px-5 sm:py-2.5 sm:text-sm"
                         >
                             Book Now
-                        </a>
+                        </Link>
 
                         {/* Mobile Menu Trigger */}
                         <AriaDialogTrigger>

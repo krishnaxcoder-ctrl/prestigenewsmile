@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Facebook, Instagram } from "@/components/foundations/social-icons";
 
 const footerLinks = {
@@ -66,13 +67,13 @@ export function Footer() {
 					<div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
 						{/* Logo and Description Column - First on mobile */}
 						<div className="col-span-2 mb-4 sm:col-span-2 md:col-span-4 md:mb-0 lg:order-first lg:col-span-1">
-							<a href="/" className="inline-block">
+							<Link href="/" className="inline-block">
 								<img
 									src="/logo.svg"
 									alt="Prestige Smile"
 									className="h-10 w-auto"
 								/>
-							</a>
+							</Link>
 							<p className="mt-4 text-sm text-secondary">
 								A bright smile is much more than a detail: it reveals the confidence
 								you have in yourself. Professional teeth whitening in Ambilly, near Geneva.
@@ -94,12 +95,23 @@ export function Footer() {
 								<ul className="mt-4 space-y-3">
 									{section.links.map((link) => (
 										<li key={link.label}>
-											<a
-												href={link.href}
-												className="text-sm text-secondary transition duration-100 ease-linear hover:text-primary"
-											>
-												{link.label}
-											</a>
+											{link.href.startsWith("http") || link.href.startsWith("tel:") ? (
+												<a
+													href={link.href}
+													target={link.href.startsWith("http") ? "_blank" : undefined}
+													rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+													className="text-sm text-secondary transition duration-100 ease-linear hover:text-primary"
+												>
+													{link.label}
+												</a>
+											) : (
+												<Link
+													href={link.href}
+													className="text-sm text-secondary transition duration-100 ease-linear hover:text-primary"
+												>
+													{link.label}
+												</Link>
+											)}
 										</li>
 									))}
 								</ul>
@@ -156,12 +168,12 @@ export function Footer() {
 					<div className="order-2 flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:order-3">
 						{legalLinks.map((link, index) => (
 							<span key={link.label} className="flex items-center gap-2 sm:gap-4">
-								<a
+								<Link
 									href={link.href}
 									className="text-xs text-secondary transition duration-100 ease-linear hover:text-primary sm:text-sm"
 								>
 									{link.label}
-								</a>
+								</Link>
 								{index < legalLinks.length - 1 && (
 									<span className="text-tertiary">·</span>
 								)}
