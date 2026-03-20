@@ -263,17 +263,17 @@ export default function ShopPage() {
                 <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="transition hover:text-teal-600">Home</a>
+                            <a href="/" className="transition uppercase hover:text-teal-600">Home</a>
                             <span>/</span>
-                            <span className="text-teal-600">Shop</span>
+                            <span className="uppercase  text-teal-600">Shop</span>
                         </nav>
-                        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-                            <div className="max-w-3xl">
+                        <div className="flex flex-col items-start  justify-between gap-8 md:flex-row md:items-center">
+                            <div className="max-w-3xl ">
                                 <motion.h1
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: 0.1 }}
-                                    className="text-2xl font-semibold text-primary md:text-3xl"
+                                    className="text-2xl font-semibold uppercase text-primary md:text-3xl"
                                 >
                                     Shop Our <span className="text-teal-600">Premium</span> Collection
                                 </motion.h1>
