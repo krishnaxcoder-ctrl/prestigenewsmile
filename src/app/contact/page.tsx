@@ -122,14 +122,7 @@ export default function ContactPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <h2 className="text-2xl font-semibold text-primary md:text-3xl">
-                                    Get in Touch
-                                </h2>
-                                <p className="mt-4 text-tertiary">
-                                    Have a question or want to book an appointment? We'd love to hear from you. Our team is here to help!
-                                </p>
-
-                                <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                                <div className="grid gap-6 sm:grid-cols-2">
                                     {contactInfo.map((item) => (
                                         <div
                                             key={item.title}
