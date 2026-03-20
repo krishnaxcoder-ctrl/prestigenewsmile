@@ -113,7 +113,7 @@ export function NewsletterSection() {
                 </div>
 
                 {/* Right - Form Side */}
-                <div className="relative flex items-center bg-brand-600 p-5 sm:p-8 md:p-12 lg:p-16">
+                <div className="relative flex items-center bg-brand-600 px-5 py-12 sm:p-8 md:p-12 lg:p-16">
                     {/* Decorative Elements */}
                     <div className="absolute inset-0 overflow-hidden">
                         <div className="absolute -right-20 -top-20 size-80 rounded-full bg-brand-500/50" />

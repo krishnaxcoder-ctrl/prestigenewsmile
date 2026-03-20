@@ -15,7 +15,7 @@ const trustBadges = [
 // Best practice: rerender-memo - memoize to prevent unnecessary re-renders
 export const CTASection = memo(function CTASection() {
     return (
-        <section className="relative overflow-hidden bg-teal-600 py-16 lg:py-24">
+        <section className="relative overflow-hidden bg-teal-600 px-4 py-10 sm:px-6 sm:py-14 md:py-16 lg:py-24">
             {/* Dot pattern */}
             <div
                 className="absolute inset-0 opacity-[0.15]"
@@ -25,43 +25,45 @@ export const CTASection = memo(function CTASection() {
                 }}
             />
 
-            <div className="relative mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
+            <div className="relative mx-auto max-w-7xl">
                 <div className="flex flex-col items-center text-center">
                     {/* Badge */}
-                    <div className="mb-6 inline-flex">
-                        <div className="flex w-max cursor-pointer items-center rounded-full bg-white/10 py-1 pl-1 pr-2 text-sm font-medium text-white shadow-xs backdrop-blur-sm transition duration-100 ease-linear hover:bg-white/20">
-                            <span className="mr-2 flex items-center gap-1.5 rounded-full bg-white/20 px-2 py-0.5 shadow-xs">
-                                <span className="inline-block size-2 shrink-0 rounded-full bg-teal-300 outline-3 -outline-offset-1 outline-teal-300/30"></span>
-                                Limited Slots
+                    <div className="mb-4 inline-flex sm:mb-6">
+                        <div className="flex w-max cursor-pointer items-center rounded-full bg-white/10 py-1 pl-1 pr-2 text-xs font-medium text-white shadow-xs backdrop-blur-sm transition duration-100 ease-linear hover:bg-white/20 sm:text-sm">
+                            <span className="mr-1.5 flex items-center gap-1 rounded-full bg-white/20 px-1.5 py-0.5 shadow-xs sm:mr-2 sm:gap-1.5 sm:px-2">
+                                <span className="inline-block size-1.5 shrink-0 rounded-full bg-teal-300 outline-2 -outline-offset-1 outline-teal-300/30 sm:size-2 sm:outline-3"></span>
+                                <span className="hidden sm:inline">Limited Slots</span>
+                                <span className="sm:hidden">Limited</span>
                             </span>
-                            Book your session today
-                            <ArrowRight className="ml-1 size-4 text-teal-200" />
+                            <span className="hidden sm:inline">Book your session today</span>
+                            <span className="sm:hidden">Book now</span>
+                            <ArrowRight className="ml-1 size-3.5 text-teal-200 sm:size-4" />
                         </div>
                     </div>
 
                     {/* Main heading */}
-                    <h2 className="text-display-sm font-semibold tracking-tight text-white sm:text-display-md lg:text-display-lg">
+                    <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl md:text-display-sm lg:text-display-md">
                         Ready to transform your smile?
                     </h2>
 
                     {/* Subheading */}
-                    <p className="mt-4 max-w-2xl text-base leading-relaxed text-teal-100 lg:text-lg">
+                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-teal-100 sm:mt-4 sm:text-base lg:text-lg">
                         Join <span className="font-semibold text-white">500+ happy clients</span> who have already brightened their smiles.
-                        Book your appointment today and see results in just one session.
+                        <span className="hidden sm:inline"> Book your appointment today and see results in just one session.</span>
                     </p>
 
                     {/* CTA Buttons */}
-                    <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row">
-                        <Link href="/booking">
-                            <Button color="secondary" size="xl" iconTrailing={ArrowRight} className="w-full sm:w-auto">
-                                Book Your Appointment
+                    <div className="mt-6 flex w-full flex-col items-center gap-3 sm:mt-8 sm:w-auto sm:flex-row">
+                        <Link href="/booking" className="w-full sm:w-auto">
+                            <Button color="secondary" size="lg" iconTrailing={ArrowRight} className="w-full justify-center sm:size-xl">
+                                Book Appointment
                             </Button>
                         </Link>
-                        <Link href="tel:+41783000619">
+                        <Link href="tel:+41783000619" className="w-full sm:w-auto">
                             <Button
-                                size="xl"
+                                size="lg"
                                 iconLeading={Phone01}
-                                className="w-full sm:w-auto bg-white/20 text-white hover:bg-white/30"
+                                className="w-full justify-center bg-white/20 text-white hover:bg-white/30 sm:size-xl"
                             >
                                 Call Us
                             </Button>
@@ -69,14 +71,14 @@ export const CTASection = memo(function CTASection() {
                     </div>
 
                     {/* Trust Badges */}
-                    <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+                    <div className="mt-8 flex flex-wrap items-center justify-center gap-2 sm:mt-10 sm:gap-4">
                         {trustBadges.map((badge) => (
                             <div
                                 key={badge.label}
-                                className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 transition-all duration-200 hover:bg-white/20"
+                                className="flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 transition-all duration-200 hover:bg-white/20 sm:gap-2 sm:px-3 sm:py-1.5"
                             >
-                                <badge.icon className="size-4 text-teal-200" />
-                                <span className="text-xs font-medium text-teal-100">{badge.label}</span>
+                                <badge.icon className="size-3.5 text-teal-200 sm:size-4" />
+                                <span className="text-[10px] font-medium text-teal-100 sm:text-xs">{badge.label}</span>
                             </div>
                         ))}
                     </div>
