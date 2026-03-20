@@ -78,10 +78,10 @@ export function BeforeAfterSection() {
                         onTouchMove={handleTouchMove}
                         onTouchEnd={handleMouseUp}
                     >
-                        {/* Before Image (Background) */}
+                        {/* Before Image (Background - Yellow teeth) */}
                         <div className="absolute inset-0">
                             <img
-                                src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/before-after-slide-img-01.jpg"
+                                src="/bigyellow.jpg"
                                 alt="Before"
                                 className="size-full object-cover"
                                 draggable={false}
@@ -92,13 +92,13 @@ export function BeforeAfterSection() {
                             </span>
                         </div>
 
-                        {/* After Image (Foreground with clip) */}
+                        {/* After Image (Foreground with clip - White teeth) */}
                         <div
                             className="absolute inset-0"
                             style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
                         >
                             <img
-                                src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/before-after-slide-img-02.jpg"
+                                src="/bigwhite.jpg"
                                 alt="After"
                                 className="size-full object-cover"
                                 draggable={false}
