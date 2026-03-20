@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import { CTASection } from "@/app/components/cta-section";
 import { Star01 } from "@untitledui/icons";
 
 const avatars = [
@@ -493,37 +494,7 @@ export default function ReviewsPage() {
                 </section>
 
                 {/* CTA Section */}
-                <section className="border-t border-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
-                    <div className="mx-auto max-w-4xl text-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <h2 className="text-3xl font-semibold text-primary md:text-4xl">
-                                Ready to transform your smile?
-                            </h2>
-                            <p className="mx-auto mt-4 max-w-xl text-lg text-tertiary">
-                                Join hundreds of happy clients who have already brightened their smiles with us.
-                            </p>
-                            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-                                <a
-                                    href="/booking"
-                                    className="inline-flex items-center justify-center rounded-full bg-brand-600 px-8 py-3 font-medium text-white transition hover:bg-brand-700"
-                                >
-                                    Book Your Appointment
-                                </a>
-                                <a
-                                    href="/contact"
-                                    className="inline-flex items-center justify-center rounded-full border border-secondary bg-primary px-8 py-3 font-medium text-primary transition hover:bg-secondary"
-                                >
-                                    Contact Us
-                                </a>
-                            </div>
-                        </motion.div>
-                    </div>
-                </section>
+                <CTASection />
             </main>
             <Footer />
         </div>
