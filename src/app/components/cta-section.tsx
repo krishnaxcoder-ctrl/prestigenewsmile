@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Mail01, CheckCircle, Star01 } from "@untitledui/icons";
+import { ArrowRight, Mail01, CheckCircle, Star01, Percent02, Gift01, Truck01 } from "@untitledui/icons";
 import { useState } from "react";
 
 export function CtaSection() {
@@ -59,28 +59,26 @@ export function CtaSection() {
                             </p>
 
                             {/* Stats */}
-                            <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
-                                <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
-                                    <span className="flex size-8 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">%</span>
-                                    <div>
-                                        <p className="text-sm font-semibold text-primary">15% Off</p>
-                                        <p className="text-xs text-tertiary">First Order</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
-                                    <span className="flex size-8 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
-                                    <div>
-                                        <p className="text-sm font-semibold text-primary">Free</p>
-                                        <p className="text-xs text-tertiary">Shipping</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
-                                    <span className="flex size-8 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">★</span>
-                                    <div>
-                                        <p className="text-sm font-semibold text-primary">VIP</p>
-                                        <p className="text-xs text-tertiary">Access</p>
-                                    </div>
-                                </div>
+                            <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
+                                {[
+                                    { icon: Percent02, value: "15%", label: "First Order" },
+                                    { icon: Truck01, value: "Free", label: "Shipping" },
+                                    { icon: Gift01, value: "VIP", label: "Access" },
+                                ].map((stat, i) => (
+                                    <motion.div
+                                        key={i}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.4, delay: i * 0.1 }}
+                                        className="group relative overflow-hidden rounded-2xl bg-white p-4 shadow-md transition duration-200 hover:shadow-lg sm:p-5"
+                                    >
+                                        <div className="absolute -right-4 -top-4 size-16 rounded-full bg-brand-50 transition duration-200 group-hover:bg-brand-100" />
+                                        <stat.icon className="relative mb-3 size-6 text-brand-500" />
+                                        <p className="relative text-xl font-bold text-primary sm:text-2xl">{stat.value}</p>
+                                        <p className="relative text-xs text-tertiary sm:text-sm">{stat.label}</p>
+                                    </motion.div>
+                                ))}
                             </div>
                         </motion.div>
                     </div>
