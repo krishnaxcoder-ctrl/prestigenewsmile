@@ -144,13 +144,19 @@ export default function BookingPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
-                            className="text-center"
+                            className="flex flex-col items-center text-center"
                         >
-                            <h2 className="text-2xl font-semibold text-primary md:text-3xl">
-                                Real Results from Our Clients
+                            <span className="inline-flex items-center gap-2 rounded-full bg-brand-100 px-4 py-1.5 text-sm font-medium text-brand-700">
+                                <svg className="size-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                Trusted by 500+ Happy Clients
+                            </span>
+                            <h2 className="mt-4 text-3xl font-semibold text-primary md:text-4xl">
+                                Real Results, Real Smiles
                             </h2>
-                            <p className="mx-auto mt-3 max-w-2xl text-tertiary">
-                                See the amazing transformations our clients have achieved with our professional teeth whitening treatments.
+                            <p className="mx-auto mt-4 max-w-xl text-lg text-tertiary">
+                                See the amazing transformations achieved with our professional teeth whitening treatments.
                             </p>
                         </motion.div>
 
@@ -164,14 +170,11 @@ export default function BookingPage() {
                             {[1, 3, 5, 7, 9, 11, 13, 15].map((beforeNum) => (
                                 <div
                                     key={beforeNum}
-                                    className="overflow-hidden rounded-2xl bg-primary shadow-sm"
+                                    className="relative overflow-hidden rounded-2xl bg-primary shadow-lg"
                                 >
-                                    <div className="grid grid-cols-2">
+                                    <div className="flex">
                                         {/* Before */}
-                                        <div>
-                                            <div className="bg-secondary px-3 py-2 text-center text-sm font-medium text-primary">
-                                                Before
-                                            </div>
+                                        <div className="relative flex-1">
                                             <div className="aspect-square overflow-hidden">
                                                 <img
                                                     src={`/teeth before and after images/${beforeNum}.png`}
@@ -179,18 +182,35 @@ export default function BookingPage() {
                                                     className="size-full object-cover"
                                                 />
                                             </div>
-                                        </div>
-                                        {/* After */}
-                                        <div>
-                                            <div className="bg-brand-600 px-3 py-2 text-center text-sm font-medium text-white">
-                                                After
+                                            <div className="absolute bottom-3 left-3">
+                                                <span className="rounded-full bg-black/70 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+                                                    Before
+                                                </span>
                                             </div>
+                                        </div>
+
+                                        {/* Center Divider */}
+                                        <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+                                            <div className="flex size-10 items-center justify-center rounded-full border-2 border-white bg-brand-600 shadow-lg">
+                                                <svg className="size-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h8M8 12h8m-8 5h8M4 7h.01M4 12h.01M4 17h.01" />
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        {/* After */}
+                                        <div className="relative flex-1">
                                             <div className="aspect-square overflow-hidden">
                                                 <img
                                                     src={`/teeth before and after images/${beforeNum + 1}.png`}
                                                     alt={`After treatment`}
                                                     className="size-full object-cover"
                                                 />
+                                            </div>
+                                            <div className="absolute bottom-3 right-3">
+                                                <span className="rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+                                                    After
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
