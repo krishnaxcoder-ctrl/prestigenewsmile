@@ -10,7 +10,9 @@
       "Bash(npm run build:*)",
       "mcp__chrome-devtools__list_pages",
       "mcp__chrome-devtools__navigate_page",
-      "mcp__chrome-devtools__evaluate_script"
+      "mcp__chrome-devtools__evaluate_script",
+      "WebFetch(domain:incident.io)",
+      "mcp__chrome-devtools__close_page"
     ]
   }
 }
