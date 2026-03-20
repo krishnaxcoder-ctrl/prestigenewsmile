@@ -7,7 +7,6 @@ import { HeroCarousel } from "./components/hero-carousel";
 import { InstagramSection } from "./components/instagram-section";
 import { MarqueeSection } from "./components/marquee-section";
 import { NewsletterSection } from "./components/newsletter-section";
-import { ProductsFeaturedSection } from "./components/products-featured-section";
 import { ProductsSection } from "./components/products-section";
 import { ReviewsSection } from "./components/reviews-section";
 import { ServicesSection } from "./components/services-section";
@@ -26,7 +25,6 @@ export default function Page() {
 				<FeaturesSection />
 				<BeforeAfterSection />
 				<ReviewsSection />
-				<ProductsFeaturedSection />
 				<ArticlesSection />
 				<NewsletterSection />
 				<InstagramSection />
