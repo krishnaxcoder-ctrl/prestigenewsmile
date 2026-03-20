@@ -323,8 +323,8 @@ export default function ReviewsPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Section */}
-                <section className="border-b border-secondary px-4 py-16 md:px-8 md:py-20 lg:px-16">
-                    <div className="mx-auto max-w-5xl text-center">
+                <section className="border-b border-teal-400 bg-teal-50 px-4 py-16 md:px-8 md:py-20 lg:px-16">
+                    <div className="mx-auto max-w-7xl">
                         {/* Title */}
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
@@ -334,51 +334,6 @@ export default function ReviewsPage() {
                         >
                             What our customers say...
                         </motion.h1>
-
-                        {/* Stats Row */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                            className="mt-12 flex flex-wrap items-center justify-center gap-x-12 gap-y-6"
-                        >
-                            {/* Rating */}
-                            <div className="flex items-center gap-3">
-                                <div className="flex">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star01 key={i} className="size-5 fill-amber-400 text-amber-400" />
-                                    ))}
-                                </div>
-                                <div>
-                                    <span className="text-2xl font-bold text-primary">4.9</span>
-                                    <span className="ml-1 text-tertiary">/ 5</span>
-                                </div>
-                            </div>
-
-                            <div className="hidden h-8 w-px bg-secondary md:block" />
-
-                            {/* Clients */}
-                            <div className="flex items-center gap-2">
-                                <span className="text-2xl font-bold text-primary">500+</span>
-                                <span className="text-tertiary">Happy Clients</span>
-                            </div>
-
-                            <div className="hidden h-8 w-px bg-secondary md:block" />
-
-                            {/* Shades */}
-                            <div className="flex items-center gap-2">
-                                <span className="text-2xl font-bold text-primary">6+</span>
-                                <span className="text-tertiary">Shades Whiter</span>
-                            </div>
-
-                            <div className="hidden h-8 w-px bg-secondary md:block" />
-
-                            {/* Satisfaction */}
-                            <div className="flex items-center gap-2">
-                                <span className="text-2xl font-bold text-brand-600">98%</span>
-                                <span className="text-tertiary">Satisfaction</span>
-                            </div>
-                        </motion.div>
                     </div>
                 </section>
 
