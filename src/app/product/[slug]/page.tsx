@@ -15,6 +15,7 @@ import {
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import { RatingBadge } from "@/components/foundations/rating-badge";
 
 // Mock product data
 const allProducts = [
@@ -341,28 +342,35 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <div className="relative bg-brand-50 py-8 sm:py-12 md:py-16">
-                    <div className="absolute inset-0 overflow-hidden">
-                        <img
-                            src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-01.jpg"
-                            alt=""
-                            className="size-full object-cover opacity-20"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-r from-brand-50 via-brand-50/95 to-brand-50/80" />
-                    </div>
-                    <div className="relative mx-auto max-w-7xl px-4 text-center md:px-8 lg:px-16">
-                        <h1 className="text-xl font-semibold uppercase tracking-[0.15em] text-primary sm:text-2xl sm:tracking-[0.2em] md:text-3xl">
-                            Shop Detail
-                        </h1>
-                        <nav className="mt-3 flex flex-wrap items-center justify-center gap-1.5 text-xs text-tertiary sm:mt-4 sm:gap-2 sm:text-sm">
-                            <a href="/" className="transition hover:text-brand-600">Home</a>
-                            <span>/</span>
-                            <a href="/shop" className="transition hover:text-brand-600">{product.category}</a>
-                            <span>/</span>
-                            <span className="text-primary">{product.name}</span>
+                <section className="border-b border-teal-400 bg-teal-50 px-4 py-4 md:px-8 md:py-6 lg:px-16">
+                    <div className="mx-auto max-w-7xl">
+                        <nav className="mb-2 flex flex-nowrap items-center gap-2 text-sm text-tertiary">
+                            <a href="/" className="shrink-0 uppercase transition hover:text-teal-600">Home</a>
+                            <span className="shrink-0">/</span>
+                            <a href="/shop" className="shrink-0 uppercase transition hover:text-teal-600">Shop</a>
+                            <span className="shrink-0">/</span>
+                            <span className="truncate uppercase text-teal-600">{product.name}</span>
                         </nav>
+                        <div className="flex items-center justify-between gap-8">
+                            <motion.h1
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.1 }}
+                                className="text-2xl font-semibold uppercase text-primary md:text-3xl"
+                            >
+                                {product.name}
+                            </motion.h1>
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="shrink-0"
+                            >
+                                <RatingBadge rating={product.rating} title={`${product.reviews} Reviews`} subtitle="Verified Purchases" />
+                            </motion.div>
+                        </div>
                     </div>
-                </div>
+                </section>
 
                 {/* Product Section */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
