@@ -87,7 +87,7 @@ export function CompareSection() {
                                 draggable={false}
                             />
                             {/* Before Label */}
-                            <span className="absolute bottom-6 left-6 rounded-full bg-black/70 px-4 py-2 text-sm font-medium uppercase tracking-wider text-white backdrop-blur-sm">
+                            <span className="absolute bottom-3 left-3 rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white backdrop-blur-sm sm:bottom-6 sm:left-6 sm:px-4 sm:py-2 sm:text-sm">
                                 Before
                             </span>
                         </div>
@@ -104,7 +104,7 @@ export function CompareSection() {
                                 draggable={false}
                             />
                             {/* After Label */}
-                            <span className="absolute bottom-6 right-6 rounded-full bg-brand-600 px-4 py-2 text-sm font-medium uppercase tracking-wider text-white">
+                            <span className="absolute bottom-3 right-3 rounded-full bg-brand-600 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white sm:bottom-6 sm:right-6 sm:px-4 sm:py-2 sm:text-sm">
                                 After
                             </span>
                         </div>
@@ -116,7 +116,7 @@ export function CompareSection() {
                         >
                             {/* Slider Handle */}
                             <div
-                                className="absolute left-1/2 top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full border-4 border-white bg-brand-600 shadow-xl transition-transform hover:scale-110"
+                                className="absolute left-1/2 top-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full border-2 border-white bg-brand-600 shadow-xl transition-transform hover:scale-110 sm:size-14 sm:border-4"
                                 onMouseDown={handleMouseDown}
                             >
                                 <div className="flex items-center gap-1">
@@ -131,8 +131,8 @@ export function CompareSection() {
                         </div>
 
                         {/* Result Text Overlay */}
-                        <div className="absolute inset-x-0 top-6 z-10 text-center">
-                            <span className="inline-block rounded-full bg-white/90 px-5 py-2.5 text-sm font-semibold uppercase tracking-wider text-primary shadow-lg backdrop-blur-sm">
+                        <div className="absolute inset-x-0 top-3 z-10 text-center sm:top-6">
+                            <span className="inline-block rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-primary shadow-lg backdrop-blur-sm sm:px-5 sm:py-2.5 sm:text-sm">
                                 Visible result in just 15 days
                             </span>
                         </div>

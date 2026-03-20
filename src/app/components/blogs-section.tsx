@@ -137,7 +137,7 @@ export function BlogsSection() {
                             </a>
 
                             {/* Content */}
-                            <div className="flex flex-1 flex-col p-6">
+                            <div className="flex flex-1 flex-col p-4 sm:p-6">
                                 {/* Meta */}
                                 <div className="mb-3 flex items-center gap-3 text-xs text-tertiary">
                                     <span className="flex items-center gap-1">

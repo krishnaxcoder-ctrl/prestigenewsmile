@@ -126,7 +126,7 @@ export function InstagramPosts() {
             </div>
 
             {/* Instagram Grid */}
-            <div className="grid grid-cols-3 gap-1 sm:grid-cols-4 md:grid-cols-6 md:gap-2">
+            <div className="grid grid-cols-2 gap-1 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-6 md:gap-2">
                 {instagramPosts.map((post, index) => (
                     <motion.a
                         key={post.id}

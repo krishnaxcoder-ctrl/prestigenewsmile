@@ -53,8 +53,8 @@ const PromoBanner = () => {
                 <ChevronLeft className="size-4" />
             </button>
 
-            <div className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-widest">
-                <span>{promoSlides[currentSlide].text}</span>
+            <div className="flex items-center gap-1.5 px-8 text-center text-[10px] font-medium uppercase tracking-widest sm:px-0 sm:text-xs">
+                <span className="line-clamp-1">{promoSlides[currentSlide].text}</span>
                 {promoSlides[currentSlide].linkText && (
                     <a
                         href={promoSlides[currentSlide].linkHref}
@@ -108,8 +108,8 @@ const ShopDropdown = () => {
 
     return (
         <div className="w-full max-w-5xl px-4 py-6 md:px-8">
-            <div className="overflow-hidden rounded-2xl bg-primary p-6 shadow-lg ring-1 ring-secondary_alt">
-                <div className="grid grid-cols-3 gap-8">
+            <div className="overflow-hidden rounded-2xl bg-primary p-4 shadow-lg ring-1 ring-secondary_alt sm:p-6">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
                     {columns.map((column) => (
                         <div key={column.title} className="flex flex-col gap-3">
                             <h4 className="text-xs font-semibold uppercase tracking-widest text-quaternary">

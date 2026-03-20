@@ -79,9 +79,9 @@ export const HeroCarousel = () => {
     };
 
     return (
-        <section className="flex h-[675px] flex-col md:flex-row">
+        <section className="flex min-h-[100svh] flex-col md:min-h-0 md:h-[675px] md:flex-row">
             {/* Content Side - 50% */}
-            <div className="flex w-full flex-col justify-end bg-secondary px-6 pb-12 md:w-1/2 md:px-12 md:pb-16 lg:px-20 lg:pb-20">
+            <div className="order-2 flex w-full flex-col justify-center bg-secondary px-4 py-10 sm:px-6 sm:py-12 md:order-1 md:w-1/2 md:justify-end md:px-12 md:pb-16 lg:px-20 lg:pb-20">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentIndex}
@@ -102,7 +102,7 @@ export const HeroCarousel = () => {
                         <motion.h2
                             custom={0.05}
                             variants={textVariants}
-                            className="text-display-sm font-semibold leading-tight text-primary md:text-display-md lg:text-display-lg"
+                            className="text-display-xs font-semibold leading-tight text-primary sm:text-display-sm md:text-display-md lg:text-display-lg"
                         >
                             {currentSlide.title}{" "}
                             <span className="text-brand-600">{currentSlide.highlight}</span>{" "}
@@ -142,12 +142,12 @@ export const HeroCarousel = () => {
                         <motion.div
                             custom={0.2}
                             variants={textVariants}
-                            className="mt-8 flex items-center gap-4 md:mt-10"
+                            className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8 sm:gap-4 md:mt-10"
                         >
-                            <Button href={currentSlide.href} color="primary" size="xl">
+                            <Button href={currentSlide.href} color="primary" size="md" className="sm:text-md sm:px-5 sm:py-3">
                                 SHOP NOW
                             </Button>
-                            <Button href="/about" color="tertiary" size="xl">
+                            <Button href="/about" color="tertiary" size="md" className="sm:text-md sm:px-5 sm:py-3">
                                 Learn More
                             </Button>
                         </motion.div>
@@ -157,7 +157,7 @@ export const HeroCarousel = () => {
             </div>
 
             {/* Slider Side - 50% */}
-            <div className="relative w-full overflow-hidden md:w-1/2">
+            <div className="relative order-1 aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] md:order-2 md:aspect-auto md:w-1/2">
                 {/* Image Slider */}
                 <AnimatePresence initial={false} custom={direction}>
                     <motion.div

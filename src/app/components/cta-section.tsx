@@ -21,7 +21,7 @@ export function CtaSection() {
         <section className="relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
                 {/* Left - Image Side */}
-                <div className="relative min-h-[400px] lg:min-h-[600px]">
+                <div className="relative min-h-[350px] sm:min-h-[400px] lg:min-h-[600px]">
                     <img
                         src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-01.jpg"
                         alt="Skincare"
@@ -31,7 +31,7 @@ export function CtaSection() {
                     <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30 lg:from-black/75 lg:via-black/50 lg:to-black/20" />
 
                     {/* Content on Image */}
-                    <div className="absolute inset-0 flex flex-col justify-center p-8 md:p-12 lg:p-16">
+                    <div className="absolute inset-0 flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-16">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -59,18 +59,18 @@ export function CtaSection() {
                             </p>
 
                             {/* Stats */}
-                            <div className="mt-8 grid grid-cols-3 gap-4">
-                                <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
-                                    <p className="text-2xl font-bold text-white">15%</p>
-                                    <p className="text-xs text-white/70">First Order</p>
+                            <div className="mt-6 grid grid-cols-3 gap-2 sm:mt-8 sm:gap-4">
+                                <div className="rounded-xl bg-white/10 p-2.5 backdrop-blur-sm sm:p-4">
+                                    <p className="text-lg font-bold text-white sm:text-2xl">15%</p>
+                                    <p className="text-[10px] text-white/70 sm:text-xs">First Order</p>
                                 </div>
-                                <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
-                                    <p className="text-2xl font-bold text-white">Free</p>
-                                    <p className="text-xs text-white/70">Shipping</p>
+                                <div className="rounded-xl bg-white/10 p-2.5 backdrop-blur-sm sm:p-4">
+                                    <p className="text-lg font-bold text-white sm:text-2xl">Free</p>
+                                    <p className="text-[10px] text-white/70 sm:text-xs">Shipping</p>
                                 </div>
-                                <div className="rounded-xl bg-white/10 p-4 backdrop-blur-sm">
-                                    <p className="text-2xl font-bold text-white">VIP</p>
-                                    <p className="text-xs text-white/70">Access</p>
+                                <div className="rounded-xl bg-white/10 p-2.5 backdrop-blur-sm sm:p-4">
+                                    <p className="text-lg font-bold text-white sm:text-2xl">VIP</p>
+                                    <p className="text-[10px] text-white/70 sm:text-xs">Access</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -78,7 +78,7 @@ export function CtaSection() {
                 </div>
 
                 {/* Right - Form Side */}
-                <div className="relative flex items-center bg-brand-600 p-8 md:p-12 lg:p-16">
+                <div className="relative flex items-center bg-brand-600 p-5 sm:p-8 md:p-12 lg:p-16">
                     {/* Decorative Elements */}
                     <div className="absolute inset-0 overflow-hidden">
                         <div className="absolute -right-20 -top-20 size-80 rounded-full bg-brand-500/50" />
@@ -105,7 +105,7 @@ export function CtaSection() {
                             <span className="text-sm font-medium text-white">Newsletter</span>
                         </div>
 
-                        <h2 className="text-display-xs font-semibold uppercase tracking-wide text-white md:text-display-sm">
+                        <h2 className="text-xl font-semibold uppercase tracking-wide text-white sm:text-display-xs md:text-display-sm">
                             Glow First!
                             <br />
                             Sign Up For Updates

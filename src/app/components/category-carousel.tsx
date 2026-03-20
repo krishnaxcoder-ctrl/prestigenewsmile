@@ -65,12 +65,12 @@ export const CategoryCarousel = () => {
                                 </div>
                             </a>
 
-                            <div className="mt-5">
-                                <h5 className="text-lg font-semibold uppercase tracking-wide text-primary">
+                            <div className="mt-4 sm:mt-5">
+                                <h5 className="text-md font-semibold uppercase tracking-wide text-primary sm:text-lg">
                                     <a href={category.href}>{category.title}</a>
                                 </h5>
 
-                                <div className="mt-3 flex items-start justify-between gap-4">
+                                <div className="mt-2 flex flex-col gap-3 sm:mt-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                                     <p className="text-sm leading-relaxed text-tertiary">
                                         {category.description}
                                     </p>
@@ -80,7 +80,7 @@ export const CategoryCarousel = () => {
                                         color="tertiary"
                                         size="md"
                                         iconTrailing={ArrowUpRight}
-                                        className="shrink-0"
+                                        className="w-fit shrink-0"
                                     >
                                         Shop
                                     </Button>

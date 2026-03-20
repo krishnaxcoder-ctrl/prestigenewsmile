@@ -200,9 +200,9 @@ export function ProductsFeaturedSection() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="hidden lg:sticky lg:top-24 lg:block lg:h-fit"
+                        className="mt-8 lg:sticky lg:top-24 lg:mt-0 lg:h-fit"
                     >
-                        <div className="overflow-hidden rounded-3xl">
+                        <div className="aspect-[4/3] overflow-hidden rounded-3xl lg:aspect-auto">
                             <img
                                 src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/home2-shop-aside-img.jpg"
                                 alt="Featured skincare products"

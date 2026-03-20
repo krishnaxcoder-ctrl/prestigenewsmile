@@ -75,7 +75,28 @@ export function Footer() {
 			{/* Main Footer Content */}
 			<section className="px-4 py-12 md:px-8 lg:px-16">
 				<div className="mx-auto max-w-7xl">
-					<div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
+					<div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
+						{/* Logo and Description Column - First on mobile */}
+						<div className="col-span-2 mb-4 sm:col-span-2 md:col-span-4 md:mb-0 lg:order-last lg:col-span-1">
+							<a href="/" className="inline-block">
+								<span className="text-2xl font-bold text-primary">Monica</span>
+							</a>
+							<p className="mt-4 text-sm text-secondary">
+								Get insider access to exclusive deals, skincare tips, latest
+								beauty store arrivals delivered directly to your inbox.
+							</p>
+							<div className="mt-6">
+								<p className="text-xs text-tertiary">Our Payment Gateways</p>
+								<div className="mt-2 flex items-center gap-2">
+									<VisaIcon className="h-6 w-auto text-tertiary" />
+									<MastercardIcon className="h-6 w-auto text-tertiary" />
+									<AmexIcon className="h-6 w-auto text-tertiary" />
+									<PayPalIcon className="h-6 w-auto text-tertiary" />
+									<ApplePayIcon className="h-6 w-auto text-tertiary" />
+								</div>
+							</div>
+						</div>
+
 						{/* Footer Link Columns */}
 						{Object.values(footerLinks).map((section) => (
 							<div key={section.title}>
@@ -96,27 +117,6 @@ export function Footer() {
 								</ul>
 							</div>
 						))}
-
-						{/* Logo and Description Column */}
-						<div className="col-span-2 mt-8 md:col-span-4 lg:col-span-1 lg:mt-0">
-							<a href="/" className="inline-block">
-								<span className="text-2xl font-bold text-primary">Monica</span>
-							</a>
-							<p className="mt-4 text-sm text-secondary">
-								Get insider access to exclusive deals, skincare tips, latest
-								beauty store arrivals delivered directly to your inbox.
-							</p>
-							<div className="mt-6">
-								<p className="text-xs text-tertiary">Our Payment Gateways</p>
-								<div className="mt-2 flex items-center gap-2">
-									<VisaIcon className="h-6 w-auto text-tertiary" />
-									<MastercardIcon className="h-6 w-auto text-tertiary" />
-									<AmexIcon className="h-6 w-auto text-tertiary" />
-									<PayPalIcon className="h-6 w-auto text-tertiary" />
-									<ApplePayIcon className="h-6 w-auto text-tertiary" />
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</section>
@@ -138,9 +138,9 @@ export function Footer() {
 
 			{/* Bottom Bar */}
 			<section className="border-t border-secondary px-4 py-6 md:px-8 lg:px-16">
-				<div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
+				<div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
 					{/* Copyright */}
-					<p className="text-sm text-tertiary">
+					<p className="order-3 text-xs text-tertiary sm:text-sm md:order-1">
 						© {new Date().getFullYear()}{" "}
 						<a
 							href="https://wedesigntech.com"
@@ -154,8 +154,8 @@ export function Footer() {
 					</p>
 
 					{/* Social Links */}
-					<div className="flex items-center gap-4">
-						<span className="text-sm text-tertiary">Follow on:</span>
+					<div className="order-1 flex items-center gap-4 md:order-2">
+						<span className="hidden text-sm text-tertiary sm:inline">Follow on:</span>
 						<div className="flex items-center gap-3">
 							{socialLinks.map((social) => (
 								<a
@@ -173,12 +173,12 @@ export function Footer() {
 					</div>
 
 					{/* Legal Links */}
-					<div className="flex items-center gap-4">
+					<div className="order-2 flex flex-wrap items-center justify-center gap-2 sm:gap-4 md:order-3">
 						{legalLinks.map((link, index) => (
-							<span key={link.label} className="flex items-center gap-4">
+							<span key={link.label} className="flex items-center gap-2 sm:gap-4">
 								<a
 									href={link.href}
-									className="text-sm text-secondary transition duration-100 ease-linear hover:text-primary"
+									className="text-xs text-secondary transition duration-100 ease-linear hover:text-primary sm:text-sm"
 								>
 									{link.label}
 								</a>
