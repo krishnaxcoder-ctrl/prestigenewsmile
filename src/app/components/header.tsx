@@ -22,16 +22,16 @@ import { cx } from "@/utils/cx";
 
 // Promo slides data
 const promoSlides = [
-    { text: "Get up to 60% savings with code", linkText: "FRIDAYGLOW", linkHref: "#" },
-    { text: "Free shipping on orders over $50", linkText: "Shop now", linkHref: "/shop" },
-    { text: "New arrivals just dropped!", linkText: "Explore", linkHref: "/new-arrivals" },
+    { text: "Book your session today", linkText: "CHF 99", linkHref: "/booking" },
+    { text: "Up to 7 shades lighter in one session", linkText: "Learn more", linkHref: "/services" },
+    { text: "Duo offer: -10% for two people", linkText: "Book now", linkHref: "/booking" },
 ];
 
 // Navigation items
 const navItems = [
     { label: "Home", href: "/" },
-    { label: "Shop", href: "/shop", hasDropdown: true },
-    { label: "Pages", href: "#", hasDropdown: true },
+    { label: "Services", href: "/services", hasDropdown: true },
+    { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
 ];
