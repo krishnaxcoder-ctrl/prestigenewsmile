@@ -37,7 +37,7 @@ const testimonials = [
         role: "Event Planner",
         location: "Zurich, Switzerland",
         avatar: avatars[2],
-        content: "Had my teeth whitened before my wedding and it was the perfect decision. The photos turned out amazing!",
+        content: "Had my teeth whitened before my wedding and it was the perfect decision. The photos turned out absolutely amazing!",
         rating: 5,
         badge: "Wedding",
     },
