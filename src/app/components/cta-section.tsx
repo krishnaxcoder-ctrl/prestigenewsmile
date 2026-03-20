@@ -20,18 +20,18 @@ export function CtaSection() {
     return (
         <section className="relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
-                {/* Left - Image Side */}
-                <div className="relative min-h-[350px] sm:min-h-[400px] lg:min-h-[600px]">
-                    <img
-                        src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-01.jpg"
-                        alt="Skincare"
-                        className="absolute inset-0 size-full object-cover"
-                    />
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30 lg:from-black/75 lg:via-black/50 lg:to-black/20" />
+                {/* Left - Light Brand Side */}
+                <div className="relative flex min-h-[350px] items-center bg-brand-50 sm:min-h-[400px] lg:min-h-[600px]">
+                    {/* Decorative Elements */}
+                    <div className="absolute inset-0 overflow-hidden">
+                        <div className="absolute -left-20 -top-20 size-80 rounded-full bg-brand-100/70" />
+                        <div className="absolute -bottom-20 -right-20 size-60 rounded-full bg-brand-200/50" />
+                        <div className="absolute left-1/4 top-1/3 size-4 rounded-full bg-brand-300/40" />
+                        <div className="absolute bottom-1/4 right-1/3 size-6 rounded-full bg-brand-200/30" />
+                    </div>
 
-                    {/* Content on Image */}
-                    <div className="absolute inset-0 flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-16">
+                    {/* Content */}
+                    <div className="relative flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-16">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -46,31 +46,40 @@ export function CtaSection() {
                                         <Star01 key={i} className="size-5 fill-warning-400 text-warning-400" />
                                     ))}
                                 </div>
-                                <span className="text-sm font-medium text-white/90">
+                                <span className="text-sm font-medium text-brand-700">
                                     Trusted by 50,000+ customers
                                 </span>
                             </div>
 
-                            <h3 className="text-2xl font-semibold text-white md:text-3xl lg:text-4xl">
+                            <h3 className="text-2xl font-semibold text-primary md:text-3xl lg:text-4xl">
                                 Join Our Beauty Community
                             </h3>
-                            <p className="mt-4 text-white/80">
+                            <p className="mt-4 text-secondary">
                                 Be the first to know about new launches, exclusive deals, and expert skincare tips.
                             </p>
 
                             {/* Stats */}
-                            <div className="mt-6 grid grid-cols-3 gap-2 sm:mt-8 sm:gap-4">
-                                <div className="rounded-xl bg-white/10 p-2.5 backdrop-blur-sm sm:p-4">
-                                    <p className="text-lg font-bold text-white sm:text-2xl">15%</p>
-                                    <p className="text-[10px] text-white/70 sm:text-xs">First Order</p>
+                            <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
+                                <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
+                                    <span className="flex size-8 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">%</span>
+                                    <div>
+                                        <p className="text-sm font-semibold text-primary">15% Off</p>
+                                        <p className="text-xs text-tertiary">First Order</p>
+                                    </div>
                                 </div>
-                                <div className="rounded-xl bg-white/10 p-2.5 backdrop-blur-sm sm:p-4">
-                                    <p className="text-lg font-bold text-white sm:text-2xl">Free</p>
-                                    <p className="text-[10px] text-white/70 sm:text-xs">Shipping</p>
+                                <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
+                                    <span className="flex size-8 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
+                                    <div>
+                                        <p className="text-sm font-semibold text-primary">Free</p>
+                                        <p className="text-xs text-tertiary">Shipping</p>
+                                    </div>
                                 </div>
-                                <div className="rounded-xl bg-white/10 p-2.5 backdrop-blur-sm sm:p-4">
-                                    <p className="text-lg font-bold text-white sm:text-2xl">VIP</p>
-                                    <p className="text-[10px] text-white/70 sm:text-xs">Access</p>
+                                <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
+                                    <span className="flex size-8 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">★</span>
+                                    <div>
+                                        <p className="text-sm font-semibold text-primary">VIP</p>
+                                        <p className="text-xs text-tertiary">Access</p>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
