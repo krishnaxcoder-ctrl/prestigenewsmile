@@ -274,6 +274,77 @@ export default function ContactPage() {
                         </div>
                     </div>
                 </section>
+
+                {/* Book Your Appointment Section */}
+                <section className="bg-brand-50 px-4 py-12 md:px-8 md:py-16 lg:px-16">
+                    <div className="mx-auto max-w-7xl">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
+                            className="text-center"
+                        >
+                            <h2 className="text-2xl font-semibold text-primary md:text-3xl">
+                                Book Your Appointment
+                            </h2>
+                            <p className="mt-2 text-lg font-medium text-brand-600">
+                                @prestige.smile.studio
+                            </p>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="mx-auto mt-8 max-w-md"
+                        >
+                            <div className="rounded-2xl border border-secondary bg-primary p-8 shadow-sm">
+                                <div className="flex items-center justify-center gap-2">
+                                    <Clock className="size-6 text-brand-600" />
+                                    <h3 className="text-lg font-semibold text-primary">
+                                        Opening Hours
+                                    </h3>
+                                </div>
+
+                                <div className="mt-6 space-y-3">
+                                    {[
+                                        { day: "Monday", hours: "10am - 8pm" },
+                                        { day: "Tuesday", hours: "10am - 8pm" },
+                                        { day: "Wednesday", hours: "10am - 8pm" },
+                                        { day: "Thursday", hours: "10am - 8pm" },
+                                        { day: "Friday", hours: "10am - 8pm" },
+                                        { day: "Saturday", hours: "10am - 7pm" },
+                                        { day: "Sunday", hours: "Closed" },
+                                    ].map((item) => (
+                                        <div
+                                            key={item.day}
+                                            className="flex items-center justify-between border-b border-secondary pb-3 last:border-0 last:pb-0"
+                                        >
+                                            <span className="font-medium text-primary">{item.day}</span>
+                                            <span className={item.hours === "Closed" ? "text-error-500 font-medium" : "text-tertiary"}>
+                                                {item.hours}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="mt-8">
+                                    <Button
+                                        href="tel:+41783000619"
+                                        color="primary"
+                                        size="lg"
+                                        iconLeading={Phone01}
+                                        className="w-full justify-center"
+                                    >
+                                        Call to Book
+                                    </Button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
             </main>
             <Footer />
         </div>
