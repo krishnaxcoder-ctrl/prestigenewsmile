@@ -1,5 +1,6 @@
 "use client";
 
+import { CTASection } from "@/app/components/cta-section";                                                                                   
 import Link from "next/link";
 import { Facebook, Instagram } from "@/components/foundations/social-icons";
 
@@ -61,7 +62,9 @@ const legalLinks = [
 
 export function Footer() {
 	return (
+
 		<footer className="w-full bg-secondary">
+		<CTASection/>
 
 			{/* Main Footer Content */}
 			<section className="px-4 py-12 md:px-8 lg:px-16">
@@ -126,16 +129,18 @@ export function Footer() {
 			{/* Brand Text */}
 			<section className="overflow-hidden border-t border-secondary py-8">
 				<div className="mx-auto flex max-w-7xl justify-center px-6">
-					<h2
-						className="select-none whitespace-nowrap text-4xl font-bold uppercase tracking-wider sm:text-6xl md:text-7xl lg:text-[120px]"
-						style={{
-							WebkitTextStroke: "2px var(--color-brand-500)",
-							WebkitTextFillColor: "var(--color-bg-secondary)",
-							paintOrder: "stroke fill",
-						}}
-					>
-						PRESTIGE SMILE
-					</h2>
+					<Link href="/">
+						<h2
+							className="select-none whitespace-nowrap text-4xl font-bold uppercase tracking-wider transition duration-100 ease-linear hover:opacity-80 sm:text-6xl md:text-7xl lg:text-[120px]"
+							style={{
+								WebkitTextStroke: "2px var(--color-brand-500)",
+								WebkitTextFillColor: "var(--color-bg-secondary)",
+								paintOrder: "stroke fill",
+							}}
+						>
+							PRESTIGE SMILE
+						</h2>
+					</Link>
 				</div>
 			</section>
 

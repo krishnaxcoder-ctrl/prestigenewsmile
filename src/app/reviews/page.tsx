@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
-import { CTASection } from "@/app/components/cta-section";
 import { Star01 } from "@untitledui/icons";
 
 const avatars = [
@@ -493,8 +492,6 @@ export default function ReviewsPage() {
                     </div>
                 </section>
 
-                {/* CTA Section */}
-                <CTASection />
             </main>
             <Footer />
         </div>
