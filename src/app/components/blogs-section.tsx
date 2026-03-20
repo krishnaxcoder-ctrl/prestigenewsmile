@@ -7,39 +7,39 @@ import { ArrowRight, ArrowUpRight, Clock, User01 } from "@untitledui/icons";
 const blogPosts = [
     {
         id: 1,
-        category: "Skincare Tips",
-        readTime: "5 min read",
+        category: "How It Works",
+        readTime: "3 min read",
         date: "Jan 15, 2026",
-        author: "Emma Roberts",
-        title: "Essential Daily Skincare Rituals for Long-Lasting Radiance",
+        author: "Prestige Smile",
+        title: "What to Expect During Your Teeth Whitening Session",
         excerpt:
-            "Discover the morning and evening routines that dermatologists swear by for healthy, glowing skin.",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-01.jpg",
-        href: "/blog/skincare-rituals",
+            "A complete guide to your visit: from diagnosis and preparation to gel application and LED activation.",
+        image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop",
+        href: "/how-it-works",
     },
     {
         id: 2,
-        category: "Natural Beauty",
-        readTime: "4 min read",
+        category: "Results",
+        readTime: "2 min read",
         date: "Jan 12, 2026",
-        author: "Sophie Chen",
-        title: "Mastering Natural Makeup for a Luminous Glow",
+        author: "Prestige Smile",
+        title: "Up to 7 Shades Lighter: Real Results from Real Clients",
         excerpt:
-            "Learn how to enhance your natural features with minimal products for an effortlessly beautiful look.",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-02.jpg",
-        href: "/blog/natural-makeup",
+            "See the before and after transformations achieved with our professional whitening protocol.",
+        image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
+        href: "/results",
     },
     {
         id: 3,
-        category: "Wellness",
-        readTime: "6 min read",
+        category: "FAQ",
+        readTime: "4 min read",
         date: "Jan 10, 2026",
-        author: "Olivia Grace",
-        title: "The Connection Between Diet and Skin Health",
+        author: "Prestige Smile",
+        title: "Frequently Asked Questions About Teeth Whitening",
         excerpt:
-            "Explore how nutrition impacts your skin and which foods can help you achieve that coveted glow.",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-03.jpg",
-        href: "/blog/diet-skin-health",
+            "Everything you need to know: from contraindications to aftercare and maintaining your results.",
+        image: "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?q=80&w=2070&auto=format&fit=crop",
+        href: "/faq",
     },
 ];
 
@@ -57,7 +57,7 @@ const cardFadeIn = {
     visible: (delay: number) => ({
         opacity: 1,
         y: 0,
-        transition: { duration: 0.5, delay, ease: "easeOut" },
+        transition: { duration: 0.5, delay, ease: [0, 0, 0.2, 1] as const },
     }),
 };
 
@@ -74,7 +74,7 @@ export function BlogsSection() {
                         transition={{ duration: 0.5, delay: 0, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700"
                     >
-                        Our Blog
+                        Learn More
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, filter: "blur(8px)" }}
@@ -83,8 +83,8 @@ export function BlogsSection() {
                         transition={{ duration: 0.5, delay: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="mt-4 text-display-xs font-semibold text-primary md:text-display-sm lg:text-display-md"
                     >
-                        Beauty Tips &{" "}
-                        <span className="text-brand-600">Expert Advice</span>
+                        Everything About{" "}
+                        <span className="text-brand-600">Teeth Whitening</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, filter: "blur(8px)" }}
@@ -93,7 +93,7 @@ export function BlogsSection() {
                         transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
                         className="mx-auto mt-4 max-w-2xl text-md text-tertiary md:text-lg"
                     >
-                        Stay updated with the latest skincare trends, tips, and tutorials from our beauty experts.
+                        Discover how our professional protocol works, see real results, and find answers to common questions.
                     </motion.p>
                 </div>
 
