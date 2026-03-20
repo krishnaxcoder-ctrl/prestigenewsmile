@@ -155,7 +155,7 @@ export default function FAQPage() {
 
                 {/* FAQ Content */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
-                    <div className="mx-auto max-w-4xl">
+                    <div className="mx-auto max-w-7xl">
                         {/* Search Bar */}
                         <div className="relative mb-8">
                             <SearchSm className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-tertiary" />
