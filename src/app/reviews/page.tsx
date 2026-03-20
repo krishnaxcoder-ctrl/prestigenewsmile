@@ -385,48 +385,55 @@ export default function ReviewsPage() {
                 {/* Testimonials Masonry Grid */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
-                        <div className="columns-1 gap-6 md:columns-2 lg:columns-3">
-                            {testimonials.map((testimonial, index) => (
-                                <motion.div
-                                    key={testimonial.id}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                                    className="mb-6 break-inside-avoid rounded-sm border border-teal-400 bg-white shadow-sm p-3"
-                                >
-                                    {/* Header: Stars & Badge */}
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex gap-0.5">
-                                            {[...Array(testimonial.rating)].map((_, i) => (
-                                                <Star01 key={i} className="size-4 fill-amber-400 text-amber-400" />
-                                            ))}
-                                        </div>
-                                        {testimonial.badge && (
-                                            <span className="rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
-                                                {testimonial.badge}
-                                            </span>
-                                        )}
-                                    </div>
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            {/* Distribute testimonials across 3 columns horizontally */}
+                            {[0, 1, 2].map((colIndex) => (
+                                <div key={colIndex} className="flex flex-col gap-6">
+                                    {testimonials
+                                        .filter((_, i) => i % 3 === colIndex)
+                                        .map((testimonial, index) => (
+                                            <motion.div
+                                                key={testimonial.id}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                                className="rounded-md border border-teal-400 bg-primary p-3"
+                                            >
+                                                {/* Header: Stars & Badge */}
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex gap-0.5">
+                                                        {[...Array(testimonial.rating)].map((_, i) => (
+                                                            <Star01 key={i} className="size-4 fill-amber-400 text-amber-400" />
+                                                        ))}
+                                                    </div>
+                                                    {testimonial.badge && (
+                                                        <span className="rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
+                                                            {testimonial.badge}
+                                                        </span>
+                                                    )}
+                                                </div>
 
-                                    {/* Quote */}
-                                    <p className="mt-4 text-primary leading-relaxed">"{testimonial.content}"</p>
+                                                {/* Quote */}
+                                                <p className="mt-4 leading-relaxed text-primary">"{testimonial.content}"</p>
 
-                                    {/* Author: Avatar + Name + Role • Location */}
-                                    <div className="mt-6 flex items-center gap-3">
-                                        <img
-                                            src={`https://www.untitledui.com/images/avatars/${testimonial.avatar}`}
-                                            alt={testimonial.name}
-                                            className="size-10 shrink-0 rounded-full object-cover"
-                                        />
-                                        <div>
-                                            <div className="font-semibold text-primary">{testimonial.name}</div>
-                                            <div className="text-sm text-tertiary">
-                                                {testimonial.role} <span className="text-quaternary">•</span> {testimonial.location}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </motion.div>
+                                                {/* Author: Avatar + Name + Role • Location */}
+                                                <div className="mt-6 flex items-center gap-3">
+                                                    <img
+                                                        src={`https://www.untitledui.com/images/avatars/${testimonial.avatar}`}
+                                                        alt={testimonial.name}
+                                                        className="size-10 shrink-0 rounded-full object-cover"
+                                                    />
+                                                    <div>
+                                                        <div className="font-semibold text-primary">{testimonial.name}</div>
+                                                        <div className="text-sm text-tertiary">
+                                                            {testimonial.role} <span className="text-quaternary">•</span> {testimonial.location}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        ))}
+                                </div>
                             ))}
                         </div>
                     </div>
