@@ -104,7 +104,7 @@ export default function ContactPage() {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.5, delay: 0.2 }}
-                                className="shrink-0"
+                                className="hidden shrink-0 md:block"
                             >
                                 <RatingBadge rating={4.9} title="Fast Response" subtitle="Within 24 hours" />
                             </motion.div>
