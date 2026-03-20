@@ -6,6 +6,7 @@ import { Button } from "@/components/base/buttons/button";
 import { ChevronDown, SearchSm, MessageCircle01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import { RatingBadge } from "@/components/foundations/rating-badge";
 
 const faqCategories = [
     {
@@ -114,24 +115,43 @@ export default function FAQPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <div className="relative bg-brand-50 py-12 md:py-16 lg:py-20">
-                    <div className="absolute inset-0 overflow-hidden">
-                        <div className="absolute inset-0 opacity-30" style={{
-                            backgroundImage: `radial-gradient(circle at 1px 1px, var(--color-brand-200) 1px, transparent 0)`,
-                            backgroundSize: '32px 32px'
-                        }} />
-                    </div>
-                    <div className="relative mx-auto max-w-7xl px-4 text-center md:px-8 lg:px-16">
-                        <h1 className="text-2xl font-semibold uppercase tracking-[0.2em] text-primary sm:text-3xl md:text-4xl">
-                            Frequently Asked Questions
-                        </h1>
-                        <nav className="mt-4 flex items-center justify-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="transition hover:text-brand-600">Home</a>
+                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+                    <div className="mx-auto max-w-7xl">
+                        <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
+                            <a href="/" className="uppercase transition hover:text-teal-600">Home</a>
                             <span>/</span>
-                            <span className="text-primary">FAQ</span>
+                            <span className="uppercase text-teal-600">FAQ</span>
                         </nav>
+                        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+                            <div className="max-w-3xl">
+                                <motion.h1
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 0.1 }}
+                                    className="text-2xl font-semibold uppercase text-primary md:text-3xl"
+                                >
+                                    Frequently Asked <span className="text-teal-600">Questions</span>
+                                </motion.h1>
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 0.2 }}
+                                    className="mt-4 text-lg text-tertiary"
+                                >
+                                    Find answers to common questions about our teeth whitening services and products.
+                                </motion.p>
+                            </div>
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="shrink-0"
+                            >
+                                <RatingBadge rating={4.9} title="Quick Support" subtitle="24hr response time" />
+                            </motion.div>
+                        </div>
                     </div>
-                </div>
+                </section>
 
                 {/* FAQ Content */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">

@@ -5,6 +5,7 @@ import { Star01, Heart, Award01, Users01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { NewsletterSection } from "@/app/components/newsletter-section";
+import { RatingBadge } from "@/components/foundations/rating-badge";
 
 const stats = [
     { value: "50K+", label: "Happy Customers" },
@@ -63,31 +64,43 @@ export default function AboutPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <div className="relative bg-brand-50 py-16 md:py-24 lg:py-32">
-                    <div className="absolute inset-0 overflow-hidden">
-                        <div className="absolute inset-0 opacity-30" style={{
-                            backgroundImage: `radial-gradient(circle at 1px 1px, var(--color-brand-200) 1px, transparent 0)`,
-                            backgroundSize: '32px 32px'
-                        }} />
+                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+                    <div className="mx-auto max-w-7xl">
+                        <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
+                            <a href="/" className="uppercase transition hover:text-teal-600">Home</a>
+                            <span>/</span>
+                            <span className="uppercase text-teal-600">About</span>
+                        </nav>
+                        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+                            <div className="max-w-3xl">
+                                <motion.h1
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 0.1 }}
+                                    className="text-2xl font-semibold uppercase text-primary md:text-3xl"
+                                >
+                                    About <span className="text-teal-600">Prestige Smile</span>
+                                </motion.h1>
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 0.2 }}
+                                    className="mt-4 text-lg text-tertiary"
+                                >
+                                    We're on a mission to help everyone achieve a confident, radiant smile through professional teeth whitening treatments.
+                                </motion.p>
+                            </div>
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="shrink-0"
+                            >
+                                <RatingBadge rating={4.9} title="15+ Years Experience" subtitle="50K+ happy customers" />
+                            </motion.div>
+                        </div>
                     </div>
-                    <div className="relative mx-auto max-w-7xl px-4 text-center md:px-8 lg:px-16">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <span className="mb-4 inline-block rounded-full bg-brand-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                                Our Story
-                            </span>
-                            <h1 className="text-3xl font-semibold text-primary sm:text-4xl md:text-5xl lg:text-6xl">
-                                A Brighter Smile,<br />A Better You
-                            </h1>
-                            <p className="mx-auto mt-6 max-w-2xl text-lg text-tertiary">
-                                We're on a mission to help everyone achieve a confident, radiant smile through professional teeth whitening treatments and premium oral care products.
-                            </p>
-                        </motion.div>
-                    </div>
-                </div>
+                </section>
 
                 {/* Stats */}
                 <section className="border-b border-secondary py-12">
