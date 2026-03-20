@@ -1,5 +1,6 @@
 import { ArticlesSection } from "./components/articles-section";
 import { BeforeAfterSection } from "./components/before-after-section";
+import { FAQSection } from "./components/faq-section";
 import { FeaturesSection } from "./components/features-section";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
@@ -25,6 +26,7 @@ export default function Page() {
 				<FeaturesSection />
 				<BeforeAfterSection />
 				<ReviewsSection />
+				<FAQSection />
 				<ArticlesSection />
 				<NewsletterSection />
 				<InstagramSection />
