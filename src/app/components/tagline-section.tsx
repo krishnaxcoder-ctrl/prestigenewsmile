@@ -22,7 +22,7 @@ export const TaglineSection = () => {
                 variants={fadeInUp}
                 className="text-xs font-medium uppercase tracking-widest text-tertiary"
             >
-                Nourish Your Skin Naturally
+                Professional Teeth Whitening Studio
             </motion.span>
 
             {/* Main Heading with Inline Images */}
@@ -33,29 +33,31 @@ export const TaglineSection = () => {
                 variants={fadeInUp}
                 className="mt-6 flex max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-display-sm font-semibold text-primary md:text-display-md lg:text-display-lg"
             >
-                <span>EXPERIENCE</span>
-                <span>THE SYNERGY</span>
+                <span>A BRIGHT</span>
                 <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-10 md:w-28 lg:h-12 lg:w-32">
                     <img
-                        src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/heading-with-img-01.jpg"
-                        alt="Skincare product"
+                        src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=200&auto=format&fit=crop"
+                        alt="Bright smile"
                         className="size-full object-cover"
                     />
                 </span>
-                <span>ADVANCED</span>
-                <span>INGREDIENTS</span>
+                <span>SMILE IS</span>
+                <span>MUCH MORE</span>
+                <span>THAN A</span>
+                <span className="text-brand-600">DETAIL</span>
+                <span>IT REVEALS</span>
+                <span>THE</span>
                 <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-10 md:w-28 lg:h-12 lg:w-32">
                     <img
-                        src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/heading-with-img-02.jpg"
-                        alt="Natural ingredients"
+                        src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=200&auto=format&fit=crop"
+                        alt="Teeth whitening treatment"
                         className="size-full object-cover"
                     />
                 </span>
-                <span>MINIMALIST</span>
-                <span>SKINCARE</span>
-                <span>TO ELEVATE</span>
-                <span>YOUR DAILY</span>
-                <span>GLOW.</span>
+                <span className="text-brand-600">CONFIDENCE</span>
+                <span>YOU HAVE</span>
+                <span>IN</span>
+                <span className="text-brand-600">YOURSELF.</span>
             </motion.div>
         </section>
     );
