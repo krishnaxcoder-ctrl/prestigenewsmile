@@ -3,12 +3,19 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
+import { Input } from "@/components/base/input/input";
 import {
     CheckCircle,
     Lock01,
     CreditCard01,
     Truck01,
     ChevronDown,
+    Mail01,
+    User01,
+    Home02,
+    Phone01,
+    Building07,
+    Globe01,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
@@ -151,127 +158,122 @@ export default function CheckoutPage() {
                                             Contact Information
                                         </h2>
                                         <div className="mt-6 space-y-4">
-                                            <div>
-                                                <label className="mb-2 block text-sm font-medium text-primary">
-                                                    Email
-                                                </label>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    value={formData.email}
-                                                    onChange={handleInputChange}
-                                                    placeholder="your@email.com"
-                                                    className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                />
-                                            </div>
+                                            <Input
+                                                type="email"
+                                                name="email"
+                                                label="Email"
+                                                icon={Mail01}
+                                                value={formData.email}
+                                                onChange={(value) => setFormData({ ...formData, email: value })}
+                                                placeholder="your@email.com"
+                                                isRequired
+                                                size="md"
+                                            />
                                         </div>
 
                                         <h2 className="mt-10 text-xl font-semibold text-primary">
                                             Shipping Address
                                         </h2>
                                         <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                                            <div>
-                                                <label className="mb-2 block text-sm font-medium text-primary">
-                                                    First Name
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="firstName"
-                                                    value={formData.firstName}
-                                                    onChange={handleInputChange}
-                                                    className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="mb-2 block text-sm font-medium text-primary">
-                                                    Last Name
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="lastName"
-                                                    value={formData.lastName}
-                                                    onChange={handleInputChange}
-                                                    className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                />
-                                            </div>
+                                            <Input
+                                                type="text"
+                                                name="firstName"
+                                                label="First Name"
+                                                icon={User01}
+                                                value={formData.firstName}
+                                                onChange={(value) => setFormData({ ...formData, firstName: value })}
+                                                placeholder="John"
+                                                isRequired
+                                                size="md"
+                                            />
+                                            <Input
+                                                type="text"
+                                                name="lastName"
+                                                label="Last Name"
+                                                icon={User01}
+                                                value={formData.lastName}
+                                                onChange={(value) => setFormData({ ...formData, lastName: value })}
+                                                placeholder="Doe"
+                                                isRequired
+                                                size="md"
+                                            />
                                             <div className="sm:col-span-2">
-                                                <label className="mb-2 block text-sm font-medium text-primary">
-                                                    Address
-                                                </label>
-                                                <input
+                                                <Input
                                                     type="text"
                                                     name="address"
+                                                    label="Address"
+                                                    icon={Home02}
                                                     value={formData.address}
-                                                    onChange={handleInputChange}
+                                                    onChange={(value) => setFormData({ ...formData, address: value })}
                                                     placeholder="Street address"
-                                                    className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
+                                                    isRequired
+                                                    size="md"
                                                 />
                                             </div>
                                             <div className="sm:col-span-2">
-                                                <label className="mb-2 block text-sm font-medium text-primary">
-                                                    Apartment, suite, etc. (optional)
-                                                </label>
-                                                <input
+                                                <Input
                                                     type="text"
                                                     name="apartment"
+                                                    label="Apartment, suite, etc. (optional)"
+                                                    icon={Building07}
                                                     value={formData.apartment}
-                                                    onChange={handleInputChange}
-                                                    className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
+                                                    onChange={(value) => setFormData({ ...formData, apartment: value })}
+                                                    placeholder="Apt, suite, unit, etc."
+                                                    size="md"
                                                 />
                                             </div>
-                                            <div>
-                                                <label className="mb-2 block text-sm font-medium text-primary">
-                                                    City
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="city"
-                                                    value={formData.city}
-                                                    onChange={handleInputChange}
-                                                    className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="mb-2 block text-sm font-medium text-primary">
-                                                    Postal Code
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="postalCode"
-                                                    value={formData.postalCode}
-                                                    onChange={handleInputChange}
-                                                    className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                />
-                                            </div>
-                                            <div className="relative">
-                                                <label className="mb-2 block text-sm font-medium text-primary">
+                                            <Input
+                                                type="text"
+                                                name="city"
+                                                label="City"
+                                                value={formData.city}
+                                                onChange={(value) => setFormData({ ...formData, city: value })}
+                                                placeholder="Geneva"
+                                                isRequired
+                                                size="md"
+                                            />
+                                            <Input
+                                                type="text"
+                                                name="postalCode"
+                                                label="Postal Code"
+                                                value={formData.postalCode}
+                                                onChange={(value) => setFormData({ ...formData, postalCode: value })}
+                                                placeholder="1200"
+                                                isRequired
+                                                size="md"
+                                            />
+                                            <div className="relative space-y-1.5">
+                                                <label className="text-sm font-medium text-secondary">
                                                     Country
                                                 </label>
-                                                <select
-                                                    name="country"
-                                                    value={formData.country}
-                                                    onChange={handleInputChange}
-                                                    className="w-full appearance-none rounded-lg border border-secondary bg-primary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                >
-                                                    <option value="Switzerland">Switzerland</option>
-                                                    <option value="France">France</option>
-                                                    <option value="Germany">Germany</option>
-                                                    <option value="Italy">Italy</option>
-                                                </select>
-                                                <ChevronDown className="pointer-events-none absolute bottom-3.5 right-4 size-4 text-tertiary" />
+                                                <div className="relative">
+                                                    <div className="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2">
+                                                        <Globe01 className="size-5 text-fg-quaternary" />
+                                                    </div>
+                                                    <select
+                                                        name="country"
+                                                        value={formData.country}
+                                                        onChange={handleInputChange}
+                                                        className="w-full appearance-none rounded-lg bg-primary py-2.5 pl-10 pr-10 text-md text-primary shadow-xs ring-1 ring-primary ring-inset focus:ring-2 focus:ring-brand focus:outline-none"
+                                                    >
+                                                        <option value="Switzerland">Switzerland</option>
+                                                        <option value="France">France</option>
+                                                        <option value="Germany">Germany</option>
+                                                        <option value="Italy">Italy</option>
+                                                    </select>
+                                                    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-fg-quaternary" />
+                                                </div>
                                             </div>
-                                            <div>
-                                                <label className="mb-2 block text-sm font-medium text-primary">
-                                                    Phone
-                                                </label>
-                                                <input
-                                                    type="tel"
-                                                    name="phone"
-                                                    value={formData.phone}
-                                                    onChange={handleInputChange}
-                                                    className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                />
-                                            </div>
+                                            <Input
+                                                type="tel"
+                                                name="phone"
+                                                label="Phone"
+                                                icon={Phone01}
+                                                value={formData.phone}
+                                                onChange={(value) => setFormData({ ...formData, phone: value })}
+                                                placeholder="+41 XX XXX XX XX"
+                                                size="md"
+                                            />
                                         </div>
 
                                         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-between">

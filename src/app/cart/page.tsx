@@ -190,7 +190,7 @@ export default function CartPage() {
                                                                 >
                                                                     <Minus className="size-3" />
                                                                 </button>
-                                                                <span className="w-8 text-center text-sm">
+                                                                <span className="w-8 text-center text-sm font-medium text-primary">
                                                                     {item.quantity}
                                                                 </span>
                                                                 <button
@@ -245,7 +245,7 @@ export default function CartPage() {
                                                             >
                                                                 <Minus className="size-4" />
                                                             </button>
-                                                            <span className="w-10 text-center text-sm">
+                                                            <span className="w-10 text-center text-sm font-medium text-primary">
                                                                 {item.quantity}
                                                             </span>
                                                             <button
@@ -299,7 +299,7 @@ export default function CartPage() {
                                                     value={couponCode}
                                                     onChange={(e) => setCouponCode(e.target.value)}
                                                     placeholder="Enter code"
-                                                    className="flex-1 rounded-lg border border-secondary bg-primary px-4 py-2 text-sm focus:border-brand-500 focus:outline-none"
+                                                    className="flex-1 rounded-lg border border-secondary bg-primary px-4 py-2 text-sm text-primary placeholder:text-placeholder focus:border-brand-500 focus:outline-none"
                                                 />
                                                 <Button color="secondary" size="sm">
                                                     Apply

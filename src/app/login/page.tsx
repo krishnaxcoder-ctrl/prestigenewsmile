@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
+import { Input } from "@/components/base/input/input";
+import { Checkbox } from "@/components/base/checkbox/checkbox";
 import { Mail01, Lock01, Eye, EyeOff } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
@@ -73,44 +75,40 @@ export default function LoginPage() {
 
                             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                                 {/* Email */}
-                                <div>
-                                    <label className="mb-2 block text-sm font-medium text-primary">
-                                        Email Address
-                                    </label>
-                                    <div className="relative">
-                                        <Mail01 className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-tertiary" />
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleInputChange}
-                                            placeholder="your@email.com"
-                                            className="w-full rounded-lg border border-secondary py-3 pl-12 pr-4 text-sm focus:border-brand-500 focus:outline-none"
-                                            required
-                                        />
-                                    </div>
-                                </div>
+                                <Input
+                                    type="email"
+                                    name="email"
+                                    label="Email Address"
+                                    icon={Mail01}
+                                    value={formData.email}
+                                    onChange={(value) => setFormData({ ...formData, email: value })}
+                                    placeholder="your@email.com"
+                                    isRequired
+                                    size="md"
+                                />
 
                                 {/* Password */}
-                                <div>
-                                    <label className="mb-2 block text-sm font-medium text-primary">
+                                <div className="space-y-1.5">
+                                    <label className="text-sm font-medium text-secondary">
                                         Password
                                     </label>
                                     <div className="relative">
-                                        <Lock01 className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-tertiary" />
+                                        <div className="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2">
+                                            <Lock01 className="size-5 text-fg-quaternary" />
+                                        </div>
                                         <input
                                             type={showPassword ? "text" : "password"}
                                             name="password"
                                             value={formData.password}
                                             onChange={handleInputChange}
                                             placeholder="Enter your password"
-                                            className="w-full rounded-lg border border-secondary py-3 pl-12 pr-12 text-sm focus:border-brand-500 focus:outline-none"
+                                            className="w-full rounded-lg bg-primary py-2.5 pl-10 pr-12 text-md text-primary shadow-xs ring-1 ring-primary ring-inset placeholder:text-placeholder focus:ring-2 focus:ring-brand focus:outline-none"
                                             required
                                         />
                                         <button
                                             type="button"
                                             onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-tertiary transition hover:text-primary"
+                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-fg-quaternary transition hover:text-fg-quaternary_hover"
                                         >
                                             {showPassword ? (
                                                 <EyeOff className="size-5" />
@@ -123,16 +121,11 @@ export default function LoginPage() {
 
                                 {/* Remember Me & Forgot Password */}
                                 <div className="flex items-center justify-between">
-                                    <label className="flex cursor-pointer items-center gap-2">
-                                        <input
-                                            type="checkbox"
-                                            name="rememberMe"
-                                            checked={formData.rememberMe}
-                                            onChange={handleInputChange}
-                                            className="size-4 rounded accent-brand-600"
-                                        />
-                                        <span className="text-sm text-tertiary">Remember me</span>
-                                    </label>
+                                    <Checkbox
+                                        isSelected={formData.rememberMe}
+                                        onChange={(checked) => setFormData({ ...formData, rememberMe: checked })}
+                                        label="Remember me"
+                                    />
                                     <a
                                         href="/forgot-password"
                                         className="text-sm text-brand-600 transition hover:text-brand-700"

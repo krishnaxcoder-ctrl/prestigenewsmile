@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
+import { Input } from "@/components/base/input/input";
+import { Checkbox } from "@/components/base/checkbox/checkbox";
 import { Mail01, Lock01, Eye, EyeOff, User01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
@@ -78,81 +80,65 @@ export default function RegisterPage() {
                             <form onSubmit={handleSubmit} className="mt-8 space-y-5">
                                 {/* Name Fields */}
                                 <div className="grid gap-4 sm:grid-cols-2">
-                                    <div>
-                                        <label className="mb-2 block text-sm font-medium text-primary">
-                                            First Name
-                                        </label>
-                                        <div className="relative">
-                                            <User01 className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-tertiary" />
-                                            <input
-                                                type="text"
-                                                name="firstName"
-                                                value={formData.firstName}
-                                                onChange={handleInputChange}
-                                                placeholder="John"
-                                                className="w-full rounded-lg border border-secondary py-3 pl-12 pr-4 text-sm focus:border-brand-500 focus:outline-none"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label className="mb-2 block text-sm font-medium text-primary">
-                                            Last Name
-                                        </label>
-                                        <div className="relative">
-                                            <User01 className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-tertiary" />
-                                            <input
-                                                type="text"
-                                                name="lastName"
-                                                value={formData.lastName}
-                                                onChange={handleInputChange}
-                                                placeholder="Doe"
-                                                className="w-full rounded-lg border border-secondary py-3 pl-12 pr-4 text-sm focus:border-brand-500 focus:outline-none"
-                                                required
-                                            />
-                                        </div>
-                                    </div>
+                                    <Input
+                                        type="text"
+                                        name="firstName"
+                                        label="First Name"
+                                        icon={User01}
+                                        value={formData.firstName}
+                                        onChange={(value) => setFormData({ ...formData, firstName: value })}
+                                        placeholder="John"
+                                        isRequired
+                                        size="md"
+                                    />
+                                    <Input
+                                        type="text"
+                                        name="lastName"
+                                        label="Last Name"
+                                        icon={User01}
+                                        value={formData.lastName}
+                                        onChange={(value) => setFormData({ ...formData, lastName: value })}
+                                        placeholder="Doe"
+                                        isRequired
+                                        size="md"
+                                    />
                                 </div>
 
                                 {/* Email */}
-                                <div>
-                                    <label className="mb-2 block text-sm font-medium text-primary">
-                                        Email Address
-                                    </label>
-                                    <div className="relative">
-                                        <Mail01 className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-tertiary" />
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleInputChange}
-                                            placeholder="your@email.com"
-                                            className="w-full rounded-lg border border-secondary py-3 pl-12 pr-4 text-sm focus:border-brand-500 focus:outline-none"
-                                            required
-                                        />
-                                    </div>
-                                </div>
+                                <Input
+                                    type="email"
+                                    name="email"
+                                    label="Email Address"
+                                    icon={Mail01}
+                                    value={formData.email}
+                                    onChange={(value) => setFormData({ ...formData, email: value })}
+                                    placeholder="your@email.com"
+                                    isRequired
+                                    size="md"
+                                />
 
                                 {/* Password */}
-                                <div>
-                                    <label className="mb-2 block text-sm font-medium text-primary">
+                                <div className="space-y-1.5">
+                                    <label className="text-sm font-medium text-secondary">
                                         Password
                                     </label>
                                     <div className="relative">
-                                        <Lock01 className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-tertiary" />
+                                        <div className="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2">
+                                            <Lock01 className="size-5 text-fg-quaternary" />
+                                        </div>
                                         <input
                                             type={showPassword ? "text" : "password"}
                                             name="password"
                                             value={formData.password}
                                             onChange={handleInputChange}
                                             placeholder="Create a password"
-                                            className="w-full rounded-lg border border-secondary py-3 pl-12 pr-12 text-sm focus:border-brand-500 focus:outline-none"
+                                            className="w-full rounded-lg bg-primary py-2.5 pl-10 pr-12 text-md text-primary shadow-xs ring-1 ring-primary ring-inset placeholder:text-placeholder focus:ring-2 focus:ring-brand focus:outline-none"
                                             required
                                         />
                                         <button
                                             type="button"
                                             onClick={() => setShowPassword(!showPassword)}
-                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-tertiary transition hover:text-primary"
+                                            className="absolute right-3 top-1/2 -translate-y-1/2 text-fg-quaternary transition hover:text-fg-quaternary_hover"
                                         >
                                             {showPassword ? (
                                                 <EyeOff className="size-5" />
@@ -161,25 +147,27 @@ export default function RegisterPage() {
                                             )}
                                         </button>
                                     </div>
-                                    <p className="mt-1.5 text-xs text-tertiary">
+                                    <p className="text-sm text-tertiary">
                                         Must be at least 8 characters
                                     </p>
                                 </div>
 
                                 {/* Confirm Password */}
-                                <div>
-                                    <label className="mb-2 block text-sm font-medium text-primary">
+                                <div className="space-y-1.5">
+                                    <label className="text-sm font-medium text-secondary">
                                         Confirm Password
                                     </label>
                                     <div className="relative">
-                                        <Lock01 className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-tertiary" />
+                                        <div className="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2">
+                                            <Lock01 className="size-5 text-fg-quaternary" />
+                                        </div>
                                         <input
                                             type={showPassword ? "text" : "password"}
                                             name="confirmPassword"
                                             value={formData.confirmPassword}
                                             onChange={handleInputChange}
                                             placeholder="Confirm your password"
-                                            className="w-full rounded-lg border border-secondary py-3 pl-12 pr-4 text-sm focus:border-brand-500 focus:outline-none"
+                                            className="w-full rounded-lg bg-primary py-2.5 pl-10 pr-4 text-md text-primary shadow-xs ring-1 ring-primary ring-inset placeholder:text-placeholder focus:ring-2 focus:ring-brand focus:outline-none"
                                             required
                                         />
                                     </div>
@@ -187,38 +175,28 @@ export default function RegisterPage() {
 
                                 {/* Checkboxes */}
                                 <div className="space-y-3">
-                                    <label className="flex cursor-pointer items-start gap-2">
-                                        <input
-                                            type="checkbox"
-                                            name="acceptTerms"
-                                            checked={formData.acceptTerms}
-                                            onChange={handleInputChange}
-                                            className="mt-0.5 size-4 rounded accent-brand-600"
-                                            required
-                                        />
-                                        <span className="text-sm text-tertiary">
-                                            I agree to the{" "}
-                                            <a href="/terms" className="text-brand-600 hover:underline">
-                                                Terms of Service
-                                            </a>{" "}
-                                            and{" "}
-                                            <a href="/privacy" className="text-brand-600 hover:underline">
-                                                Privacy Policy
-                                            </a>
-                                        </span>
-                                    </label>
-                                    <label className="flex cursor-pointer items-start gap-2">
-                                        <input
-                                            type="checkbox"
-                                            name="newsletter"
-                                            checked={formData.newsletter}
-                                            onChange={handleInputChange}
-                                            className="mt-0.5 size-4 rounded accent-brand-600"
-                                        />
-                                        <span className="text-sm text-tertiary">
-                                            Subscribe to our newsletter for exclusive offers and updates
-                                        </span>
-                                    </label>
+                                    <Checkbox
+                                        isSelected={formData.acceptTerms}
+                                        onChange={(checked) => setFormData({ ...formData, acceptTerms: checked })}
+                                        isRequired
+                                        label={
+                                            <span className="text-tertiary">
+                                                I agree to the{" "}
+                                                <a href="/terms" className="text-brand-600 hover:underline">
+                                                    Terms of Service
+                                                </a>{" "}
+                                                and{" "}
+                                                <a href="/privacy" className="text-brand-600 hover:underline">
+                                                    Privacy Policy
+                                                </a>
+                                            </span>
+                                        }
+                                    />
+                                    <Checkbox
+                                        isSelected={formData.newsletter}
+                                        onChange={(checked) => setFormData({ ...formData, newsletter: checked })}
+                                        label="Subscribe to our newsletter for exclusive offers and updates"
+                                    />
                                 </div>
 
                                 {/* Submit */}

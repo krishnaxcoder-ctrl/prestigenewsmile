@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import {
@@ -11,6 +11,8 @@ import {
     Grid01,
     List,
     ChevronDown,
+    ChevronLeft,
+    ChevronRight,
     X,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
@@ -71,7 +73,7 @@ const allProducts = [
         originalPrice: 64.00,
         rating: 4,
         reviews: 82,
-        inStock: true,
+        inStock: false,
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-01.png",
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-02.jpg",
@@ -116,7 +118,7 @@ const allProducts = [
         originalPrice: 52.00,
         rating: 3,
         reviews: 45,
-        inStock: true,
+        inStock: false,
         images: [
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-3-01.png",
             "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-3-02.jpg",
@@ -174,28 +176,83 @@ function StarRating({ rating }: { rating: number }) {
     );
 }
 
+const PRODUCTS_PER_PAGE = 6;
+
 export default function ShopPage() {
     const [selectedCategory, setSelectedCategory] = useState("All Products");
     const [sortBy, setSortBy] = useState("featured");
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
     const [showFilters, setShowFilters] = useState(false);
     const [priceRange, setPriceRange] = useState([0, 100]);
+    const [inStockOnly, setInStockOnly] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const filteredProducts = allProducts.filter((product) => {
-        if (selectedCategory === "All Products") return true;
-        return product.category === selectedCategory;
-    });
+    // Check if any filters are active
+    const hasActiveFilters = selectedCategory !== "All Products" || priceRange[1] < 100 || inStockOnly;
 
-    const sortedProducts = [...filteredProducts].sort((a, b) => {
-        switch (sortBy) {
-            case "price-asc":
-                return a.price - b.price;
-            case "price-desc":
-                return b.price - a.price;
-            default:
-                return 0;
-        }
-    });
+    // Clear all filters
+    const clearFilters = () => {
+        setSelectedCategory("All Products");
+        setPriceRange([0, 100]);
+        setInStockOnly(false);
+        setCurrentPage(1);
+    };
+
+    // Filter products
+    const filteredProducts = useMemo(() => {
+        return allProducts.filter((product) => {
+            // Category filter
+            if (selectedCategory !== "All Products" && product.category !== selectedCategory) {
+                return false;
+            }
+            // Price range filter
+            if (product.price < priceRange[0] || product.price > priceRange[1]) {
+                return false;
+            }
+            // In stock filter
+            if (inStockOnly && !product.inStock) {
+                return false;
+            }
+            return true;
+        });
+    }, [selectedCategory, priceRange, inStockOnly]);
+
+    // Sort products
+    const sortedProducts = useMemo(() => {
+        return [...filteredProducts].sort((a, b) => {
+            switch (sortBy) {
+                case "price-asc":
+                    return a.price - b.price;
+                case "price-desc":
+                    return b.price - a.price;
+                default:
+                    return 0;
+            }
+        });
+    }, [filteredProducts, sortBy]);
+
+    // Pagination
+    const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_PER_PAGE);
+    const paginatedProducts = sortedProducts.slice(
+        (currentPage - 1) * PRODUCTS_PER_PAGE,
+        currentPage * PRODUCTS_PER_PAGE
+    );
+
+    // Reset to page 1 when filters change
+    const handleCategoryChange = (category: string) => {
+        setSelectedCategory(category);
+        setCurrentPage(1);
+    };
+
+    const handlePriceChange = (value: number) => {
+        setPriceRange([priceRange[0], value]);
+        setCurrentPage(1);
+    };
+
+    const handleInStockChange = (checked: boolean) => {
+        setInStockOnly(checked);
+        setCurrentPage(1);
+    };
 
     return (
         <div className="overflow-x-hidden">
@@ -228,6 +285,17 @@ export default function ShopPage() {
                             {/* Sidebar Filters - Desktop */}
                             <aside className="hidden w-64 shrink-0 lg:block">
                                 <div className="sticky top-24 space-y-8">
+                                    {/* Clear Filters Button */}
+                                    {hasActiveFilters && (
+                                        <button
+                                            onClick={clearFilters}
+                                            className="flex items-center gap-2 text-sm font-medium text-brand-600 transition hover:text-brand-700"
+                                        >
+                                            <X className="size-4" />
+                                            Clear All Filters
+                                        </button>
+                                    )}
+
                                     {/* Categories */}
                                     <div>
                                         <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">
@@ -237,7 +305,7 @@ export default function ShopPage() {
                                             {categories.map((category) => (
                                                 <li key={category}>
                                                     <button
-                                                        onClick={() => setSelectedCategory(category)}
+                                                        onClick={() => handleCategoryChange(category)}
                                                         className={`text-sm transition ${
                                                             selectedCategory === category
                                                                 ? "font-medium text-brand-600"
@@ -262,7 +330,7 @@ export default function ShopPage() {
                                                 min="0"
                                                 max="100"
                                                 value={priceRange[1]}
-                                                onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
+                                                onChange={(e) => handlePriceChange(parseInt(e.target.value))}
                                                 className="w-full accent-brand-600"
                                             />
                                             <div className="flex items-center justify-between text-sm text-tertiary">
@@ -278,7 +346,12 @@ export default function ShopPage() {
                                             Availability
                                         </h3>
                                         <label className="flex cursor-pointer items-center gap-3">
-                                            <input type="checkbox" className="size-4 accent-brand-600" defaultChecked />
+                                            <input
+                                                type="checkbox"
+                                                className="size-4 accent-brand-600"
+                                                checked={inStockOnly}
+                                                onChange={(e) => handleInStockChange(e.target.checked)}
+                                            />
                                             <span className="text-sm text-tertiary">In Stock Only</span>
                                         </label>
                                     </div>
@@ -287,6 +360,52 @@ export default function ShopPage() {
 
                             {/* Main Content */}
                             <div className="flex-1">
+                                {/* Active Filters */}
+                                {hasActiveFilters && (
+                                    <div className="mb-4 flex flex-wrap items-center gap-2">
+                                        <span className="text-sm text-tertiary">Active filters:</span>
+                                        {selectedCategory !== "All Products" && (
+                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
+                                                {selectedCategory}
+                                                <button
+                                                    onClick={() => handleCategoryChange("All Products")}
+                                                    className="transition hover:text-brand-900"
+                                                >
+                                                    <X className="size-3" />
+                                                </button>
+                                            </span>
+                                        )}
+                                        {priceRange[1] < 100 && (
+                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
+                                                Up to ${priceRange[1]}
+                                                <button
+                                                    onClick={() => handlePriceChange(100)}
+                                                    className="transition hover:text-brand-900"
+                                                >
+                                                    <X className="size-3" />
+                                                </button>
+                                            </span>
+                                        )}
+                                        {inStockOnly && (
+                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
+                                                In Stock Only
+                                                <button
+                                                    onClick={() => handleInStockChange(false)}
+                                                    className="transition hover:text-brand-900"
+                                                >
+                                                    <X className="size-3" />
+                                                </button>
+                                            </span>
+                                        )}
+                                        <button
+                                            onClick={clearFilters}
+                                            className="text-xs text-tertiary underline transition hover:text-primary"
+                                        >
+                                            Clear all
+                                        </button>
+                                    </div>
+                                )}
+
                                 {/* Toolbar */}
                                 <div className="mb-8 flex flex-col gap-4 border-b border-secondary pb-4 sm:flex-row sm:items-center sm:justify-between">
                                     <div className="flex items-center gap-4">
@@ -297,10 +416,16 @@ export default function ShopPage() {
                                         >
                                             <FilterLines className="size-4" />
                                             Filters
+                                            {hasActiveFilters && (
+                                                <span className="flex size-5 items-center justify-center rounded-full bg-brand-600 text-xs text-white">
+                                                    {(selectedCategory !== "All Products" ? 1 : 0) + (priceRange[1] < 100 ? 1 : 0) + (inStockOnly ? 1 : 0)}
+                                                </span>
+                                            )}
                                         </button>
 
                                         <p className="text-sm text-tertiary">
-                                            Showing <span className="font-medium text-primary">{sortedProducts.length}</span> products
+                                            Showing <span className="font-medium text-primary">{paginatedProducts.length}</span> of{" "}
+                                            <span className="font-medium text-primary">{sortedProducts.length}</span> products
                                         </p>
                                     </div>
 
@@ -379,7 +504,7 @@ export default function ShopPage() {
                                         ? "grid-cols-2 md:grid-cols-3"
                                         : "grid-cols-1"
                                 }`}>
-                                    {sortedProducts.map((product, index) => (
+                                    {paginatedProducts.map((product, index) => (
                                         <motion.div
                                             key={product.slug}
                                             initial={{ opacity: 0, y: 20 }}
@@ -425,7 +550,7 @@ export default function ShopPage() {
                                                 {/* Action Buttons */}
                                                 <div className="absolute right-3 top-3 flex flex-col gap-2 opacity-0 transition duration-300 group-hover:opacity-100">
                                                     <button
-                                                        className="flex size-9 items-center justify-center rounded-full bg-white shadow-md transition hover:bg-brand-50 hover:text-brand-600"
+                                                        className="flex size-9 items-center justify-center rounded-full bg-white text-gray-700 shadow-md transition hover:bg-brand-50 hover:text-brand-600"
                                                         aria-label="Add to wishlist"
                                                     >
                                                         <Heart className="size-4" />
@@ -496,26 +621,37 @@ export default function ShopPage() {
                                 </div>
 
                                 {/* Pagination */}
-                                <div className="mt-12 flex items-center justify-center gap-2">
-                                    <button className="flex size-10 items-center justify-center rounded-lg border border-secondary text-tertiary transition hover:border-primary hover:text-primary">
-                                        &lt;
-                                    </button>
-                                    {[1, 2, 3].map((page) => (
+                                {totalPages > 1 && (
+                                    <div className="mt-12 flex items-center justify-center gap-2">
                                         <button
-                                            key={page}
-                                            className={`flex size-10 items-center justify-center rounded-lg transition ${
-                                                page === 1
-                                                    ? "bg-brand-600 text-white"
-                                                    : "border border-secondary text-tertiary hover:border-primary hover:text-primary"
-                                            }`}
+                                            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                                            disabled={currentPage === 1}
+                                            className="flex size-10 items-center justify-center rounded-lg border border-secondary text-tertiary transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-50"
                                         >
-                                            {page}
+                                            <ChevronLeft className="size-5" />
                                         </button>
-                                    ))}
-                                    <button className="flex size-10 items-center justify-center rounded-lg border border-secondary text-tertiary transition hover:border-primary hover:text-primary">
-                                        &gt;
-                                    </button>
-                                </div>
+                                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                                            <button
+                                                key={page}
+                                                onClick={() => setCurrentPage(page)}
+                                                className={`flex size-10 items-center justify-center rounded-lg transition ${
+                                                    page === currentPage
+                                                        ? "bg-brand-600 text-white"
+                                                        : "border border-secondary text-tertiary hover:border-primary hover:text-primary"
+                                                }`}
+                                            >
+                                                {page}
+                                            </button>
+                                        ))}
+                                        <button
+                                            onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                                            disabled={currentPage === totalPages}
+                                            className="flex size-10 items-center justify-center rounded-lg border border-secondary text-tertiary transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-50"
+                                        >
+                                            <ChevronRight className="size-5" />
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
