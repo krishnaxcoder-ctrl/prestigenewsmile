@@ -12,7 +12,8 @@
       "mcp__chrome-devtools__navigate_page",
       "mcp__chrome-devtools__evaluate_script",
       "WebFetch(domain:incident.io)",
-      "mcp__chrome-devtools__close_page"
+      "mcp__chrome-devtools__close_page",
+      "WebFetch(domain:www.untitledui.com)"
     ]
   }
 }

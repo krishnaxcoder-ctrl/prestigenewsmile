@@ -3,286 +3,318 @@
 import { motion } from "framer-motion";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
-import { Star01, CheckVerified01 } from "@untitledui/icons";
+import { Star01 } from "@untitledui/icons";
+
+const avatars = [
+    "olivia-rhye", "phoenix-baker", "lana-steiner", "demi-wilkinson", "candice-wu",
+    "natali-craig", "drew-cano", "orlando-diggs", "andi-lane", "kate-morrison",
+    "koray-okumus", "aliah-lane", "rene-wells", "lori-bryson", "noah-pierre",
+    "mathilde-lewis", "zahir-mays", "elisa-maier", "eva-bond", "zaid-schwartz",
+    "alex-starnes", "caitlyn-king", "joshua-wilson", "christopher-yates", "mollie-hall",
+    "kelly-williams", "eleanor-pena", "amélie-laurent", "priya-sharma", "arjun-mehta"
+];
 
 const testimonials = [
     {
         id: 1,
         name: "Sophie Laurent",
         role: "Marketing Director",
+        location: "Geneva, Switzerland",
+        avatar: avatars[0],
         content: "I was skeptical at first, but the results were incredible! My teeth are now 6 shades whiter and I couldn't be happier. The team was so professional and made me feel comfortable throughout the entire process.",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "6 Shades",
     },
     {
         id: 2,
         name: "Marc Dubois",
         role: "Business Owner",
+        location: "Lyon, France",
+        avatar: avatars[1],
         content: "Best investment I've made in myself. The results speak for themselves - everyone keeps complimenting my smile!",
         rating: 5,
-        source: "Instagram",
-        featured: false,
+        badge: "5 Shades",
     },
     {
         id: 3,
         name: "Emma Fischer",
         role: "Event Planner",
+        location: "Zurich, Switzerland",
+        avatar: avatars[2],
         content: "Had my teeth whitened before my wedding and it was the perfect decision. The photos turned out amazing and I felt so confident on my special day. Thank you Prestige Smile!",
         rating: 5,
-        source: "Google",
-        featured: true,
+        badge: "Wedding",
     },
     {
         id: 4,
         name: "Lucas Bernard",
         role: "Software Engineer",
+        location: "Paris, France",
+        avatar: avatars[3],
         content: "Quick, painless, and effective. What more could you ask for? The staff was friendly and the results exceeded my expectations.",
         rating: 5,
-        source: "Facebook",
-        featured: false,
+        badge: "7 Shades",
     },
     {
         id: 5,
         name: "Amélie Martin",
         role: "Dentist",
+        location: "Annecy, France",
+        avatar: avatars[4],
         content: "As a dental professional myself, I was impressed by the quality of service and products used. I now recommend Prestige Smile to all my patients looking for professional whitening.",
         rating: 5,
-        source: "LinkedIn",
-        featured: true,
+        badge: "Pro Pick",
     },
     {
         id: 6,
         name: "Thomas Müller",
         role: "Photographer",
+        location: "Basel, Switzerland",
+        avatar: avatars[5],
         content: "The difference is unbelievable. My before and after photos look like two different people!",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "8 Shades",
     },
     {
         id: 7,
         name: "Isabelle Roux",
         role: "Teacher",
+        location: "Grenoble, France",
+        avatar: avatars[6],
         content: "I've tried many whitening products over the years, but nothing compares to this professional treatment. Finally found something that actually works!",
         rating: 5,
-        source: "Instagram",
-        featured: false,
+        badge: "5 Shades",
     },
     {
         id: 8,
         name: "David Chen",
         role: "Consultant",
+        location: "Geneva, Switzerland",
+        avatar: avatars[7],
         content: "From booking to the final result, everything was seamless. The online booking was easy, the location is convenient, and the results are stunning. Highly recommend!",
         rating: 5,
-        source: "Google",
-        featured: true,
+        badge: "6 Shades",
     },
     {
         id: 9,
         name: "Nadia Kovač",
         role: "Actress",
+        location: "Milan, Italy",
+        avatar: avatars[8],
         content: "In my profession, a bright smile is essential. Prestige Smile delivered exactly what I needed. My smile has never looked better on camera.",
         rating: 5,
-        source: "Instagram",
-        featured: false,
+        badge: "7 Shades",
     },
     {
         id: 10,
         name: "Pierre Lefebvre",
         role: "Sales Manager",
+        location: "Lausanne, Switzerland",
+        avatar: avatars[9],
         content: "Confidence boost like no other. I used to hide my smile in photos, now I can't stop showing it off!",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "6 Shades",
     },
     {
         id: 11,
         name: "Julia Andersson",
         role: "Nurse",
+        location: "Stockholm, Sweden",
+        avatar: avatars[10],
         content: "The sensitivity was minimal and gone within a day. The team really knows what they're doing. Amazing results!",
         rating: 5,
-        source: "Facebook",
-        featured: false,
+        badge: "No Pain",
     },
     {
         id: 12,
         name: "Oliver Schmidt",
         role: "Architect",
+        location: "Munich, Germany",
+        avatar: avatars[11],
         content: "Worth every penny. The atmosphere is relaxing, the staff is wonderful, and the results are professional-grade. Will definitely be back for maintenance.",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "5 Shades",
     },
     {
         id: 13,
         name: "Claire Fontaine",
         role: "Flight Attendant",
+        location: "Paris, France",
+        avatar: avatars[12],
         content: "I travel constantly and needed a quick solution. One session and my smile was transformed. The convenience and professionalism were outstanding!",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "1 Session",
     },
     {
         id: 14,
         name: "Antoine Moreau",
         role: "Chef",
+        location: "Lyon, France",
+        avatar: avatars[13],
         content: "Finally feel confident smiling in front of customers. The treatment was gentle and the results are natural-looking. Exactly what I wanted.",
         rating: 5,
-        source: "Instagram",
-        featured: true,
+        badge: "Natural",
     },
     {
         id: 15,
         name: "Léa Petit",
         role: "Yoga Instructor",
+        location: "Nice, France",
+        avatar: avatars[14],
         content: "Such a calming experience. The studio has a spa-like atmosphere and the team made sure I was comfortable. My smile is radiant now!",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "Relaxing",
     },
     {
         id: 16,
         name: "Henrik Johansson",
         role: "Financial Analyst",
+        location: "Zurich, Switzerland",
+        avatar: avatars[15],
         content: "ROI on this treatment is incredible. Better than any product I've bought. Professional results that last.",
         rating: 5,
-        source: "LinkedIn",
-        featured: false,
+        badge: "8 Shades",
     },
     {
         id: 17,
         name: "Marta Gonzalez",
         role: "Interior Designer",
+        location: "Barcelona, Spain",
+        avatar: avatars[16],
         content: "The attention to detail here is impressive. From the beautiful studio to the precise treatment - everything was perfect. Love my new smile!",
         rating: 5,
-        source: "Instagram",
-        featured: false,
+        badge: "6 Shades",
     },
     {
         id: 18,
         name: "James Wilson",
         role: "Real Estate Agent",
+        location: "London, UK",
+        avatar: avatars[17],
         content: "In my line of work, first impressions matter. This treatment gave me the confidence boost I needed. Clients always comment on my smile now.",
         rating: 5,
-        source: "Google",
-        featured: true,
+        badge: "7 Shades",
     },
     {
         id: 19,
         name: "Céline Dupont",
         role: "Pharmacist",
+        location: "Geneva, Switzerland",
+        avatar: avatars[18],
         content: "I was worried about sensitivity given my dental history, but the team was so careful and used the right products. Zero discomfort and amazing results!",
         rating: 5,
-        source: "Facebook",
-        featured: false,
+        badge: "Gentle",
     },
     {
         id: 20,
         name: "Alessandro Ricci",
         role: "Hotel Manager",
+        location: "Rome, Italy",
+        avatar: avatars[19],
         content: "Brought my whole team here for a group session before our hotel's grand opening. Everyone was thrilled with the results. Highly professional service.",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "Team Day",
     },
     {
         id: 21,
         name: "Katarina Novak",
         role: "Model",
+        location: "Vienna, Austria",
+        avatar: avatars[20],
         content: "My agency recommended Prestige Smile and I understand why. The results are camera-ready and completely natural. A must for anyone in front of the lens.",
         rating: 5,
-        source: "Instagram",
-        featured: true,
+        badge: "8 Shades",
     },
     {
         id: 22,
         name: "François Blanc",
         role: "Lawyer",
+        location: "Geneva, Switzerland",
+        avatar: avatars[21],
         content: "Discrete location, professional service, remarkable results. Everything a busy professional needs. Booked my next maintenance session already.",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "5 Shades",
     },
     {
         id: 23,
         name: "Anna Bergström",
         role: "Graphic Designer",
+        location: "Copenhagen, Denmark",
+        avatar: avatars[22],
         content: "The before/after difference is like a filter in real life! So happy with my brighter smile. The team was lovely too.",
         rating: 5,
-        source: "Instagram",
-        featured: false,
+        badge: "6 Shades",
     },
     {
         id: 24,
         name: "Michael Torres",
         role: "Personal Trainer",
+        location: "Madrid, Spain",
+        avatar: avatars[23],
         content: "I preach self-improvement to my clients, and this was the perfect addition to my routine. Quick session, lasting results. 10/10 recommend!",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "Quick",
     },
     {
         id: 25,
         name: "Elise Bonnet",
         role: "Journalist",
+        location: "Paris, France",
+        avatar: avatars[24],
         content: "As someone who's on camera regularly, this was a game-changer. Natural results that photograph beautifully. Thank you Prestige Smile!",
         rating: 5,
-        source: "LinkedIn",
-        featured: false,
+        badge: "7 Shades",
     },
     {
         id: 26,
         name: "Viktor Petrov",
         role: "Entrepreneur",
+        location: "Berlin, Germany",
+        avatar: avatars[25],
         content: "Time is money, and this treatment is efficient. In and out in under 2 hours with a completely transformed smile. Brilliant service.",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "2 Hours",
     },
     {
         id: 27,
         name: "Sophia Rossi",
         role: "Wedding Planner",
+        location: "Florence, Italy",
+        avatar: avatars[26],
         content: "I recommend Prestige Smile to all my brides and grooms. The results are consistently amazing and the team is so accommodating with schedules.",
         rating: 5,
-        source: "Instagram",
-        featured: true,
+        badge: "Top Pick",
     },
     {
         id: 28,
         name: "Nicolas Favre",
         role: "Pilot",
+        location: "Toulouse, France",
+        avatar: avatars[27],
         content: "Found this place during a layover in Geneva. Best spontaneous decision ever! My crew was so impressed they all booked appointments.",
         rating: 5,
-        source: "Google",
-        featured: false,
+        badge: "6 Shades",
     },
     {
         id: 29,
         name: "Lena Weber",
         role: "HR Director",
+        location: "Frankfurt, Germany",
+        avatar: avatars[28],
         content: "Organized a team wellness day here. The group booking was easy and everyone left with brighter smiles and higher morale!",
         rating: 5,
-        source: "LinkedIn",
-        featured: false,
+        badge: "Team Day",
     },
     {
         id: 30,
         name: "Raphaël Mercier",
         role: "Musician",
+        location: "Brussels, Belgium",
+        avatar: avatars[29],
         content: "Stage presence improved instantly. When you feel good about your smile, it shows. The whole band came back for treatments!",
         rating: 5,
-        source: "Instagram",
-        featured: false,
+        badge: "7 Shades",
     },
-];
-
-const stats = [
-    { value: "500+", label: "Happy Clients" },
-    { value: "4.9", label: "Average Rating" },
-    { value: "6+", label: "Shades Whiter" },
-    { value: "98%", label: "Satisfaction Rate" },
 ];
 
 export default function ReviewsPage() {
@@ -291,8 +323,9 @@ export default function ReviewsPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Section */}
-                <section className="border-b border-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
-                    <div className="mx-auto max-w-4xl text-center">
+                <section className="border-b border-secondary px-4 py-16 md:px-8 md:py-20 lg:px-16">
+                    <div className="mx-auto max-w-5xl text-center">
+                        {/* Title */}
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -301,30 +334,50 @@ export default function ReviewsPage() {
                         >
                             What our customers say...
                         </motion.h1>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                            className="mx-auto mt-6 max-w-2xl text-lg text-tertiary"
-                        >
-                            Real stories from real people who transformed their smiles with Prestige Smile Studio.
-                        </motion.p>
 
-                        {/* Stats */}
+                        {/* Stats Row */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                            className="mt-12 grid grid-cols-2 gap-8 md:grid-cols-4"
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="mt-12 flex flex-wrap items-center justify-center gap-x-12 gap-y-6"
                         >
-                            {stats.map((stat) => (
-                                <div key={stat.label}>
-                                    <div className="text-3xl font-semibold text-brand-600 md:text-4xl">
-                                        {stat.value}
-                                    </div>
-                                    <div className="mt-1 text-sm text-tertiary">{stat.label}</div>
+                            {/* Rating */}
+                            <div className="flex items-center gap-3">
+                                <div className="flex">
+                                    {[...Array(5)].map((_, i) => (
+                                        <Star01 key={i} className="size-5 fill-amber-400 text-amber-400" />
+                                    ))}
                                 </div>
-                            ))}
+                                <div>
+                                    <span className="text-2xl font-bold text-primary">4.9</span>
+                                    <span className="ml-1 text-tertiary">/ 5</span>
+                                </div>
+                            </div>
+
+                            <div className="hidden h-8 w-px bg-secondary md:block" />
+
+                            {/* Clients */}
+                            <div className="flex items-center gap-2">
+                                <span className="text-2xl font-bold text-primary">500+</span>
+                                <span className="text-tertiary">Happy Clients</span>
+                            </div>
+
+                            <div className="hidden h-8 w-px bg-secondary md:block" />
+
+                            {/* Shades */}
+                            <div className="flex items-center gap-2">
+                                <span className="text-2xl font-bold text-primary">6+</span>
+                                <span className="text-tertiary">Shades Whiter</span>
+                            </div>
+
+                            <div className="hidden h-8 w-px bg-secondary md:block" />
+
+                            {/* Satisfaction */}
+                            <div className="flex items-center gap-2">
+                                <span className="text-2xl font-bold text-brand-600">98%</span>
+                                <span className="text-tertiary">Satisfaction</span>
+                            </div>
                         </motion.div>
                     </div>
                 </section>
@@ -340,32 +393,38 @@ export default function ReviewsPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.05 }}
-                                    className={`mb-6 break-inside-avoid rounded-2xl border border-secondary p-6 ${
-                                        testimonial.featured ? 'bg-brand-50' : 'bg-primary'
-                                    }`}
+                                    className="mb-6 break-inside-avoid rounded-sm border border-teal-400 bg-white shadow-sm p-3"
                                 >
-                                    {/* Rating */}
-                                    <div className="flex gap-1">
-                                        {[...Array(testimonial.rating)].map((_, i) => (
-                                            <Star01 key={i} className="size-5 fill-amber-400 text-amber-400" />
-                                        ))}
+                                    {/* Header: Stars & Badge */}
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex gap-0.5">
+                                            {[...Array(testimonial.rating)].map((_, i) => (
+                                                <Star01 key={i} className="size-4 fill-amber-400 text-amber-400" />
+                                            ))}
+                                        </div>
+                                        {testimonial.badge && (
+                                            <span className="rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
+                                                {testimonial.badge}
+                                            </span>
+                                        )}
                                     </div>
 
-                                    {/* Content */}
-                                    <p className="mt-4 text-primary">"{testimonial.content}"</p>
+                                    {/* Quote */}
+                                    <p className="mt-4 text-primary leading-relaxed">"{testimonial.content}"</p>
 
-                                    {/* Author */}
-                                    <div className="mt-6 flex items-center justify-between">
+                                    {/* Author: Avatar + Name + Role • Location */}
+                                    <div className="mt-6 flex items-center gap-3">
+                                        <img
+                                            src={`https://www.untitledui.com/images/avatars/${testimonial.avatar}`}
+                                            alt={testimonial.name}
+                                            className="size-10 shrink-0 rounded-full object-cover"
+                                        />
                                         <div>
-                                            <div className="flex items-center gap-2">
-                                                <span className="font-semibold text-primary">{testimonial.name}</span>
-                                                {testimonial.featured && (
-                                                    <CheckVerified01 className="size-4 text-brand-600" />
-                                                )}
+                                            <div className="font-semibold text-primary">{testimonial.name}</div>
+                                            <div className="text-sm text-tertiary">
+                                                {testimonial.role} <span className="text-quaternary">•</span> {testimonial.location}
                                             </div>
-                                            <div className="text-sm text-tertiary">{testimonial.role}</div>
                                         </div>
-                                        <div className="text-xs text-quaternary">via {testimonial.source}</div>
                                     </div>
                                 </motion.div>
                             ))}
