@@ -42,6 +42,8 @@ const footerLinks = {
 			{ label: "Ambilly, near Geneva", href: "/contact" },
 			{ label: "Mon-Fri: 10am - 8pm", href: "/contact" },
 			{ label: "Sat: 10am - 7pm", href: "/contact" },
+			{ label: "Sun: Closed", href: "/contact" },
+
 		],
 	},
 };
