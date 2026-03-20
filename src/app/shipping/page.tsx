@@ -99,7 +99,7 @@ export default function ShippingPage() {
 
                 {/* Content */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
-                    <div className="mx-auto max-w-4xl">
+                    <div className="mx-auto max-w-7xl">
                         {/* Shipping Options */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}

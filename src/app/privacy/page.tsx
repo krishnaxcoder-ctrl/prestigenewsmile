@@ -156,17 +156,17 @@ export default function PrivacyPage() {
 
                 {/* Content */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
-                    <div className="mx-auto max-w-3xl">
+                    <div className="mx-auto max-w-7xl">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                             className="mb-8 rounded-xl bg-brand-50 p-6"
                         >
-                            <p className="text-sm text-tertiary">
+                            <p className="text-md text-tertiary">
                                 <strong className="text-primary">Last Updated:</strong> March 2024
                             </p>
-                            <p className="mt-2 text-sm text-tertiary">
+                            <p className="mt-2 text-md text-tertiary">
                                 This privacy policy describes how Prestige Smile ("we", "us", or "our") collects, uses, and protects your personal information when you use our website and services.
                             </p>
                         </motion.div>
@@ -183,7 +183,7 @@ export default function PrivacyPage() {
                                     <h2 className="text-xl font-semibold text-primary">
                                         {section.title}
                                     </h2>
-                                    <div className="mt-4 whitespace-pre-line text-sm leading-relaxed text-tertiary">
+                                    <div className="mt-4 whitespace-pre-line text-mdw leading-relaxed text-tertiary">
                                         {section.content}
                                     </div>
                                 </motion.div>
