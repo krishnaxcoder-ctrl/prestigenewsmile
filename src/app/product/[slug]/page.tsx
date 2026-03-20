@@ -341,7 +341,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <div className="relative bg-brand-50 py-12 md:py-16">
+                <div className="relative bg-brand-50 py-8 sm:py-12 md:py-16">
                     <div className="absolute inset-0 overflow-hidden">
                         <img
                             src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-01.jpg"
@@ -351,10 +351,10 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                         <div className="absolute inset-0 bg-gradient-to-r from-brand-50 via-brand-50/95 to-brand-50/80" />
                     </div>
                     <div className="relative mx-auto max-w-7xl px-4 text-center md:px-8 lg:px-16">
-                        <h1 className="text-2xl font-semibold uppercase tracking-[0.2em] text-primary md:text-3xl">
+                        <h1 className="text-xl font-semibold uppercase tracking-[0.15em] text-primary sm:text-2xl sm:tracking-[0.2em] md:text-3xl">
                             Shop Detail
                         </h1>
-                        <nav className="mt-4 flex items-center justify-center gap-2 text-sm text-tertiary">
+                        <nav className="mt-3 flex flex-wrap items-center justify-center gap-1.5 text-xs text-tertiary sm:mt-4 sm:gap-2 sm:text-sm">
                             <a href="/" className="transition hover:text-brand-600">Home</a>
                             <span>/</span>
                             <a href="/shop" className="transition hover:text-brand-600">{product.category}</a>
@@ -368,20 +368,20 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-                            {/* Image Gallery - Thumbnails on Left */}
+                            {/* Image Gallery - Thumbnails on Left (desktop) / Below (mobile) */}
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.5 }}
-                                className="flex gap-4"
+                                className="flex flex-col-reverse gap-4 sm:flex-row"
                             >
                                 {/* Thumbnails */}
-                                <div className="flex flex-col gap-3">
+                                <div className="flex gap-3 overflow-x-auto pb-2 sm:flex-col sm:overflow-x-visible sm:pb-0">
                                     {product.images.map((image, index) => (
                                         <button
                                             key={index}
                                             onClick={() => setSelectedImage(index)}
-                                            className={`relative size-20 shrink-0 overflow-hidden rounded-lg bg-secondary transition md:size-24 ${
+                                            className={`relative size-16 shrink-0 overflow-hidden rounded-lg bg-secondary transition sm:size-20 md:size-24 ${
                                                 selectedImage === index
                                                     ? "ring-2 ring-primary ring-offset-2"
                                                     : "opacity-70 hover:opacity-100"
@@ -397,7 +397,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 </div>
 
                                 {/* Main Image */}
-                                <div className="relative flex-1 overflow-hidden rounded-2xl bg-secondary">
+                                <div className="relative aspect-square flex-1 overflow-hidden rounded-2xl bg-secondary sm:aspect-auto">
                                     <img
                                         src={product.images[selectedImage]}
                                         alt={product.name}
@@ -481,35 +481,35 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 </div>
 
                                 {/* Quantity & Add to Cart */}
-                                <div className="mt-6 flex items-center gap-3">
+                                <div className="mt-6 flex flex-wrap items-center gap-3">
                                     {/* Quantity Selector */}
                                     <div className="flex items-center border border-gray-300">
                                         <button
                                             onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                            className="flex size-11 items-center justify-center text-gray-500 transition hover:text-gray-900"
+                                            className="flex size-10 items-center justify-center text-gray-500 transition hover:text-gray-900 sm:size-11"
                                         >
                                             <Minus className="size-4" />
                                         </button>
-                                        <span className="w-10 text-center text-sm font-medium text-gray-900">
+                                        <span className="w-8 text-center text-sm font-medium text-gray-900 sm:w-10">
                                             {quantity}
                                         </span>
                                         <button
                                             onClick={() => setQuantity(quantity + 1)}
-                                            className="flex size-11 items-center justify-center text-gray-500 transition hover:text-gray-900"
+                                            className="flex size-10 items-center justify-center text-gray-500 transition hover:text-gray-900 sm:size-11"
                                         >
                                             <Plus className="size-4" />
                                         </button>
                                     </div>
 
                                     {/* Add to Cart Button */}
-                                    <button className="flex flex-1 items-center justify-center gap-2 bg-gray-900 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-gray-800">
+                                    <button className="flex min-w-0 flex-1 items-center justify-center gap-2 bg-gray-900 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-gray-800 sm:py-3 sm:text-sm">
                                         Add to Cart
                                     </button>
 
                                     {/* Wishlist Button */}
                                     <button
                                         onClick={() => setIsWishlisted(!isWishlisted)}
-                                        className={`flex size-11 items-center justify-center border transition ${
+                                        className={`flex size-10 shrink-0 items-center justify-center border transition sm:size-11 ${
                                             isWishlisted
                                                 ? "border-brand-600 bg-brand-50 text-brand-600"
                                                 : "border-gray-300 text-gray-500 hover:border-gray-900 hover:text-gray-900"
@@ -520,21 +520,21 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 </div>
 
                                 {/* Buy Now Button */}
-                                <button className="mt-3 w-full bg-gray-500 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-gray-600">
+                                <button className="mt-3 w-full bg-gray-500 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-gray-600 sm:py-3 sm:text-sm">
                                     Buy Now
                                 </button>
 
                                 {/* Links */}
-                                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
-                                    <button className="flex items-center gap-2 text-tertiary transition hover:text-primary">
-                                        <Truck01 className="size-4" />
+                                <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:gap-x-6 sm:text-sm">
+                                    <button className="flex items-center gap-1.5 text-tertiary transition hover:text-primary sm:gap-2">
+                                        <Truck01 className="size-3.5 sm:size-4" />
                                         Delivery & Return
                                     </button>
-                                    <button className="flex items-center gap-2 text-tertiary transition hover:text-primary">
-                                        <HelpCircle className="size-4" />
+                                    <button className="flex items-center gap-1.5 text-tertiary transition hover:text-primary sm:gap-2">
+                                        <HelpCircle className="size-3.5 sm:size-4" />
                                         Ask A Question
                                     </button>
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center gap-2 sm:gap-3">
                                         <span className="text-tertiary">Share:</span>
                                         {["f", "in", "X", "in"].map((social, i) => (
                                             <button
@@ -548,9 +548,9 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 </div>
 
                                 {/* Free Shipping Notice */}
-                                <div className="mt-6 flex items-center gap-2 rounded-lg bg-secondary px-4 py-3">
-                                    <Package className="size-5 text-tertiary" />
-                                    <span className="text-sm text-tertiary">
+                                <div className="mt-6 flex items-center gap-2 rounded-lg bg-secondary px-3 py-2.5 sm:px-4 sm:py-3">
+                                    <Package className="size-4 shrink-0 text-tertiary sm:size-5" />
+                                    <span className="text-xs text-tertiary sm:text-sm">
                                         Spend <span className="font-semibold text-primary">${amountToFreeShipping.toFixed(0)}</span> More To Get Free Shipping
                                     </span>
                                 </div>
@@ -563,30 +563,32 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                 <section className="border-t border-secondary px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         {/* Tab Headers */}
-                        <div className="flex gap-8 border-b border-secondary">
-                            {[
-                                { id: "description", label: "Description" },
-                                { id: "additional", label: "Additional Information" },
-                                { id: "reviews", label: "Reviews" },
-                            ].map((tab) => (
-                                <button
-                                    key={tab.id}
-                                    onClick={() => setActiveTab(tab.id)}
-                                    className={`relative pb-4 text-sm font-medium uppercase tracking-wider transition ${
-                                        activeTab === tab.id
-                                            ? "text-primary"
-                                            : "text-tertiary hover:text-primary"
-                                    }`}
-                                >
-                                    {tab.label}
-                                    {activeTab === tab.id && (
-                                        <motion.div
-                                            layoutId="activeTab"
-                                            className="absolute inset-x-0 bottom-0 h-0.5 bg-primary"
-                                        />
-                                    )}
-                                </button>
-                            ))}
+                        <div className="-mx-4 overflow-x-auto px-4 md:mx-0 md:px-0">
+                            <div className="flex min-w-max gap-6 border-b border-secondary sm:gap-8">
+                                {[
+                                    { id: "description", label: "Description" },
+                                    { id: "additional", label: "Additional Info" },
+                                    { id: "reviews", label: "Reviews" },
+                                ].map((tab) => (
+                                    <button
+                                        key={tab.id}
+                                        onClick={() => setActiveTab(tab.id)}
+                                        className={`relative whitespace-nowrap pb-4 text-xs font-medium uppercase tracking-wider transition sm:text-sm ${
+                                            activeTab === tab.id
+                                                ? "text-primary"
+                                                : "text-tertiary hover:text-primary"
+                                        }`}
+                                    >
+                                        {tab.label}
+                                        {activeTab === tab.id && (
+                                            <motion.div
+                                                layoutId="activeTab"
+                                                className="absolute inset-x-0 bottom-0 h-0.5 bg-primary"
+                                            />
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
 
                         {/* Tab Content */}
@@ -805,18 +807,18 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                 </section>
 
                 {/* Related Products */}
-                <section className="bg-primary px-4 py-16 md:px-8 md:py-24 lg:px-16">
+                <section className="bg-primary px-4 py-12 sm:py-16 md:px-8 md:py-24 lg:px-16">
                     <div className="mx-auto max-w-7xl">
-                        <div className="mb-12 text-center md:mb-16">
-                            <span className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
+                        <div className="mb-8 text-center sm:mb-12 md:mb-16">
+                            <span className="mb-2 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700 sm:mb-3">
                                 Explore Our Range
                             </span>
-                            <h2 className="mt-4 text-display-xs font-semibold text-primary md:text-display-sm">
+                            <h2 className="mt-3 text-xl font-semibold text-primary sm:mt-4 sm:text-display-xs md:text-display-sm">
                                 Related <span className="text-brand-600">Products</span>
                             </h2>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                        <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
                             {allProducts
                                 .filter((p) => p.slug !== product.slug)
                                 .slice(0, 4)
@@ -847,11 +849,11 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             </a>
 
                                             {/* Badges */}
-                                            <div className="absolute left-4 top-4 flex flex-col gap-2">
-                                                {relatedProduct.badges.map((badge) => (
+                                            <div className="absolute left-2 top-2 flex flex-col gap-1 sm:left-4 sm:top-4 sm:gap-2">
+                                                {relatedProduct.badges.slice(0, 1).map((badge) => (
                                                     <span
                                                         key={badge}
-                                                        className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${
+                                                        className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase sm:px-3 sm:py-1 sm:text-xs ${
                                                             badge === "Sale"
                                                                 ? "bg-error-500 text-white"
                                                                 : "bg-brand-600 text-white"
@@ -863,51 +865,52 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             </div>
 
                                             {/* Action Buttons */}
-                                            <div className="absolute right-4 top-4 flex flex-col gap-2 opacity-0 transition duration-300 group-hover:opacity-100">
+                                            <div className="absolute right-2 top-2 flex flex-col gap-2 opacity-0 transition duration-300 group-hover:opacity-100 sm:right-4 sm:top-4">
                                                 <button
-                                                    className="flex size-10 items-center justify-center rounded-full bg-white shadow-md transition duration-100 ease-linear hover:bg-brand-50 hover:text-brand-600"
+                                                    className="flex size-8 items-center justify-center rounded-full bg-white shadow-md transition duration-100 ease-linear hover:bg-brand-50 hover:text-brand-600 sm:size-10"
                                                     aria-label="Add to wishlist"
                                                 >
-                                                    <Heart className="size-5" />
+                                                    <Heart className="size-4 sm:size-5" />
                                                 </button>
                                             </div>
 
                                             {/* Add to Cart Button */}
-                                            <div className="absolute inset-x-4 bottom-4 translate-y-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                            <div className="absolute inset-x-2 bottom-2 translate-y-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:inset-x-4 sm:bottom-4">
                                                 <Button
                                                     href={`/product/${relatedProduct.slug}`}
                                                     color="primary"
-                                                    size="md"
+                                                    size="sm"
                                                     iconLeading={ShoppingBag01}
-                                                    className="w-full justify-center"
+                                                    className="w-full justify-center sm:text-sm"
                                                 >
-                                                    Select Options
+                                                    <span className="hidden sm:inline">Select Options</span>
+                                                    <span className="sm:hidden">View</span>
                                                 </Button>
                                             </div>
                                         </div>
 
                                         {/* Product Details */}
-                                        <div className="mt-4">
-                                            <div className="flex items-center justify-between">
+                                        <div className="mt-3 sm:mt-4">
+                                            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
                                                 <a
                                                     href={`/product/${relatedProduct.slug}`}
-                                                    className="text-sm text-tertiary transition duration-100 ease-linear hover:text-brand-600"
+                                                    className="text-xs text-tertiary transition duration-100 ease-linear hover:text-brand-600 sm:text-sm"
                                                 >
                                                     {relatedProduct.category}
                                                 </a>
                                                 <StarRating rating={relatedProduct.rating} />
                                             </div>
 
-                                            <h3 className="mt-2 text-lg font-semibold text-primary">
+                                            <h3 className="mt-1.5 text-sm font-semibold text-primary sm:mt-2 sm:text-lg">
                                                 <a
                                                     href={`/product/${relatedProduct.slug}`}
-                                                    className="transition duration-100 ease-linear hover:text-brand-600"
+                                                    className="line-clamp-1 transition duration-100 ease-linear hover:text-brand-600"
                                                 >
                                                     {relatedProduct.name}
                                                 </a>
                                             </h3>
 
-                                            <p className="mt-1 text-md font-medium text-secondary">
+                                            <p className="mt-1 text-xs font-medium text-secondary sm:text-md">
                                                 ${relatedProduct.price.toFixed(2)} – ${relatedProduct.originalPrice.toFixed(2)}
                                             </p>
                                         </div>
