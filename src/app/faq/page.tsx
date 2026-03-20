@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/base/buttons/button";
-import { ChevronDown, SearchSm, MessageCircle01 } from "@untitledui/icons";
+import { ChevronDown, SearchSm } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
@@ -261,26 +260,6 @@ export default function FAQPage() {
                             </div>
                         )}
 
-                        {/* Contact CTA */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="mt-12 rounded-2xl bg-brand-50 p-8 text-center"
-                        >
-                            <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-brand-100">
-                                <MessageCircle01 className="size-8 text-brand-600" />
-                            </div>
-                            <h3 className="mt-4 text-xl font-semibold text-primary">
-                                Still have questions?
-                            </h3>
-                            <p className="mt-2 text-tertiary">
-                                Can't find the answer you're looking for? Our team is here to help.
-                            </p>
-                            <Button href="/contact" color="primary" size="lg" className="mt-6">
-                                Contact Support
-                            </Button>
-                        </motion.div>
                     </div>
                 </section>
             </main>
