@@ -7,27 +7,30 @@ import { ArrowUpRight } from "@untitledui/icons";
 const categories = [
     {
         id: 1,
-        title: "EYE BROW",
+        title: "RADIANCE SESSION",
         description:
-            "Infused With Nourishing Actives Helps Define And Perfect Brows Naturally And Beautifully Everyday",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-01.jpg",
-        href: "/shop",
+            "A first whitening or maintenance treatment. Results visible from the very first session with up to 7 shades lighter.",
+        image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop",
+        href: "/services/radiance-session",
+        price: "CHF 99",
     },
     {
         id: 2,
-        title: "HAIR REVIVAL",
+        title: "COMPLETE TREATMENT",
         description:
-            "Infused with natural botanicals and moisture-rich oils our hair care helps restore strength and shine",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-02.jpg",
-        href: "/shop",
+            "Two sessions spaced 48 hours apart for darker teeth. Intensified lightening with longer-lasting results.",
+        image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
+        href: "/services/complete-treatment",
+        price: "CHF 169",
     },
     {
         id: 3,
-        title: "HAND SERUM",
+        title: "MAINTENANCE SESSION",
         description:
-            "Infused With Hydrating Botanicals Helps Restore Soft, Smooth Skin For A Healthy Radiant Glow",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-03.jpg",
-        href: "/shop",
+            "Revive the radiance of your smile and prolong results. Recommended approximately 6 months after initial treatment.",
+        image: "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?q=80&w=2070&auto=format&fit=crop",
+        href: "/services/maintenance",
+        price: "CHF 79",
     },
 ];
 
@@ -66,9 +69,14 @@ export const CategoryCarousel = () => {
                             </a>
 
                             <div className="mt-4 sm:mt-5">
-                                <h5 className="text-md font-semibold uppercase tracking-wide text-primary sm:text-lg">
-                                    <a href={category.href}>{category.title}</a>
-                                </h5>
+                                <div className="flex items-center justify-between">
+                                    <h5 className="text-md font-semibold uppercase tracking-wide text-primary sm:text-lg">
+                                        <a href={category.href}>{category.title}</a>
+                                    </h5>
+                                    <span className="text-lg font-bold text-brand-600">
+                                        {category.price}
+                                    </span>
+                                </div>
 
                                 <div className="mt-2 flex flex-col gap-3 sm:mt-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                                     <p className="text-sm leading-relaxed text-tertiary">
@@ -82,7 +90,7 @@ export const CategoryCarousel = () => {
                                         iconTrailing={ArrowUpRight}
                                         className="w-fit shrink-0"
                                     >
-                                        Shop
+                                        Book
                                     </Button>
                                 </div>
                             </div>

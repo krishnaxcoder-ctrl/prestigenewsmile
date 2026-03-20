@@ -8,27 +8,27 @@ import { ChevronLeft, ChevronRight } from "@untitledui/icons";
 const slides = [
     {
         id: 1,
-        title: "Clean",
-        highlight: "Ingredients",
-        subtitle: "Visible Glow",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-04.jpg",
-        href: "/shop",
+        title: "Brighter",
+        highlight: "Smile",
+        subtitle: "Visible Results",
+        image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop",
+        href: "/booking",
     },
     {
         id: 2,
-        title: "Luxury",
-        highlight: "Formulas",
-        subtitle: "Proven Results",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-01.jpg",
-        href: "/shop",
+        title: "Up to",
+        highlight: "7 Shades",
+        subtitle: "Lighter",
+        image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
+        href: "/services",
     },
     {
         id: 3,
-        title: "Expert",
+        title: "Professional",
         highlight: "Care",
-        subtitle: "for Radiant Skin",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-05.jpg",
-        href: "/shop",
+        subtitle: "Safe & Effective",
+        image: "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?q=80&w=2070&auto=format&fit=crop",
+        href: "/booking",
     },
 ];
 
@@ -96,7 +96,7 @@ export const HeroCarousel = () => {
                             variants={textVariants}
                             className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-brand-600"
                         >
-                            Premium Skincare
+                            Teeth Whitening Studio
                         </motion.span>
 
                         <motion.h2
@@ -114,9 +114,9 @@ export const HeroCarousel = () => {
                             variants={textVariants}
                             className="mt-5 text-md leading-relaxed text-tertiary md:mt-6 md:text-lg"
                         >
-                            Discover our collection of premium skincare products crafted with
-                            natural ingredients for radiant, healthy skin. Experience the
-                            perfect blend of science and nature.
+                            Give your smile a visibly whiter, brighter and more natural glow.
+                            Professional cosmetic teeth whitening in a private, secure studio
+                            near Geneva.
                         </motion.p>
 
                         {/* Features List */}
@@ -127,15 +127,15 @@ export const HeroCarousel = () => {
                         >
                             <span className="flex items-center gap-2 text-sm text-secondary">
                                 <span className="size-1.5 rounded-full bg-brand-600" />
-                                100% Natural
+                                Up to 7 Shades
                             </span>
                             <span className="flex items-center gap-2 text-sm text-secondary">
                                 <span className="size-1.5 rounded-full bg-brand-600" />
-                                Cruelty Free
+                                Enamel Safe
                             </span>
                             <span className="flex items-center gap-2 text-sm text-secondary">
                                 <span className="size-1.5 rounded-full bg-brand-600" />
-                                Dermatologist Tested
+                                From CHF 99
                             </span>
                         </motion.div>
 
@@ -145,10 +145,10 @@ export const HeroCarousel = () => {
                             className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8 sm:gap-4 md:mt-10"
                         >
                             <Button href={currentSlide.href} color="primary" size="md" className="sm:text-md sm:px-5 sm:py-3">
-                                SHOP NOW
+                                BOOK MY SESSION
                             </Button>
-                            <Button href="/about" color="tertiary" size="md" className="sm:text-md sm:px-5 sm:py-3">
-                                Learn More
+                            <Button href="/services" color="tertiary" size="md" className="sm:text-md sm:px-5 sm:py-3">
+                                View Services
                             </Button>
                         </motion.div>
                     </motion.div>
@@ -190,7 +190,7 @@ export const HeroCarousel = () => {
                         className="rounded-full bg-white/95 px-4 py-2 shadow-lg backdrop-blur-sm"
                     >
                         <span className="text-xs font-semibold uppercase tracking-wider text-brand-600">
-                            New Collection 2026
+                            Ambilly • Near Geneva
                         </span>
                     </motion.div>
                 </div>

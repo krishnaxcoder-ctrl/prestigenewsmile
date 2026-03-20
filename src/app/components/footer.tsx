@@ -1,65 +1,53 @@
 "use client";
 
-import { ArrowRight } from "@untitledui/icons";
-import { Button } from "@/components/base/buttons/button";
-import { Input } from "@/components/base/input/input";
-import { Facebook, Instagram, LinkedIn, X } from "@/components/foundations/social-icons";
-import {
-	AmexIcon,
-	ApplePayIcon,
-	MastercardIcon,
-	PayPalIcon,
-	VisaIcon,
-} from "@/components/foundations/payment-icons";
+import { Facebook, Instagram } from "@/components/foundations/social-icons";
 
 const footerLinks = {
-	pages: {
-		title: "Pages",
+	services: {
+		title: "Services",
 		links: [
-			{ label: "Home", href: "/" },
-			{ label: "About Us", href: "/about-us" },
-			{ label: "Shop", href: "/shop" },
-			{ label: "Collections", href: "/collections" },
-			{ label: "Beauty Blog", href: "/blog" },
+			{ label: "Radiance Session", href: "/services/radiance-session" },
+			{ label: "Complete Treatment", href: "/services/complete-treatment" },
+			{ label: "Maintenance Session", href: "/services/maintenance" },
+			{ label: "Duo Offer", href: "/services/duo-offer" },
+			{ label: "Price List", href: "/prices" },
 		],
 	},
-	resources: {
-		title: "Resources",
+	information: {
+		title: "Information",
 		links: [
-			{ label: "Skincare Guide", href: "/skincare-guide" },
-			{ label: "Ingredients List", href: "/ingredients" },
-			{ label: "Size & Usage Tips", href: "/usage-tips" },
-			{ label: "Beauty Journal", href: "/journal" },
+			{ label: "How It Works", href: "/how-it-works" },
+			{ label: "Before & After", href: "/results" },
+			{ label: "Who Is It For", href: "/who-is-it-for" },
+			{ label: "Contraindications", href: "/contraindications" },
 			{ label: "FAQs", href: "/faq" },
 		],
 	},
-	support: {
-		title: "Support",
+	studio: {
+		title: "Studio",
 		links: [
-			{ label: "Contact Support", href: "/contact" },
-			{ label: "Shipping & Delivery", href: "/shipping" },
-			{ label: "Returns & Refunds", href: "/returns" },
-			{ label: "Order Tracking", href: "/track-order" },
-			{ label: "Help Center", href: "/help" },
+			{ label: "About Us", href: "/about" },
+			{ label: "Our Protocol", href: "/protocol" },
+			{ label: "Book a Session", href: "/booking" },
+			{ label: "Contact Us", href: "/contact" },
+			{ label: "Gift Cards", href: "/gift-cards" },
 		],
 	},
 	contact: {
-		title: "Contact Us",
+		title: "Contact",
 		links: [
-			{ label: "Get in Touch", href: "/contact" },
-			{ label: "Store Locations", href: "/stores" },
-			{ label: "Business Enquiries", href: "/business" },
-			{ label: "Customer Care", href: "/customer-care" },
-			{ label: "Partnerships", href: "/partnerships" },
+			{ label: "+41 78 300 06 19", href: "tel:+41783000619" },
+			{ label: "@prestige.smile.studio", href: "https://instagram.com/prestige.smile.studio" },
+			{ label: "Ambilly, near Geneva", href: "/contact" },
+			{ label: "Mon-Fri: 10am - 8pm", href: "/contact" },
+			{ label: "Sat: 10am - 7pm", href: "/contact" },
 		],
 	},
 };
 
 const socialLinks = [
+	{ icon: Instagram, href: "https://instagram.com/prestige.smile.studio", label: "Instagram" },
 	{ icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-	{ icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-	{ icon: X, href: "https://x.com", label: "X" },
-	{ icon: LinkedIn, href: "https://linkedin.com", label: "LinkedIn" },
 ];
 
 const legalLinks = [
@@ -78,22 +66,26 @@ export function Footer() {
 					<div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
 						{/* Logo and Description Column - First on mobile */}
 						<div className="col-span-2 mb-4 sm:col-span-2 md:col-span-4 md:mb-0 lg:order-last lg:col-span-1">
-							<a href="/" className="inline-block">
-								<span className="text-2xl font-bold text-primary">Monica</span>
+							<a href="/" className="inline-flex items-center gap-2">
+								<span className="text-2xl font-bold text-brand-600">PS</span>
+								<div className="flex flex-col">
+									<span className="text-[10px] font-semibold uppercase tracking-widest text-tertiary">
+										Teeth Whitening
+									</span>
+									<span className="text-sm font-semibold text-primary">
+										Prestige Smile
+									</span>
+								</div>
 							</a>
 							<p className="mt-4 text-sm text-secondary">
-								Get insider access to exclusive deals, skincare tips, latest
-								beauty store arrivals delivered directly to your inbox.
+								A bright smile is much more than a detail: it reveals the confidence
+								you have in yourself. Professional teeth whitening in Ambilly, near Geneva.
 							</p>
 							<div className="mt-6">
-								<p className="text-xs text-tertiary">Our Payment Gateways</p>
-								<div className="mt-2 flex items-center gap-2">
-									<VisaIcon className="h-6 w-auto text-tertiary" />
-									<MastercardIcon className="h-6 w-auto text-tertiary" />
-									<AmexIcon className="h-6 w-auto text-tertiary" />
-									<PayPalIcon className="h-6 w-auto text-tertiary" />
-									<ApplePayIcon className="h-6 w-auto text-tertiary" />
-								</div>
+								<p className="text-xs text-tertiary">Payment Methods</p>
+								<p className="mt-2 text-sm text-secondary">
+									Twint • Revolut • Cash
+								</p>
 							</div>
 						</div>
 
@@ -125,13 +117,13 @@ export function Footer() {
 			<section className="overflow-hidden border-t border-secondary py-8">
 				<div className="mx-auto flex max-w-7xl justify-center px-6">
 					<h2
-						className="select-none whitespace-nowrap text-5xl font-bold uppercase tracking-wider text-transparent sm:text-7xl md:text-8xl lg:text-[150px]"
+						className="select-none whitespace-nowrap text-4xl font-bold uppercase tracking-wider text-transparent sm:text-6xl md:text-7xl lg:text-[120px]"
 						style={{
 							WebkitTextStroke: "1px var(--color-brand-500)",
 							WebkitTextFillColor: "transparent",
 						}}
 					>
-						MONICA
+						PRESTIGE SMILE
 					</h2>
 				</div>
 			</section>
@@ -141,16 +133,7 @@ export function Footer() {
 				<div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
 					{/* Copyright */}
 					<p className="order-3 text-xs text-tertiary sm:text-sm md:order-1">
-						© {new Date().getFullYear()}{" "}
-						<a
-							href="https://wedesigntech.com"
-							className="transition duration-100 ease-linear hover:text-primary"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							WedesignTech
-						</a>
-						. All Rights Reserved.
+						© {new Date().getFullYear()} Prestige Smile. All Rights Reserved.
 					</p>
 
 					{/* Social Links */}

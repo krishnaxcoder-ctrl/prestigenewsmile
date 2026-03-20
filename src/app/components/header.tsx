@@ -6,10 +6,6 @@ import {
     ChevronLeft,
     ChevronRight,
     Menu01,
-    SearchLg,
-    ShoppingBag02,
-    User01,
-    X,
 } from "@untitledui/icons";
 import {
     Button as AriaButton,
@@ -76,43 +72,43 @@ const PromoBanner = () => {
     );
 };
 
-// Shop Dropdown Menu
-const ShopDropdown = () => {
+// Services Dropdown Menu
+const ServicesDropdown = () => {
     const columns = [
         {
-            title: "Skincare",
+            title: "Treatments",
             items: [
-                { label: "Cleansers", description: "Gentle daily cleansing", href: "/shop/cleansers" },
-                { label: "Moisturizers", description: "Hydration & nourishment", href: "/shop/moisturizers" },
-                { label: "Serums", description: "Targeted treatments", href: "/shop/serums" },
-                { label: "Face Masks", description: "Weekly pampering", href: "/shop/masks" },
+                { label: "Radiance Session", description: "1 hour • CHF 99", href: "/services/radiance-session" },
+                { label: "Complete Treatment", description: "2 sessions • CHF 169", href: "/services/complete-treatment" },
+                { label: "Maintenance Session", description: "Touch-up • CHF 79", href: "/services/maintenance" },
+                { label: "Duo Offer", description: "2 people • -10%", href: "/services/duo-offer" },
             ],
         },
         {
-            title: "Body Care",
+            title: "Information",
             items: [
-                { label: "Body Lotions", description: "All-over hydration", href: "/shop/body-lotions" },
-                { label: "Body Oils", description: "Luxury nourishment", href: "/shop/body-oils" },
-                { label: "Hand Creams", description: "Soft & supple hands", href: "/shop/hand-creams" },
-                { label: "Lip Care", description: "Perfect pout", href: "/shop/lip-care" },
+                { label: "How It Works", description: "Session process", href: "/how-it-works" },
+                { label: "Before & After", description: "Real results", href: "/results" },
+                { label: "Who Is It For", description: "Ideal candidates", href: "/who-is-it-for" },
+                { label: "Contraindications", description: "Safety information", href: "/contraindications" },
             ],
         },
         {
-            title: "Makeup",
+            title: "Why Choose Us",
             items: [
-                { label: "Foundation", description: "Flawless coverage", href: "/shop/foundation" },
-                { label: "Blush", description: "Natural flush", href: "/shop/blush" },
-                { label: "Lip Color", description: "Bold & beautiful", href: "/shop/lip-color" },
-                { label: "Eye Makeup", description: "Define & enhance", href: "/shop/eye-makeup" },
+                { label: "Our Protocol", description: "Professional technique", href: "/protocol" },
+                { label: "Up to 7 Shades", description: "Visible results", href: "/results" },
+                { label: "Enamel Safe", description: "Gentle on teeth", href: "/safety" },
+                { label: "Personalized Care", description: "Tailored approach", href: "/approach" },
             ],
         },
         {
-            title: "Collections",
+            title: "Book Now",
             items: [
-                { label: "New Arrivals", description: "Latest products", href: "/shop/new-arrivals" },
-                { label: "Best Sellers", description: "Customer favorites", href: "/shop/best-sellers" },
-                { label: "Gift Sets", description: "Curated bundles", href: "/shop/gift-sets" },
-                { label: "Sale", description: "Special offers", href: "/shop/sale" },
+                { label: "Schedule Session", description: "Online booking", href: "/booking" },
+                { label: "Price List", description: "All services", href: "/prices" },
+                { label: "Gift Cards", description: "Perfect gift", href: "/gift-cards" },
+                { label: "Contact Us", description: "Questions?", href: "/contact" },
             ],
         },
     ];
@@ -152,46 +148,20 @@ const ShopDropdown = () => {
                 <div className="mx-auto flex max-w-7xl items-center justify-between">
                     <div className="flex items-center gap-3">
                         <span className="rounded-full bg-brand-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-700">
-                            New
+                            Limited
                         </span>
                         <span className="text-sm text-secondary">
-                            Spring Collection 2026 — Discover our new radiance range
+                            Ambilly, near Geneva — Professional teeth whitening studio
                         </span>
                     </div>
                     <a
-                        href="/shop/spring-collection"
+                        href="/booking"
                         className="text-xs font-semibold uppercase tracking-wider text-brand-secondary transition hover:text-brand-primary"
                     >
-                        Shop Now →
+                        Book Now →
                     </a>
                 </div>
             </div>
-        </div>
-    );
-};
-
-// Pages Dropdown Menu
-const PagesDropdown = () => {
-    const items = [
-        { label: "About Us", href: "/about" },
-        { label: "Article", href: "/article" },
-        { label: "404 Error Page", href: "/404" },
-    ];
-
-    return (
-        <div className="min-w-48 overflow-hidden rounded-xl bg-primary py-2 shadow-lg ring-1 ring-secondary_alt">
-            <ul className="flex flex-col">
-                {items.map((item) => (
-                    <li key={item.label}>
-                        <a
-                            href={item.href}
-                            className="flex items-center px-4 py-2 text-sm text-secondary transition duration-100 ease-linear hover:bg-primary_hover hover:text-primary"
-                        >
-                            {item.label}
-                        </a>
-                    </li>
-                ))}
-            </ul>
         </div>
     );
 };
@@ -239,8 +209,8 @@ const MobileNav = () => {
             </ul>
 
             <div className="flex flex-col gap-3 border-t border-secondary p-4">
-                <Button size="lg">Sign up</Button>
-                <Button color="secondary" size="lg">Log in</Button>
+                <Button href="/booking" size="lg">Book Your Session</Button>
+                <Button href="tel:+41783000619" color="secondary" size="lg">Call +41 78 300 06 19</Button>
             </div>
         </nav>
     );
@@ -249,7 +219,6 @@ const MobileNav = () => {
 // Main Header Component
 export const Header = () => {
     const headerRef = useRef<HTMLElement>(null);
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     return (
         <header ref={headerRef} className="sticky top-0 z-50 w-full bg-primary">
@@ -260,10 +229,18 @@ export const Header = () => {
             <div className="border-b border-secondary">
                 <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:h-18 md:px-8">
                     {/* Logo */}
-                    <a href="/" className="flex shrink-0 items-center">
-                        <span className="text-2xl font-semibold tracking-tight text-primary">
-                            Monica
+                    <a href="/" className="flex shrink-0 items-center gap-2">
+                        <span className="text-xl font-bold tracking-tight text-brand-600 sm:text-2xl">
+                            PS
                         </span>
+                        <div className="hidden flex-col sm:flex">
+                            <span className="text-[10px] font-semibold uppercase tracking-widest text-tertiary">
+                                Teeth Whitening
+                            </span>
+                            <span className="text-sm font-semibold tracking-wide text-primary">
+                                Prestige Smile
+                            </span>
+                        </div>
                     </a>
 
                     {/* Desktop Navigation - Centered */}
@@ -271,7 +248,7 @@ export const Header = () => {
                         <ul className="flex items-center gap-2">
                             {navItems.map((item) => (
                                 <li key={item.label}>
-                                    {item.label === "Shop" ? (
+                                    {item.label === "Services" ? (
                                         <AriaDialogTrigger>
                                             <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-widest text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2">
                                                 <span>{item.label}</span>
@@ -291,29 +268,7 @@ export const Header = () => {
                                                 triggerRef={headerRef}
                                             >
                                                 <AriaDialog className="w-full origin-top outline-hidden">
-                                                    <ShopDropdown />
-                                                </AriaDialog>
-                                            </AriaPopover>
-                                        </AriaDialogTrigger>
-                                    ) : item.label === "Pages" ? (
-                                        <AriaDialogTrigger>
-                                            <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-widest text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2">
-                                                <span>{item.label}</span>
-                                                <ChevronDown className="size-4 text-quaternary transition duration-100 ease-linear in-aria-expanded:-rotate-180" />
-                                            </AriaButton>
-
-                                            <AriaPopover
-                                                className={({ isEntering, isExiting }) =>
-                                                    cx(
-                                                        "origin-top-left will-change-transform",
-                                                        isEntering && "duration-200 ease-out animate-in fade-in zoom-in-95 slide-in-from-top-1",
-                                                        isExiting && "duration-150 ease-in animate-out fade-out zoom-out-95 slide-out-to-top-1"
-                                                    )
-                                                }
-                                                offset={8}
-                                            >
-                                                <AriaDialog className="outline-hidden">
-                                                    <PagesDropdown />
+                                                    <ServicesDropdown />
                                                 </AriaDialog>
                                             </AriaPopover>
                                         </AriaDialogTrigger>
@@ -331,40 +286,21 @@ export const Header = () => {
                     </nav>
 
                     {/* Header Actions */}
-                    <div className="flex items-center gap-1">
-                        {/* Search */}
-                        <button
-                            onClick={() => setIsSearchOpen(!isSearchOpen)}
-                            className="flex size-10 items-center justify-center rounded-lg transition duration-100 ease-linear hover:bg-primary_hover"
-                            aria-label="Search"
-                        >
-                            <SearchLg className="size-5 text-secondary" />
-                        </button>
-
-                        {/* Account */}
+                    <div className="flex items-center gap-2">
+                        {/* Phone */}
                         <a
-                            href="/my-account"
-                            className="flex size-10 items-center justify-center rounded-lg transition duration-100 ease-linear hover:bg-primary_hover"
-                            aria-label="My account"
+                            href="tel:+41783000619"
+                            className="hidden items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-secondary transition duration-100 ease-linear hover:bg-primary_hover hover:text-primary md:flex"
                         >
-                            <User01 className="size-5 text-secondary" />
+                            +41 78 300 06 19
                         </a>
 
-                        {/* Cart */}
+                        {/* Book Now Button */}
                         <a
-                            href="/cart"
-                            className="flex items-center gap-2 rounded-lg px-2 py-2 transition duration-100 ease-linear hover:bg-primary_hover"
-                            aria-label="Cart"
+                            href="/booking"
+                            className="rounded-lg bg-brand-solid px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white transition duration-100 ease-linear hover:bg-brand-700 sm:px-5 sm:py-2.5 sm:text-sm"
                         >
-                            <div className="relative">
-                                <ShoppingBag02 className="size-5 text-secondary" />
-                                <span className="absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-full bg-brand-solid text-[10px] font-bold text-white">
-                                    3
-                                </span>
-                            </div>
-                            <span className="hidden text-sm font-medium text-secondary md:inline">
-                                $149.99
-                            </span>
+                            Book Now
                         </a>
 
                         {/* Mobile Menu Trigger */}
