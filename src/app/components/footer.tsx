@@ -6,31 +6,31 @@ const footerLinks = {
 	services: {
 		title: "Services",
 		links: [
-			{ label: "Radiance Session", href: "/services/radiance-session" },
-			{ label: "Complete Treatment", href: "/services/complete-treatment" },
-			{ label: "Maintenance Session", href: "/services/maintenance" },
-			{ label: "Duo Offer", href: "/services/duo-offer" },
-			{ label: "Price List", href: "/prices" },
+			{ label: "Radiance Session", href: "/about#services" },
+			{ label: "Complete Treatment", href: "/about#services" },
+			{ label: "Maintenance Session", href: "/about#services" },
+			{ label: "Duo Offer", href: "/about#services" },
+			{ label: "Gift Cards", href: "/gift-cards" },
+		],
+	},
+	shop: {
+		title: "Shop",
+		links: [
+			{ label: "All Products", href: "/shop" },
+			{ label: "My Cart", href: "/cart" },
+			{ label: "My Account", href: "/account" },
+			{ label: "My Orders", href: "/account/orders" },
+			{ label: "My Wishlist", href: "/account/wishlist" },
 		],
 	},
 	information: {
 		title: "Information",
 		links: [
-			{ label: "How It Works", href: "/how-it-works" },
-			{ label: "Before & After", href: "/results" },
-			{ label: "Who Is It For", href: "/who-is-it-for" },
-			{ label: "Contraindications", href: "/contraindications" },
-			{ label: "FAQs", href: "/faq" },
-		],
-	},
-	studio: {
-		title: "Studio",
-		links: [
 			{ label: "About Us", href: "/about" },
-			{ label: "Our Protocol", href: "/protocol" },
-			{ label: "Book a Session", href: "/booking" },
-			{ label: "Contact Us", href: "/contact" },
-			{ label: "Gift Cards", href: "/gift-cards" },
+			{ label: "FAQs", href: "/faq" },
+			{ label: "Shipping & Returns", href: "/shipping" },
+			{ label: "Privacy Policy", href: "/privacy" },
+			{ label: "Terms & Conditions", href: "/terms" },
 		],
 	},
 	contact: {
@@ -51,9 +51,9 @@ const socialLinks = [
 ];
 
 const legalLinks = [
-	{ label: "Copyright", href: "/copyright" },
 	{ label: "Terms & Conditions", href: "/terms" },
 	{ label: "Privacy Policy", href: "/privacy" },
+	{ label: "Shipping & Returns", href: "/shipping" },
 ];
 
 export function Footer() {

@@ -23,15 +23,16 @@ import { cx } from "@/utils/cx";
 
 // Promo slides data
 const promoSlides = [
-    { text: "Book your session today", linkText: "CHF 99", linkHref: "/booking" },
-    { text: "Up to 7 shades lighter in one session", linkText: "Learn more", linkHref: "/services" },
-    { text: "Duo offer: -10% for two people", linkText: "Book now", linkHref: "/booking" },
+    { text: "Book your session today", linkText: "CHF 99", linkHref: "/contact" },
+    { text: "Up to 7 shades lighter in one session", linkText: "Learn more", linkHref: "/about" },
+    { text: "Duo offer: -10% for two people", linkText: "Book now", linkHref: "/contact" },
 ];
 
 // Navigation items
 const navItems = [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services", hasDropdown: true },
+    { label: "Services", href: "/about", hasDropdown: true },
+    { label: "Shop", href: "/shop" },
     { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
@@ -83,37 +84,37 @@ const ServicesDropdown = () => {
         {
             title: "Treatments",
             items: [
-                { label: "Radiance Session", description: "1 hour • CHF 99", href: "/services/radiance-session" },
-                { label: "Complete Treatment", description: "2 sessions • CHF 169", href: "/services/complete-treatment" },
-                { label: "Maintenance Session", description: "Touch-up • CHF 79", href: "/services/maintenance" },
-                { label: "Duo Offer", description: "2 people • -10%", href: "/services/duo-offer" },
+                { label: "Radiance Session", description: "1 hour • CHF 99", href: "/about#services" },
+                { label: "Complete Treatment", description: "2 sessions • CHF 169", href: "/about#services" },
+                { label: "Maintenance Session", description: "Touch-up • CHF 79", href: "/about#services" },
+                { label: "Duo Offer", description: "2 people • -10%", href: "/about#services" },
             ],
         },
         {
             title: "Information",
             items: [
-                { label: "How It Works", description: "Session process", href: "/how-it-works" },
-                { label: "Before & After", description: "Real results", href: "/results" },
-                { label: "Who Is It For", description: "Ideal candidates", href: "/who-is-it-for" },
-                { label: "Contraindications", description: "Safety information", href: "/contraindications" },
+                { label: "How It Works", description: "Session process", href: "/about#how-it-works" },
+                { label: "FAQs", description: "Common questions", href: "/faq" },
+                { label: "Shipping & Returns", description: "Delivery info", href: "/shipping" },
+                { label: "Terms & Conditions", description: "Our policies", href: "/terms" },
             ],
         },
         {
-            title: "Why Choose Us",
+            title: "Shop",
             items: [
-                { label: "Our Protocol", description: "Professional technique", href: "/protocol" },
-                { label: "Up to 7 Shades", description: "Visible results", href: "/results" },
-                { label: "Enamel Safe", description: "Gentle on teeth", href: "/safety" },
-                { label: "Personalized Care", description: "Tailored approach", href: "/approach" },
-            ],
-        },
-        {
-            title: "Book Now",
-            items: [
-                { label: "Schedule Session", description: "Online booking", href: "/booking" },
-                { label: "Price List", description: "All services", href: "/prices" },
+                { label: "All Products", description: "Browse collection", href: "/shop" },
                 { label: "Gift Cards", description: "Perfect gift", href: "/gift-cards" },
+                { label: "My Cart", description: "View cart", href: "/cart" },
+                { label: "My Account", description: "Orders & settings", href: "/account" },
+            ],
+        },
+        {
+            title: "Contact",
+            items: [
+                { label: "Book a Session", description: "Schedule appointment", href: "/contact" },
                 { label: "Contact Us", description: "Questions?", href: "/contact" },
+                { label: "About Us", description: "Our story", href: "/about" },
+                { label: "Privacy Policy", description: "Your data", href: "/privacy" },
             ],
         },
     ];
@@ -160,7 +161,7 @@ const ServicesDropdown = () => {
                         </span>
                     </div>
                     <a
-                        href="/booking"
+                        href="/contact"
                         className="text-xs font-semibold uppercase tracking-wider text-brand-secondary transition hover:text-brand-primary"
                     >
                         Book Now →
@@ -263,7 +264,7 @@ const MobileNav = () => {
             </ul>
 
             <div className="flex flex-col gap-3 border-t border-secondary p-4">
-                <Button href="/booking" size="lg">Book Your Session</Button>
+                <Button href="/contact" size="lg">Book Your Session</Button>
                 <Button href="tel:+41783000619" color="secondary" size="lg">Call +41 78 300 06 19</Button>
             </div>
         </nav>
@@ -351,7 +352,7 @@ export const Header = () => {
 
                         {/* Book Now Button */}
                         <a
-                            href="/booking"
+                            href="/contact"
                             className="rounded-lg bg-brand-solid px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white transition duration-100 ease-linear hover:bg-brand-700 sm:px-5 sm:py-2.5 sm:text-sm"
                         >
                             Book Now
