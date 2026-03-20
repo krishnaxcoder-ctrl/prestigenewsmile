@@ -50,6 +50,59 @@ export function CtaSection() {
                                 Be the first to know about new launches, exclusive deals, and expert skincare tips.
                             </p>
 
+                            {/* Testimonial Card */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="group relative mt-8 overflow-hidden rounded-3xl border border-secondary bg-white p-6 shadow-lg transition duration-300 hover:shadow-xl"
+                            >
+                                {/* Quote Icon */}
+                                <div className="absolute -right-4 -top-4 text-brand-100">
+                                    <svg className="size-24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M11.3 2.5c-2.1.4-3.8 1.3-5 2.7-1.3 1.4-1.9 3.1-1.9 5.1 0 1.5.4 2.8 1.1 4 .8 1.2 1.8 2.1 3.1 2.8l.8-1.4c-.9-.5-1.6-1.1-2.1-1.9-.5-.8-.8-1.7-.8-2.7h.1c.3.3.7.5 1.2.7.5.2 1 .3 1.5.3 1.1 0 2-.4 2.7-1.1.7-.7 1.1-1.7 1.1-2.8 0-1.1-.4-2-1.1-2.8-.7-.8-1.6-1.1-2.7-.9zm9 0c-2.1.4-3.8 1.3-5 2.7-1.3 1.4-1.9 3.1-1.9 5.1 0 1.5.4 2.8 1.1 4 .8 1.2 1.8 2.1 3.1 2.8l.8-1.4c-.9-.5-1.6-1.1-2.1-1.9-.5-.8-.8-1.7-.8-2.7h.1c.3.3.7.5 1.2.7.5.2 1 .3 1.5.3 1.1 0 2-.4 2.7-1.1.7-.7 1.1-1.7 1.1-2.8 0-1.1-.4-2-1.1-2.8-.7-.8-1.6-1.1-2.7-.9z"/>
+                                    </svg>
+                                </div>
+
+                                {/* Stars */}
+                                <div className="relative flex gap-0.5">
+                                    {[...Array(5)].map((_, i) => (
+                                        <Star01 key={i} className="size-5 fill-warning-400 text-warning-400" />
+                                    ))}
+                                </div>
+
+                                {/* Quote */}
+                                <p className="relative mt-4 text-base leading-relaxed text-primary">
+                                    "The results were incredible! My smile has never looked this bright. The team made me feel so comfortable throughout the entire process."
+                                </p>
+
+                                {/* Divider */}
+                                <div className="my-5 h-px bg-gradient-to-r from-transparent via-secondary to-transparent" />
+
+                                {/* Author */}
+                                <div className="relative flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className="relative">
+                                            <div className="size-12 rounded-full ring-2 ring-brand-100 ring-offset-2" style={{
+                                                backgroundImage: 'url(https://randomuser.me/api/portraits/women/44.jpg)',
+                                                backgroundSize: 'cover'
+                                            }} />
+                                            <div className="absolute -bottom-1 -right-1 flex size-5 items-center justify-center rounded-full bg-brand-500 text-white">
+                                                <CheckCircle className="size-3" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold text-primary">Sophie Martin</p>
+                                            <p className="text-sm text-tertiary">Geneva, Switzerland</p>
+                                        </div>
+                                    </div>
+                                    <div className="rounded-full bg-brand-50 px-3 py-1">
+                                        <span className="text-xs font-medium text-brand-600">Verified</span>
+                                    </div>
+                                </div>
+                            </motion.div>
+
                         </motion.div>
                     </div>
                 </div>
