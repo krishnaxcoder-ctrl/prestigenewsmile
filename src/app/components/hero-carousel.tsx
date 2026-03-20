@@ -74,7 +74,7 @@ export const HeroCarousel = () => {
             opacity: 1,
             filter: "blur(0px)",
             scale: 1,
-            transition: { duration: 0.35, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+            transition: { duration: 0.35, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
         }),
     };
 

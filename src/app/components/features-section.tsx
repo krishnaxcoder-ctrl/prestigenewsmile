@@ -7,30 +7,30 @@ import { ArrowRight } from "@untitledui/icons";
 const features = [
     {
         id: 1,
-        tag: "Natural Beauty",
-        subtitle: "Glow Starts Here",
+        tag: "Professional Protocol",
+        subtitle: "Safe & Effective",
         title: "Reveal Your",
-        titleHighlight: "Natural Radiance",
+        titleHighlight: "Brightest Smile",
         description:
-            "Nurture your skin with clean, conscious ingredients designed to reveal a naturally luminous, healthy glow. Our formulas work in harmony with your skin's natural processes.",
-        highlights: ["Paraben Free", "Vegan Formula", "Clinically Proven"],
-        buttonText: "Shop Collection",
-        buttonHref: "/shop",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-01.jpg",
+            "Our professional teeth whitening protocol respects your enamel and gums while delivering visible results. Each session is personalized to your initial shade for natural, harmonious lightening.",
+        highlights: ["Enamel Safe", "Up to 7 Shades", "Lasting Results"],
+        buttonText: "Book Session",
+        buttonHref: "/booking",
+        image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop",
         imagePosition: "left" as const,
     },
     {
         id: 2,
-        tag: "Expert Guide",
-        subtitle: "Skincare Essentials",
-        title: "5 Key Things to Know Before Buying",
-        titleHighlight: "Skincare Products",
+        tag: "The Founder",
+        subtitle: "Prestige Smile",
+        title: "A Premium Service Built on",
+        titleHighlight: "Precision & Care",
         description:
-            "Understanding your skin type and needs is the first step to building an effective routine. Learn how to choose products that truly work for you.",
-        highlights: ["Know Your Skin Type", "Check Ingredients", "Patch Test First"],
-        buttonText: "Read More",
-        buttonHref: "/blog",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-category-img-03.jpg",
+            "I created Prestige Smile with the aim of offering aesthetic teeth whitening combining high standards, precision and attention to detail. Every session is caring, attentive and completely personalized.",
+        highlights: ["Private Studio", "Personal Approach", "Premium Experience"],
+        buttonText: "About Us",
+        buttonHref: "/about",
+        image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
         imagePosition: "right" as const,
     },
 ];
@@ -40,7 +40,7 @@ const fadeIn = {
     visible: (delay: number) => ({
         opacity: 1,
         filter: "blur(0px)",
-        transition: { duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] },
+        transition: { duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
     }),
 };
 
