@@ -80,49 +80,56 @@ const PromoBanner = () => {
 const ShopDropdown = () => {
     const columns = [
         {
-            title: "Shop Listings",
+            title: "Skincare",
             items: [
-                { label: "With Left Sidebar", href: "/shop" },
-                { label: "With Right Sidebar", href: "/shop-right" },
-                { label: "Without Sidebar", href: "/shop-full" },
+                { label: "Cleansers", description: "Gentle daily cleansing", href: "/shop/cleansers" },
+                { label: "Moisturizers", description: "Hydration & nourishment", href: "/shop/moisturizers" },
+                { label: "Serums", description: "Targeted treatments", href: "/shop/serums" },
+                { label: "Face Masks", description: "Weekly pampering", href: "/shop/masks" },
             ],
         },
         {
-            title: "Shop Layouts",
+            title: "Body Care",
             items: [
-                { label: "Gift Card", href: "/gift-card" },
-                { label: "Cart", href: "/cart" },
-                { label: "Checkout", href: "/checkout" },
-                { label: "Wishlist", href: "/wishlist" },
+                { label: "Body Lotions", description: "All-over hydration", href: "/shop/body-lotions" },
+                { label: "Body Oils", description: "Luxury nourishment", href: "/shop/body-oils" },
+                { label: "Hand Creams", description: "Soft & supple hands", href: "/shop/hand-creams" },
+                { label: "Lip Care", description: "Perfect pout", href: "/shop/lip-care" },
             ],
         },
         {
-            title: "Shop Details",
+            title: "Collections",
             items: [
-                { label: "Simple Product", href: "/product/simple" },
-                { label: "Variable Product", href: "/product/variable" },
-                { label: "Grouped Products", href: "/product/grouped" },
+                { label: "New Arrivals", description: "Latest products", href: "/shop/new-arrivals" },
+                { label: "Best Sellers", description: "Customer favorites", href: "/shop/best-sellers" },
+                { label: "Gift Sets", description: "Curated bundles", href: "/shop/gift-sets" },
+                { label: "Sale", description: "Special offers", href: "/shop/sale" },
             ],
         },
     ];
 
     return (
-        <div className="w-full max-w-5xl px-4 py-6 md:px-8">
-            <div className="overflow-hidden rounded-2xl bg-primary p-4 shadow-lg ring-1 ring-secondary_alt sm:p-6">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
+        <div className="w-full border-b border-secondary bg-primary shadow-lg">
+            <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
+                <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-12">
                     {columns.map((column) => (
-                        <div key={column.title} className="flex flex-col gap-3">
-                            <h4 className="text-xs font-semibold uppercase tracking-widest text-quaternary">
+                        <div key={column.title}>
+                            <h4 className="mb-5 text-[11px] font-semibold uppercase tracking-[0.15em] text-quaternary">
                                 {column.title}
                             </h4>
-                            <ul className="flex flex-col gap-2">
+                            <ul className="flex flex-col gap-0.5">
                                 {column.items.map((item) => (
                                     <li key={item.label}>
                                         <a
                                             href={item.href}
-                                            className="text-sm text-secondary transition duration-100 ease-linear hover:text-brand-secondary"
+                                            className="group block rounded-lg py-2.5 transition duration-100 ease-linear hover:translate-x-1"
                                         >
-                                            {item.label}
+                                            <span className="block text-sm font-medium text-primary transition group-hover:text-brand-secondary">
+                                                {item.label}
+                                            </span>
+                                            <span className="mt-0.5 block text-xs text-tertiary">
+                                                {item.description}
+                                            </span>
                                         </a>
                                     </li>
                                 ))}
@@ -255,7 +262,7 @@ export const Header = () => {
                                                 containerPadding={0}
                                                 triggerRef={headerRef}
                                             >
-                                                <AriaDialog className="mx-auto origin-top outline-hidden">
+                                                <AriaDialog className="w-full origin-top outline-hidden">
                                                     <ShopDropdown />
                                                 </AriaDialog>
                                             </AriaPopover>
