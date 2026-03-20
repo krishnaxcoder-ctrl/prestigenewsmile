@@ -152,20 +152,6 @@ export default function ContactPage() {
                                         </div>
                                     ))}
                                 </div>
-
-                                {/* Map */}
-                                <div id="map" className="mt-8 aspect-video overflow-hidden rounded-2xl bg-secondary">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.0!2d6.1!3d46.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDEyJzAwLjAiTiA2wrAwNicwMC4wIkU!5e0!3m2!1sen!2sch!4v1234567890"
-                                        width="100%"
-                                        height="100%"
-                                        style={{ border: 0 }}
-                                        allowFullScreen
-                                        loading="lazy"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        title="Location Map"
-                                    />
-                                </div>
                             </motion.div>
 
                             {/* Contact Form */}
@@ -291,71 +277,87 @@ export default function ContactPage() {
                 {/* Book Your Appointment Section */}
                 <section className="bg-brand-50 px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="text-center"
-                        >
-                            <h2 className="text-2xl font-semibold text-primary md:text-3xl">
-                                Book Your Appointment
-                            </h2>
-                            <p className="mt-2 text-lg font-medium text-brand-600">
-                                @prestige.smile.studio
-                            </p>
-                        </motion.div>
+                        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+                            {/* Left Column - Booking Info */}
+                            <motion.div
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                <h2 className="text-2xl font-semibold text-primary md:text-3xl">
+                                    Book Your Appointment
+                                </h2>
+                                <p className="mt-2 text-lg font-medium text-brand-600">
+                                    @prestige.smile.studio
+                                </p>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                            className="mx-auto mt-8 max-w-md"
-                        >
-                            <div className="rounded-2xl border border-secondary bg-primary p-8 shadow-sm">
-                                <div className="flex items-center justify-center gap-2">
-                                    <Clock className="size-6 text-brand-600" />
-                                    <h3 className="text-lg font-semibold text-primary">
-                                        Opening Hours
-                                    </h3>
-                                </div>
+                                <div className="mt-8 rounded-2xl border border-secondary bg-primary p-8 shadow-sm">
+                                    <div className="flex items-center gap-2">
+                                        <Clock className="size-6 text-brand-600" />
+                                        <h3 className="text-lg font-semibold text-primary">
+                                            Opening Hours
+                                        </h3>
+                                    </div>
 
-                                <div className="mt-6 space-y-3">
-                                    {[
-                                        { day: "Monday", hours: "10am - 8pm" },
-                                        { day: "Tuesday", hours: "10am - 8pm" },
-                                        { day: "Wednesday", hours: "10am - 8pm" },
-                                        { day: "Thursday", hours: "10am - 8pm" },
-                                        { day: "Friday", hours: "10am - 8pm" },
-                                        { day: "Saturday", hours: "10am - 7pm" },
-                                        { day: "Sunday", hours: "Closed" },
-                                    ].map((item) => (
-                                        <div
-                                            key={item.day}
-                                            className="flex items-center justify-between border-b border-secondary pb-3 last:border-0 last:pb-0"
+                                    <div className="mt-6 space-y-3">
+                                        {[
+                                            { day: "Monday", hours: "10am - 8pm" },
+                                            { day: "Tuesday", hours: "10am - 8pm" },
+                                            { day: "Wednesday", hours: "10am - 8pm" },
+                                            { day: "Thursday", hours: "10am - 8pm" },
+                                            { day: "Friday", hours: "10am - 8pm" },
+                                            { day: "Saturday", hours: "10am - 7pm" },
+                                            { day: "Sunday", hours: "Closed" },
+                                        ].map((item) => (
+                                            <div
+                                                key={item.day}
+                                                className="flex items-center justify-between border-b border-secondary pb-3 last:border-0 last:pb-0"
+                                            >
+                                                <span className="font-medium text-primary">{item.day}</span>
+                                                <span className={item.hours === "Closed" ? "font-medium text-error-500" : "text-tertiary"}>
+                                                    {item.hours}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className="mt-8">
+                                        <Button
+                                            href="tel:+41783000619"
+                                            color="primary"
+                                            size="lg"
+                                            iconLeading={Phone01}
+                                            className="w-full justify-center"
                                         >
-                                            <span className="font-medium text-primary">{item.day}</span>
-                                            <span className={item.hours === "Closed" ? "text-error-500 font-medium" : "text-tertiary"}>
-                                                {item.hours}
-                                            </span>
-                                        </div>
-                                    ))}
+                                            Call to Book
+                                        </Button>
+                                    </div>
                                 </div>
+                            </motion.div>
 
-                                <div className="mt-8">
-                                    <Button
-                                        href="tel:+41783000619"
-                                        color="primary"
-                                        size="lg"
-                                        iconLeading={Phone01}
-                                        className="w-full justify-center"
-                                    >
-                                        Call to Book
-                                    </Button>
+                            {/* Right Column - Map */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5 }}
+                                className="flex flex-col"
+                            >
+                                <div id="map" className="aspect-video overflow-hidden rounded-2xl bg-secondary lg:aspect-auto lg:h-full">
+                                    <iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.0!2d6.1!3d46.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDEyJzAwLjAiTiA2wrAwNicwMC4wIkU!5e0!3m2!1sen!2sch!4v1234567890"
+                                        width="100%"
+                                        height="100%"
+                                        style={{ border: 0, minHeight: "300px" }}
+                                        allowFullScreen
+                                        loading="lazy"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                        title="Location Map"
+                                    />
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        </div>
                     </div>
                 </section>
             </main>
