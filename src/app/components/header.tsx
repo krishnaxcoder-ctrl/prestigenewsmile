@@ -281,20 +281,14 @@ export const Header = () => {
 
             {/* Main Header */}
             <div className="border-b border-secondary">
-                <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:h-18 md:px-8">
+                <div className="relative mx-auto flex h-16 max-w-full items-center justify-between px-4 md:h-18 md:px-8">
                     {/* Logo */}
-                    <a href="/" className="flex shrink-0 items-center gap-2">
-                        <span className="text-xl font-bold tracking-tight text-brand-600 sm:text-2xl">
-                            PS
-                        </span>
-                        <div className="hidden flex-col sm:flex">
-                            <span className="text-[10px] font-semibold uppercase tracking-widest text-tertiary">
-                                Teeth Whitening
-                            </span>
-                            <span className="text-sm font-semibold tracking-wide text-primary">
-                                Prestige Smile
-                            </span>
-                        </div>
+                    <a href="/" className="flex shrink-0 items-center">
+                        <img
+                            src="/logo.svg"
+                            alt="Prestige Smile"
+                            className="h-8 w-auto sm:h-14"
+                        />
                     </a>
 
                     {/* Desktop Navigation - Centered */}
