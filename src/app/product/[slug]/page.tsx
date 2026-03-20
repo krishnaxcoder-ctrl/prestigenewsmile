@@ -341,33 +341,34 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
         <div className="overflow-x-hidden">
             <Header />
             <main className="bg-primary">
-                {/* Hero Header */}
-                <section className="border-b border-teal-400 bg-teal-50 px-4 py-4 md:px-8 md:py-6 lg:px-16">
-                    <div className="mx-auto max-w-7xl">
-                        <nav className="mb-2 flex flex-nowrap items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="shrink-0 uppercase transition hover:text-teal-600">Home</a>
-                            <span className="shrink-0">/</span>
-                            <a href="/shop" className="shrink-0 uppercase transition hover:text-teal-600">Shop</a>
-                            <span className="shrink-0">/</span>
-                            <span className="truncate uppercase text-teal-600">{product.name}</span>
+                {/* Breadcrumb Header */}
+                <section className="border-b border-teal-200 bg-teal-50 px-4 py-3 md:px-8 lg:px-16">
+                    <div className="mx-auto flex max-w-7xl items-center justify-between">
+                        <nav className="flex items-center gap-1 text-sm text-teal-700">
+                            <a href="/" className="transition hover:text-teal-900">Home</a>
+                            <svg className="size-4 text-teal-400" viewBox="0 0 32 32" fill="currentColor">
+                                <path d="M11.42 29.42l-2.84-2.84 10.6-10.58-10.6-10.58 2.84-2.84 13.4 13.42z" />
+                            </svg>
+                            <a href="/shop" className="transition hover:text-teal-900">{product.category}</a>
+                            <svg className="size-4 text-teal-400" viewBox="0 0 32 32" fill="currentColor">
+                                <path d="M11.42 29.42l-2.84-2.84 10.6-10.58-10.6-10.58 2.84-2.84 13.4 13.42z" />
+                            </svg>
+                            <span className="font-medium text-teal-900">{product.name}</span>
                         </nav>
-                        <div className="flex items-center justify-between gap-8">
-                            <motion.h1
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.1 }}
-                                className="text-2xl font-semibold uppercase text-primary md:text-3xl"
-                            >
-                                {product.name}
-                            </motion.h1>
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                                className="shrink-0"
-                            >
-                                <RatingBadge rating={product.rating} title={`${product.reviews} Reviews`} subtitle="Verified Purchases" />
-                            </motion.div>
+                        <div className="flex items-center gap-4">
+                            <button className="flex items-center gap-1.5 text-sm text-teal-700 transition hover:text-teal-900">
+                                <svg className="size-4" viewBox="0 0 11 15" fill="currentColor">
+                                    <path d="M7.50002 5.89999V7.09999H8.90002V12.9H2.10002V7.09999H3.50002V5.89999H0.900024V14.1H10.1V5.89999H7.50002Z" />
+                                    <path d="M4.90002 2.94999V9.99999H6.10002V2.94999L8.08002 4.91999L8.92002 4.07999L5.50002 0.649994L2.08002 4.07999L2.92002 4.91999L4.90002 2.94999Z" />
+                                </svg>
+                                Share
+                            </button>
+                            <button className="flex items-center gap-1.5 text-sm text-teal-700 transition hover:text-teal-900">
+                                <svg className="size-4" viewBox="0 0 32 32" fill="currentColor">
+                                    <path d="M22.857 11.429v-9.143h-13.714v9.143h-6.857v13.714h6.857v4.571h13.714v-4.571h6.857v-13.714h-6.857zM11.886 5.029h8.229v6.4h-8.229v-6.4zM20.114 22.4v4.571h-8.229v-5.943h8.229v1.371zM26.971 22.4h-4.114v-4.114h-13.714v4.114h-4.114v-8.229h21.943v8.229z" />
+                                </svg>
+                                Print
+                            </button>
                         </div>
                     </div>
                 </section>
