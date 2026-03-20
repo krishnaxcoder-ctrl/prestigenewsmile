@@ -53,9 +53,9 @@ export function CtaSection() {
                             {/* Stats */}
                             <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
                                 {[
-                                    { icon: Percent02, value: "15%", label: "First Order" },
-                                    { icon: Truck01, value: "Free", label: "Shipping" },
-                                    { icon: Gift01, value: "VIP", label: "Access" },
+                                    { icon: Percent02, value: "15%", label: "First Order", desc: "Discount" },
+                                    { icon: Truck01, value: "Free", label: "Shipping", desc: "Orders 50+" },
+                                    { icon: Gift01, value: "VIP", label: "Access", desc: "Exclusive" },
                                 ].map((stat, i) => (
                                     <motion.div
                                         key={i}
@@ -63,11 +63,20 @@ export function CtaSection() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.4, delay: i * 0.1 }}
-                                        className="rounded-2xl border border-secondary bg-secondary p-4 transition duration-200 hover:border-brand-200 hover:bg-brand-50 sm:p-5"
+                                        className="group relative overflow-hidden rounded-2xl border border-secondary bg-white p-4 shadow-sm transition duration-200 hover:border-brand-300 hover:shadow-md sm:p-5"
                                     >
-                                        <stat.icon className="mb-3 size-6 text-brand-500" />
-                                        <p className="text-xl font-bold text-primary sm:text-2xl">{stat.value}</p>
-                                        <p className="text-xs text-tertiary sm:text-sm">{stat.label}</p>
+                                        {/* Background accent */}
+                                        <div className="absolute -right-6 -top-6 size-20 rounded-full bg-brand-50 transition duration-300 group-hover:scale-150 group-hover:bg-brand-100" />
+
+                                        {/* Icon badge */}
+                                        <div className="relative mb-4 inline-flex rounded-xl bg-brand-100 p-2.5">
+                                            <stat.icon className="size-5 text-brand-600" />
+                                        </div>
+
+                                        {/* Content */}
+                                        <p className="relative text-2xl font-bold text-primary sm:text-3xl">{stat.value}</p>
+                                        <p className="relative mt-1 text-sm font-medium text-primary">{stat.label}</p>
+                                        <p className="relative text-xs text-tertiary">{stat.desc}</p>
                                     </motion.div>
                                 ))}
                             </div>
