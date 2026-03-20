@@ -6,7 +6,7 @@ import { FeaturesSection } from "./components/features-section";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { HeroCarousel } from "./components/hero-carousel";
-import { HeroSection } from "./components/hero-section";
+import { TaglineSection } from "./components/tagline-section";
 import { InstagramPosts } from "./components/instagram-posts";
 import { MarqueeSection } from "./components/marquee-section";
 import { ProductsFeaturedSection } from "./components/products-featured-section";
@@ -19,7 +19,7 @@ export default function Page() {
 			<main>
 				<HeroCarousel />
 				<MarqueeSection />
-				<HeroSection />
+				<TaglineSection />
 				<CategoryCarousel />
 				<ProductsSection />
 				<FeaturesSection />

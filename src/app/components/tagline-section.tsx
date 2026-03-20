@@ -11,7 +11,7 @@ const fadeInUp = {
     }),
 };
 
-export const HeroSection = () => {
+export const TaglineSection = () => {
     return (
         <section className="flex flex-col items-center justify-center px-4 py-16 md:py-24 lg:py-32">
             {/* Subtitle */}
@@ -61,4 +61,4 @@ export const HeroSection = () => {
     );
 };
 
-export default HeroSection;
+export default TaglineSection;
