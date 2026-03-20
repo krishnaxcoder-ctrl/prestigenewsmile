@@ -66,16 +66,12 @@ export function Footer() {
 					<div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
 						{/* Logo and Description Column - First on mobile */}
 						<div className="col-span-2 mb-4 sm:col-span-2 md:col-span-4 md:mb-0 lg:order-last lg:col-span-1">
-							<a href="/" className="inline-flex items-center gap-2">
-								<span className="text-2xl font-bold text-brand-600">PS</span>
-								<div className="flex flex-col">
-									<span className="text-[10px] font-semibold uppercase tracking-widest text-tertiary">
-										Teeth Whitening
-									</span>
-									<span className="text-sm font-semibold text-primary">
-										Prestige Smile
-									</span>
-								</div>
+							<a href="/" className="inline-block">
+								<img
+									src="/logo.svg"
+									alt="Prestige Smile"
+									className="h-10 w-auto"
+								/>
 							</a>
 							<p className="mt-4 text-sm text-secondary">
 								A bright smile is much more than a detail: it reveals the confidence
