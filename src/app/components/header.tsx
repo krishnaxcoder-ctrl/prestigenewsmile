@@ -98,6 +98,15 @@ const ShopDropdown = () => {
             ],
         },
         {
+            title: "Makeup",
+            items: [
+                { label: "Foundation", description: "Flawless coverage", href: "/shop/foundation" },
+                { label: "Blush", description: "Natural flush", href: "/shop/blush" },
+                { label: "Lip Color", description: "Bold & beautiful", href: "/shop/lip-color" },
+                { label: "Eye Makeup", description: "Define & enhance", href: "/shop/eye-makeup" },
+            ],
+        },
+        {
             title: "Collections",
             items: [
                 { label: "New Arrivals", description: "Latest products", href: "/shop/new-arrivals" },
@@ -111,7 +120,7 @@ const ShopDropdown = () => {
     return (
         <div className="w-full border-b border-secondary bg-primary shadow-lg">
             <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-12">
+                <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:gap-12">
                     {columns.map((column) => (
                         <div key={column.title}>
                             <h4 className="mb-5 text-[11px] font-semibold uppercase tracking-[0.15em] text-quaternary">
@@ -136,6 +145,25 @@ const ShopDropdown = () => {
                             </ul>
                         </div>
                     ))}
+                </div>
+            </div>
+            {/* Featured Banner */}
+            <div className="border-t border-secondary bg-secondary/50 px-4 py-4 md:px-8">
+                <div className="mx-auto flex max-w-7xl items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <span className="rounded-full bg-brand-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-700">
+                            New
+                        </span>
+                        <span className="text-sm text-secondary">
+                            Spring Collection 2026 — Discover our new radiance range
+                        </span>
+                    </div>
+                    <a
+                        href="/shop/spring-collection"
+                        className="text-xs font-semibold uppercase tracking-wider text-brand-secondary transition hover:text-brand-primary"
+                    >
+                        Shop Now →
+                    </a>
                 </div>
             </div>
         </div>
