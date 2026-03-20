@@ -50,36 +50,6 @@ export function CtaSection() {
                                 Be the first to know about new launches, exclusive deals, and expert skincare tips.
                             </p>
 
-                            {/* Stats */}
-                            <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
-                                {[
-                                    { icon: Percent02, value: "15%", label: "First Order", desc: "Discount" },
-                                    { icon: Truck01, value: "Free", label: "Shipping", desc: "Orders 50+" },
-                                    { icon: Gift01, value: "VIP", label: "Access", desc: "Exclusive" },
-                                ].map((stat, i) => (
-                                    <motion.div
-                                        key={i}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.4, delay: i * 0.1 }}
-                                        className="group relative overflow-hidden rounded-2xl border border-secondary bg-white p-4 shadow-sm transition duration-200 hover:border-brand-300 hover:shadow-md sm:p-5"
-                                    >
-                                        {/* Background accent */}
-                                        <div className="absolute -right-6 -top-6 size-20 rounded-full bg-brand-50 transition duration-300 group-hover:scale-150 group-hover:bg-brand-100" />
-
-                                        {/* Icon badge */}
-                                        <div className="relative mb-4 inline-flex rounded-xl bg-brand-100 p-2.5">
-                                            <stat.icon className="size-5 text-brand-600" />
-                                        </div>
-
-                                        {/* Content */}
-                                        <p className="relative text-2xl font-bold text-primary sm:text-3xl">{stat.value}</p>
-                                        <p className="relative mt-1 text-sm font-medium text-primary">{stat.label}</p>
-                                        <p className="relative text-xs text-tertiary">{stat.desc}</p>
-                                    </motion.div>
-                                ))}
-                            </div>
                         </motion.div>
                     </div>
                 </div>
