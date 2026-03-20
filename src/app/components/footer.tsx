@@ -131,7 +131,7 @@ export function Footer() {
 				<div className="mx-auto flex max-w-7xl justify-center px-6">
 					<Link href="/">
 						<h2
-							className="select-none whitespace-nowrap text-4xl font-bold uppercase tracking-wider transition duration-100 ease-linear hover:opacity-80 sm:text-6xl md:text-7xl lg:text-[120px]"
+							className="select-none whitespace-nowrap text-4xl font-bold uppercase tracking-wider transition duration-100 ease-linear hover:opacity-80 sm:text-6xl md:text-7xl lg:text-[140px]"
 							style={{
 								WebkitTextStroke: "2px var(--color-brand-500)",
 								WebkitTextFillColor: "var(--color-bg-secondary)",
