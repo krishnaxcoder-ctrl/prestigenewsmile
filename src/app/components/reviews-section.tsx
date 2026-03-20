@@ -122,7 +122,7 @@ export function ReviewsSection() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="rounded-xl border border-teal-200 bg-white p-6"
+                            className="rounded-md border border-teal-200 bg-white p-3"
                         >
                             {/* Header: Stars & Badge */}
                             <div className="flex items-center justify-between">
