@@ -188,80 +188,76 @@ export default function ContactPage() {
                                     ) : (
                                         <form onSubmit={handleSubmit} className="mt-6 space-y-5">
                                             <div className="grid gap-5 sm:grid-cols-2">
-                                                <div>
-                                                    <label className="mb-2 block text-sm font-medium text-primary">
-                                                        Name *
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        name="name"
-                                                        value={formData.name}
-                                                        onChange={handleInputChange}
-                                                        className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                        required
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <label className="mb-2 block text-sm font-medium text-primary">
-                                                        Email *
-                                                    </label>
-                                                    <input
-                                                        type="email"
-                                                        name="email"
-                                                        value={formData.email}
-                                                        onChange={handleInputChange}
-                                                        className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                        required
-                                                    />
-                                                </div>
+                                                <Input
+                                                    type="text"
+                                                    name="name"
+                                                    label="Name"
+                                                    icon={User01}
+                                                    value={formData.name}
+                                                    onChange={(value) => setFormData({ ...formData, name: value })}
+                                                    placeholder="Your name"
+                                                    isRequired
+                                                    size="md"
+                                                />
+                                                <Input
+                                                    type="email"
+                                                    name="email"
+                                                    label="Email"
+                                                    icon={Mail01}
+                                                    value={formData.email}
+                                                    onChange={(value) => setFormData({ ...formData, email: value })}
+                                                    placeholder="your@email.com"
+                                                    isRequired
+                                                    size="md"
+                                                />
                                             </div>
 
                                             <div className="grid gap-5 sm:grid-cols-2">
-                                                <div>
-                                                    <label className="mb-2 block text-sm font-medium text-primary">
-                                                        Phone
+                                                <Input
+                                                    type="tel"
+                                                    name="phone"
+                                                    label="Phone"
+                                                    icon={Phone01}
+                                                    value={formData.phone}
+                                                    onChange={(value) => setFormData({ ...formData, phone: value })}
+                                                    placeholder="+41 XX XXX XX XX"
+                                                    size="md"
+                                                />
+                                                <div className="space-y-1.5">
+                                                    <label className="text-sm font-medium text-secondary">
+                                                        Subject <span className="text-error-500">*</span>
                                                     </label>
-                                                    <input
-                                                        type="tel"
-                                                        name="phone"
-                                                        value={formData.phone}
-                                                        onChange={handleInputChange}
-                                                        className="w-full rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <label className="mb-2 block text-sm font-medium text-primary">
-                                                        Subject *
-                                                    </label>
-                                                    <select
-                                                        name="subject"
-                                                        value={formData.subject}
-                                                        onChange={handleInputChange}
-                                                        className="w-full rounded-lg border border-secondary bg-primary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                        required
-                                                    >
-                                                        <option value="">Select a subject</option>
-                                                        <option value="booking">Book an Appointment</option>
-                                                        <option value="products">Product Inquiry</option>
-                                                        <option value="support">Customer Support</option>
-                                                        <option value="other">Other</option>
-                                                    </select>
+                                                    <div className="relative">
+                                                        <div className="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2">
+                                                            <MessageTextSquare01 className="size-5 text-fg-quaternary" />
+                                                        </div>
+                                                        <select
+                                                            name="subject"
+                                                            value={formData.subject}
+                                                            onChange={handleInputChange}
+                                                            className="w-full appearance-none rounded-lg bg-primary py-2.5 pl-10 pr-10 text-md text-primary shadow-xs ring-1 ring-primary ring-inset focus:ring-2 focus:ring-brand focus:outline-none"
+                                                            required
+                                                        >
+                                                            <option value="">Select a subject</option>
+                                                            <option value="booking">Book an Appointment</option>
+                                                            <option value="products">Product Inquiry</option>
+                                                            <option value="support">Customer Support</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                        <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-fg-quaternary" />
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <div>
-                                                <label className="mb-2 block text-sm font-medium text-primary">
-                                                    Message *
-                                                </label>
-                                                <textarea
-                                                    name="message"
-                                                    value={formData.message}
-                                                    onChange={handleInputChange}
-                                                    rows={5}
-                                                    className="w-full resize-none rounded-lg border border-secondary px-4 py-3 text-sm focus:border-brand-500 focus:outline-none"
-                                                    required
-                                                />
-                                            </div>
+                                            <Textarea
+                                                name="message"
+                                                label="Message"
+                                                value={formData.message}
+                                                onChange={(value) => setFormData({ ...formData, message: value })}
+                                                placeholder="How can we help you?"
+                                                isRequired
+                                                rows={5}
+                                            />
 
                                             <Button
                                                 type="submit"
