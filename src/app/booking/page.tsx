@@ -135,6 +135,70 @@ export default function BookingPage() {
                         </div>
                     </div>
                 </section>
+
+                {/* Before & After Results */}
+                <section className="bg-brand-50 px-4 py-12 md:px-8 md:py-16 lg:px-16">
+                    <div className="mx-auto max-w-7xl">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
+                            className="text-center"
+                        >
+                            <h2 className="text-2xl font-semibold text-primary md:text-3xl">
+                                Real Results from Our Clients
+                            </h2>
+                            <p className="mx-auto mt-3 max-w-2xl text-tertiary">
+                                See the amazing transformations our clients have achieved with our professional teeth whitening treatments.
+                            </p>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="mt-10 grid gap-6 md:grid-cols-2"
+                        >
+                            {[1, 3, 5, 7, 9, 11, 13, 15].map((beforeNum) => (
+                                <div
+                                    key={beforeNum}
+                                    className="overflow-hidden rounded-2xl bg-primary shadow-sm"
+                                >
+                                    <div className="grid grid-cols-2">
+                                        {/* Before */}
+                                        <div>
+                                            <div className="bg-secondary px-3 py-2 text-center text-sm font-medium text-primary">
+                                                Before
+                                            </div>
+                                            <div className="aspect-square overflow-hidden">
+                                                <img
+                                                    src={`/teeth before and after images/${beforeNum}.png`}
+                                                    alt={`Before treatment`}
+                                                    className="size-full object-cover"
+                                                />
+                                            </div>
+                                        </div>
+                                        {/* After */}
+                                        <div>
+                                            <div className="bg-brand-600 px-3 py-2 text-center text-sm font-medium text-white">
+                                                After
+                                            </div>
+                                            <div className="aspect-square overflow-hidden">
+                                                <img
+                                                    src={`/teeth before and after images/${beforeNum + 1}.png`}
+                                                    alt={`After treatment`}
+                                                    className="size-full object-cover"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </section>
             </main>
             <Footer />
 
