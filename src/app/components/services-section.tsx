@@ -12,7 +12,7 @@ const categories = [
             "A first whitening or maintenance treatment. Results visible from the very first session with up to 7 shades lighter.",
         image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop",
         href: "/services/radiance-session",
-        price: "CHF 99",
+        price: "CHF/€ 99",
     },
     {
         id: 2,
@@ -21,7 +21,7 @@ const categories = [
             "Two sessions spaced 48 hours apart for darker teeth. Intensified lightening with longer-lasting results.",
         image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
         href: "/services/complete-treatment",
-        price: "CHF 169",
+        price: "CHF/€ 169",
     },
     {
         id: 3,
@@ -30,7 +30,7 @@ const categories = [
             "Revive the radiance of your smile and prolong results. Recommended approximately 6 months after initial treatment.",
         image: "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?q=80&w=2070&auto=format&fit=crop",
         href: "/services/maintenance",
-        price: "CHF 79",
+        price: "CHF/€ 79",
     },
 ];
 
