@@ -1,16 +1,16 @@
-import { BlogsSection } from "./components/blogs-section";
-import { CategoryCarousel } from "./components/category-carousel";
-import { CompareSection } from "./components/compare-section";
-import { CtaSection } from "./components/cta-section";
+import { ArticlesSection } from "./components/articles-section";
+import { BeforeAfterSection } from "./components/before-after-section";
 import { FeaturesSection } from "./components/features-section";
 import { Footer } from "./components/footer";
 import { Header } from "./components/header";
 import { HeroCarousel } from "./components/hero-carousel";
-import { TaglineSection } from "./components/tagline-section";
-import { InstagramPosts } from "./components/instagram-posts";
+import { InstagramSection } from "./components/instagram-section";
 import { MarqueeSection } from "./components/marquee-section";
+import { NewsletterSection } from "./components/newsletter-section";
 import { ProductsFeaturedSection } from "./components/products-featured-section";
 import { ProductsSection } from "./components/products-section";
+import { ServicesSection } from "./components/services-section";
+import { TaglineSection } from "./components/tagline-section";
 
 export default function Page() {
 	return (
@@ -20,14 +20,14 @@ export default function Page() {
 				<HeroCarousel />
 				<MarqueeSection />
 				<TaglineSection />
-				<CategoryCarousel />
+				<ServicesSection />
 				<ProductsSection />
 				<FeaturesSection />
-				<CompareSection />
+				<BeforeAfterSection />
 				<ProductsFeaturedSection />
-				<BlogsSection />
-				<CtaSection/>
-				<InstagramPosts />
+				<ArticlesSection />
+				<NewsletterSection />
+				<InstagramSection />
 				<Footer />
 			</main>
 		</div>

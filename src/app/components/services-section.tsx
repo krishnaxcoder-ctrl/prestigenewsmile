@@ -43,7 +43,7 @@ const fadeInUp = {
     }),
 };
 
-export const CategoryCarousel = () => {
+export const ServicesSection = () => {
     return (
         <section className="px-4 py-16 md:py-16">
             <div className="mx-auto max-w-7xl">
@@ -102,4 +102,4 @@ export const CategoryCarousel = () => {
     );
 };
 
-export default CategoryCarousel;
+export default ServicesSection;

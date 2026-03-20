@@ -78,7 +78,7 @@ const instagramPosts = [
     },
 ];
 
-export function InstagramPosts() {
+export function InstagramSection() {
     return (
         <section className="bg-secondary py-16 md:py-24">
             {/* Header */}

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Star01, Heart, Award01, Users01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
-import { CtaSection } from "@/app/components/cta-section";
+import { NewsletterSection } from "@/app/components/newsletter-section";
 
 const stats = [
     { value: "50K+", label: "Happy Customers" },
@@ -256,7 +256,7 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                <CtaSection />
+                <NewsletterSection />
             </main>
             <Footer />
         </div>

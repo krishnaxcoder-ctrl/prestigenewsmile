@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Mail01, CheckCircle, Star01, Percent02, Gift01, Truck01 } from "@untitledui/icons";
 import { useState } from "react";
 
-export function CtaSection() {
+export function NewsletterSection() {
     const [email, setEmail] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
 
