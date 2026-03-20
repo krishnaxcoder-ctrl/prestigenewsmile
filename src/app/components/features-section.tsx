@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import { ArrowRight } from "@untitledui/icons";
 
@@ -35,30 +34,17 @@ const features = [
     },
 ];
 
-const fadeIn = {
-    hidden: { opacity: 0, filter: "blur(8px)" },
-    visible: (delay: number) => ({
-        opacity: 1,
-        filter: "blur(0px)",
-        transition: { duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] as const },
-    }),
-};
-
 export function FeaturesSection() {
     return (
         <section className="bg-primary">
             <div className="flex flex-col">
-                {features.map((feature, index) => (
+                {features.map((feature) => (
                     <div
                         key={feature.id}
                         className="grid grid-cols-1 md:grid-cols-2"
                     >
                         {/* Image */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 1.05 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.7, ease: "easeOut" }}
+                        <div
                             className={`relative aspect-[3/2] overflow-hidden md:aspect-auto md:h-[650px] ${
                                 feature.imagePosition === "right" ? "md:order-2" : "md:order-1"
                             }`}
@@ -70,68 +56,45 @@ export function FeaturesSection() {
                             />
                             {/* Subtle overlay gradient */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-                        </motion.div>
+                        </div>
 
                         {/* Content */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
+                        <div
                             className={`flex flex-col justify-center bg-secondary px-6 py-10 md:px-12 md:py-12 lg:px-20 lg:py-14 ${
                                 feature.imagePosition === "right" ? "md:order-1" : "md:order-2"
                             }`}
                         >
                             <div className="max-w-lg">
                                 {/* Tag */}
-                                <motion.span
-                                    custom={0}
-                                    variants={fadeIn}
-                                    className="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700"
-                                >
+                                <span className="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
                                     {feature.tag}
-                                </motion.span>
+                                </span>
 
                                 {/* Subtitle */}
                                 {feature.subtitle && (
-                                    <motion.span
-                                        custom={0.05}
-                                        variants={fadeIn}
-                                        className="mt-5 block text-sm font-medium uppercase tracking-widest text-tertiary"
-                                    >
+                                    <span className="mt-5 block text-sm font-medium uppercase tracking-widest text-tertiary">
                                         {feature.subtitle}
-                                    </motion.span>
+                                    </span>
                                 )}
 
                                 {/* Title */}
-                                <motion.h2
-                                    custom={0.1}
-                                    variants={fadeIn}
-                                    className="mt-3 text-display-xs font-semibold leading-tight text-primary md:text-display-sm lg:text-display-md"
-                                >
+                                <h2 className="mt-3 text-display-xs font-semibold leading-tight text-primary md:text-display-sm lg:text-display-md">
                                     {feature.title}{" "}
                                     <span className="text-brand-600">
                                         {feature.titleHighlight}
                                     </span>
-                                </motion.h2>
+                                </h2>
 
                                 {/* Description */}
                                 {feature.description && (
-                                    <motion.p
-                                        custom={0.15}
-                                        variants={fadeIn}
-                                        className="mt-5 text-md leading-relaxed text-tertiary md:text-lg"
-                                    >
+                                    <p className="mt-5 text-md leading-relaxed text-tertiary md:text-lg">
                                         {feature.description}
-                                    </motion.p>
+                                    </p>
                                 )}
 
                                 {/* Highlights */}
                                 {feature.highlights && (
-                                    <motion.div
-                                        custom={0.2}
-                                        variants={fadeIn}
-                                        className="mt-6 flex flex-wrap gap-x-5 gap-y-2"
-                                    >
+                                    <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
                                         {feature.highlights.map((highlight, i) => (
                                             <span
                                                 key={i}
@@ -141,11 +104,11 @@ export function FeaturesSection() {
                                                 {highlight}
                                             </span>
                                         ))}
-                                    </motion.div>
+                                    </div>
                                 )}
 
                                 {/* Button */}
-                                <motion.div custom={0.25} variants={fadeIn} className="mt-8">
+                                <div className="mt-8">
                                     <Button
                                         href={feature.buttonHref}
                                         color="primary"
@@ -154,9 +117,9 @@ export function FeaturesSection() {
                                     >
                                         {feature.buttonText}
                                     </Button>
-                                </motion.div>
+                                </div>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
                 ))}
             </div>
