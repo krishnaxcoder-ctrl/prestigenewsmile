@@ -29,9 +29,14 @@ export const CTASection = memo(function CTASection() {
                 <div className="flex flex-col items-center text-center">
                     {/* Badge */}
                     <div className="mb-6 inline-flex">
-                        <Badge type="pill-color" size="md" color="warning">
-                            Limited Slots Available
-                        </Badge>
+                        <div className="flex w-max cursor-pointer items-center rounded-full bg-white/10 py-1 pl-1 pr-2 text-sm font-medium text-white shadow-xs backdrop-blur-sm transition duration-100 ease-linear hover:bg-white/20">
+                            <span className="mr-2 flex items-center gap-1.5 rounded-full bg-white/20 px-2 py-0.5 shadow-xs">
+                                <span className="inline-block size-2 shrink-0 rounded-full bg-teal-300 outline-3 -outline-offset-1 outline-teal-300/30"></span>
+                                Limited Slots
+                            </span>
+                            Book your session today
+                            <ArrowRight className="ml-1 size-4 text-teal-200" />
+                        </div>
                     </div>
 
                     {/* Main heading */}
