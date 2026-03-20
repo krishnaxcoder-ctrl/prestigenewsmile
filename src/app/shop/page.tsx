@@ -260,7 +260,7 @@ export default function ShopPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-16 lg:px-16">
+                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
                             <a href="/" className="transition hover:text-teal-600">Home</a>
@@ -268,12 +268,12 @@ export default function ShopPage() {
                             <span className="text-teal-600">Shop</span>
                         </nav>
                         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-                            <div className="max-w-2xl">
+                            <div className="max-w-3xl">
                                 <motion.h1
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: 0.1 }}
-                                    className="text-3xl font-semibold text-primary md:text-4xl lg:text-5xl"
+                                    className="text-2xl font-semibold text-primary md:text-3xl"
                                 >
                                     Shop Our <span className="text-teal-600">Premium</span> Collection
                                 </motion.h1>
@@ -285,31 +285,6 @@ export default function ShopPage() {
                                 >
                                     Discover our range of teeth whitening products designed for professional results at home.
                                 </motion.p>
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.3 }}
-                                    className="mt-6 flex flex-wrap items-center gap-6"
-                                >
-                                    <div className="flex items-center gap-2">
-                                        <svg className="size-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span className="text-sm font-medium text-primary">Free Shipping</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <svg className="size-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span className="text-sm font-medium text-primary">Safe & Gentle</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <svg className="size-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                        <span className="text-sm font-medium text-primary">Money Back Guarantee</span>
-                                    </div>
-                                </motion.div>
                             </div>
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
