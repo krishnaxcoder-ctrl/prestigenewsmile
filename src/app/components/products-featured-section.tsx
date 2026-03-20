@@ -7,27 +7,27 @@ import { ArrowRight, Heart, Star01, ShoppingBag01 } from "@untitledui/icons";
 const products = [
     {
         id: 1,
-        name: "Night Lip Balm",
-        category: "Modern Nail Polish",
-        priceRange: "$55.00 – $64.00",
+        name: "LED Accelerator Light",
+        category: "Accessories",
+        priceRange: "CHF 49.00 – CHF 65.00",
         rating: 4,
-        badges: ["Sale", "Hot Deal"],
-        primaryImage: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-01.png",
-        secondaryImage: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-02.jpg",
-        href: "/product/night-lip-balm",
+        badges: ["Hot Deal"],
+        primaryImage: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
+        secondaryImage: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
+        href: "/product/led-accelerator",
     },
     {
         id: 2,
-        name: "Soft Skin Bar",
-        category: "Renew Hand Sanitizer",
-        priceRange: "$30.00 – $35.00",
+        name: "Whitening Toothpaste",
+        category: "Daily Care",
+        priceRange: "CHF 18.00 – CHF 24.00",
         rating: 4,
-        badges: ["Sale", "Hot Deal"],
-        primaryImage: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-10-01.png",
-        secondaryImage: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-10-02.jpg",
-        href: "/product/soft-skin-bar",
+        badges: ["Sale", "Best Seller"],
+        primaryImage: "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
+        secondaryImage: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
+        href: "/product/whitening-toothpaste",
     },
-    ];
+];
 
 const fadeIn = {
     hidden: { opacity: 0, filter: "blur(8px)" },
@@ -204,8 +204,8 @@ export function ProductsFeaturedSection() {
                     >
                         <div className="aspect-[4/3] overflow-hidden rounded-3xl lg:aspect-auto">
                             <img
-                                src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/home2-shop-aside-img.jpg"
-                                alt="Featured skincare products"
+                                src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800"
+                                alt="Professional teeth whitening products"
                                 className="size-full object-cover"
                             />
                         </div>
