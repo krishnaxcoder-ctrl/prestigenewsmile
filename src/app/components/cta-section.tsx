@@ -20,16 +20,8 @@ export function CtaSection() {
     return (
         <section className="relative overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2">
-                {/* Left - Light Brand Side */}
-                <div className="relative flex min-h-[350px] items-center bg-brand-50 sm:min-h-[400px] lg:min-h-[600px]">
-                    {/* Decorative Elements */}
-                    <div className="absolute inset-0 overflow-hidden">
-                        <div className="absolute -left-20 -top-20 size-80 rounded-full bg-brand-100/70" />
-                        <div className="absolute -bottom-20 -right-20 size-60 rounded-full bg-brand-200/50" />
-                        <div className="absolute left-1/4 top-1/3 size-4 rounded-full bg-brand-300/40" />
-                        <div className="absolute bottom-1/4 right-1/3 size-6 rounded-full bg-brand-200/30" />
-                    </div>
-
+                {/* Left - White Side */}
+                <div className="relative flex min-h-[350px] items-center border-y border-secondary bg-white sm:min-h-[400px] lg:min-h-[600px]">
                     {/* Content */}
                     <div className="relative flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-16">
                         <motion.div
@@ -43,10 +35,10 @@ export function CtaSection() {
                             <div className="mb-6 flex items-center gap-3">
                                 <div className="flex">
                                     {[...Array(5)].map((_, i) => (
-                                        <Star01 key={i} className="size-5 fill-warning-400 text-warning-400" />
+                                        <Star01 key={i} className="size-5 fill-brand-500 text-brand-500" />
                                     ))}
                                 </div>
-                                <span className="text-sm font-medium text-brand-700">
+                                <span className="text-sm font-medium text-tertiary">
                                     Trusted by 50,000+ customers
                                 </span>
                             </div>
@@ -71,12 +63,11 @@ export function CtaSection() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.4, delay: i * 0.1 }}
-                                        className="group relative overflow-hidden rounded-2xl bg-white p-4 shadow-md transition duration-200 hover:shadow-lg sm:p-5"
+                                        className="rounded-2xl border border-secondary bg-secondary p-4 transition duration-200 hover:border-brand-200 hover:bg-brand-50 sm:p-5"
                                     >
-                                        <div className="absolute -right-4 -top-4 size-16 rounded-full bg-brand-50 transition duration-200 group-hover:bg-brand-100" />
-                                        <stat.icon className="relative mb-3 size-6 text-brand-500" />
-                                        <p className="relative text-xl font-bold text-primary sm:text-2xl">{stat.value}</p>
-                                        <p className="relative text-xs text-tertiary sm:text-sm">{stat.label}</p>
+                                        <stat.icon className="mb-3 size-6 text-brand-500" />
+                                        <p className="text-xl font-bold text-primary sm:text-2xl">{stat.value}</p>
+                                        <p className="text-xs text-tertiary sm:text-sm">{stat.label}</p>
                                     </motion.div>
                                 ))}
                             </div>
