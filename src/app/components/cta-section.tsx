@@ -22,6 +22,11 @@ export function CtaSection() {
             <div className="grid grid-cols-1 lg:grid-cols-2">
                 {/* Left - White Side */}
                 <div className="relative flex min-h-[350px] items-center border-y border-secondary bg-white sm:min-h-[400px] lg:min-h-[600px]">
+                    {/* Dot Grid Background */}
+                    <div className="absolute inset-0 opacity-40" style={{
+                        backgroundImage: `radial-gradient(circle at 1.5px 1.5px, var(--color-gray-300) 1.5px, transparent 0)`,
+                        backgroundSize: '24px 24px'
+                    }} />
                     {/* Content */}
                     <div className="relative flex flex-col justify-center p-5 sm:p-8 md:p-12 lg:p-16">
                         <motion.div
