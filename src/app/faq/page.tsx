@@ -163,7 +163,7 @@ export default function FAQPage() {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 placeholder="Search for answers..."
-                                className="w-full rounded-xl border border-secondary py-4 pl-12 pr-4 text-sm focus:border-brand-500 focus:outline-none"
+                                className="w-full rounded-xl border border-secondary bg-primary py-4 pl-12 pr-4 text-sm text-primary placeholder:text-tertiary focus:border-brand-500 focus:outline-none"
                             />
                         </div>
 
