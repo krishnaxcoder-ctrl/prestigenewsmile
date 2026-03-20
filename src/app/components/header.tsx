@@ -5,13 +5,18 @@ import {
     ChevronDown,
     ChevronLeft,
     ChevronRight,
+    Globe02,
     Menu01,
 } from "@untitledui/icons";
 import {
     Button as AriaButton,
     Dialog as AriaDialog,
     DialogTrigger as AriaDialogTrigger,
+    ListBox as AriaListBox,
+    ListBoxItem as AriaListBoxItem,
     Popover as AriaPopover,
+    Select as AriaSelect,
+    SelectValue as AriaSelectValue,
 } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
@@ -166,6 +171,55 @@ const ServicesDropdown = () => {
     );
 };
 
+// Language Selector
+const languages = [
+    { id: "en", label: "English", flag: "🇬🇧" },
+    { id: "fr", label: "Français", flag: "🇫🇷" },
+];
+
+const LanguageSelector = () => {
+    return (
+        <AriaSelect
+            id="language-selector"
+            defaultSelectedKey="en"
+            aria-label="Select language"
+            className="relative"
+        >
+            <AriaButton className="flex cursor-pointer items-center gap-1.5 rounded-lg px-2 py-2 text-sm font-medium text-secondary transition duration-100 ease-linear hover:bg-primary_hover hover:text-primary">
+                <Globe02 className="size-4" />
+                <AriaSelectValue className="hidden sm:inline">
+                    {({ selectedText }) => selectedText}
+                </AriaSelectValue>
+                <ChevronDown className="size-3.5 text-quaternary" />
+            </AriaButton>
+            <AriaPopover
+                className={({ isEntering, isExiting }) =>
+                    cx(
+                        "min-w-32 overflow-hidden rounded-xl bg-primary py-1 shadow-lg ring-1 ring-secondary_alt",
+                        isEntering && "duration-150 ease-out animate-in fade-in zoom-in-95",
+                        isExiting && "duration-100 ease-in animate-out fade-out zoom-out-95"
+                    )
+                }
+                offset={8}
+            >
+                <AriaListBox className="outline-none">
+                    {languages.map((lang) => (
+                        <AriaListBoxItem
+                            key={lang.id}
+                            id={lang.id}
+                            textValue={lang.label}
+                            className="flex cursor-pointer items-center gap-2.5 px-3 py-2 text-sm text-secondary outline-none transition duration-100 ease-linear hover:bg-primary_hover hover:text-primary focus:bg-primary_hover focus:text-primary"
+                        >
+                            <span>{lang.flag}</span>
+                            <span>{lang.label}</span>
+                        </AriaListBoxItem>
+                    ))}
+                </AriaListBox>
+            </AriaPopover>
+        </AriaSelect>
+    );
+};
+
 // Mobile Navigation
 const MobileNav = () => {
     const [expandedItems, setExpandedItems] = useState<string[]>([]);
@@ -250,7 +304,10 @@ export const Header = () => {
                                 <li key={item.label}>
                                     {item.label === "Services" ? (
                                         <AriaDialogTrigger>
-                                            <AriaButton className="flex cursor-pointer items-center gap-0.5 rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-widest text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2">
+                                            <AriaButton
+                                                id="services-menu-trigger"
+                                                className="flex cursor-pointer items-center gap-0.5 rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-widest text-secondary outline-focus-ring transition duration-100 ease-linear hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2"
+                                            >
                                                 <span>{item.label}</span>
                                                 <ChevronDown className="size-4 text-quaternary transition duration-100 ease-linear in-aria-expanded:-rotate-180" />
                                             </AriaButton>
@@ -286,11 +343,14 @@ export const Header = () => {
                     </nav>
 
                     {/* Header Actions */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 sm:gap-2">
+                        {/* Language Selector */}
+                        <LanguageSelector />
+
                         {/* Phone */}
                         <a
                             href="tel:+41783000619"
-                            className="hidden items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-secondary transition duration-100 ease-linear hover:bg-primary_hover hover:text-primary md:flex"
+                            className="hidden items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-secondary transition duration-100 ease-linear hover:bg-primary_hover hover:text-primary lg:flex"
                         >
                             +41 78 300 06 19
                         </a>
@@ -306,6 +366,7 @@ export const Header = () => {
                         {/* Mobile Menu Trigger */}
                         <AriaDialogTrigger>
                             <AriaButton
+                                id="mobile-menu-trigger"
                                 aria-label="Menu"
                                 className={({ isFocusVisible, isHovered }) =>
                                     cx(
