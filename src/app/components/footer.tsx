@@ -117,10 +117,11 @@ export function Footer() {
 			<section className="overflow-hidden border-t border-secondary py-8">
 				<div className="mx-auto flex max-w-7xl justify-center px-6">
 					<h2
-						className="select-none whitespace-nowrap text-4xl font-bold uppercase tracking-wider text-transparent sm:text-6xl md:text-7xl lg:text-[120px]"
+						className="select-none whitespace-nowrap text-4xl font-bold uppercase tracking-wider sm:text-6xl md:text-7xl lg:text-[120px]"
 						style={{
-							WebkitTextStroke: "1px var(--color-brand-500)",
-							WebkitTextFillColor: "transparent",
+							WebkitTextStroke: "2px var(--color-brand-500)",
+							WebkitTextFillColor: "var(--color-bg-secondary)",
+							paintOrder: "stroke fill",
 						}}
 					>
 						PRESTIGE SMILE
