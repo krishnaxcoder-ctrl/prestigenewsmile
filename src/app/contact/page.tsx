@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
-import { Textarea } from "@/components/base/textarea/textarea";
+import { TextArea } from "@/components/base/textarea/textarea";
 import {
     Mail01,
     Phone01,
@@ -249,14 +249,13 @@ export default function ContactPage() {
                                                 </div>
                                             </div>
 
-                                            <Textarea
+                                            <TextArea
                                                 name="message"
                                                 label="Message"
                                                 value={formData.message}
                                                 onChange={(value) => setFormData({ ...formData, message: value })}
                                                 placeholder="How can we help you?"
                                                 isRequired
-                                                rows={5}
                                             />
 
                                             <Button
