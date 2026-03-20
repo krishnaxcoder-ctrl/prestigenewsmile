@@ -330,10 +330,18 @@ export default function ReviewsPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="text-4xl font-semibold text-primary md:text-5xl lg:text-6xl"
+                            className="text-sm font-medium uppercase tracking-wider text-teal-600"
                         >
                             What our customers say...
                         </motion.h1>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="mt-3 max-w-2xl text-2xl font-semibold text-primary md:text-3xl"
+                        >
+                            Real stories from our happy clients who transformed their smiles with Prestige Smile
+                        </motion.p>
                     </div>
                 </section>
 
