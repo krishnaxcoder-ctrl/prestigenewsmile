@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
+import { Input } from "@/components/base/input/input";
+import { Textarea } from "@/components/base/textarea/textarea";
 import {
     Mail01,
     Phone01,
@@ -10,6 +12,9 @@ import {
     Clock,
     Send01,
     CheckCircle,
+    User01,
+    ChevronDown,
+    MessageTextSquare01,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
