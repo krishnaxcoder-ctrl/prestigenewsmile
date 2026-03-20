@@ -103,7 +103,7 @@ export function ProductsSection() {
                         <motion.p
                             custom={0.1}
                             variants={fadeIn}
-                            className="mt-3 max-w-md text-md text-tertiary md:text-lg"
+                            className="mt-3 max-w-2xl text-md text-tertiary md:text-lg"
                         >
                             Discover our most loved products, handpicked for their quality and effectiveness.
                         </motion.p>
