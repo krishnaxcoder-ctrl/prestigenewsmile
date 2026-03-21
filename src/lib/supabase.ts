@@ -529,7 +529,7 @@ export async function getWishlist(userId: string): Promise<WishlistItem[]> {
         .order("created_at", { ascending: false });
 
     if (error) throw error;
-    return data as WishlistItem[];
+    return data as unknown as WishlistItem[];
 }
 
 export async function addToWishlist(userId: string, productId: string): Promise<void> {

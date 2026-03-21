@@ -505,7 +505,7 @@ export default function ShopPage() {
                                                     >
                                                         {product.category}
                                                     </a>
-                                                    <StarRating rating={product.rating} />
+                                                    <StarRating rating={product.rating ?? 0} />
                                                 </div>
 
                                                 <h3 className="mt-2 text-sm font-semibold text-primary sm:text-base">
