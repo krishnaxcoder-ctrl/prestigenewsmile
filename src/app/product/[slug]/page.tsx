@@ -18,6 +18,7 @@ import {
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
+import { WishlistButton } from "@/components/base/wishlist-button/wishlist-button";
 import { useToastActions } from "@/components/base/toast/toast";
 import { getProductBySlug, getProducts, addToCart, getSessionId, type Product } from "@/lib/supabase";
 
@@ -49,7 +50,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
     const [selectedSize, setSelectedSize] = useState("");
     const [selectedColor, setSelectedColor] = useState("");
     const [quantity, setQuantity] = useState(1);
-    const [isWishlisted, setIsWishlisted] = useState(false);
     const [activeTab, setActiveTab] = useState("description");
 
     useEffect(() => {
@@ -312,16 +312,12 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                     </button>
 
                                     {/* Wishlist Button */}
-                                    <button
-                                        onClick={() => setIsWishlisted(!isWishlisted)}
-                                        className={`flex size-10 shrink-0 items-center justify-center border transition sm:size-11 ${
-                                            isWishlisted
-                                                ? "border-brand-600 bg-brand-50 text-brand-600"
-                                                : "border-gray-300 text-gray-500 hover:border-gray-900 hover:text-gray-900"
-                                        }`}
-                                    >
-                                        <Heart className={`size-5 ${isWishlisted ? "fill-brand-600" : ""}`} />
-                                    </button>
+                                    <WishlistButton
+                                        productId={product.id}
+                                        productName={product.name}
+                                        size="lg"
+                                        className="shrink-0 border border-gray-300"
+                                    />
                                 </div>
 
                                 {/* Buy Now Button */}

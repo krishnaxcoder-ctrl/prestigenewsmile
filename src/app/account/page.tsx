@@ -22,6 +22,7 @@ import {
     getSession,
     getProfile,
     getUserOrders,
+    getWishlist,
     signOut,
     type Profile,
     type Order,
@@ -41,6 +42,7 @@ export default function AccountPage() {
     const [loading, setLoading] = useState(true);
     const [profile, setProfile] = useState<Profile | null>(null);
     const [orders, setOrders] = useState<Order[]>([]);
+    const [wishlistCount, setWishlistCount] = useState(0);
     const [loggingOut, setLoggingOut] = useState(false);
 
     useEffect(() => {
@@ -53,13 +55,15 @@ export default function AccountPage() {
                     return;
                 }
 
-                const [profileData, ordersData] = await Promise.all([
+                const [profileData, ordersData, wishlistData] = await Promise.all([
                     getProfile(session.user.id),
                     getUserOrders(session.user.id),
+                    getWishlist(session.user.id),
                 ]);
 
                 setProfile(profileData);
                 setOrders(ordersData);
+                setWishlistCount(wishlistData.length);
             } catch (error) {
                 console.error("Error fetching account data:", error);
                 toast.error("Error loading account", "Please try again.");
@@ -140,7 +144,7 @@ export default function AccountPage() {
 
     const stats = [
         { label: "Total Orders", value: orders.length.toString() },
-        { label: "Wishlist Items", value: "0" },
+        { label: "Wishlist Items", value: wishlistCount.toString() },
         { label: "Reward Points", value: (orders.length * 50).toString() },
     ];
 

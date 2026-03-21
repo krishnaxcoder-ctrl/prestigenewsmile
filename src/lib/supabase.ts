@@ -502,3 +502,178 @@ export function getSessionId(): string {
     }
     return sessionId;
 }
+
+// Wishlist types
+export interface WishlistItem {
+    id: string;
+    user_id: string;
+    product_id: string;
+    created_at: string;
+    product?: Product;
+}
+
+// Wishlist functions
+export async function getWishlist(userId: string): Promise<WishlistItem[]> {
+    const { data, error } = await supabase
+        .from("wishlist")
+        .select(`
+            *,
+            product:products(*)
+        `)
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false });
+
+    if (error) throw error;
+    return data as WishlistItem[];
+}
+
+export async function addToWishlist(userId: string, productId: string): Promise<void> {
+    const { error } = await supabase
+        .from("wishlist")
+        .insert({ user_id: userId, product_id: productId });
+
+    if (error && error.code !== "23505") throw error; // Ignore duplicate key error
+}
+
+export async function removeFromWishlist(userId: string, productId: string): Promise<void> {
+    const { error } = await supabase
+        .from("wishlist")
+        .delete()
+        .eq("user_id", userId)
+        .eq("product_id", productId);
+
+    if (error) throw error;
+}
+
+export async function clearWishlist(userId: string): Promise<void> {
+    const { error } = await supabase
+        .from("wishlist")
+        .delete()
+        .eq("user_id", userId);
+
+    if (error) throw error;
+}
+
+export async function isInWishlist(userId: string, productId: string): Promise<boolean> {
+    const { data, error } = await supabase
+        .from("wishlist")
+        .select("id")
+        .eq("user_id", userId)
+        .eq("product_id", productId)
+        .single();
+
+    if (error && error.code === "PGRST116") return false;
+    if (error) throw error;
+    return !!data;
+}
+
+// Address types
+export interface Address {
+    id: string;
+    user_id: string;
+    label: string;
+    first_name: string;
+    last_name: string;
+    address: string;
+    apartment: string | null;
+    city: string;
+    postal_code: string;
+    country: string;
+    phone: string | null;
+    is_default: boolean;
+    created_at: string;
+    updated_at: string;
+}
+
+// Address functions
+export async function getAddresses(userId: string): Promise<Address[]> {
+    const { data, error } = await supabase
+        .from("addresses")
+        .select("*")
+        .eq("user_id", userId)
+        .order("is_default", { ascending: false })
+        .order("created_at", { ascending: false });
+
+    if (error) throw error;
+    return data as Address[];
+}
+
+export async function addAddress(
+    userId: string,
+    addressData: Omit<Address, "id" | "user_id" | "created_at" | "updated_at">
+): Promise<Address> {
+    // If this is the first address or is_default is true, update other addresses
+    if (addressData.is_default) {
+        await supabase
+            .from("addresses")
+            .update({ is_default: false })
+            .eq("user_id", userId);
+    }
+
+    const { data, error } = await supabase
+        .from("addresses")
+        .insert({
+            user_id: userId,
+            ...addressData,
+        })
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data as Address;
+}
+
+export async function updateAddress(
+    addressId: string,
+    userId: string,
+    updates: Partial<Omit<Address, "id" | "user_id" | "created_at">>
+): Promise<Address> {
+    // If setting as default, unset other defaults first
+    if (updates.is_default) {
+        await supabase
+            .from("addresses")
+            .update({ is_default: false })
+            .eq("user_id", userId);
+    }
+
+    const { data, error } = await supabase
+        .from("addresses")
+        .update({
+            ...updates,
+            updated_at: new Date().toISOString(),
+        })
+        .eq("id", addressId)
+        .eq("user_id", userId)
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data as Address;
+}
+
+export async function deleteAddress(addressId: string, userId: string): Promise<void> {
+    const { error } = await supabase
+        .from("addresses")
+        .delete()
+        .eq("id", addressId)
+        .eq("user_id", userId);
+
+    if (error) throw error;
+}
+
+export async function setDefaultAddress(addressId: string, userId: string): Promise<void> {
+    // Unset all defaults first
+    await supabase
+        .from("addresses")
+        .update({ is_default: false })
+        .eq("user_id", userId);
+
+    // Set the new default
+    const { error } = await supabase
+        .from("addresses")
+        .update({ is_default: true, updated_at: new Date().toISOString() })
+        .eq("id", addressId)
+        .eq("user_id", userId);
+
+    if (error) throw error;
+}

@@ -19,6 +19,7 @@ import {
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
+import { WishlistButton } from "@/components/base/wishlist-button/wishlist-button";
 import { getProducts, type Product } from "@/lib/supabase";
 
 function StarRating({ rating }: { rating: number }) {
@@ -474,12 +475,11 @@ export default function ShopPage() {
 
                                                 {/* Action Buttons */}
                                                 <div className="absolute right-3 top-3 flex flex-col gap-2 opacity-0 transition duration-300 group-hover:opacity-100">
-                                                    <button
-                                                        className="flex size-9 items-center justify-center rounded-full bg-white text-gray-700 shadow-md transition hover:bg-brand-50 hover:text-brand-600"
-                                                        aria-label="Add to wishlist"
-                                                    >
-                                                        <Heart className="size-4" />
-                                                    </button>
+                                                    <WishlistButton
+                                                        productId={product.id}
+                                                        productName={product.name}
+                                                        size="md"
+                                                    />
                                                 </div>
 
                                                 {/* Add to Cart Button */}

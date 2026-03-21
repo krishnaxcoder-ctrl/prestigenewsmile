@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import {
@@ -9,73 +10,19 @@ import {
     ShoppingBag01,
     X,
     Trash01,
+    Loading01,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
-
-interface WishlistItem {
-    id: string;
-    slug: string;
-    name: string;
-    category: string;
-    price: number;
-    originalPrice: number;
-    rating: number;
-    inStock: boolean;
-    image: string;
-    addedDate: string;
-}
-
-const initialWishlist: WishlistItem[] = [
-    {
-        id: "1",
-        slug: "pure-protect",
-        name: "Pure Protect",
-        category: "Premium Face Oil",
-        price: 46.00,
-        originalPrice: 57.00,
-        rating: 5,
-        inStock: true,
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-16-01.png",
-        addedDate: "March 15, 2024",
-    },
-    {
-        id: "2",
-        slug: "pure-glow-mask",
-        name: "Pure Glow Mask",
-        category: "Luxury Face Powder",
-        price: 62.00,
-        originalPrice: 75.00,
-        rating: 5,
-        inStock: true,
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-15-01.png",
-        addedDate: "March 12, 2024",
-    },
-    {
-        id: "3",
-        slug: "radiance-serum",
-        name: "Radiance Serum",
-        category: "Skincare",
-        price: 78.00,
-        originalPrice: 95.00,
-        rating: 5,
-        inStock: false,
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-16-01.png",
-        addedDate: "March 10, 2024",
-    },
-    {
-        id: "4",
-        slug: "night-lip-balm",
-        name: "Night Lip Balm",
-        category: "Lip Care",
-        price: 55.00,
-        originalPrice: 64.00,
-        rating: 4,
-        inStock: true,
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-01.png",
-        addedDate: "March 8, 2024",
-    },
-];
+import {
+    getSession,
+    getWishlist,
+    removeFromWishlist,
+    clearWishlist,
+    type WishlistItem,
+    type Product,
+} from "@/lib/supabase";
+import { useToastActions } from "@/components/base/toast/toast";
 
 function StarRating({ rating }: { rating: number }) {
     return (
@@ -93,15 +40,90 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default function WishlistPage() {
-    const [wishlist, setWishlist] = useState<WishlistItem[]>(initialWishlist);
+    const router = useRouter();
+    const toast = useToastActions();
+    const [wishlist, setWishlist] = useState<WishlistItem[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [userId, setUserId] = useState<string | null>(null);
+    const [removingIds, setRemovingIds] = useState<Set<string>>(new Set());
 
-    const removeItem = (id: string) => {
-        setWishlist((items) => items.filter((item) => item.id !== id));
+    useEffect(() => {
+        async function fetchWishlist() {
+            try {
+                const session = await getSession();
+
+                if (!session?.user) {
+                    router.push("/login");
+                    return;
+                }
+
+                setUserId(session.user.id);
+                const data = await getWishlist(session.user.id);
+                setWishlist(data);
+            } catch (err) {
+                console.error("Error fetching wishlist:", err);
+                toast.error("Error loading wishlist", "Please try again.");
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchWishlist();
+    }, [router, toast]);
+
+    const handleRemoveItem = async (productId: string) => {
+        if (!userId) return;
+
+        setRemovingIds((prev) => new Set(prev).add(productId));
+
+        try {
+            await removeFromWishlist(userId, productId);
+            setWishlist((items) => items.filter((item) => item.product_id !== productId));
+            toast.success("Removed from wishlist");
+        } catch (err) {
+            console.error("Error removing item:", err);
+            toast.error("Error removing item", "Please try again.");
+        } finally {
+            setRemovingIds((prev) => {
+                const next = new Set(prev);
+                next.delete(productId);
+                return next;
+            });
+        }
     };
 
-    const clearWishlist = () => {
-        setWishlist([]);
+    const handleClearWishlist = async () => {
+        if (!userId) return;
+
+        try {
+            await clearWishlist(userId);
+            setWishlist([]);
+            toast.success("Wishlist cleared");
+        } catch (err) {
+            console.error("Error clearing wishlist:", err);
+            toast.error("Error clearing wishlist", "Please try again.");
+        }
     };
+
+    const formatDate = (dateString: string) => {
+        return new Date(dateString).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        });
+    };
+
+    if (loading) {
+        return (
+            <div className="overflow-x-hidden">
+                <Header />
+                <main className="flex min-h-[60vh] items-center justify-center bg-primary">
+                    <Loading01 className="size-8 animate-spin text-brand-600" />
+                </main>
+                <Footer />
+            </div>
+        );
+    }
 
     return (
         <div className="overflow-x-hidden">
@@ -140,7 +162,7 @@ export default function WishlistPage() {
                                         <span className="font-semibold text-primary">{wishlist.length}</span> items in your wishlist
                                     </p>
                                     <button
-                                        onClick={clearWishlist}
+                                        onClick={handleClearWishlist}
                                         className="flex items-center gap-2 text-sm text-tertiary transition hover:text-error-500"
                                     >
                                         <Trash01 className="size-4" />
@@ -150,78 +172,88 @@ export default function WishlistPage() {
 
                                 {/* Wishlist Grid */}
                                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                                    {wishlist.map((item, index) => (
-                                        <motion.div
-                                            key={item.id}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.3, delay: index * 0.05 }}
-                                            className="group relative rounded-2xl border border-secondary bg-primary"
-                                        >
-                                            {/* Remove Button */}
-                                            <button
-                                                onClick={() => removeItem(item.id)}
-                                                className="absolute right-3 top-3 z-10 flex size-8 items-center justify-center rounded-full bg-white shadow-md transition hover:bg-error-50 hover:text-error-500"
+                                    {wishlist.map((item, index) => {
+                                        const product = item.product as Product;
+                                        if (!product) return null;
+
+                                        return (
+                                            <motion.div
+                                                key={item.id}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.3, delay: index * 0.05 }}
+                                                className="group relative rounded-2xl border border-secondary bg-primary"
                                             >
-                                                <X className="size-4" />
-                                            </button>
-
-                                            {/* Product Image */}
-                                            <a href={`/product/${item.slug}`} className="block">
-                                                <div className="relative aspect-square overflow-hidden rounded-t-2xl bg-secondary">
-                                                    <img
-                                                        src={item.image}
-                                                        alt={item.name}
-                                                        className="size-full object-cover transition duration-300 group-hover:scale-105"
-                                                    />
-                                                    {!item.inStock && (
-                                                        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                                                            <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-primary">
-                                                                Out of Stock
-                                                            </span>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </a>
-
-                                            {/* Product Info */}
-                                            <div className="p-4">
-                                                <p className="text-xs text-tertiary">{item.category}</p>
-                                                <a
-                                                    href={`/product/${item.slug}`}
-                                                    className="mt-1 block font-semibold text-primary transition hover:text-brand-600"
+                                                {/* Remove Button */}
+                                                <button
+                                                    onClick={() => handleRemoveItem(item.product_id)}
+                                                    disabled={removingIds.has(item.product_id)}
+                                                    className="absolute right-3 top-3 z-10 flex size-8 items-center justify-center rounded-full bg-white shadow-md transition hover:bg-error-50 hover:text-error-500 disabled:opacity-50"
                                                 >
-                                                    {item.name}
-                                                </a>
-                                                <div className="mt-2 flex items-center justify-between">
-                                                    <StarRating rating={item.rating} />
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="font-semibold text-primary">
-                                                            ${item.price.toFixed(2)}
-                                                        </span>
-                                                        {item.originalPrice > item.price && (
-                                                            <span className="text-xs text-tertiary line-through">
-                                                                ${item.originalPrice.toFixed(2)}
-                                                            </span>
+                                                    {removingIds.has(item.product_id) ? (
+                                                        <Loading01 className="size-4 animate-spin" />
+                                                    ) : (
+                                                        <X className="size-4" />
+                                                    )}
+                                                </button>
+
+                                                {/* Product Image */}
+                                                <a href={`/product/${product.slug}`} className="block">
+                                                    <div className="relative aspect-square overflow-hidden rounded-t-2xl bg-secondary">
+                                                        <img
+                                                            src={product.images?.[0] || "https://via.placeholder.com/300"}
+                                                            alt={product.name}
+                                                            className="size-full object-cover transition duration-300 group-hover:scale-105"
+                                                        />
+                                                        {!product.in_stock && (
+                                                            <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                                                                <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-primary">
+                                                                    Out of Stock
+                                                                </span>
+                                                            </div>
                                                         )}
                                                     </div>
+                                                </a>
+
+                                                {/* Product Info */}
+                                                <div className="p-4">
+                                                    <p className="text-xs text-tertiary">{product.category}</p>
+                                                    <a
+                                                        href={`/product/${product.slug}`}
+                                                        className="mt-1 block font-semibold text-primary transition hover:text-brand-600"
+                                                    >
+                                                        {product.name}
+                                                    </a>
+                                                    <div className="mt-2 flex items-center justify-between">
+                                                        <StarRating rating={product.rating || 5} />
+                                                        <div className="flex items-center gap-2">
+                                                            <span className="font-semibold text-primary">
+                                                                ${Number(product.price).toFixed(2)}
+                                                            </span>
+                                                            {product.original_price && product.original_price > product.price && (
+                                                                <span className="text-xs text-tertiary line-through">
+                                                                    ${Number(product.original_price).toFixed(2)}
+                                                                </span>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                    <p className="mt-2 text-xs text-tertiary">
+                                                        Added {formatDate(item.created_at)}
+                                                    </p>
+                                                    <Button
+                                                        href={`/product/${product.slug}`}
+                                                        color={product.in_stock ? "primary" : "secondary"}
+                                                        size="sm"
+                                                        iconLeading={ShoppingBag01}
+                                                        className="mt-4 w-full justify-center"
+                                                        isDisabled={!product.in_stock}
+                                                    >
+                                                        {product.in_stock ? "Add to Cart" : "Notify Me"}
+                                                    </Button>
                                                 </div>
-                                                <p className="mt-2 text-xs text-tertiary">
-                                                    Added {item.addedDate}
-                                                </p>
-                                                <Button
-                                                    href={`/product/${item.slug}`}
-                                                    color={item.inStock ? "primary" : "secondary"}
-                                                    size="sm"
-                                                    iconLeading={ShoppingBag01}
-                                                    className="mt-4 w-full justify-center"
-                                                    isDisabled={!item.inStock}
-                                                >
-                                                    {item.inStock ? "Add to Cart" : "Notify Me"}
-                                                </Button>
-                                            </div>
-                                        </motion.div>
-                                    ))}
+                                            </motion.div>
+                                        );
+                                    })}
                                 </div>
                             </>
                         ) : (
