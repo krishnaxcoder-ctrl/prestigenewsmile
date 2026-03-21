@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
@@ -16,37 +17,27 @@ import {
     Phone01,
     Building07,
     Globe01,
+    Loading01,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import {
+    getCartItems,
+    createOrder,
+    clearCart,
+    getSessionId,
+    type Product,
+} from "@/lib/supabase";
 
-interface CartItem {
+interface CartItemWithProduct {
     id: string;
-    name: string;
-    price: number;
+    product_id: string;
     quantity: number;
-    size: string;
-    image: string;
+    size: string | null;
+    color: string | null;
+    session_id: string | null;
+    product: Product;
 }
-
-const cartItems: CartItem[] = [
-    {
-        id: "1",
-        name: "Pure Protect",
-        price: 46.00,
-        quantity: 2,
-        size: "180 ML",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-16-01.png",
-    },
-    {
-        id: "2",
-        name: "Pure Glow Mask",
-        price: 62.00,
-        quantity: 1,
-        size: "50g",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-15-01.png",
-    },
-];
 
 const steps = [
     { id: 1, label: "Information" },
@@ -55,6 +46,10 @@ const steps = [
 ];
 
 export default function CheckoutPage() {
+    const router = useRouter();
+    const [cartItems, setCartItems] = useState<CartItemWithProduct[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [submitting, setSubmitting] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
         email: "",
@@ -70,13 +65,122 @@ export default function CheckoutPage() {
         paymentMethod: "twint",
     });
 
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    // Fetch cart items
+    useEffect(() => {
+        async function fetchCartItems() {
+            try {
+                const sessionId = getSessionId();
+                if (!sessionId) {
+                    setLoading(false);
+                    return;
+                }
+                const data = await getCartItems(sessionId);
+                setCartItems(data as CartItemWithProduct[]);
+            } catch (error) {
+                console.error("Error fetching cart:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchCartItems();
+    }, []);
+
+    const subtotal = cartItems.reduce(
+        (sum, item) => sum + item.product.price * item.quantity,
+        0
+    );
     const shipping = formData.shippingMethod === "express" ? 15 : 0;
     const total = subtotal + shipping;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
+    const handlePlaceOrder = async () => {
+        setSubmitting(true);
+        try {
+            const sessionId = getSessionId();
+
+            await createOrder(
+                {
+                    email: formData.email,
+                    first_name: formData.firstName,
+                    last_name: formData.lastName,
+                    address: formData.address,
+                    apartment: formData.apartment,
+                    city: formData.city,
+                    country: formData.country,
+                    postal_code: formData.postalCode,
+                    phone: formData.phone,
+                    shipping_method: formData.shippingMethod,
+                    payment_method: formData.paymentMethod,
+                    status: "processing",
+                    subtotal,
+                    shipping_cost: shipping,
+                    total,
+                    user_id: null,
+                    tracking_number: null,
+                    delivery_date: null,
+                },
+                cartItems.map((item) => ({
+                    product_id: item.product_id,
+                    name: item.product.name,
+                    price: item.product.price,
+                    quantity: item.quantity,
+                    size: item.size,
+                    color: item.color,
+                    image: item.product.images[0],
+                }))
+            );
+
+            // Clear cart
+            if (sessionId) {
+                await clearCart(sessionId);
+            }
+
+            // Redirect to success page or orders
+            alert("Order placed successfully!");
+            router.push("/account/orders");
+        } catch (error) {
+            console.error("Error placing order:", error);
+            alert("Failed to place order. Please try again.");
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className="overflow-x-hidden">
+                <Header />
+                <main className="flex min-h-screen items-center justify-center bg-primary">
+                    <div className="flex flex-col items-center gap-4">
+                        <Loading01 className="size-8 animate-spin text-brand-600" />
+                        <p className="text-tertiary">Loading checkout...</p>
+                    </div>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
+
+    if (cartItems.length === 0) {
+        return (
+            <div className="overflow-x-hidden">
+                <Header />
+                <main className="flex min-h-screen items-center justify-center bg-primary">
+                    <div className="text-center">
+                        <h1 className="text-2xl font-semibold text-primary">Your cart is empty</h1>
+                        <p className="mt-2 text-tertiary">Add some products before checking out.</p>
+                        <Button href="/shop" color="primary" className="mt-4">
+                            Continue Shopping
+                        </Button>
+                    </div>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
 
     return (
         <div className="overflow-x-hidden">
@@ -454,6 +558,8 @@ export default function CheckoutPage() {
                                                 color="primary"
                                                 size="lg"
                                                 iconLeading={Lock01}
+                                                onClick={handlePlaceOrder}
+                                                isLoading={submitting}
                                             >
                                                 Place Order - ${total.toFixed(2)}
                                             </Button>
@@ -475,8 +581,8 @@ export default function CheckoutPage() {
                                             <div key={item.id} className="flex gap-4">
                                                 <div className="relative shrink-0">
                                                     <img
-                                                        src={item.image}
-                                                        alt={item.name}
+                                                        src={item.product.images[0]}
+                                                        alt={item.product.name}
                                                         className="size-16 rounded-lg bg-primary object-cover"
                                                     />
                                                     <span className="absolute -right-2 -top-2 flex size-5 items-center justify-center rounded-full bg-tertiary text-xs font-semibold text-white">
@@ -484,11 +590,11 @@ export default function CheckoutPage() {
                                                     </span>
                                                 </div>
                                                 <div className="flex-1">
-                                                    <p className="font-medium text-primary">{item.name}</p>
-                                                    <p className="text-xs text-tertiary">Size: {item.size}</p>
+                                                    <p className="font-medium text-primary">{item.product.name}</p>
+                                                    {item.size && <p className="text-xs text-tertiary">Size: {item.size}</p>}
                                                 </div>
                                                 <span className="font-medium text-primary">
-                                                    ${(item.price * item.quantity).toFixed(2)}
+                                                    ${(item.product.price * item.quantity).toFixed(2)}
                                                 </span>
                                             </div>
                                         ))}
