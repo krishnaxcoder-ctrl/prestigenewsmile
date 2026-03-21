@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
@@ -8,9 +9,14 @@ import { Checkbox } from "@/components/base/checkbox/checkbox";
 import { Mail01, Lock01, Eye, EyeOff, User01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import { signUp } from "@/lib/supabase";
+import { useToastActions } from "@/components/base/toast/toast";
 
 export default function RegisterPage() {
+    const router = useRouter();
+    const toast = useToastActions();
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -29,10 +35,44 @@ export default function RegisterPage() {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle registration
-        console.log("Register:", formData);
+
+        // Validate passwords match
+        if (formData.password !== formData.confirmPassword) {
+            toast.error("Passwords don't match", "Please make sure your passwords match.");
+            return;
+        }
+
+        // Validate password length
+        if (formData.password.length < 8) {
+            toast.error("Password too short", "Password must be at least 8 characters.");
+            return;
+        }
+
+        // Validate terms accepted
+        if (!formData.acceptTerms) {
+            toast.error("Terms required", "Please accept the Terms of Service.");
+            return;
+        }
+
+        setIsLoading(true);
+
+        try {
+            await signUp(
+                formData.email,
+                formData.password,
+                formData.firstName,
+                formData.lastName
+            );
+            toast.success("Account created!", "Welcome to Prestige Smile.");
+            router.push("/");
+        } catch (error: any) {
+            console.error("Registration error:", error);
+            toast.error("Registration failed", error.message || "Please try again.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -205,6 +245,7 @@ export default function RegisterPage() {
                                     color="primary"
                                     size="lg"
                                     className="w-full justify-center"
+                                    isLoading={isLoading}
                                 >
                                     Create Account
                                 </Button>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
@@ -8,9 +9,14 @@ import { Checkbox } from "@/components/base/checkbox/checkbox";
 import { Mail01, Lock01, Eye, EyeOff } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import { signIn } from "@/lib/supabase";
+import { useToastActions } from "@/components/base/toast/toast";
 
 export default function LoginPage() {
+    const router = useRouter();
+    const toast = useToastActions();
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -25,10 +31,20 @@ export default function LoginPage() {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle login
-        console.log("Login:", formData);
+        setIsLoading(true);
+
+        try {
+            await signIn(formData.email, formData.password);
+            toast.success("Welcome back!", "You have been signed in successfully.");
+            router.push("/");
+        } catch (error: any) {
+            console.error("Login error:", error);
+            toast.error("Login failed", error.message || "Invalid email or password.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -140,6 +156,7 @@ export default function LoginPage() {
                                     color="primary"
                                     size="lg"
                                     className="w-full justify-center"
+                                    isLoading={isLoading}
                                 >
                                     Sign In
                                 </Button>
