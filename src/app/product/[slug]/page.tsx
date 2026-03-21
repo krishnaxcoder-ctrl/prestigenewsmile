@@ -57,8 +57,8 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
             try {
                 const data = await getProductBySlug(slug);
                 setProduct(data);
-                if (data.sizes.length > 0) setSelectedSize(data.sizes[0]);
-                if (data.colors.length > 0) setSelectedColor(data.colors[0]);
+                if (data.sizes && data.sizes.length > 0) setSelectedSize(data.sizes[0]);
+                if (data.colors && data.colors.length > 0) setSelectedColor(data.colors[0]);
 
                 // Fetch related products
                 const allProducts = await getProducts();
@@ -174,7 +174,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                             >
                                 {/* Thumbnails */}
                                 <div className="flex gap-3 overflow-x-auto pb-2 sm:flex-col sm:overflow-x-visible sm:pb-0">
-                                    {product.images.map((image, index) => (
+                                    {(product.images ?? []).map((image, index) => (
                                         <button
                                             key={index}
                                             onClick={() => setSelectedImage(index)}
@@ -221,7 +221,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                     <span className="text-2xl font-semibold text-primary">
                                         ${product.price.toFixed(2)}
                                     </span>
-                                    <StarRating rating={product.rating} />
+                                    <StarRating rating={product.rating ?? 0} />
                                 </div>
 
                                 {/* In Stock Badge */}
@@ -232,13 +232,13 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 )}
 
                                 {/* Size Selection */}
-                                {product.sizes.length > 0 && (
+                                {(product.sizes ?? []).length > 0 && (
                                     <div className="mt-6">
                                         <p className="mb-3 text-xs font-medium uppercase tracking-wider text-primary">
                                             Size : {selectedSize}
                                         </p>
                                         <div className="flex flex-wrap gap-2">
-                                            {product.sizes.map((size) => (
+                                            {(product.sizes ?? []).map((size) => (
                                                 <button
                                                     key={size}
                                                     onClick={() => setSelectedSize(size)}
@@ -256,13 +256,13 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 )}
 
                                 {/* Color Selection */}
-                                {product.colors.length > 0 && (
+                                {(product.colors ?? []).length > 0 && (
                                     <div className="mt-6">
                                         <p className="mb-3 text-xs font-medium uppercase tracking-wider text-primary">
                                             Color
                                         </p>
                                         <div className="flex items-center gap-3">
-                                            {product.colors.map((color) => (
+                                            {(product.colors ?? []).map((color) => (
                                                 <button
                                                     key={color}
                                                     onClick={() => setSelectedColor(color)}
@@ -410,7 +410,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             Product Features
                                         </h3>
                                         <ul className="mt-4 space-y-3">
-                                            {product.features.map((feature, index) => (
+                                            {(product.features ?? []).map((feature, index) => (
                                                 <li key={index} className="flex items-start gap-2 text-sm text-tertiary">
                                                     <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand-500" />
                                                     {feature}
@@ -429,7 +429,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             How To Use
                                         </h3>
                                         <p className="mt-4 leading-relaxed text-tertiary">
-                                            {product.additional_info.usage}
+                                            {product.additional_info?.usage}
                                         </p>
                                     </div>
 
@@ -459,27 +459,27 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             <tbody>
                                                 <tr className="border-b border-secondary">
                                                     <td className="w-1/3 py-4 font-medium text-primary">Weight</td>
-                                                    <td className="py-4 text-tertiary">{product.additional_info.weight}</td>
+                                                    <td className="py-4 text-tertiary">{product.additional_info?.weight}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
                                                     <td className="py-4 font-medium text-primary">Dimensions</td>
-                                                    <td className="py-4 text-tertiary">{product.additional_info.dimensions}</td>
+                                                    <td className="py-4 text-tertiary">{product.additional_info?.dimensions}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
                                                     <td className="py-4 font-medium text-primary">Size Options</td>
-                                                    <td className="py-4 text-tertiary">{product.sizes.join(", ")}</td>
+                                                    <td className="py-4 text-tertiary">{(product.sizes ?? []).join(", ")}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
                                                     <td className="py-4 font-medium text-primary">Skin Type</td>
-                                                    <td className="py-4 text-tertiary">{product.additional_info.skinType}</td>
+                                                    <td className="py-4 text-tertiary">{product.additional_info?.skinType}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
                                                     <td className="py-4 font-medium text-primary">Shelf Life</td>
-                                                    <td className="py-4 text-tertiary">{product.additional_info.shelfLife}</td>
+                                                    <td className="py-4 text-tertiary">{product.additional_info?.shelfLife}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
                                                     <td className="py-4 font-medium text-primary">Made In</td>
-                                                    <td className="py-4 text-tertiary">{product.additional_info.madeIn}</td>
+                                                    <td className="py-4 text-tertiary">{product.additional_info?.madeIn}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -488,21 +488,21 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             Ingredients
                                         </h3>
                                         <p className="text-sm leading-relaxed text-tertiary">
-                                            {product.additional_info.ingredients}
+                                            {product.additional_info?.ingredients}
                                         </p>
 
                                         <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
                                             How To Use
                                         </h3>
                                         <p className="text-sm leading-relaxed text-tertiary">
-                                            {product.additional_info.usage}
+                                            {product.additional_info?.usage}
                                         </p>
                                     </div>
 
                                     {/* Image */}
                                     <div className="hidden overflow-hidden rounded-2xl lg:block">
                                         <img
-                                            src={product.images[1] || product.images[0]}
+                                            src={product.images?.[1] ?? product.images?.[0] ?? ""}
                                             alt={product.name}
                                             className="size-full object-cover"
                                         />
@@ -523,9 +523,9 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                                 Customer Reviews
                                             </h3>
                                             <div className="mt-2 flex items-center gap-3">
-                                                <StarRating rating={product.rating} />
+                                                <StarRating rating={product.rating ?? 0} />
                                                 <span className="text-sm text-tertiary">
-                                                    Based on {product.reviews} reviews
+                                                    Based on {product.reviews ?? 0} reviews
                                                 </span>
                                             </div>
                                         </div>
@@ -536,7 +536,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 
                                     {/* Reviews List */}
                                     <div className="space-y-6">
-                                        {product.customer_reviews.map((review, index) => (
+                                        {(product.customer_reviews ?? []).map((review, index) => (
                                             <motion.div
                                                 key={index}
                                                 initial={{ opacity: 0, y: 10 }}
@@ -634,13 +634,13 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                         <a href={`/product/${relatedProduct.slug}`} className="block size-full">
                                             {/* Primary Image */}
                                             <img
-                                                src={relatedProduct.images[0]}
+                                                src={relatedProduct.images?.[0] ?? ""}
                                                 alt={relatedProduct.name}
                                                 className="absolute inset-0 size-full object-cover transition duration-500 group-hover:opacity-0"
                                             />
                                             {/* Secondary Image (on hover) */}
                                             <img
-                                                src={relatedProduct.images[1] || relatedProduct.images[0]}
+                                                src={relatedProduct.images?.[1] ?? relatedProduct.images?.[0] ?? ""}
                                                 alt={relatedProduct.name}
                                                 className="absolute inset-0 size-full object-cover opacity-0 transition duration-500 group-hover:opacity-100"
                                             />
@@ -648,7 +648,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 
                                         {/* Badges */}
                                         <div className="absolute left-2 top-2 flex flex-col gap-1 sm:left-4 sm:top-4 sm:gap-2">
-                                            {relatedProduct.badges.slice(0, 1).map((badge) => (
+                                            {(relatedProduct.badges ?? []).slice(0, 1).map((badge) => (
                                                 <span
                                                     key={badge}
                                                     className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase sm:px-3 sm:py-1 sm:text-xs ${
@@ -696,7 +696,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             >
                                                 {relatedProduct.category}
                                             </a>
-                                            <StarRating rating={relatedProduct.rating} />
+                                            <StarRating rating={relatedProduct.rating ?? 0} />
                                         </div>
 
                                         <h3 className="mt-1.5 text-sm font-semibold text-primary sm:mt-2 sm:text-lg">
