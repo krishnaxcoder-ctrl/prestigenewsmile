@@ -209,7 +209,7 @@ export default function CartPage() {
                                                 <div className="flex gap-4 md:hidden">
                                                     <a href={`/product/${item.product.slug}`} className="shrink-0">
                                                         <img
-                                                            src={item.product.images[0]}
+                                                            src={item.product.images?.[0] ?? ""}
                                                             alt={item.product.name}
                                                             className="size-24 rounded-lg bg-secondary object-cover"
                                                         />
@@ -260,7 +260,7 @@ export default function CartPage() {
                                                     <div className="col-span-6 flex items-center gap-4">
                                                         <a href={`/product/${item.product.slug}`} className="shrink-0">
                                                             <img
-                                                                src={item.product.images[0]}
+                                                                src={item.product.images?.[0] ?? ""}
                                                                 alt={item.product.name}
                                                                 className="size-20 rounded-lg bg-secondary object-cover"
                                                             />

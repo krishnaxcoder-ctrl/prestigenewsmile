@@ -196,7 +196,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 {/* Main Image */}
                                 <div className="relative aspect-square flex-1 overflow-hidden rounded-2xl bg-secondary sm:aspect-auto">
                                     <img
-                                        src={product.images[selectedImage]}
+                                        src={product.images?.[selectedImage] ?? ""}
                                         alt={product.name}
                                         className="size-full object-cover"
                                     />

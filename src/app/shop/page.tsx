@@ -444,12 +444,12 @@ export default function ShopPage() {
                                             }`}>
                                                 <a href={`/product/${product.slug}`} className="block size-full">
                                                     <img
-                                                        src={product.images[0]}
+                                                        src={product.images?.[0] ?? ""}
                                                         alt={product.name}
                                                         className="absolute inset-0 size-full object-cover transition duration-500 group-hover:opacity-0"
                                                     />
                                                     <img
-                                                        src={product.images[1] || product.images[0]}
+                                                        src={product.images?.[1] ?? product.images?.[0] ?? ""}
                                                         alt={product.name}
                                                         className="absolute inset-0 size-full object-cover opacity-0 transition duration-500 group-hover:opacity-100"
                                                     />
@@ -457,7 +457,7 @@ export default function ShopPage() {
 
                                                 {/* Badges */}
                                                 <div className="absolute left-3 top-3 flex flex-col gap-1.5">
-                                                    {product.badges.slice(0, 1).map((badge) => (
+                                                    {(product.badges ?? []).slice(0, 1).map((badge) => (
                                                         <span
                                                             key={badge}
                                                             className={`rounded-full px-2.5 py-1 text-xs font-semibold uppercase ${

@@ -228,7 +228,7 @@ export default function CheckoutPage() {
                     quantity: item.quantity,
                     size: item.size,
                     color: item.color,
-                    image: item.product.images[0],
+                    image: item.product.images?.[0] ?? "",
                 }))
             );
 
@@ -682,7 +682,7 @@ export default function CheckoutPage() {
                                             <div key={item.id} className="flex gap-4">
                                                 <div className="relative shrink-0">
                                                     <img
-                                                        src={item.product.images[0]}
+                                                        src={item.product.images?.[0] ?? ""}
                                                         alt={item.product.name}
                                                         className="size-16 rounded-lg bg-primary object-cover"
                                                     />
