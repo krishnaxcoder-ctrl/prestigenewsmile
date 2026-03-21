@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import {
@@ -11,46 +13,20 @@ import {
     LogOut01,
     ChevronRight,
     Package,
+    Loading01,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
-
-const user = {
-    name: "Sophie Martin",
-    email: "sophie@example.com",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-    memberSince: "January 2024",
-};
-
-const stats = [
-    { label: "Total Orders", value: "12" },
-    { label: "Wishlist Items", value: "8" },
-    { label: "Reward Points", value: "450" },
-];
-
-const recentOrders = [
-    {
-        id: "ORD-2024-001",
-        date: "March 15, 2024",
-        status: "Delivered",
-        total: 154.00,
-        items: 3,
-    },
-    {
-        id: "ORD-2024-002",
-        date: "March 10, 2024",
-        status: "Shipped",
-        total: 92.00,
-        items: 2,
-    },
-    {
-        id: "ORD-2024-003",
-        date: "March 5, 2024",
-        status: "Processing",
-        total: 46.00,
-        items: 1,
-    },
-];
+import { Avatar } from "@/components/base/avatar/avatar";
+import {
+    getSession,
+    getProfile,
+    getUserOrders,
+    signOut,
+    type Profile,
+    type Order,
+} from "@/lib/supabase";
+import { useToastActions } from "@/components/base/toast/toast";
 
 const menuItems = [
     { icon: ShoppingBag01, label: "Orders", href: "/account/orders", description: "View your order history" },
@@ -60,6 +36,114 @@ const menuItems = [
 ];
 
 export default function AccountPage() {
+    const router = useRouter();
+    const toast = useToastActions();
+    const [loading, setLoading] = useState(true);
+    const [profile, setProfile] = useState<Profile | null>(null);
+    const [orders, setOrders] = useState<Order[]>([]);
+    const [loggingOut, setLoggingOut] = useState(false);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const session = await getSession();
+
+                if (!session?.user) {
+                    router.push("/login");
+                    return;
+                }
+
+                const [profileData, ordersData] = await Promise.all([
+                    getProfile(session.user.id),
+                    getUserOrders(session.user.id),
+                ]);
+
+                setProfile(profileData);
+                setOrders(ordersData);
+            } catch (error) {
+                console.error("Error fetching account data:", error);
+                toast.error("Error loading account", "Please try again.");
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchData();
+    }, [router, toast]);
+
+    const handleLogout = async () => {
+        setLoggingOut(true);
+        try {
+            await signOut();
+            toast.success("Logged out", "You have been signed out successfully.");
+            router.push("/");
+        } catch (error) {
+            console.error("Logout error:", error);
+            toast.error("Logout failed", "Please try again.");
+        } finally {
+            setLoggingOut(false);
+        }
+    };
+
+    const formatDate = (dateString: string) => {
+        return new Date(dateString).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        });
+    };
+
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case "delivered":
+                return "bg-success-100 text-success-700";
+            case "shipped":
+                return "bg-blue-100 text-blue-700";
+            case "processing":
+                return "bg-warning-100 text-warning-700";
+            case "cancelled":
+                return "bg-error-100 text-error-700";
+            default:
+                return "bg-gray-100 text-gray-700";
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className="overflow-x-hidden">
+                <Header />
+                <main className="flex min-h-[60vh] items-center justify-center bg-primary">
+                    <Loading01 className="size-8 animate-spin text-brand-600" />
+                </main>
+                <Footer />
+            </div>
+        );
+    }
+
+    if (!profile) {
+        return (
+            <div className="overflow-x-hidden">
+                <Header />
+                <main className="flex min-h-[60vh] flex-col items-center justify-center bg-primary px-4">
+                    <p className="text-lg text-secondary">Please sign in to view your account.</p>
+                    <Button href="/login" color="primary" size="md" className="mt-4">
+                        Sign In
+                    </Button>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
+
+    const fullName = [profile.first_name, profile.last_name].filter(Boolean).join(" ") || "User";
+    const recentOrders = orders.slice(0, 3);
+
+    const stats = [
+        { label: "Total Orders", value: orders.length.toString() },
+        { label: "Wishlist Items", value: "0" },
+        { label: "Reward Points", value: (orders.length * 50).toString() },
+    ];
+
     return (
         <div className="overflow-x-hidden">
             <Header />
@@ -97,17 +181,19 @@ export default function AccountPage() {
                                     transition={{ duration: 0.4 }}
                                     className="rounded-2xl border border-secondary bg-primary p-6 text-center"
                                 >
-                                    <img
-                                        src={user.avatar}
-                                        alt={user.name}
-                                        className="mx-auto size-24 rounded-full object-cover ring-4 ring-brand-100"
+                                    <Avatar
+                                        size="2xl"
+                                        src={profile.avatar_url}
+                                        alt={fullName}
+                                        initials={`${profile.first_name?.[0] || ""}${profile.last_name?.[0] || ""}`}
+                                        className="mx-auto ring-4 ring-brand-100"
                                     />
                                     <h2 className="mt-4 text-xl font-semibold text-primary">
-                                        {user.name}
+                                        {fullName}
                                     </h2>
-                                    <p className="text-sm text-tertiary">{user.email}</p>
+                                    <p className="text-sm text-tertiary">{profile.email}</p>
                                     <p className="mt-2 text-xs text-tertiary">
-                                        Member since {user.memberSince}
+                                        Member since {formatDate(profile.created_at)}
                                     </p>
                                     <Button
                                         href="/account/settings"
@@ -144,9 +230,17 @@ export default function AccountPage() {
                                             <ChevronRight className="size-5 text-tertiary" />
                                         </a>
                                     ))}
-                                    <button className="flex w-full items-center gap-4 p-4 text-left transition hover:bg-error-50">
+                                    <button
+                                        onClick={handleLogout}
+                                        disabled={loggingOut}
+                                        className="flex w-full items-center gap-4 p-4 text-left transition hover:bg-error-50 disabled:opacity-50"
+                                    >
                                         <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-error-50">
-                                            <LogOut01 className="size-5 text-error-600" />
+                                            {loggingOut ? (
+                                                <Loading01 className="size-5 animate-spin text-error-600" />
+                                            ) : (
+                                                <LogOut01 className="size-5 text-error-600" />
+                                            )}
                                         </div>
                                         <div className="flex-1">
                                             <p className="font-medium text-error-600">Logout</p>
@@ -194,51 +288,55 @@ export default function AccountPage() {
                                         </Button>
                                     </div>
 
-                                    <div className="space-y-4">
-                                        {recentOrders.map((order) => (
-                                            <div
-                                                key={order.id}
-                                                className="flex flex-col gap-4 rounded-xl border border-secondary bg-primary p-4 sm:flex-row sm:items-center sm:justify-between"
-                                            >
-                                                <div className="flex items-center gap-4">
-                                                    <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-50">
-                                                        <Package className="size-6 text-brand-600" />
+                                    {recentOrders.length > 0 ? (
+                                        <div className="space-y-4">
+                                            {recentOrders.map((order) => (
+                                                <div
+                                                    key={order.id}
+                                                    className="flex flex-col gap-4 rounded-xl border border-secondary bg-primary p-4 sm:flex-row sm:items-center sm:justify-between"
+                                                >
+                                                    <div className="flex items-center gap-4">
+                                                        <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-50">
+                                                            <Package className="size-6 text-brand-600" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="font-semibold text-primary">
+                                                                {order.order_number}
+                                                            </p>
+                                                            <p className="text-sm text-tertiary">
+                                                                {formatDate(order.created_at)}
+                                                            </p>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <p className="font-semibold text-primary">
-                                                            {order.id}
-                                                        </p>
-                                                        <p className="text-sm text-tertiary">
-                                                            {order.date} • {order.items} items
-                                                        </p>
+                                                    <div className="flex items-center gap-4">
+                                                        <span
+                                                            className={`rounded-full px-3 py-1 text-xs font-semibold capitalize ${getStatusColor(order.status)}`}
+                                                        >
+                                                            {order.status}
+                                                        </span>
+                                                        <span className="font-semibold text-primary">
+                                                            ${Number(order.total).toFixed(2)}
+                                                        </span>
+                                                        <Button
+                                                            href={`/account/orders/${order.id}`}
+                                                            color="secondary"
+                                                            size="sm"
+                                                        >
+                                                            View
+                                                        </Button>
                                                     </div>
                                                 </div>
-                                                <div className="flex items-center gap-4">
-                                                    <span
-                                                        className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                                                            order.status === "Delivered"
-                                                                ? "bg-success-100 text-success-700"
-                                                                : order.status === "Shipped"
-                                                                ? "bg-blue-100 text-blue-700"
-                                                                : "bg-warning-100 text-warning-700"
-                                                        }`}
-                                                    >
-                                                        {order.status}
-                                                    </span>
-                                                    <span className="font-semibold text-primary">
-                                                        ${order.total.toFixed(2)}
-                                                    </span>
-                                                    <Button
-                                                        href={`/account/orders/${order.id}`}
-                                                        color="secondary"
-                                                        size="sm"
-                                                    >
-                                                        View
-                                                    </Button>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div className="rounded-xl border border-secondary bg-primary p-8 text-center">
+                                            <Package className="mx-auto size-12 text-tertiary" />
+                                            <p className="mt-4 text-secondary">No orders yet</p>
+                                            <Button href="/shop" color="primary" size="sm" className="mt-4">
+                                                Start Shopping
+                                            </Button>
+                                        </div>
+                                    )}
                                 </motion.div>
 
                                 {/* Quick Actions */}

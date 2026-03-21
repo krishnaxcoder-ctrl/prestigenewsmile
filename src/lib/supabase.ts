@@ -65,6 +65,62 @@ export async function getSession() {
     return session;
 }
 
+// Profile types
+export interface Profile {
+    id: string;
+    email: string | null;
+    first_name: string | null;
+    last_name: string | null;
+    phone: string | null;
+    avatar_url: string | null;
+    created_at: string;
+    updated_at: string;
+}
+
+// Profile functions
+export async function getProfile(userId: string): Promise<Profile | null> {
+    const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .single();
+
+    if (error) {
+        if (error.code === "PGRST116") return null;
+        throw error;
+    }
+    return data as Profile;
+}
+
+export async function updateProfile(
+    userId: string,
+    updates: Partial<Omit<Profile, "id" | "created_at" | "updated_at">>
+): Promise<Profile> {
+    const { data, error } = await supabase
+        .from("profiles")
+        .update({
+            ...updates,
+            updated_at: new Date().toISOString(),
+        })
+        .eq("id", userId)
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data as Profile;
+}
+
+export async function getUserOrders(userId: string) {
+    const { data, error } = await supabase
+        .from("orders")
+        .select("*")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false });
+
+    if (error) throw error;
+    return data as Order[];
+}
+
 // Product types
 export interface Product {
     id: string;
