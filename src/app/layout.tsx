@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Jost } from "next/font/google";
 import { RouteProvider } from "@/providers/router-provider";
 import { Theme } from "@/providers/theme";
+import { ToastProvider } from "@/components/base/toast/toast";
 import "@/styles/globals.css";
 import { cx } from "@/utils/cx";
 
@@ -47,7 +48,9 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body className={cx(jost.variable, "bg-primary antialiased")}>
                 <RouteProvider>
-                    <Theme>{children}</Theme>
+                    <Theme>
+                        <ToastProvider>{children}</ToastProvider>
+                    </Theme>
                 </RouteProvider>
             </body>
         </html>

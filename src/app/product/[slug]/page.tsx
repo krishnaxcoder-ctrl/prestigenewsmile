@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, use, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import {
@@ -17,6 +18,7 @@ import {
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
+import { useToastActions } from "@/components/base/toast/toast";
 import { getProductBySlug, getProducts, addToCart, getSessionId, type Product } from "@/lib/supabase";
 
 function StarRating({ rating }: { rating: number }) {
@@ -36,6 +38,8 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = use(params);
+    const router = useRouter();
+    const toast = useToastActions();
     const [product, setProduct] = useState<Product | null>(null);
     const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
