@@ -74,6 +74,14 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
     useEffect(() => {
         async function fetchOrder() {
             try {
+                // Check authentication
+                const session = await getSession();
+
+                if (!session?.user) {
+                    router.push("/login");
+                    return;
+                }
+
                 // Fetch the order
                 const { data: orderData, error: orderError } = await supabase
                     .from("orders")
@@ -90,6 +98,16 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                     return;
                 }
 
+                // Verify the order belongs to the authenticated user
+                const order = orderData as Order;
+                const userOwnsOrder = order.user_id === session.user.id ||
+                                      order.email === session.user.email;
+
+                if (!userOwnsOrder) {
+                    setError("You don't have permission to view this order");
+                    return;
+                }
+
                 // Fetch order items
                 const { data: items, error: itemsError } = await supabase
                     .from("order_items")
@@ -99,7 +117,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                 if (itemsError) throw itemsError;
 
                 setOrder({
-                    ...(orderData as Order),
+                    ...order,
                     items: (items || []) as OrderItem[],
                 });
             } catch (err) {
@@ -111,7 +129,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
         }
 
         fetchOrder();
-    }, [id]);
+    }, [id, router]);
 
     const formatDate = (dateString: string) => {
         return new Date(dateString).toLocaleDateString("en-US", {

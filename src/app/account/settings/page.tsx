@@ -19,6 +19,7 @@ import {
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { Avatar } from "@/components/base/avatar/avatar";
+import { RatingBadge } from "@/components/foundations/rating-badge";
 import {
     getSession,
     getProfile,
@@ -174,9 +175,14 @@ export default function SettingsPage() {
                             <span>/</span>
                             <span className="uppercase text-teal-600">Settings</span>
                         </nav>
-                        <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
-                            Account <span className="text-teal-600">Settings</span>
-                        </h1>
+                        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+                            <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
+                                Account <span className="text-teal-600">Settings</span>
+                            </h1>
+                            <div className="hidden shrink-0 md:block">
+                                <RatingBadge rating={4.9} title="Secure Account" subtitle="Your Data is Safe" />
+                            </div>
+                        </div>
                     </div>
                 </section>
 

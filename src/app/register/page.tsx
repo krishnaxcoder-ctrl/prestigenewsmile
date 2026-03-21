@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { Mail01, Lock01, Eye, EyeOff, User01 } from "@untitledui/icons";
 import { Checkbox } from "@/components/base/checkbox/checkbox";
-import { signUp } from "@/lib/supabase";
+import { signUp, getSession } from "@/lib/supabase";
 import { useToastActions } from "@/components/base/toast/toast";
 
 export default function RegisterPage() {
@@ -15,6 +15,7 @@ export default function RegisterPage() {
     const toast = useToastActions();
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [checkingAuth, setCheckingAuth] = useState(true);
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -23,6 +24,32 @@ export default function RegisterPage() {
         confirmPassword: "",
         acceptTerms: false,
     });
+
+    // Redirect if already authenticated
+    useEffect(() => {
+        async function checkAuth() {
+            try {
+                const session = await getSession();
+                if (session?.user) {
+                    router.push("/account");
+                    return;
+                }
+            } catch (err) {
+                console.error("Auth check error:", err);
+            } finally {
+                setCheckingAuth(false);
+            }
+        }
+        checkAuth();
+    }, [router]);
+
+    if (checkingAuth) {
+        return (
+            <div className="flex min-h-screen items-center justify-center">
+                <div className="size-8 animate-spin rounded-full border-4 border-brand-200 border-t-brand-600" />
+            </div>
+        );
+    }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
