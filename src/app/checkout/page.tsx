@@ -101,6 +101,9 @@ export default function CheckoutPage() {
         try {
             const sessionId = getSessionId();
 
+            // Save email for order lookup
+            localStorage.setItem("order_lookup_email", formData.email);
+
             await createOrder(
                 {
                     email: formData.email,

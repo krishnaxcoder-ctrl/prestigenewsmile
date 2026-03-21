@@ -142,6 +142,16 @@ export async function addToCart(
     size?: string,
     color?: string
 ) {
+    // Validate session ID format (required by RLS)
+    if (!sessionId || !sessionId.startsWith("session_") || sessionId.length <= 20) {
+        throw new Error("Invalid session ID");
+    }
+
+    // Validate quantity (required by RLS)
+    if (quantity <= 0 || quantity > 10) {
+        throw new Error("Invalid quantity");
+    }
+
     // Check if item already exists
     const { data: existing } = await supabase
         .from("cart_items")
@@ -152,11 +162,13 @@ export async function addToCart(
         .single();
 
     if (existing) {
-        // Update quantity
+        // Update quantity (max 99 per RLS)
+        const newQuantity = Math.min(existing.quantity + quantity, 99);
         const { error } = await supabase
             .from("cart_items")
-            .update({ quantity: existing.quantity + quantity })
-            .eq("id", existing.id);
+            .update({ quantity: newQuantity })
+            .eq("id", existing.id)
+            .eq("session_id", sessionId); // Double-check session ownership
         if (error) throw error;
     } else {
         // Insert new item
@@ -164,8 +176,8 @@ export async function addToCart(
             session_id: sessionId,
             product_id: productId,
             quantity,
-            size,
-            color,
+            size: size || null,
+            color: color || null,
         });
         if (error) throw error;
     }
