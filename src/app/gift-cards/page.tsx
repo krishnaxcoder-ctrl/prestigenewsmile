@@ -6,6 +6,7 @@ import { Button } from "@/components/base/buttons/button";
 import { Gift01, CheckCircle, Heart, Star01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import { RatingBadge } from "@/components/foundations/rating-badge";
 
 const giftCardOptions = [
     { value: 50, popular: false },
@@ -37,32 +38,43 @@ export default function GiftCardsPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <div className="relative bg-brand-50 py-12 md:py-16 lg:py-20">
-                    <div className="absolute inset-0 overflow-hidden">
-                        <div className="absolute inset-0 opacity-30" style={{
-                            backgroundImage: `radial-gradient(circle at 1px 1px, var(--color-brand-200) 1px, transparent 0)`,
-                            backgroundSize: '32px 32px'
-                        }} />
+                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+                    <div className="mx-auto max-w-7xl">
+                        <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
+                            <a href="/" className="uppercase transition hover:text-teal-600">Home</a>
+                            <span>/</span>
+                            <span className="uppercase text-teal-600">Gift Cards</span>
+                        </nav>
+                        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+                            <div>
+                                <motion.h1
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 0.1 }}
+                                    className="text-2xl font-semibold uppercase text-primary md:text-3xl"
+                                >
+                                    Gift <span className="text-teal-600">Cards</span>
+                                </motion.h1>
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: 0.2 }}
+                                    className="mt-4 max-w-xl text-tertiary"
+                                >
+                                    Give the gift of a brighter smile. Perfect for birthdays, holidays, or just because.
+                                </motion.p>
+                            </div>
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="hidden shrink-0 md:block"
+                            >
+                                <RatingBadge rating={4.9} title="Perfect Gift" subtitle="500+ Happy Recipients" />
+                            </motion.div>
+                        </div>
                     </div>
-                    <div className="relative mx-auto max-w-7xl px-4 text-center md:px-8 lg:px-16">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                        >
-                            <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-brand-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                                <Gift01 className="size-4" />
-                                The Perfect Gift
-                            </span>
-                            <h1 className="text-2xl font-semibold text-primary sm:text-3xl md:text-4xl lg:text-5xl">
-                                Give the Gift of a<br />Brighter Smile
-                            </h1>
-                            <p className="mx-auto mt-4 max-w-xl text-tertiary">
-                                Treat someone special to a radiant smile with our gift cards. Perfect for birthdays, holidays, or just because.
-                            </p>
-                        </motion.div>
-                    </div>
-                </div>
+                </section>
 
                 {/* Gift Card Section */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">

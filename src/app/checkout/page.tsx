@@ -21,6 +21,7 @@ import {
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import { RatingBadge } from "@/components/foundations/rating-badge";
 import {
     getCartItems,
     createOrder,
@@ -294,26 +295,25 @@ export default function CheckoutPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <div className="relative bg-brand-50 py-12 md:py-16">
-                    <div className="absolute inset-0 overflow-hidden">
-                        <div className="absolute inset-0 opacity-30" style={{
-                            backgroundImage: `radial-gradient(circle at 1px 1px, var(--color-brand-200) 1px, transparent 0)`,
-                            backgroundSize: '32px 32px'
-                        }} />
-                    </div>
-                    <div className="relative mx-auto max-w-7xl px-4 text-center md:px-8 lg:px-16">
-                        <h1 className="text-2xl font-semibold uppercase tracking-[0.2em] text-primary sm:text-3xl md:text-4xl">
-                            Checkout
-                        </h1>
-                        <nav className="mt-4 flex items-center justify-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="transition hover:text-brand-600">Home</a>
+                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+                    <div className="mx-auto max-w-7xl">
+                        <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
+                            <a href="/" className="uppercase transition hover:text-teal-600">Home</a>
                             <span>/</span>
-                            <a href="/cart" className="transition hover:text-brand-600">Cart</a>
+                            <a href="/cart" className="uppercase transition hover:text-teal-600">Cart</a>
                             <span>/</span>
-                            <span className="text-primary">Checkout</span>
+                            <span className="uppercase text-teal-600">Checkout</span>
                         </nav>
+                        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+                            <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
+                                Secure <span className="text-teal-600">Checkout</span>
+                            </h1>
+                            <div className="hidden shrink-0 md:block">
+                                <RatingBadge rating={4.9} title="Secure Checkout" subtitle="SSL Encrypted" />
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
 
                 {/* Progress Steps */}
                 <div className="border-b border-secondary">
