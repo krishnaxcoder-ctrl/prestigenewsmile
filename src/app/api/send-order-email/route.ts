@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend("re_1KrrRG5n_5BnB83LAVCvxg2S2KF2RwP9B");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface OrderEmailData {
     orderNumber: string;
