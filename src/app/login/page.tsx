@@ -8,6 +8,7 @@ import { Input } from "@/components/base/input/input";
 import { Mail01, Lock01, Eye, EyeOff } from "@untitledui/icons";
 import { signIn } from "@/lib/supabase";
 import { useToastActions } from "@/components/base/toast/toast";
+import { Avatar } from "@/components/base/avatar/avatar";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -176,56 +177,129 @@ export default function LoginPage() {
             </div>
 
             {/* Right Side - Branded Panel */}
-            <div className="hidden bg-gradient-to-br from-brand-700 via-brand-800 to-brand-900 lg:flex lg:w-1/2 lg:flex-col lg:justify-center lg:px-16 xl:px-24">
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                    {/* Headline */}
-                    <h2 className="text-4xl font-semibold leading-tight text-white xl:text-5xl">
-                        Brighten Your Smile<br />
-                        with Confidence
-                    </h2>
+            <div className="relative hidden overflow-hidden lg:flex lg:w-1/2 lg:flex-col lg:justify-center">
+                {/* Background with gradient and pattern */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900" />
+                <div className="absolute inset-0 opacity-10" style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                }} />
 
-                    {/* Testimonial */}
-                    <div className="mt-12">
-                        <div className="text-4xl text-brand-300">"</div>
-                        <p className="mt-2 text-lg leading-relaxed text-brand-100">
-                            "Prestige Smile transformed my smile completely. The treatment was professional, comfortable, and the results exceeded my expectations. I can't stop smiling now!"
+                {/* Decorative circles */}
+                <div className="absolute -right-20 -top-20 size-80 rounded-full bg-white/5 blur-3xl" />
+                <div className="absolute -bottom-32 -left-32 size-96 rounded-full bg-brand-400/10 blur-3xl" />
+
+                {/* Content */}
+                <div className="relative z-10 px-12 xl:px-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                        {/* Headline */}
+                        <h2 className="text-4xl font-bold leading-tight text-white xl:text-5xl">
+                            Brighten Your Smile
+                            <span className="mt-2 block text-brand-200">with Confidence</span>
+                        </h2>
+                        <p className="mt-4 max-w-md text-lg text-brand-100/80">
+                            Professional teeth whitening treatments that deliver visible results in just one session.
                         </p>
+                    </motion.div>
 
-                        {/* Author */}
-                        <div className="mt-6 flex items-center gap-4">
-                            <img
-                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face"
-                                alt="Sarah Johnson"
-                                className="size-12 rounded-full object-cover ring-2 ring-white/20"
+                    {/* Stats */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="mt-10 grid grid-cols-3 gap-6"
+                    >
+                        {[
+                            { value: "7+", label: "Shades Whiter" },
+                            { value: "1000+", label: "Happy Clients" },
+                            { value: "4.9", label: "Star Rating" },
+                        ].map((stat) => (
+                            <div key={stat.label} className="text-center">
+                                <p className="text-3xl font-bold text-white">{stat.value}</p>
+                                <p className="mt-1 text-sm text-brand-200">{stat.label}</p>
+                            </div>
+                        ))}
+                    </motion.div>
+
+                    {/* Testimonial Card */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                        className="mt-10 rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur-sm"
+                    >
+                        <div className="flex gap-1">
+                            {[...Array(5)].map((_, i) => (
+                                <svg key={i} className="size-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                            ))}
+                        </div>
+                        <p className="mt-4 text-base leading-relaxed text-white/90">
+                            "Prestige Smile transformed my smile completely. The treatment was professional, comfortable, and the results exceeded my expectations!"
+                        </p>
+                        <div className="mt-5 flex items-center gap-3">
+                            <Avatar
+                                size="lg"
+                                src="https://randomuser.me/api/portraits/women/44.jpg"
+                                alt="Emma Laurent"
+                                contrastBorder={false}
                             />
                             <div>
-                                <p className="font-semibold text-white">Sarah Johnson</p>
-                                <p className="text-sm text-brand-200">Happy Customer from Geneva</p>
+                                <p className="font-semibold text-white">Emma Laurent</p>
+                                <p className="text-sm text-brand-200">Geneva, Switzerland</p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    {/* Trust Badges */}
-                    <div className="mt-16">
-                        <p className="text-xs font-medium uppercase tracking-wider text-brand-300">
-                            Trusted by 1000+ Customers
-                        </p>
-                        <div className="mt-4 flex items-center gap-6">
-                            <div className="flex items-center gap-1">
-                                {[...Array(5)].map((_, i) => (
-                                    <svg key={i} className="size-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                    </svg>
-                                ))}
+                    {/* Avatars stack */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.8 }}
+                        className="mt-8 flex items-center gap-4"
+                    >
+                        <div className="flex -space-x-2">
+                            <Avatar
+                                size="md"
+                                src="https://randomuser.me/api/portraits/men/32.jpg"
+                                alt="Customer"
+                                contrastBorder={false}
+                                className="ring-2 ring-brand-700"
+                            />
+                            <Avatar
+                                size="md"
+                                src="https://randomuser.me/api/portraits/women/68.jpg"
+                                alt="Customer"
+                                contrastBorder={false}
+                                className="ring-2 ring-brand-700"
+                            />
+                            <Avatar
+                                size="md"
+                                src="https://randomuser.me/api/portraits/men/75.jpg"
+                                alt="Customer"
+                                contrastBorder={false}
+                                className="ring-2 ring-brand-700"
+                            />
+                            <Avatar
+                                size="md"
+                                src="https://randomuser.me/api/portraits/women/90.jpg"
+                                alt="Customer"
+                                contrastBorder={false}
+                                className="ring-2 ring-brand-700"
+                            />
+                            <div className="flex size-10 items-center justify-center rounded-full bg-brand-500 text-xs font-semibold text-white ring-2 ring-brand-700">
+                                +99
                             </div>
-                            <span className="text-sm text-brand-200">4.9/5 Rating</span>
                         </div>
-                    </div>
-                </motion.div>
+                        <p className="text-sm text-brand-100">
+                            Join <span className="font-semibold text-white">1,000+</span> happy customers
+                        </p>
+                    </motion.div>
+                </div>
             </div>
         </div>
     );
