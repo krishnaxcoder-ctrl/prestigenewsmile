@@ -11,8 +11,6 @@ import {
     Grid01,
     List,
     ChevronDown,
-    ChevronLeft,
-    ChevronRight,
     X,
     Loading01,
 } from "@untitledui/icons";
@@ -45,8 +43,6 @@ const sortOptions = [
     { label: "Best Selling", value: "best-selling" },
 ];
 
-const PRODUCTS_PER_PAGE = 6;
-
 export default function ShopPage() {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
@@ -56,7 +52,6 @@ export default function ShopPage() {
     const [showFilters, setShowFilters] = useState(false);
     const [priceRange, setPriceRange] = useState([0, 150]);
     const [inStockOnly, setInStockOnly] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
 
     // Fetch products from Supabase
     useEffect(() => {
@@ -87,7 +82,6 @@ export default function ShopPage() {
         setSelectedCategory("All Products");
         setPriceRange([0, 150]);
         setInStockOnly(false);
-        setCurrentPage(1);
     };
 
     // Filter products
@@ -123,27 +117,16 @@ export default function ShopPage() {
         });
     }, [filteredProducts, sortBy]);
 
-    // Pagination
-    const totalPages = Math.ceil(sortedProducts.length / PRODUCTS_PER_PAGE);
-    const paginatedProducts = sortedProducts.slice(
-        (currentPage - 1) * PRODUCTS_PER_PAGE,
-        currentPage * PRODUCTS_PER_PAGE
-    );
-
-    // Reset to page 1 when filters change
     const handleCategoryChange = (category: string) => {
         setSelectedCategory(category);
-        setCurrentPage(1);
     };
 
     const handlePriceChange = (value: number) => {
         setPriceRange([priceRange[0], value]);
-        setCurrentPage(1);
     };
 
     const handleInStockChange = (checked: boolean) => {
         setInStockOnly(checked);
-        setCurrentPage(1);
     };
 
     if (loading) {
@@ -350,8 +333,7 @@ export default function ShopPage() {
                                         </button>
 
                                         <p className="text-sm text-tertiary">
-                                            Showing <span className="font-medium text-primary">{paginatedProducts.length}</span> of{" "}
-                                            <span className="font-medium text-primary">{sortedProducts.length}</span> products
+                                            Showing <span className="font-medium text-primary">{sortedProducts.length}</span> products
                                         </p>
                                     </div>
 
@@ -430,7 +412,7 @@ export default function ShopPage() {
                                         ? "grid-cols-2 md:grid-cols-3"
                                         : "grid-cols-1"
                                 }`}>
-                                    {paginatedProducts.map((product, index) => (
+                                    {sortedProducts.map((product, index) => (
                                         <motion.div
                                             key={product.slug}
                                             initial={{ opacity: 0, y: 20 }}
@@ -544,39 +526,6 @@ export default function ShopPage() {
                                         </motion.div>
                                     ))}
                                 </div>
-
-                                {/* Pagination */}
-                                {totalPages > 1 && (
-                                    <div className="mt-12 flex items-center justify-center gap-2">
-                                        <button
-                                            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                                            disabled={currentPage === 1}
-                                            className="flex size-10 items-center justify-center rounded-lg border border-secondary text-tertiary transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-50"
-                                        >
-                                            <ChevronLeft className="size-5" />
-                                        </button>
-                                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                                            <button
-                                                key={page}
-                                                onClick={() => setCurrentPage(page)}
-                                                className={`flex size-10 items-center justify-center rounded-lg transition ${
-                                                    page === currentPage
-                                                        ? "bg-brand-600 text-white"
-                                                        : "border border-secondary text-tertiary hover:border-primary hover:text-primary"
-                                                }`}
-                                            >
-                                                {page}
-                                            </button>
-                                        ))}
-                                        <button
-                                            onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                                            disabled={currentPage === totalPages}
-                                            className="flex size-10 items-center justify-center rounded-lg border border-secondary text-tertiary transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-50"
-                                        >
-                                            <ChevronRight className="size-5" />
-                                        </button>
-                                    </div>
-                                )}
                             </div>
                         </div>
                     </div>

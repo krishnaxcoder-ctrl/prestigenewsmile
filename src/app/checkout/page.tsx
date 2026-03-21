@@ -209,7 +209,7 @@ export default function CheckoutPage() {
                 payment_method: formData.paymentMethod,
             });
 
-            await createOrder(
+            const order = await createOrder(
                 {
                     email: formData.email,
                     first_name: formData.firstName,
@@ -240,6 +240,41 @@ export default function CheckoutPage() {
                     image: item.product.images?.[0] ?? "",
                 }))
             );
+
+            // Send order notification email to admin
+            try {
+                await fetch("/api/send-order-email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        orderNumber: order.order_number,
+                        customerName: `${formData.firstName} ${formData.lastName}`,
+                        customerEmail: formData.email,
+                        customerPhone: formData.phone || undefined,
+                        shippingAddress: {
+                            address: formData.address,
+                            apartment: formData.apartment || undefined,
+                            city: formData.city,
+                            postalCode: formData.postalCode,
+                            country: formData.country,
+                        },
+                        items: cartItems.map((item) => ({
+                            name: item.product.name,
+                            quantity: item.quantity,
+                            price: item.product.price,
+                            size: item.size || undefined,
+                        })),
+                        subtotal,
+                        shippingCost: shipping,
+                        total,
+                        shippingMethod: formData.shippingMethod,
+                        paymentMethod: formData.paymentMethod,
+                    }),
+                });
+            } catch (emailError) {
+                console.error("Failed to send order email:", emailError);
+                // Don't fail the order if email fails
+            }
 
             // Clear cart
             if (sessionId) {
