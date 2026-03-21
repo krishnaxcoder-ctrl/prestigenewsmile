@@ -50,7 +50,7 @@ export default function OrdersPage() {
                 if (session?.user) {
                     // User is authenticated - fetch their orders directly
                     setIsAuthenticated(true);
-                    await fetchUserOrders(session.user.id);
+                    await fetchUserOrders(session.user.id, session.user.email);
                 } else {
                     // Not authenticated - show email lookup form
                     setIsAuthenticated(false);
@@ -69,14 +69,36 @@ export default function OrdersPage() {
         checkAuthAndFetch();
     }, []);
 
-    const fetchUserOrders = async (userId: string) => {
+    const fetchUserOrders = async (userId: string, userEmail?: string) => {
         setLoading(true);
         try {
+            // Fetch orders by user_id
             const ordersData = await getUserOrders(userId);
+
+            // Also fetch orders by email to include guest orders with same email
+            let allOrders = [...ordersData];
+            if (userEmail) {
+                const { data: emailOrders } = await supabase
+                    .from("orders")
+                    .select("*")
+                    .eq("email", userEmail)
+                    .is("user_id", null)
+                    .order("created_at", { ascending: false });
+
+                if (emailOrders) {
+                    // Add guest orders that aren't already in the list
+                    const existingIds = new Set(allOrders.map(o => o.id));
+                    const newOrders = (emailOrders as Order[]).filter(o => !existingIds.has(o.id));
+                    allOrders = [...allOrders, ...newOrders];
+                }
+            }
+
+            // Sort by created_at descending
+            allOrders.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
             // Fetch items for each order
             const ordersWithItems: OrderWithItems[] = await Promise.all(
-                ordersData.map(async (order) => {
+                allOrders.map(async (order) => {
                     const { data: items } = await supabase
                         .from("order_items")
                         .select("*")

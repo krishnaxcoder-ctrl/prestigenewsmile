@@ -28,6 +28,7 @@ import {
     getSessionId,
     getCustomer,
     saveCustomer,
+    getSession,
     type Product,
 } from "@/lib/supabase";
 import { useToastActions } from "@/components/base/toast/toast";
@@ -56,6 +57,7 @@ export default function CheckoutPage() {
     const [submitting, setSubmitting] = useState(false);
     const [savingCustomer, setSavingCustomer] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
+    const [userId, setUserId] = useState<string | null>(null);
     const [formData, setFormData] = useState({
         email: "",
         firstName: "",
@@ -78,6 +80,12 @@ export default function CheckoutPage() {
                 if (!sessionId) {
                     setLoading(false);
                     return;
+                }
+
+                // Check if user is authenticated
+                const session = await getSession();
+                if (session?.user) {
+                    setUserId(session.user.id);
                 }
 
                 // Fetch cart items
@@ -217,7 +225,7 @@ export default function CheckoutPage() {
                     subtotal,
                     shipping_cost: shipping,
                     total,
-                    user_id: null,
+                    user_id: userId,
                     tracking_number: null,
                     delivery_date: null,
                 },
