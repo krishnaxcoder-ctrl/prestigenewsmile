@@ -78,10 +78,13 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
         try {
             const sessionId = getSessionId();
             await addToCart(sessionId, product.id, quantity, selectedSize, selectedColor);
-            alert("Added to cart!");
+            toast.cart("Added to cart!", `${product.name} has been added to your cart.`, {
+                label: "View Cart",
+                onClick: () => router.push("/cart"),
+            });
         } catch (error) {
             console.error("Error adding to cart:", error);
-            alert("Failed to add to cart");
+            toast.error("Failed to add to cart", "Please try again.");
         } finally {
             setAddingToCart(false);
         }

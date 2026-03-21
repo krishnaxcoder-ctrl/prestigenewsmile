@@ -26,8 +26,11 @@ import {
     createOrder,
     clearCart,
     getSessionId,
+    getCustomer,
+    saveCustomer,
     type Product,
 } from "@/lib/supabase";
+import { useToastActions } from "@/components/base/toast/toast";
 
 interface CartItemWithProduct {
     id: string;
@@ -47,9 +50,11 @@ const steps = [
 
 export default function CheckoutPage() {
     const router = useRouter();
+    const toast = useToastActions();
     const [cartItems, setCartItems] = useState<CartItemWithProduct[]>([]);
     const [loading, setLoading] = useState(true);
     const [submitting, setSubmitting] = useState(false);
+    const [savingCustomer, setSavingCustomer] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
         email: "",
@@ -65,24 +70,45 @@ export default function CheckoutPage() {
         paymentMethod: "twint",
     });
 
-    // Fetch cart items
+    // Fetch cart items and customer info
     useEffect(() => {
-        async function fetchCartItems() {
+        async function fetchData() {
             try {
                 const sessionId = getSessionId();
                 if (!sessionId) {
                     setLoading(false);
                     return;
                 }
-                const data = await getCartItems(sessionId);
-                setCartItems(data as CartItemWithProduct[]);
+
+                // Fetch cart items
+                const cartData = await getCartItems(sessionId);
+                setCartItems(cartData as CartItemWithProduct[]);
+
+                // Fetch existing customer info to pre-fill form
+                const customer = await getCustomer(sessionId);
+                if (customer) {
+                    setFormData((prev) => ({
+                        ...prev,
+                        email: customer.email,
+                        firstName: customer.first_name,
+                        lastName: customer.last_name,
+                        address: customer.address,
+                        apartment: customer.apartment || "",
+                        city: customer.city,
+                        postalCode: customer.postal_code,
+                        country: customer.country,
+                        phone: customer.phone || "",
+                        shippingMethod: customer.shipping_method || "standard",
+                        paymentMethod: customer.payment_method || "twint",
+                    }));
+                }
             } catch (error) {
-                console.error("Error fetching cart:", error);
+                console.error("Error fetching data:", error);
             } finally {
                 setLoading(false);
             }
         }
-        fetchCartItems();
+        fetchData();
     }, []);
 
     const subtotal = cartItems.reduce(
@@ -96,13 +122,83 @@ export default function CheckoutPage() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // Save customer info to Supabase when proceeding to shipping
+    const handleContinueToShipping = async () => {
+        // Validate required fields
+        if (!formData.email || !formData.firstName || !formData.lastName ||
+            !formData.address || !formData.city || !formData.postalCode) {
+            toast.error("Missing information", "Please fill in all required fields.");
+            return;
+        }
+
+        setSavingCustomer(true);
+        try {
+            const sessionId = getSessionId();
+            await saveCustomer(sessionId, {
+                email: formData.email,
+                first_name: formData.firstName,
+                last_name: formData.lastName,
+                address: formData.address,
+                apartment: formData.apartment,
+                city: formData.city,
+                postal_code: formData.postalCode,
+                country: formData.country,
+                phone: formData.phone,
+            });
+            setCurrentStep(2);
+        } catch (error) {
+            console.error("Error saving customer info:", error);
+            toast.error("Failed to save", "Please try again.");
+        } finally {
+            setSavingCustomer(false);
+        }
+    };
+
+    // Save shipping method when proceeding to payment
+    const handleContinueToPayment = async () => {
+        setSavingCustomer(true);
+        try {
+            const sessionId = getSessionId();
+            await saveCustomer(sessionId, {
+                email: formData.email,
+                first_name: formData.firstName,
+                last_name: formData.lastName,
+                address: formData.address,
+                apartment: formData.apartment,
+                city: formData.city,
+                postal_code: formData.postalCode,
+                country: formData.country,
+                phone: formData.phone,
+                shipping_method: formData.shippingMethod,
+            });
+            setCurrentStep(3);
+        } catch (error) {
+            console.error("Error saving shipping method:", error);
+            toast.error("Failed to save", "Please try again.");
+        } finally {
+            setSavingCustomer(false);
+        }
+    };
+
     const handlePlaceOrder = async () => {
         setSubmitting(true);
         try {
             const sessionId = getSessionId();
 
-            // Save email for order lookup
-            localStorage.setItem("order_lookup_email", formData.email);
+            // Save payment method to customer
+            await saveCustomer(sessionId, {
+                email: formData.email,
+                first_name: formData.firstName,
+                last_name: formData.lastName,
+                address: formData.address,
+                apartment: formData.apartment,
+                city: formData.city,
+                postal_code: formData.postalCode,
+                country: formData.country,
+                phone: formData.phone,
+                shipping_method: formData.shippingMethod,
+                payment_method: formData.paymentMethod,
+            });
 
             await createOrder(
                 {
@@ -141,12 +237,12 @@ export default function CheckoutPage() {
                 await clearCart(sessionId);
             }
 
-            // Redirect to success page or orders
-            alert("Order placed successfully!");
+            // Show success toast and redirect
+            toast.success("Order placed successfully!", "Thank you for your purchase.");
             router.push("/account/orders");
         } catch (error) {
             console.error("Error placing order:", error);
-            alert("Failed to place order. Please try again.");
+            toast.error("Failed to place order", "Please try again.");
         } finally {
             setSubmitting(false);
         }
@@ -390,7 +486,8 @@ export default function CheckoutPage() {
                                             <Button
                                                 color="primary"
                                                 size="md"
-                                                onClick={() => setCurrentStep(2)}
+                                                onClick={handleContinueToShipping}
+                                                isLoading={savingCustomer}
                                             >
                                                 Continue to Shipping
                                             </Button>
@@ -465,7 +562,8 @@ export default function CheckoutPage() {
                                             <Button
                                                 color="primary"
                                                 size="md"
-                                                onClick={() => setCurrentStep(3)}
+                                                onClick={handleContinueToPayment}
+                                                isLoading={savingCustomer}
                                             >
                                                 Continue to Payment
                                             </Button>

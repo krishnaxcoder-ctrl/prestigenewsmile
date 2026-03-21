@@ -90,9 +90,9 @@ const ToastItem = ({ toast, onRemove }: ToastItemProps) => {
     return (
         <motion.div
             layout
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
             className={cx(
                 "pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-xl border p-4 shadow-lg",
@@ -179,7 +179,7 @@ export const ToastProvider = ({ children }: ToastProviderProps) => {
             {children}
 
             {/* Toast Container */}
-            <div className="pointer-events-none fixed inset-x-0 top-0 z-[100] flex flex-col items-center gap-3 p-4">
+            <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[100] flex flex-col items-center gap-3 p-4">
                 <AnimatePresence mode="popLayout">
                     {toasts.map((toast) => (
                         <ToastItem key={toast.id} toast={toast} onRemove={removeToast} />

@@ -277,6 +277,105 @@ export async function getOrderWithItems(orderId: string) {
     return { order: order as Order, items: items as OrderItem[] };
 }
 
+// Customer type
+export interface Customer {
+    id: string;
+    session_id: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    address: string;
+    apartment: string | null;
+    city: string;
+    postal_code: string;
+    country: string;
+    phone: string | null;
+    shipping_method: string;
+    payment_method: string;
+    created_at: string;
+    updated_at: string;
+}
+
+// Customer functions
+export async function getCustomer(sessionId: string): Promise<Customer | null> {
+    if (!sessionId || !sessionId.startsWith("session_") || sessionId.length <= 20) {
+        return null;
+    }
+
+    const { data, error } = await supabase
+        .from("customers")
+        .select("*")
+        .eq("session_id", sessionId)
+        .single();
+
+    if (error) {
+        if (error.code === "PGRST116") return null; // Not found
+        throw error;
+    }
+    return data as Customer;
+}
+
+export async function saveCustomer(
+    sessionId: string,
+    customerData: {
+        email: string;
+        first_name: string;
+        last_name: string;
+        address: string;
+        apartment?: string;
+        city: string;
+        postal_code: string;
+        country: string;
+        phone?: string;
+        shipping_method?: string;
+        payment_method?: string;
+    }
+): Promise<Customer> {
+    if (!sessionId || !sessionId.startsWith("session_") || sessionId.length <= 20) {
+        throw new Error("Invalid session ID");
+    }
+
+    // Check if customer exists
+    const existing = await getCustomer(sessionId);
+
+    if (existing) {
+        // Update existing customer
+        const { data, error } = await supabase
+            .from("customers")
+            .update({
+                ...customerData,
+                apartment: customerData.apartment || null,
+                phone: customerData.phone || null,
+                shipping_method: customerData.shipping_method || existing.shipping_method,
+                payment_method: customerData.payment_method || existing.payment_method,
+                updated_at: new Date().toISOString(),
+            })
+            .eq("session_id", sessionId)
+            .select()
+            .single();
+
+        if (error) throw error;
+        return data as Customer;
+    } else {
+        // Insert new customer
+        const { data, error } = await supabase
+            .from("customers")
+            .insert({
+                session_id: sessionId,
+                ...customerData,
+                apartment: customerData.apartment || null,
+                phone: customerData.phone || null,
+                shipping_method: customerData.shipping_method || "standard",
+                payment_method: customerData.payment_method || "twint",
+            })
+            .select()
+            .single();
+
+        if (error) throw error;
+        return data as Customer;
+    }
+}
+
 // Session ID helper
 export function getSessionId(): string {
     if (typeof window === "undefined") return "";
