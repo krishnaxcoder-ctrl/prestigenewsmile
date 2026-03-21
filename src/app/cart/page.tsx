@@ -69,7 +69,7 @@ export default function CartPage() {
                     return;
                 }
                 const data = await getCartItems(sessionId);
-                setCartItems(data as CartItemWithProduct[]);
+                setCartItems(data as unknown as CartItemWithProduct[]);
             } catch (error) {
                 console.error("Error fetching cart:", error);
             } finally {

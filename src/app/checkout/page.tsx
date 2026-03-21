@@ -82,7 +82,7 @@ export default function CheckoutPage() {
 
                 // Fetch cart items
                 const cartData = await getCartItems(sessionId);
-                setCartItems(cartData as CartItemWithProduct[]);
+                setCartItems(cartData as unknown as CartItemWithProduct[]);
 
                 // Fetch existing customer info to pre-fill form
                 const customer = await getCustomer(sessionId);

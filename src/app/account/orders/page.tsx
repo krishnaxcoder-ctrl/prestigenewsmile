@@ -83,7 +83,7 @@ export default function OrdersPage() {
                         .eq("order_id", order.id);
                     return {
                         ...order,
-                        items: items || [],
+                        items: (items || []) as OrderItem[],
                     } as OrderWithItems;
                 })
             );
@@ -119,14 +119,14 @@ export default function OrdersPage() {
             if (ordersError) throw ordersError;
 
             const ordersWithItems: OrderWithItems[] = await Promise.all(
-                (ordersData || []).map(async (order) => {
+                ((ordersData || []) as Order[]).map(async (order) => {
                     const { data: items } = await supabase
                         .from("order_items")
                         .select("*")
                         .eq("order_id", order.id);
                     return {
                         ...order,
-                        items: items || [],
+                        items: (items || []) as OrderItem[],
                     } as OrderWithItems;
                 })
             );

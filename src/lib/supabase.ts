@@ -122,6 +122,26 @@ export async function getUserOrders(userId: string) {
 }
 
 // Product types
+export interface ProductReview {
+    name: string;
+    rating: number;
+    date: string;
+    title: string;
+    comment: string;
+    avatar: string;
+    verified: boolean;
+}
+
+export interface ProductAdditionalInfo {
+    weight?: string;
+    dimensions?: string;
+    ingredients?: string;
+    shelfLife?: string;
+    madeIn?: string;
+    skinType?: string;
+    usage?: string;
+}
+
 export interface Product {
     id: string;
     slug: string;
@@ -129,34 +149,18 @@ export interface Product {
     category: string;
     price: number;
     original_price: number | null;
-    rating: number;
-    reviews: number;
-    in_stock: boolean;
+    rating: number | null;
+    reviews: number | null;
+    in_stock: boolean | null;
     description: string | null;
-    images: string[];
-    badges: string[];
-    sizes: string[];
-    colors: string[];
-    features: string[];
+    images: string[] | null;
+    badges: string[] | null;
+    sizes: string[] | null;
+    colors: string[] | null;
+    features: string[] | null;
     benefits: string | null;
-    additional_info: {
-        weight?: string;
-        dimensions?: string;
-        ingredients?: string;
-        shelfLife?: string;
-        madeIn?: string;
-        skinType?: string;
-        usage?: string;
-    };
-    customer_reviews: {
-        name: string;
-        rating: number;
-        date: string;
-        title: string;
-        comment: string;
-        avatar: string;
-        verified: boolean;
-    }[];
+    additional_info: ProductAdditionalInfo | null;
+    customer_reviews: ProductReview[] | null;
 }
 
 export interface CartItem {
@@ -172,6 +176,7 @@ export interface CartItem {
 export interface Order {
     id: string;
     order_number: string;
+    user_id: string | null;
     email: string;
     first_name: string;
     last_name: string;
@@ -212,7 +217,7 @@ export async function getProducts() {
         .order("created_at", { ascending: false });
 
     if (error) throw error;
-    return data as Product[];
+    return data as unknown as Product[];
 }
 
 export async function getProductBySlug(slug: string) {
@@ -223,7 +228,7 @@ export async function getProductBySlug(slug: string) {
         .single();
 
     if (error) throw error;
-    return data as Product;
+    return data as unknown as Product;
 }
 
 export async function getProductsByCategory(category: string) {
@@ -233,7 +238,7 @@ export async function getProductsByCategory(category: string) {
         .eq("category", category);
 
     if (error) throw error;
-    return data as Product[];
+    return data as unknown as Product[];
 }
 
 // Cart functions
