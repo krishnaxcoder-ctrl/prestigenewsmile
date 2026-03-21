@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, use } from "react";
+import { useState, use, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import {
@@ -12,301 +12,12 @@ import {
     Truck01,
     HelpCircle,
     Package,
+    Loading01,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
-
-// Mock product data - Teeth Whitening Products
-const allProducts = [
-    {
-        slug: "whitening-kit-pro",
-        name: "Whitening Kit Pro",
-        category: "Whitening Kits",
-        price: 89.00,
-        originalPrice: 119.00,
-        rating: 5,
-        reviews: 256,
-        inStock: true,
-        description: "Our professional-grade teeth whitening kit delivers up to 7 shades whiter teeth in just one week. This comprehensive kit includes everything you need for salon-quality results at home. The gentle yet effective formula is designed by dental professionals to minimize sensitivity while maximizing whitening power.",
-        images: [
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-            "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
-        ],
-        badges: ["Best Seller"],
-        sizes: ["7-Day Kit", "14-Day Kit"],
-        colors: ["#FFFFFF", "#E0F7FA", "#B2EBF2"],
-        features: [
-            "Professional-grade whitening gel with 16% carbamide peroxide for effective results.",
-            "LED accelerator light to enhance whitening process and reduce treatment time.",
-            "Custom-fit mouth trays that mold to your teeth for even gel distribution.",
-            "Enamel-safe formula developed with dental professionals.",
-        ],
-        benefits: "Achieve a brilliant, confident smile with our Whitening Kit Pro. The advanced formula penetrates deep into enamel to lift stubborn stains from coffee, tea, wine, and smoking while protecting tooth sensitivity. Results are visible after just one treatment.",
-        additionalInfo: {
-            weight: "250g",
-            dimensions: "15 × 10 × 5 cm",
-            ingredients: "Carbamide Peroxide 16%, Glycerin, Potassium Nitrate, Sodium Fluoride, Aloe Vera Extract",
-            shelfLife: "24 months",
-            madeIn: "Switzerland",
-            skinType: "Suitable for sensitive teeth",
-            usage: "Apply gel to trays, wear for 20-30 minutes daily. Use LED light for first 10 minutes. Rinse after treatment.",
-        },
-        customerReviews: [
-            { name: "Sophie M.", rating: 5, date: "March 12, 2026", title: "Amazing results!", comment: "I've tried many whitening products but this one actually works! My teeth are noticeably whiter after just 5 days. No sensitivity at all.", avatar: "https://randomuser.me/api/portraits/women/1.jpg", verified: true },
-            { name: "Marc D.", rating: 5, date: "March 8, 2026", title: "Professional quality", comment: "Better results than my dentist's treatment and at a fraction of the cost. Highly recommend!", avatar: "https://randomuser.me/api/portraits/men/2.jpg", verified: true },
-            { name: "Julie L.", rating: 4, date: "February 28, 2026", title: "Great for coffee stains", comment: "Finally got rid of my coffee stains. The kit is easy to use and the results speak for themselves.", avatar: "https://randomuser.me/api/portraits/women/3.jpg", verified: true },
-        ],
-    },
-    {
-        slug: "whitening-strips",
-        name: "Whitening Strips",
-        category: "Whitening Strips",
-        price: 45.00,
-        originalPrice: 55.00,
-        rating: 5,
-        reviews: 189,
-        inStock: true,
-        description: "Premium dissolving whitening strips that work in just 15 minutes. These innovative strips dissolve completely, leaving no residue while delivering powerful whitening ingredients directly to your teeth. Perfect for on-the-go whitening.",
-        images: [
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-            "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-        ],
-        badges: ["Sale", "Popular"],
-        sizes: ["14 Strips", "28 Strips"],
-        colors: ["#FFFFFF", "#E3F2FD", "#BBDEFB"],
-        features: [
-            "Dissolving technology - no need to remove strips.",
-            "15-minute treatment fits any schedule.",
-            "Enamel-safe and dentist approved.",
-            "Fresh mint flavor for pleasant experience.",
-        ],
-        benefits: "Experience convenient whitening with our dissolving strips. They adhere firmly to teeth, deliver active ingredients, and dissolve completely - perfect for busy lifestyles.",
-        additionalInfo: {
-            weight: "50g",
-            dimensions: "10 × 5 × 2 cm",
-            ingredients: "Hydrogen Peroxide 6%, PVP, Glycerin, Menthol, Xylitol",
-            shelfLife: "18 months",
-            madeIn: "Switzerland",
-            skinType: "Gentle for daily use",
-            usage: "Apply strip to teeth, press firmly. Leave for 15 minutes until dissolved. Use once daily.",
-        },
-        customerReviews: [
-            { name: "Emma R.", rating: 5, date: "March 15, 2026", title: "So convenient!", comment: "Love that they dissolve! I use them during my commute. Great results after 2 weeks.", avatar: "https://randomuser.me/api/portraits/women/4.jpg", verified: true },
-            { name: "Thomas B.", rating: 5, date: "March 10, 2026", title: "Best strips I've tried", comment: "No slipping, no mess. These actually stay in place and work. My smile has never looked better.", avatar: "https://randomuser.me/api/portraits/men/5.jpg", verified: true },
-            { name: "Claire P.", rating: 4, date: "March 1, 2026", title: "Quick and effective", comment: "Perfect for my busy schedule. Noticeable whitening in just one week.", avatar: "https://randomuser.me/api/portraits/women/6.jpg", verified: true },
-        ],
-    },
-    {
-        slug: "whitening-pen",
-        name: "Whitening Pen",
-        category: "Touch-Up",
-        price: 29.00,
-        originalPrice: 39.00,
-        rating: 4,
-        reviews: 145,
-        inStock: true,
-        description: "Precision whitening pen for targeted touch-ups and on-the-go whitening. The compact design fits in your purse or pocket, making it perfect for quick touch-ups after coffee or meals. The brush tip allows precise application exactly where you need it.",
-        images: [
-            "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-        ],
-        badges: ["Hot Deal"],
-        sizes: ["2ml", "4ml"],
-        colors: ["#FFFFFF", "#F5F5F5", "#EEEEEE"],
-        features: [
-            "Precision brush tip for targeted application.",
-            "Portable design fits anywhere.",
-            "Quick-dry formula - no rinsing required.",
-            "Over 30 applications per pen.",
-        ],
-        benefits: "Maintain your bright smile anywhere with our portable whitening pen. Perfect for touch-ups after coffee, tea, or wine. The no-rinse formula means you can use it anytime.",
-        additionalInfo: {
-            weight: "15g",
-            dimensions: "12 × 1.5 × 1.5 cm",
-            ingredients: "Hydrogen Peroxide 3%, Glycerin, Carbomer, Menthol, Sodium Saccharin",
-            shelfLife: "12 months",
-            madeIn: "Switzerland",
-            skinType: "Safe for daily use",
-            usage: "Twist bottom to dispense gel. Apply thin layer to teeth. Avoid eating or drinking for 30 minutes.",
-        },
-        customerReviews: [
-            { name: "Lisa H.", rating: 5, date: "March 14, 2026", title: "Perfect for touch-ups!", comment: "I keep one in my purse for after coffee. It's so easy to use and really works!", avatar: "https://randomuser.me/api/portraits/women/7.jpg", verified: true },
-            { name: "Antoine M.", rating: 4, date: "March 5, 2026", title: "Great travel companion", comment: "Love the portability. Results are gradual but definitely noticeable over time.", avatar: "https://randomuser.me/api/portraits/men/8.jpg", verified: true },
-            { name: "Marie S.", rating: 4, date: "February 25, 2026", title: "Easy to use", comment: "Simple and effective. Great for maintaining results between treatments.", avatar: "https://randomuser.me/api/portraits/women/9.jpg", verified: true },
-        ],
-    },
-    {
-        slug: "whitening-toothpaste",
-        name: "Whitening Toothpaste",
-        category: "Daily Care",
-        price: 18.00,
-        originalPrice: 24.00,
-        rating: 4,
-        reviews: 312,
-        inStock: true,
-        description: "Daily whitening toothpaste with active charcoal and baking soda for gentle everyday whitening. This fluoride-enriched formula cleans, whitens, and protects your teeth with every brush while freshening breath.",
-        images: [
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-            "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-        ],
-        badges: ["Sale", "Best Seller"],
-        sizes: ["75ml", "150ml"],
-        colors: ["#FFFFFF", "#E8F5E9", "#C8E6C9"],
-        features: [
-            "Activated charcoal for natural stain removal.",
-            "Fluoride protection against cavities.",
-            "Fresh mint flavor for lasting freshness.",
-            "Gentle enough for daily use.",
-        ],
-        benefits: "Maintain your white smile daily with our gentle whitening toothpaste. The activated charcoal formula lifts surface stains while fluoride strengthens enamel.",
-        additionalInfo: {
-            weight: "75ml / 150ml",
-            dimensions: "18 × 4 × 4 cm",
-            ingredients: "Sodium Fluoride, Activated Charcoal, Sodium Bicarbonate, Silica, Menthol, Xylitol",
-            shelfLife: "24 months",
-            madeIn: "Switzerland",
-            skinType: "All teeth types",
-            usage: "Brush twice daily for 2 minutes. Rinse thoroughly. For best results, use with our whitening kit.",
-        },
-        customerReviews: [
-            { name: "Olivia J.", rating: 5, date: "March 13, 2026", title: "Great daily whitener!", comment: "I've been using this for 3 months and my teeth have stayed white after my whitening treatment. Love it!", avatar: "https://randomuser.me/api/portraits/women/10.jpg", verified: true },
-            { name: "Pierre L.", rating: 4, date: "March 7, 2026", title: "Fresh and effective", comment: "Great taste and my teeth feel super clean. Noticed gradual whitening over time.", avatar: "https://randomuser.me/api/portraits/men/11.jpg", verified: true },
-            { name: "Camille F.", rating: 4, date: "February 20, 2026", title: "Perfect maintenance", comment: "Using this to maintain my whitening results. Works great and tastes good too.", avatar: "https://randomuser.me/api/portraits/women/12.jpg", verified: true },
-        ],
-    },
-    {
-        slug: "sensitivity-gel",
-        name: "Sensitivity Relief Gel",
-        category: "Sensitivity Care",
-        price: 25.00,
-        originalPrice: 32.00,
-        rating: 5,
-        reviews: 178,
-        inStock: true,
-        description: "Specially formulated gel to prevent and relieve tooth sensitivity during and after whitening treatments. Apply before whitening for protection or after for soothing relief. Contains potassium nitrate and fluoride for maximum comfort.",
-        images: [
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-            "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-        ],
-        badges: ["Essential"],
-        sizes: ["30ml", "60ml"],
-        colors: ["#E3F2FD", "#BBDEFB", "#90CAF9"],
-        features: [
-            "Fast-acting sensitivity relief.",
-            "Can be used before or after whitening.",
-            "Strengthens and remineralizes enamel.",
-            "Dentist recommended formula.",
-        ],
-        benefits: "Enjoy whitening without the discomfort. Our sensitivity gel creates a protective barrier and desensitizes nerves for comfortable whitening treatments.",
-        additionalInfo: {
-            weight: "30ml / 60ml",
-            dimensions: "10 × 3 × 3 cm",
-            ingredients: "Potassium Nitrate 5%, Sodium Fluoride, Glycerin, Calcium Phosphate, Aloe Vera",
-            shelfLife: "18 months",
-            madeIn: "Switzerland",
-            skinType: "For sensitive teeth",
-            usage: "Apply to trays and wear for 15-30 minutes before or after whitening treatment.",
-        },
-        customerReviews: [
-            { name: "Anne M.", rating: 5, date: "March 11, 2026", title: "Game changer!", comment: "I always had sensitivity issues with whitening. This gel completely solved it. I can now whiten without any pain!", avatar: "https://randomuser.me/api/portraits/women/13.jpg", verified: true },
-            { name: "Jean-Paul R.", rating: 5, date: "March 3, 2026", title: "Essential product", comment: "Use this with every whitening session. No more sensitivity at all. Highly recommend.", avatar: "https://randomuser.me/api/portraits/men/14.jpg", verified: true },
-            { name: "Isabelle D.", rating: 5, date: "February 18, 2026", title: "Finally can whiten!", comment: "My sensitive teeth prevented me from whitening before. This gel changed everything!", avatar: "https://randomuser.me/api/portraits/women/15.jpg", verified: true },
-        ],
-    },
-    {
-        slug: "led-accelerator",
-        name: "LED Accelerator Light",
-        category: "Accessories",
-        price: 49.00,
-        originalPrice: 65.00,
-        rating: 4,
-        reviews: 98,
-        inStock: true,
-        description: "Professional LED light to accelerate your whitening results. This rechargeable device uses blue LED technology to activate whitening gel and speed up the whitening process by up to 50%. Compatible with all our whitening gels.",
-        images: [
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-            "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-        ],
-        badges: ["Hot Deal"],
-        sizes: ["Standard"],
-        colors: ["#FFFFFF", "#2196F3", "#1976D2"],
-        features: [
-            "Blue LED technology for faster results.",
-            "USB rechargeable - up to 20 sessions per charge.",
-            "Auto timer with 10-minute intervals.",
-            "Comfortable silicone mouthpiece.",
-        ],
-        benefits: "Boost your whitening results with professional LED technology. The blue light activates the whitening gel to penetrate deeper and work faster.",
-        additionalInfo: {
-            weight: "85g",
-            dimensions: "8 × 6 × 4 cm",
-            ingredients: "N/A - Electronic device",
-            shelfLife: "2 year warranty",
-            madeIn: "Switzerland",
-            skinType: "Universal fit",
-            usage: "Charge fully before first use. Apply whitening gel, insert mouthpiece, turn on light for 10 minutes.",
-        },
-        customerReviews: [
-            { name: "Christina L.", rating: 5, date: "March 9, 2026", title: "Speeds up whitening!", comment: "Noticed faster results when using this with my whitening kit. Great investment!", avatar: "https://randomuser.me/api/portraits/women/16.jpg", verified: true },
-            { name: "Nicolas G.", rating: 4, date: "March 2, 2026", title: "Good quality device", comment: "Well made and easy to use. Battery lasts long. Results are definitely faster.", avatar: "https://randomuser.me/api/portraits/men/17.jpg", verified: true },
-            { name: "Sandrine V.", rating: 4, date: "February 22, 2026", title: "Professional results", comment: "Like having a mini dental treatment at home. Love the timer feature.", avatar: "https://randomuser.me/api/portraits/women/18.jpg", verified: true },
-        ],
-    },
-    {
-        slug: "maintenance-kit",
-        name: "Maintenance Kit",
-        category: "Whitening Kits",
-        price: 55.00,
-        originalPrice: 69.00,
-        rating: 4,
-        reviews: 134,
-        inStock: true,
-        description: "Monthly maintenance kit to preserve your whitening results. Includes gentle whitening gel, sensitivity protection, and whitening toothpaste - everything you need to maintain your bright smile between treatments.",
-        images: [
-            "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-        ],
-        badges: ["Value Pack"],
-        sizes: ["1 Month", "3 Month"],
-        colors: ["#FFFFFF", "#F3E5F5", "#E1BEE7"],
-        features: [
-            "Complete maintenance solution.",
-            "Gentle formula for regular use.",
-            "Includes sensitivity protection.",
-            "Cost-effective bundle.",
-        ],
-        benefits: "Keep your smile bright long after your initial whitening treatment. This maintenance kit provides everything needed for weekly touch-ups.",
-        additionalInfo: {
-            weight: "200g",
-            dimensions: "12 × 8 × 5 cm",
-            ingredients: "Carbamide Peroxide 10%, Potassium Nitrate, Sodium Fluoride, Glycerin",
-            shelfLife: "18 months",
-            madeIn: "Switzerland",
-            skinType: "For maintenance use",
-            usage: "Use whitening gel once weekly. Use toothpaste daily. Apply sensitivity gel as needed.",
-        },
-        customerReviews: [
-            { name: "Nathalie N.", rating: 5, date: "March 6, 2026", title: "Perfect for upkeep", comment: "Been using this monthly and my teeth have stayed white for 6 months now. Great value!", avatar: "https://randomuser.me/api/portraits/women/19.jpg", verified: true },
-            { name: "François E.", rating: 4, date: "February 27, 2026", title: "Good maintenance option", comment: "Keeps my smile bright between professional treatments. Easy to use.", avatar: "https://randomuser.me/api/portraits/men/20.jpg", verified: true },
-            { name: "Diane V.", rating: 4, date: "February 15, 2026", title: "All-in-one solution", comment: "Love having everything I need in one kit. The 3-month option is great value.", avatar: "https://randomuser.me/api/portraits/women/21.jpg", verified: true },
-        ],
-    },
-];
+import { getProductBySlug, getProducts, addToCart, getSessionId, type Product } from "@/lib/supabase";
 
 function StarRating({ rating }: { rating: number }) {
     return (
@@ -325,14 +36,84 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = use(params);
-    const product = allProducts.find((p) => p.slug === slug) || allProducts[0];
+    const [product, setProduct] = useState<Product | null>(null);
+    const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [addingToCart, setAddingToCart] = useState(false);
 
     const [selectedImage, setSelectedImage] = useState(0);
-    const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
-    const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+    const [selectedSize, setSelectedSize] = useState("");
+    const [selectedColor, setSelectedColor] = useState("");
     const [quantity, setQuantity] = useState(1);
     const [isWishlisted, setIsWishlisted] = useState(false);
     const [activeTab, setActiveTab] = useState("description");
+
+    useEffect(() => {
+        async function fetchProduct() {
+            try {
+                const data = await getProductBySlug(slug);
+                setProduct(data);
+                if (data.sizes.length > 0) setSelectedSize(data.sizes[0]);
+                if (data.colors.length > 0) setSelectedColor(data.colors[0]);
+
+                // Fetch related products
+                const allProducts = await getProducts();
+                setRelatedProducts(allProducts.filter((p) => p.slug !== slug).slice(0, 4));
+            } catch (error) {
+                console.error("Error fetching product:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchProduct();
+    }, [slug]);
+
+    const handleAddToCart = async () => {
+        if (!product) return;
+        setAddingToCart(true);
+        try {
+            const sessionId = getSessionId();
+            await addToCart(sessionId, product.id, quantity, selectedSize, selectedColor);
+            alert("Added to cart!");
+        } catch (error) {
+            console.error("Error adding to cart:", error);
+            alert("Failed to add to cart");
+        } finally {
+            setAddingToCart(false);
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className="overflow-x-hidden">
+                <Header />
+                <main className="flex min-h-screen items-center justify-center bg-primary">
+                    <div className="flex flex-col items-center gap-4">
+                        <Loading01 className="size-8 animate-spin text-brand-600" />
+                        <p className="text-tertiary">Loading product...</p>
+                    </div>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
+
+    if (!product) {
+        return (
+            <div className="overflow-x-hidden">
+                <Header />
+                <main className="flex min-h-screen items-center justify-center bg-primary">
+                    <div className="text-center">
+                        <h1 className="text-2xl font-semibold text-primary">Product not found</h1>
+                        <Button href="/shop" color="primary" className="mt-4">
+                            Back to Shop
+                        </Button>
+                    </div>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
 
     const freeShippingThreshold = 120;
     const amountToFreeShipping = freeShippingThreshold - product.price;
@@ -437,57 +218,61 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 </div>
 
                                 {/* In Stock Badge */}
-                                {product.inStock && (
+                                {product.in_stock && (
                                     <span className="mt-4 inline-block rounded bg-success-500 px-3 py-1 text-xs font-semibold text-white">
                                         In Stock
                                     </span>
                                 )}
 
                                 {/* Size Selection */}
-                                <div className="mt-6">
-                                    <p className="mb-3 text-xs font-medium uppercase tracking-wider text-primary">
-                                        Size : {selectedSize}
-                                    </p>
-                                    <div className="flex flex-wrap gap-2">
-                                        {product.sizes.map((size) => (
-                                            <button
-                                                key={size}
-                                                onClick={() => setSelectedSize(size)}
-                                                className={`rounded-md px-5 py-2.5 text-sm font-medium transition ${
-                                                    selectedSize === size
-                                                        ? "bg-gray-900 text-white"
-                                                        : "border border-gray-300 bg-white text-gray-900 hover:border-gray-900"
-                                                }`}
-                                            >
-                                                {size}
-                                            </button>
-                                        ))}
+                                {product.sizes.length > 0 && (
+                                    <div className="mt-6">
+                                        <p className="mb-3 text-xs font-medium uppercase tracking-wider text-primary">
+                                            Size : {selectedSize}
+                                        </p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {product.sizes.map((size) => (
+                                                <button
+                                                    key={size}
+                                                    onClick={() => setSelectedSize(size)}
+                                                    className={`rounded-md px-5 py-2.5 text-sm font-medium transition ${
+                                                        selectedSize === size
+                                                            ? "bg-gray-900 text-white"
+                                                            : "border border-gray-300 bg-white text-gray-900 hover:border-gray-900"
+                                                    }`}
+                                                >
+                                                    {size}
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
 
                                 {/* Color Selection */}
-                                <div className="mt-6">
-                                    <p className="mb-3 text-xs font-medium uppercase tracking-wider text-primary">
-                                        Color : <span className="normal-case text-tertiary">Dirty Pink</span>
-                                    </p>
-                                    <div className="flex items-center gap-3">
-                                        {product.colors.map((color) => (
-                                            <button
-                                                key={color}
-                                                onClick={() => setSelectedColor(color)}
-                                                className={`size-7 rounded-full transition ${
-                                                    selectedColor === color
-                                                        ? "ring-2 ring-primary ring-offset-2"
-                                                        : "hover:scale-110"
-                                                }`}
-                                                style={{ backgroundColor: color }}
-                                            />
-                                        ))}
+                                {product.colors.length > 0 && (
+                                    <div className="mt-6">
+                                        <p className="mb-3 text-xs font-medium uppercase tracking-wider text-primary">
+                                            Color
+                                        </p>
+                                        <div className="flex items-center gap-3">
+                                            {product.colors.map((color) => (
+                                                <button
+                                                    key={color}
+                                                    onClick={() => setSelectedColor(color)}
+                                                    className={`size-7 rounded-full transition ${
+                                                        selectedColor === color
+                                                            ? "ring-2 ring-primary ring-offset-2"
+                                                            : "hover:scale-110"
+                                                    }`}
+                                                    style={{ backgroundColor: color }}
+                                                />
+                                            ))}
+                                        </div>
+                                        <button className="mt-2 text-xs text-tertiary underline hover:text-primary">
+                                            Clear
+                                        </button>
                                     </div>
-                                    <button className="mt-2 text-xs text-tertiary underline hover:text-primary">
-                                        Clear
-                                    </button>
-                                </div>
+                                )}
 
                                 {/* Quantity & Add to Cart */}
                                 <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -511,8 +296,12 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                     </div>
 
                                     {/* Add to Cart Button */}
-                                    <button className="flex min-w-0 flex-1 items-center justify-center gap-2 bg-gray-900 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-gray-800 sm:py-3 sm:text-sm">
-                                        Add to Cart
+                                    <button
+                                        onClick={handleAddToCart}
+                                        disabled={addingToCart}
+                                        className="flex min-w-0 flex-1 items-center justify-center gap-2 bg-gray-900 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-gray-800 disabled:opacity-50 sm:py-3 sm:text-sm"
+                                    >
+                                        {addingToCart ? "Adding..." : "Add to Cart"}
                                     </button>
 
                                     {/* Wishlist Button */}
@@ -637,7 +426,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             How To Use
                                         </h3>
                                         <p className="mt-4 leading-relaxed text-tertiary">
-                                            {product.additionalInfo.usage}
+                                            {product.additional_info.usage}
                                         </p>
                                     </div>
 
@@ -667,11 +456,11 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             <tbody>
                                                 <tr className="border-b border-secondary">
                                                     <td className="w-1/3 py-4 font-medium text-primary">Weight</td>
-                                                    <td className="py-4 text-tertiary">{product.additionalInfo.weight}</td>
+                                                    <td className="py-4 text-tertiary">{product.additional_info.weight}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
                                                     <td className="py-4 font-medium text-primary">Dimensions</td>
-                                                    <td className="py-4 text-tertiary">{product.additionalInfo.dimensions}</td>
+                                                    <td className="py-4 text-tertiary">{product.additional_info.dimensions}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
                                                     <td className="py-4 font-medium text-primary">Size Options</td>
@@ -679,15 +468,15 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                                 </tr>
                                                 <tr className="border-b border-secondary">
                                                     <td className="py-4 font-medium text-primary">Skin Type</td>
-                                                    <td className="py-4 text-tertiary">{product.additionalInfo.skinType}</td>
+                                                    <td className="py-4 text-tertiary">{product.additional_info.skinType}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
                                                     <td className="py-4 font-medium text-primary">Shelf Life</td>
-                                                    <td className="py-4 text-tertiary">{product.additionalInfo.shelfLife}</td>
+                                                    <td className="py-4 text-tertiary">{product.additional_info.shelfLife}</td>
                                                 </tr>
                                                 <tr className="border-b border-secondary">
                                                     <td className="py-4 font-medium text-primary">Made In</td>
-                                                    <td className="py-4 text-tertiary">{product.additionalInfo.madeIn}</td>
+                                                    <td className="py-4 text-tertiary">{product.additional_info.madeIn}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -696,21 +485,21 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             Ingredients
                                         </h3>
                                         <p className="text-sm leading-relaxed text-tertiary">
-                                            {product.additionalInfo.ingredients}
+                                            {product.additional_info.ingredients}
                                         </p>
 
                                         <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
                                             How To Use
                                         </h3>
                                         <p className="text-sm leading-relaxed text-tertiary">
-                                            {product.additionalInfo.usage}
+                                            {product.additional_info.usage}
                                         </p>
                                     </div>
 
                                     {/* Image */}
                                     <div className="hidden overflow-hidden rounded-2xl lg:block">
                                         <img
-                                            src={product.images[1]}
+                                            src={product.images[1] || product.images[0]}
                                             alt={product.name}
                                             className="size-full object-cover"
                                         />
@@ -744,7 +533,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 
                                     {/* Reviews List */}
                                     <div className="space-y-6">
-                                        {product.customerReviews.map((review, index) => (
+                                        {product.customer_reviews.map((review, index) => (
                                             <motion.div
                                                 key={index}
                                                 initial={{ opacity: 0, y: 10 }}
@@ -828,103 +617,100 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                         </div>
 
                         <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-                            {allProducts
-                                .filter((p) => p.slug !== product.slug)
-                                .slice(0, 4)
-                                .map((relatedProduct, index) => (
-                                    <motion.div
-                                        key={relatedProduct.slug}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: "-100px" }}
-                                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                                        className="group"
-                                    >
-                                        {/* Product Image */}
-                                        <div className="relative aspect-[850/1020] overflow-hidden rounded-2xl bg-secondary">
-                                            <a href={`/product/${relatedProduct.slug}`} className="block size-full">
-                                                {/* Primary Image */}
-                                                <img
-                                                    src={relatedProduct.images[0]}
-                                                    alt={relatedProduct.name}
-                                                    className="absolute inset-0 size-full object-cover transition duration-500 group-hover:opacity-0"
-                                                />
-                                                {/* Secondary Image (on hover) */}
-                                                <img
-                                                    src={relatedProduct.images[1]}
-                                                    alt={relatedProduct.name}
-                                                    className="absolute inset-0 size-full object-cover opacity-0 transition duration-500 group-hover:opacity-100"
-                                                />
+                            {relatedProducts.map((relatedProduct, index) => (
+                                <motion.div
+                                    key={relatedProduct.slug}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    className="group"
+                                >
+                                    {/* Product Image */}
+                                    <div className="relative aspect-[850/1020] overflow-hidden rounded-2xl bg-secondary">
+                                        <a href={`/product/${relatedProduct.slug}`} className="block size-full">
+                                            {/* Primary Image */}
+                                            <img
+                                                src={relatedProduct.images[0]}
+                                                alt={relatedProduct.name}
+                                                className="absolute inset-0 size-full object-cover transition duration-500 group-hover:opacity-0"
+                                            />
+                                            {/* Secondary Image (on hover) */}
+                                            <img
+                                                src={relatedProduct.images[1] || relatedProduct.images[0]}
+                                                alt={relatedProduct.name}
+                                                className="absolute inset-0 size-full object-cover opacity-0 transition duration-500 group-hover:opacity-100"
+                                            />
+                                        </a>
+
+                                        {/* Badges */}
+                                        <div className="absolute left-2 top-2 flex flex-col gap-1 sm:left-4 sm:top-4 sm:gap-2">
+                                            {relatedProduct.badges.slice(0, 1).map((badge) => (
+                                                <span
+                                                    key={badge}
+                                                    className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase sm:px-3 sm:py-1 sm:text-xs ${
+                                                        badge === "Sale"
+                                                            ? "bg-error-500 text-white"
+                                                            : "bg-brand-600 text-white"
+                                                    }`}
+                                                >
+                                                    {badge}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        {/* Action Buttons */}
+                                        <div className="absolute right-2 top-2 flex flex-col gap-2 opacity-0 transition duration-300 group-hover:opacity-100 sm:right-4 sm:top-4">
+                                            <button
+                                                className="flex size-8 items-center justify-center rounded-full bg-white shadow-md transition duration-100 ease-linear hover:bg-brand-50 hover:text-brand-600 sm:size-10"
+                                                aria-label="Add to wishlist"
+                                            >
+                                                <Heart className="size-4 sm:size-5" />
+                                            </button>
+                                        </div>
+
+                                        {/* Add to Cart Button */}
+                                        <div className="absolute inset-x-2 bottom-2 translate-y-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:inset-x-4 sm:bottom-4">
+                                            <Button
+                                                href={`/product/${relatedProduct.slug}`}
+                                                color="primary"
+                                                size="sm"
+                                                iconLeading={ShoppingBag01}
+                                                className="w-full justify-center sm:text-sm"
+                                            >
+                                                <span className="hidden sm:inline">Select Options</span>
+                                                <span className="sm:hidden">View</span>
+                                            </Button>
+                                        </div>
+                                    </div>
+
+                                    {/* Product Details */}
+                                    <div className="mt-3 sm:mt-4">
+                                        <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
+                                            <a
+                                                href={`/product/${relatedProduct.slug}`}
+                                                className="text-xs text-tertiary transition duration-100 ease-linear hover:text-brand-600 sm:text-sm"
+                                            >
+                                                {relatedProduct.category}
                                             </a>
-
-                                            {/* Badges */}
-                                            <div className="absolute left-2 top-2 flex flex-col gap-1 sm:left-4 sm:top-4 sm:gap-2">
-                                                {relatedProduct.badges.slice(0, 1).map((badge) => (
-                                                    <span
-                                                        key={badge}
-                                                        className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase sm:px-3 sm:py-1 sm:text-xs ${
-                                                            badge === "Sale"
-                                                                ? "bg-error-500 text-white"
-                                                                : "bg-brand-600 text-white"
-                                                        }`}
-                                                    >
-                                                        {badge}
-                                                    </span>
-                                                ))}
-                                            </div>
-
-                                            {/* Action Buttons */}
-                                            <div className="absolute right-2 top-2 flex flex-col gap-2 opacity-0 transition duration-300 group-hover:opacity-100 sm:right-4 sm:top-4">
-                                                <button
-                                                    className="flex size-8 items-center justify-center rounded-full bg-white shadow-md transition duration-100 ease-linear hover:bg-brand-50 hover:text-brand-600 sm:size-10"
-                                                    aria-label="Add to wishlist"
-                                                >
-                                                    <Heart className="size-4 sm:size-5" />
-                                                </button>
-                                            </div>
-
-                                            {/* Add to Cart Button */}
-                                            <div className="absolute inset-x-2 bottom-2 translate-y-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 sm:inset-x-4 sm:bottom-4">
-                                                <Button
-                                                    href={`/product/${relatedProduct.slug}`}
-                                                    color="primary"
-                                                    size="sm"
-                                                    iconLeading={ShoppingBag01}
-                                                    className="w-full justify-center sm:text-sm"
-                                                >
-                                                    <span className="hidden sm:inline">Select Options</span>
-                                                    <span className="sm:hidden">View</span>
-                                                </Button>
-                                            </div>
+                                            <StarRating rating={relatedProduct.rating} />
                                         </div>
 
-                                        {/* Product Details */}
-                                        <div className="mt-3 sm:mt-4">
-                                            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
-                                                <a
-                                                    href={`/product/${relatedProduct.slug}`}
-                                                    className="text-xs text-tertiary transition duration-100 ease-linear hover:text-brand-600 sm:text-sm"
-                                                >
-                                                    {relatedProduct.category}
-                                                </a>
-                                                <StarRating rating={relatedProduct.rating} />
-                                            </div>
+                                        <h3 className="mt-1.5 text-sm font-semibold text-primary sm:mt-2 sm:text-lg">
+                                            <a
+                                                href={`/product/${relatedProduct.slug}`}
+                                                className="line-clamp-1 transition duration-100 ease-linear hover:text-brand-600"
+                                            >
+                                                {relatedProduct.name}
+                                            </a>
+                                        </h3>
 
-                                            <h3 className="mt-1.5 text-sm font-semibold text-primary sm:mt-2 sm:text-lg">
-                                                <a
-                                                    href={`/product/${relatedProduct.slug}`}
-                                                    className="line-clamp-1 transition duration-100 ease-linear hover:text-brand-600"
-                                                >
-                                                    {relatedProduct.name}
-                                                </a>
-                                            </h3>
-
-                                            <p className="mt-1 text-xs font-medium text-secondary sm:text-md">
-                                                ${relatedProduct.price.toFixed(2)} – ${relatedProduct.originalPrice.toFixed(2)}
-                                            </p>
-                                        </div>
-                                    </motion.div>
-                                ))}
+                                        <p className="mt-1 text-xs font-medium text-secondary sm:text-md">
+                                            ${relatedProduct.price.toFixed(2)} – ${(relatedProduct.original_price || relatedProduct.price).toFixed(2)}
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </section>

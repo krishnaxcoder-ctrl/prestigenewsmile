@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import {
@@ -12,53 +12,28 @@ import {
     Truck01,
     Shield01,
     RefreshCcw01,
+    Loading01,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import {
+    getCartItems,
+    updateCartItemQuantity,
+    removeFromCart,
+    clearCart,
+    getSessionId,
+    type Product,
+} from "@/lib/supabase";
 
-interface CartItem {
+interface CartItemWithProduct {
     id: string;
-    slug: string;
-    name: string;
-    category: string;
-    price: number;
+    product_id: string;
     quantity: number;
-    size: string;
-    image: string;
+    size: string | null;
+    color: string | null;
+    session_id: string | null;
+    product: Product;
 }
-
-const initialCartItems: CartItem[] = [
-    {
-        id: "1",
-        slug: "pure-protect",
-        name: "Pure Protect",
-        category: "Premium Face Oil",
-        price: 46.00,
-        quantity: 2,
-        size: "180 ML",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-16-01.png",
-    },
-    {
-        id: "2",
-        slug: "pure-glow-mask",
-        name: "Pure Glow Mask",
-        category: "Luxury Face Powder",
-        price: 62.00,
-        quantity: 1,
-        size: "50g",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-15-01.png",
-    },
-    {
-        id: "3",
-        slug: "night-lip-balm",
-        name: "Night Lip Balm",
-        category: "Lip Care",
-        price: 55.00,
-        quantity: 1,
-        size: "10g",
-        image: "https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/shop-13-01.png",
-    },
-];
 
 const features = [
     {
@@ -79,26 +54,99 @@ const features = [
 ];
 
 export default function CartPage() {
-    const [cartItems, setCartItems] = useState<CartItem[]>(initialCartItems);
+    const [cartItems, setCartItems] = useState<CartItemWithProduct[]>([]);
+    const [loading, setLoading] = useState(true);
     const [couponCode, setCouponCode] = useState("");
+    const [updating, setUpdating] = useState<string | null>(null);
 
-    const updateQuantity = (id: string, delta: number) => {
-        setCartItems((items) =>
-            items.map((item) =>
-                item.id === id
-                    ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-                    : item
-            )
-        );
+    // Fetch cart items from Supabase
+    useEffect(() => {
+        async function fetchCartItems() {
+            try {
+                const sessionId = getSessionId();
+                if (!sessionId) {
+                    setLoading(false);
+                    return;
+                }
+                const data = await getCartItems(sessionId);
+                setCartItems(data as CartItemWithProduct[]);
+            } catch (error) {
+                console.error("Error fetching cart:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchCartItems();
+    }, []);
+
+    const updateQuantity = async (id: string, delta: number) => {
+        const item = cartItems.find((i) => i.id === id);
+        if (!item) return;
+
+        const newQuantity = Math.max(1, item.quantity + delta);
+        setUpdating(id);
+
+        try {
+            await updateCartItemQuantity(id, newQuantity);
+            setCartItems((items) =>
+                items.map((item) =>
+                    item.id === id
+                        ? { ...item, quantity: newQuantity }
+                        : item
+                )
+            );
+        } catch (error) {
+            console.error("Error updating quantity:", error);
+        } finally {
+            setUpdating(null);
+        }
     };
 
-    const removeItem = (id: string) => {
-        setCartItems((items) => items.filter((item) => item.id !== id));
+    const removeItem = async (id: string) => {
+        setUpdating(id);
+        try {
+            await removeFromCart(id);
+            setCartItems((items) => items.filter((item) => item.id !== id));
+        } catch (error) {
+            console.error("Error removing item:", error);
+        } finally {
+            setUpdating(null);
+        }
     };
 
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const handleClearCart = async () => {
+        const sessionId = getSessionId();
+        if (!sessionId) return;
+
+        try {
+            await clearCart(sessionId);
+            setCartItems([]);
+        } catch (error) {
+            console.error("Error clearing cart:", error);
+        }
+    };
+
+    const subtotal = cartItems.reduce(
+        (sum, item) => sum + item.product.price * item.quantity,
+        0
+    );
     const shipping = subtotal >= 120 ? 0 : 10;
     const total = subtotal + shipping;
+
+    if (loading) {
+        return (
+            <div className="overflow-x-hidden">
+                <Header />
+                <main className="flex min-h-screen items-center justify-center bg-primary">
+                    <div className="flex flex-col items-center gap-4">
+                        <Loading01 className="size-8 animate-spin text-brand-600" />
+                        <p className="text-tertiary">Loading cart...</p>
+                    </div>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
 
     return (
         <div className="overflow-x-hidden">
@@ -155,25 +203,25 @@ export default function CartPage() {
                                                 initial={{ opacity: 0, y: 10 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                                                className="py-6"
+                                                className={`py-6 ${updating === item.id ? "opacity-50" : ""}`}
                                             >
                                                 {/* Mobile Layout */}
                                                 <div className="flex gap-4 md:hidden">
-                                                    <a href={`/product/${item.slug}`} className="shrink-0">
+                                                    <a href={`/product/${item.product.slug}`} className="shrink-0">
                                                         <img
-                                                            src={item.image}
-                                                            alt={item.name}
+                                                            src={item.product.images[0]}
+                                                            alt={item.product.name}
                                                             className="size-24 rounded-lg bg-secondary object-cover"
                                                         />
                                                     </a>
                                                     <div className="flex flex-1 flex-col">
                                                         <div className="flex items-start justify-between">
                                                             <div>
-                                                                <a href={`/product/${item.slug}`} className="font-semibold text-primary hover:text-brand-600">
-                                                                    {item.name}
+                                                                <a href={`/product/${item.product.slug}`} className="font-semibold text-primary hover:text-brand-600">
+                                                                    {item.product.name}
                                                                 </a>
-                                                                <p className="mt-0.5 text-xs text-tertiary">{item.category}</p>
-                                                                <p className="mt-1 text-xs text-tertiary">Size: {item.size}</p>
+                                                                <p className="mt-0.5 text-xs text-tertiary">{item.product.category}</p>
+                                                                {item.size && <p className="mt-1 text-xs text-tertiary">Size: {item.size}</p>}
                                                             </div>
                                                             <button
                                                                 onClick={() => removeItem(item.id)}
@@ -201,7 +249,7 @@ export default function CartPage() {
                                                                 </button>
                                                             </div>
                                                             <span className="font-semibold text-primary">
-                                                                ${(item.price * item.quantity).toFixed(2)}
+                                                                ${(item.product.price * item.quantity).toFixed(2)}
                                                             </span>
                                                         </div>
                                                     </div>
@@ -210,19 +258,19 @@ export default function CartPage() {
                                                 {/* Desktop Layout */}
                                                 <div className="hidden items-center gap-4 md:grid md:grid-cols-12">
                                                     <div className="col-span-6 flex items-center gap-4">
-                                                        <a href={`/product/${item.slug}`} className="shrink-0">
+                                                        <a href={`/product/${item.product.slug}`} className="shrink-0">
                                                             <img
-                                                                src={item.image}
-                                                                alt={item.name}
+                                                                src={item.product.images[0]}
+                                                                alt={item.product.name}
                                                                 className="size-20 rounded-lg bg-secondary object-cover"
                                                             />
                                                         </a>
                                                         <div>
-                                                            <a href={`/product/${item.slug}`} className="font-semibold text-primary hover:text-brand-600">
-                                                                {item.name}
+                                                            <a href={`/product/${item.product.slug}`} className="font-semibold text-primary hover:text-brand-600">
+                                                                {item.product.name}
                                                             </a>
-                                                            <p className="mt-0.5 text-xs text-tertiary">{item.category}</p>
-                                                            <p className="mt-1 text-xs text-tertiary">Size: {item.size}</p>
+                                                            <p className="mt-0.5 text-xs text-tertiary">{item.product.category}</p>
+                                                            {item.size && <p className="mt-1 text-xs text-tertiary">Size: {item.size}</p>}
                                                             <button
                                                                 onClick={() => removeItem(item.id)}
                                                                 className="mt-2 flex items-center gap-1 text-xs text-tertiary transition hover:text-error-500"
@@ -234,7 +282,7 @@ export default function CartPage() {
                                                     </div>
                                                     <div className="col-span-2 text-center">
                                                         <span className="font-medium text-primary">
-                                                            ${item.price.toFixed(2)}
+                                                            ${item.product.price.toFixed(2)}
                                                         </span>
                                                     </div>
                                                     <div className="col-span-2 flex justify-center">
@@ -258,7 +306,7 @@ export default function CartPage() {
                                                     </div>
                                                     <div className="col-span-2 text-right">
                                                         <span className="font-semibold text-primary">
-                                                            ${(item.price * item.quantity).toFixed(2)}
+                                                            ${(item.product.price * item.quantity).toFixed(2)}
                                                         </span>
                                                     </div>
                                                 </div>
@@ -272,7 +320,7 @@ export default function CartPage() {
                                             Continue Shopping
                                         </Button>
                                         <button
-                                            onClick={() => setCartItems([])}
+                                            onClick={handleClearCart}
                                             className="flex items-center gap-2 text-sm text-tertiary transition hover:text-error-500"
                                         >
                                             <Trash01 className="size-4" />

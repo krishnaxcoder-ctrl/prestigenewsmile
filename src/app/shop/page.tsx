@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import {
@@ -14,152 +14,12 @@ import {
     ChevronLeft,
     ChevronRight,
     X,
+    Loading01,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
-
-// Mock product data - Teeth Whitening Products
-const allProducts = [
-    {
-        slug: "whitening-kit-pro",
-        name: "Whitening Kit Pro",
-        category: "Whitening Kits",
-        price: 89.00,
-        originalPrice: 119.00,
-        rating: 5,
-        reviews: 256,
-        inStock: true,
-        images: [
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-        ],
-        badges: ["Best Seller"],
-    },
-    {
-        slug: "whitening-strips",
-        name: "Whitening Strips",
-        category: "Whitening Strips",
-        price: 45.00,
-        originalPrice: 55.00,
-        rating: 5,
-        reviews: 189,
-        inStock: true,
-        images: [
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-        ],
-        badges: ["Sale", "Popular"],
-    },
-    {
-        slug: "whitening-pen",
-        name: "Whitening Pen",
-        category: "Touch-Up",
-        price: 29.00,
-        originalPrice: 39.00,
-        rating: 4,
-        reviews: 145,
-        inStock: true,
-        images: [
-            "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-        ],
-        badges: ["Hot Deal"],
-    },
-    {
-        slug: "whitening-toothpaste",
-        name: "Whitening Toothpaste",
-        category: "Daily Care",
-        price: 18.00,
-        originalPrice: 24.00,
-        rating: 4,
-        reviews: 312,
-        inStock: true,
-        images: [
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-            "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
-        ],
-        badges: ["Sale", "Best Seller"],
-    },
-    {
-        slug: "sensitivity-gel",
-        name: "Sensitivity Relief Gel",
-        category: "Sensitivity Care",
-        price: 25.00,
-        originalPrice: 32.00,
-        rating: 5,
-        reviews: 178,
-        inStock: true,
-        images: [
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-        ],
-        badges: ["Essential"],
-    },
-    {
-        slug: "led-accelerator",
-        name: "LED Accelerator Light",
-        category: "Accessories",
-        price: 49.00,
-        originalPrice: 65.00,
-        rating: 4,
-        reviews: 98,
-        inStock: true,
-        images: [
-            "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800",
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-        ],
-        badges: ["Hot Deal"],
-    },
-    {
-        slug: "maintenance-kit",
-        name: "Maintenance Kit",
-        category: "Whitening Kits",
-        price: 55.00,
-        originalPrice: 69.00,
-        rating: 4,
-        reviews: 134,
-        inStock: true,
-        images: [
-            "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=800",
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-        ],
-        badges: ["Value Pack"],
-    },
-    {
-        slug: "charcoal-powder",
-        name: "Charcoal Whitening Powder",
-        category: "Daily Care",
-        price: 22.00,
-        originalPrice: 28.00,
-        rating: 4,
-        reviews: 87,
-        inStock: true,
-        images: [
-            "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?w=800",
-            "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800",
-        ],
-        badges: ["Natural"],
-    },
-];
-
-const categories = [
-    "All Products",
-    "Whitening Kits",
-    "Whitening Strips",
-    "Daily Care",
-    "Touch-Up",
-    "Sensitivity Care",
-    "Accessories",
-];
-
-const sortOptions = [
-    { label: "Featured", value: "featured" },
-    { label: "Price: Low to High", value: "price-asc" },
-    { label: "Price: High to Low", value: "price-desc" },
-    { label: "Newest", value: "newest" },
-    { label: "Best Selling", value: "best-selling" },
-];
+import { getProducts, type Product } from "@/lib/supabase";
 
 function StarRating({ rating }: { rating: number }) {
     return (
@@ -176,31 +36,62 @@ function StarRating({ rating }: { rating: number }) {
     );
 }
 
+const sortOptions = [
+    { label: "Featured", value: "featured" },
+    { label: "Price: Low to High", value: "price-asc" },
+    { label: "Price: High to Low", value: "price-desc" },
+    { label: "Newest", value: "newest" },
+    { label: "Best Selling", value: "best-selling" },
+];
+
 const PRODUCTS_PER_PAGE = 6;
 
 export default function ShopPage() {
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState("All Products");
     const [sortBy, setSortBy] = useState("featured");
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
     const [showFilters, setShowFilters] = useState(false);
-    const [priceRange, setPriceRange] = useState([0, 100]);
+    const [priceRange, setPriceRange] = useState([0, 150]);
     const [inStockOnly, setInStockOnly] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
 
+    // Fetch products from Supabase
+    useEffect(() => {
+        async function fetchProducts() {
+            try {
+                const data = await getProducts();
+                setProducts(data);
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchProducts();
+    }, []);
+
+    // Get unique categories from products
+    const categories = useMemo(() => {
+        const cats = ["All Products", ...new Set(products.map((p) => p.category))];
+        return cats;
+    }, [products]);
+
     // Check if any filters are active
-    const hasActiveFilters = selectedCategory !== "All Products" || priceRange[1] < 100 || inStockOnly;
+    const hasActiveFilters = selectedCategory !== "All Products" || priceRange[1] < 150 || inStockOnly;
 
     // Clear all filters
     const clearFilters = () => {
         setSelectedCategory("All Products");
-        setPriceRange([0, 100]);
+        setPriceRange([0, 150]);
         setInStockOnly(false);
         setCurrentPage(1);
     };
 
     // Filter products
     const filteredProducts = useMemo(() => {
-        return allProducts.filter((product) => {
+        return products.filter((product) => {
             // Category filter
             if (selectedCategory !== "All Products" && product.category !== selectedCategory) {
                 return false;
@@ -210,12 +101,12 @@ export default function ShopPage() {
                 return false;
             }
             // In stock filter
-            if (inStockOnly && !product.inStock) {
+            if (inStockOnly && !product.in_stock) {
                 return false;
             }
             return true;
         });
-    }, [selectedCategory, priceRange, inStockOnly]);
+    }, [products, selectedCategory, priceRange, inStockOnly]);
 
     // Sort products
     const sortedProducts = useMemo(() => {
@@ -253,6 +144,21 @@ export default function ShopPage() {
         setInStockOnly(checked);
         setCurrentPage(1);
     };
+
+    if (loading) {
+        return (
+            <div className="overflow-x-hidden">
+                <Header />
+                <main className="flex min-h-screen items-center justify-center bg-primary">
+                    <div className="flex flex-col items-center gap-4">
+                        <Loading01 className="size-8 animate-spin text-brand-600" />
+                        <p className="text-tertiary">Loading products...</p>
+                    </div>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
 
     return (
         <div className="overflow-x-hidden">
@@ -347,7 +253,7 @@ export default function ShopPage() {
                                             <input
                                                 type="range"
                                                 min="0"
-                                                max="100"
+                                                max="150"
                                                 value={priceRange[1]}
                                                 onChange={(e) => handlePriceChange(parseInt(e.target.value))}
                                                 className="w-full accent-brand-600"
@@ -394,11 +300,11 @@ export default function ShopPage() {
                                                 </button>
                                             </span>
                                         )}
-                                        {priceRange[1] < 100 && (
+                                        {priceRange[1] < 150 && (
                                             <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
                                                 Up to ${priceRange[1]}
                                                 <button
-                                                    onClick={() => handlePriceChange(100)}
+                                                    onClick={() => handlePriceChange(150)}
                                                     className="transition hover:text-brand-900"
                                                 >
                                                     <X className="size-3" />
@@ -437,7 +343,7 @@ export default function ShopPage() {
                                             Filters
                                             {hasActiveFilters && (
                                                 <span className="flex size-5 items-center justify-center rounded-full bg-brand-600 text-xs text-white">
-                                                    {(selectedCategory !== "All Products" ? 1 : 0) + (priceRange[1] < 100 ? 1 : 0) + (inStockOnly ? 1 : 0)}
+                                                    {(selectedCategory !== "All Products" ? 1 : 0) + (priceRange[1] < 150 ? 1 : 0) + (inStockOnly ? 1 : 0)}
                                                 </span>
                                             )}
                                         </button>
@@ -542,7 +448,7 @@ export default function ShopPage() {
                                                         className="absolute inset-0 size-full object-cover transition duration-500 group-hover:opacity-0"
                                                     />
                                                     <img
-                                                        src={product.images[1]}
+                                                        src={product.images[1] || product.images[0]}
                                                         alt={product.name}
                                                         className="absolute inset-0 size-full object-cover opacity-0 transition duration-500 group-hover:opacity-100"
                                                     />
@@ -615,9 +521,9 @@ export default function ShopPage() {
                                                     <span className="font-semibold text-primary">
                                                         ${product.price.toFixed(2)}
                                                     </span>
-                                                    {product.originalPrice > product.price && (
+                                                    {product.original_price && product.original_price > product.price && (
                                                         <span className="text-sm text-tertiary line-through">
-                                                            ${product.originalPrice.toFixed(2)}
+                                                            ${product.original_price.toFixed(2)}
                                                         </span>
                                                     )}
                                                 </div>
