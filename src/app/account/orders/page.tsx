@@ -8,6 +8,7 @@ import { Input } from "@/components/base/input/input";
 import { Package, Eye, Download01, ChevronDown, Loading01, Mail01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import { RatingBadge } from "@/components/foundations/rating-badge";
 import {
     supabase,
     getSession,
@@ -206,9 +207,14 @@ export default function OrdersPage() {
                             <span>/</span>
                             <span className="uppercase text-teal-600">Orders</span>
                         </nav>
-                        <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
-                            My <span className="text-teal-600">Orders</span>
-                        </h1>
+                        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+                            <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
+                                My <span className="text-teal-600">Orders</span>
+                            </h1>
+                            <div className="hidden shrink-0 md:block">
+                                <RatingBadge rating={4.9} title="Order Tracking" subtitle="Real-time Updates" />
+                            </div>
+                        </div>
                     </div>
                 </section>
 
