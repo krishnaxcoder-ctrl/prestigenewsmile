@@ -14,7 +14,8 @@
       "WebFetch(domain:incident.io)",
       "mcp__chrome-devtools__close_page",
       "WebFetch(domain:www.untitledui.com)",
-      "Bash(claude mcp add:*)"
+      "Bash(claude mcp add:*)",
+      "Bash(npm install:*)"
     ]
   }
 }
