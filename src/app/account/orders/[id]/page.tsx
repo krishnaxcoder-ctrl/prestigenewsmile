@@ -179,30 +179,21 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <div className="relative bg-brand-50 py-12 md:py-16">
-                    <div className="absolute inset-0 overflow-hidden">
-                        <div
-                            className="absolute inset-0 opacity-30"
-                            style={{
-                                backgroundImage: `radial-gradient(circle at 1px 1px, var(--color-brand-200) 1px, transparent 0)`,
-                                backgroundSize: "32px 32px",
-                            }}
-                        />
-                    </div>
-                    <div className="relative mx-auto max-w-7xl px-4 md:px-8 lg:px-16">
-                        <Button
-                            href="/account/orders"
-                            color="tertiary"
-                            size="sm"
-                            iconLeading={ArrowLeft}
-                            className="mb-4"
-                        >
-                            Back to Orders
-                        </Button>
+                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+                    <div className="mx-auto max-w-7xl">
+                        <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
+                            <a href="/" className="uppercase transition hover:text-teal-600">Home</a>
+                            <span>/</span>
+                            <a href="/account" className="uppercase transition hover:text-teal-600">Account</a>
+                            <span>/</span>
+                            <a href="/account/orders" className="uppercase transition hover:text-teal-600">Orders</a>
+                            <span>/</span>
+                            <span className="uppercase text-teal-600">{order.order_number}</span>
+                        </nav>
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                             <div>
-                                <h1 className="text-2xl font-semibold text-primary sm:text-3xl">
-                                    Order {order.order_number}
+                                <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
+                                    Order <span className="text-teal-600">{order.order_number}</span>
                                 </h1>
                                 <p className="mt-1 text-tertiary">
                                     Placed on {formatDate(order.created_at)} at {formatTime(order.created_at)}
@@ -214,7 +205,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
                 {/* Order Content */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
