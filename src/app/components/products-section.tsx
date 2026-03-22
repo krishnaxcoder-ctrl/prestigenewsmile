@@ -123,7 +123,7 @@ export function ProductsSection() {
                                 className="group"
                             >
                                 {/* Product Image */}
-                                <div className="relative aspect-[850/1020] overflow-hidden rounded-2xl bg-secondary ">
+                                <div className="relative aspect-[850/1020] overflow-hidden rounded-2xl border border-secondary bg-secondary">
                                     <a href={`/product/${product.slug}`} className="block size-full">
                                         {/* Primary Image */}
                                         <img
