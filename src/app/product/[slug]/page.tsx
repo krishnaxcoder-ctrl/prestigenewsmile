@@ -431,9 +431,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             {product.benefits}
                                         </p>
 
-                                        <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
-                                            How To Use
-                                        </h3>
+                                      
                                         <p className="mt-4 leading-relaxed text-tertiary">
                                             {product.additional_info?.usage}
                                         </p>
