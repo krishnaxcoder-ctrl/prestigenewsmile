@@ -60,9 +60,15 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                 if (data.sizes && data.sizes.length > 0) setSelectedSize(data.sizes[0]);
                 if (data.colors && data.colors.length > 0) setSelectedColor(data.colors[0]);
 
-                // Fetch related products
+                // Fetch related products (show same product if no others)
                 const allProducts = await getProducts();
-                setRelatedProducts(allProducts.filter((p) => p.slug !== slug).slice(0, 4));
+                const otherProducts = allProducts.filter((p) => p.slug !== slug);
+                // If no other products, show the current product
+                if (otherProducts.length === 0) {
+                    setRelatedProducts([data]);
+                } else {
+                    setRelatedProducts(otherProducts.slice(0, 4));
+                }
             } catch (error) {
                 console.error("Error fetching product:", error);
             } finally {
@@ -219,7 +225,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
 
                                 <div className="mt-4 flex items-center justify-between">
                                     <span className="text-2xl font-semibold text-primary">
-                                        ${product.price.toFixed(2)}
+                                        {product.price.toFixed(2)}€
                                     </span>
                                     <StarRating rating={product.rating ?? 0} />
                                 </div>
@@ -352,7 +358,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 <div className="mt-6 flex items-center gap-2 rounded-lg bg-secondary px-3 py-2.5 sm:px-4 sm:py-3">
                                     <Package className="size-4 shrink-0 text-tertiary sm:size-5" />
                                     <span className="text-xs text-tertiary sm:text-sm">
-                                        Spend <span className="font-semibold text-primary">${amountToFreeShipping.toFixed(0)}</span> More To Get Free Shipping
+                                        Spend <span className="font-semibold text-primary">{amountToFreeShipping.toFixed(0)}€</span> More To Get Free Shipping
                                     </span>
                                 </div>
                             </motion.div>
@@ -436,7 +442,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                     {/* Image */}
                                     <div className="hidden overflow-hidden rounded-2xl lg:block">
                                         <img
-                                            src="https://wdtmonica.wpengine.com/wp-content/uploads/2026/01/Home1-slider-img-04.jpg"
+                                            src="https://kaybntynrpmgyiuvxbpr.supabase.co/storage/v1/object/public/products/miswak-toothpaste-lifestyle.jpeg"
                                             alt="Beauty"
                                             className="size-full object-cover"
                                         />
@@ -622,7 +628,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                         <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
                             {relatedProducts.map((relatedProduct, index) => (
                                 <motion.div
-                                    key={relatedProduct.slug}
+                                    key={`${relatedProduct.slug}-${index}`}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-100px" }}
@@ -709,7 +715,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                         </h3>
 
                                         <p className="mt-1 text-xs font-medium text-secondary sm:text-md">
-                                            ${relatedProduct.price.toFixed(2)} – ${(relatedProduct.original_price || relatedProduct.price).toFixed(2)}
+                                            {relatedProduct.price.toFixed(2)}€ – {(relatedProduct.original_price || relatedProduct.price).toFixed(2)}€
                                         </p>
                                     </div>
                                 </motion.div>

@@ -319,7 +319,7 @@ export default function AccountPage() {
                                                             {order.status}
                                                         </span>
                                                         <span className="font-semibold text-primary">
-                                                            ${Number(order.total).toFixed(2)}
+                                                            {Number(order.total).toFixed(2)}€
                                                         </span>
                                                         <Button
                                                             href={`/account/orders/${order.id}`}

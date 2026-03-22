@@ -201,11 +201,11 @@ export function ProductsSection() {
 
                                     <div className="mt-1 flex items-center gap-2">
                                         <span className="text-md font-medium text-primary">
-                                            CHF {product.price.toFixed(2)}
+                                            {product.price.toFixed(2)}€
                                         </span>
                                         {product.original_price && product.original_price > product.price && (
                                             <span className="text-sm text-tertiary line-through">
-                                                CHF {product.original_price.toFixed(2)}
+                                                {product.original_price.toFixed(2)}€
                                             </span>
                                         )}
                                     </div>

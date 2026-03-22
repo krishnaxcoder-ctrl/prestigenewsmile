@@ -228,11 +228,11 @@ export default function WishlistPage() {
                                                         <StarRating rating={product.rating || 5} />
                                                         <div className="flex items-center gap-2">
                                                             <span className="font-semibold text-primary">
-                                                                ${Number(product.price).toFixed(2)}
+                                                                {Number(product.price).toFixed(2)}€
                                                             </span>
                                                             {product.original_price && product.original_price > product.price && (
                                                                 <span className="text-xs text-tertiary line-through">
-                                                                    ${Number(product.original_price).toFixed(2)}
+                                                                    {Number(product.original_price).toFixed(2)}€
                                                                 </span>
                                                             )}
                                                         </div>

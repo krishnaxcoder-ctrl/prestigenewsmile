@@ -368,19 +368,19 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                                     <div className="mt-4 space-y-3">
                                         <div className="flex justify-between text-sm">
                                             <span className="text-tertiary">Subtotal</span>
-                                            <span className="text-primary">CHF {Number(order.subtotal).toFixed(2)}</span>
+                                            <span className="text-primary">{Number(order.subtotal).toFixed(2)}€</span>
                                         </div>
                                         <div className="flex justify-between text-sm">
                                             <span className="text-tertiary">Shipping ({order.shipping_method})</span>
                                             <span className="text-primary">
-                                                {Number(order.shipping_cost) === 0 ? "Free" : `CHF ${Number(order.shipping_cost).toFixed(2)}`}
+                                                {Number(order.shipping_cost) === 0 ? "Free" : `${Number(order.shipping_cost).toFixed(2)}€`}
                                             </span>
                                         </div>
                                         <div className="border-t border-secondary pt-3">
                                             <div className="flex justify-between">
                                                 <span className="font-semibold text-primary">Total</span>
                                                 <span className="font-semibold text-primary">
-                                                    CHF {Number(order.total).toFixed(2)}
+                                                    {Number(order.total).toFixed(2)}€
                                                 </span>
                                             </div>
                                         </div>

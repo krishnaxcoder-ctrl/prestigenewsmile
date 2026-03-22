@@ -249,7 +249,7 @@ export default function CartPage() {
                                                                 </button>
                                                             </div>
                                                             <span className="font-semibold text-primary">
-                                                                ${(item.product.price * item.quantity).toFixed(2)}
+                                                                {(item.product.price * item.quantity).toFixed(2)}€
                                                             </span>
                                                         </div>
                                                     </div>
@@ -282,7 +282,7 @@ export default function CartPage() {
                                                     </div>
                                                     <div className="col-span-2 text-center">
                                                         <span className="font-medium text-primary">
-                                                            ${item.product.price.toFixed(2)}
+                                                            {item.product.price.toFixed(2)}€
                                                         </span>
                                                     </div>
                                                     <div className="col-span-2 flex justify-center">
@@ -306,7 +306,7 @@ export default function CartPage() {
                                                     </div>
                                                     <div className="col-span-2 text-right">
                                                         <span className="font-semibold text-primary">
-                                                            ${(item.product.price * item.quantity).toFixed(2)}
+                                                            {(item.product.price * item.quantity).toFixed(2)}€
                                                         </span>
                                                     </div>
                                                 </div>
@@ -360,18 +360,18 @@ export default function CartPage() {
                                             <div className="flex items-center justify-between text-sm">
                                                 <span className="text-tertiary">Subtotal</span>
                                                 <span className="font-medium text-primary">
-                                                    ${subtotal.toFixed(2)}
+                                                    {subtotal.toFixed(2)}€
                                                 </span>
                                             </div>
                                             <div className="flex items-center justify-between text-sm">
                                                 <span className="text-tertiary">Shipping</span>
                                                 <span className="font-medium text-primary">
-                                                    {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                                                    {shipping === 0 ? "Free" : `${shipping.toFixed(2)}€`}
                                                 </span>
                                             </div>
                                             {shipping > 0 && (
                                                 <p className="text-xs text-brand-600">
-                                                    Spend ${(120 - subtotal).toFixed(2)} more for free shipping!
+                                                    Spend {(120 - subtotal).toFixed(2)}€ more for free shipping!
                                                 </p>
                                             )}
                                         </div>
@@ -381,7 +381,7 @@ export default function CartPage() {
                                                 Total
                                             </span>
                                             <span className="text-xl font-bold text-primary">
-                                                ${total.toFixed(2)}
+                                                {total.toFixed(2)}€
                                             </span>
                                         </div>
 

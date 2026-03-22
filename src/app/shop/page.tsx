@@ -421,7 +421,7 @@ export default function ShopPage() {
                                             className={`group ${viewMode === "list" ? "flex gap-6" : ""}`}
                                         >
                                             {/* Product Image */}
-                                            <div className={`relative overflow-hidden rounded-2xl bg-secondary ${
+                                            <div className={`relative overflow-hidden rounded-2xl border border-secondary bg-secondary ${
                                                 viewMode === "list" ? "aspect-square w-48 shrink-0" : "aspect-[850/1020]"
                                             }`}>
                                                 <a href={`/product/${product.slug}`} className="block size-full">
@@ -501,11 +501,11 @@ export default function ShopPage() {
 
                                                 <div className="mt-2 flex items-center gap-2">
                                                     <span className="font-semibold text-primary">
-                                                        ${product.price.toFixed(2)}
+                                                        {product.price.toFixed(2)}€
                                                     </span>
                                                     {product.original_price && product.original_price > product.price && (
                                                         <span className="text-sm text-tertiary line-through">
-                                                            ${product.original_price.toFixed(2)}
+                                                            {product.original_price.toFixed(2)}€
                                                         </span>
                                                     )}
                                                 </div>

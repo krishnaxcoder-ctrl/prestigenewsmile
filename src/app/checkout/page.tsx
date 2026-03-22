@@ -705,7 +705,7 @@ export default function CheckoutPage() {
                                                 onClick={handlePlaceOrder}
                                                 isLoading={submitting}
                                             >
-                                                Place Order - ${total.toFixed(2)}
+                                                Place Order - {total.toFixed(2)}€
                                             </Button>
                                         </div>
                                     </motion.div>
@@ -738,7 +738,7 @@ export default function CheckoutPage() {
                                                     {item.size && <p className="text-xs text-tertiary">Size: {item.size}</p>}
                                                 </div>
                                                 <span className="font-medium text-primary">
-                                                    ${(item.product.price * item.quantity).toFixed(2)}
+                                                    {(item.product.price * item.quantity).toFixed(2)}€
                                                 </span>
                                             </div>
                                         ))}
@@ -749,13 +749,13 @@ export default function CheckoutPage() {
                                         <div className="flex items-center justify-between text-sm">
                                             <span className="text-tertiary">Subtotal</span>
                                             <span className="font-medium text-primary">
-                                                ${subtotal.toFixed(2)}
+                                                {subtotal.toFixed(2)}€
                                             </span>
                                         </div>
                                         <div className="flex items-center justify-between text-sm">
                                             <span className="text-tertiary">Shipping</span>
                                             <span className="font-medium text-primary">
-                                                {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                                                {shipping === 0 ? "Free" : `${shipping.toFixed(2)}€`}
                                             </span>
                                         </div>
                                     </div>
@@ -765,7 +765,7 @@ export default function CheckoutPage() {
                                             Total
                                         </span>
                                         <span className="text-xl font-bold text-primary">
-                                            ${total.toFixed(2)}
+                                            {total.toFixed(2)}€
                                         </span>
                                     </div>
                                 </div>
@@ -773,7 +773,7 @@ export default function CheckoutPage() {
                                 {/* Trust Badge */}
                                 <div className="mt-6 flex items-center justify-center gap-2 text-sm text-tertiary">
                                     <Truck01 className="size-4" />
-                                    <span>Free shipping on orders over $120</span>
+                                    <span>Free shipping on orders over 120€</span>
                                 </div>
                             </div>
                         </div>

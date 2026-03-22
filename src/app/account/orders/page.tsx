@@ -352,7 +352,7 @@ export default function OrdersPage() {
                                                         {statusLabels[order.status]}
                                                     </span>
                                                     <span className="font-semibold text-primary">
-                                                        ${Number(order.total).toFixed(2)}
+                                                        {Number(order.total).toFixed(2)}€
                                                     </span>
                                                     <button
                                                         onClick={() => setExpandedOrder(
@@ -398,7 +398,7 @@ export default function OrdersPage() {
                                                                     </p>
                                                                 </div>
                                                                 <span className="font-medium text-primary">
-                                                                    ${(Number(item.price) * item.quantity).toFixed(2)}
+                                                                    {(Number(item.price) * item.quantity).toFixed(2)}€
                                                                 </span>
                                                             </div>
                                                         ))}
