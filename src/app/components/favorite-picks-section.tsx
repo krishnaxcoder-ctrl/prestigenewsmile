@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star01 } from "@untitledui/icons";
 
@@ -12,8 +12,8 @@ const products = [
 		price: "$55.00",
 		priceMax: "$64.00",
 		rating: 4,
-		image: "https://images.unsplash.com/photo-1609840112855-9250889c50dc?w=400&auto=format&fit=crop",
-		imageLarge: "https://images.unsplash.com/photo-1609840112855-9250889c50dc?w=800&auto=format&fit=crop",
+		image: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=400&auto=format&fit=crop",
+		imageLarge: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800&auto=format&fit=crop",
 	},
 	{
 		id: 2,
@@ -22,8 +22,8 @@ const products = [
 		price: "$30.00",
 		priceMax: "$35.00",
 		rating: 4,
-		image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&auto=format&fit=crop",
-		imageLarge: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&auto=format&fit=crop",
+		image: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=400&auto=format&fit=crop",
+		imageLarge: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=800&auto=format&fit=crop",
 	},
 	{
 		id: 3,
@@ -32,8 +32,8 @@ const products = [
 		price: "$65.00",
 		priceMax: "$84.00",
 		rating: 5,
-		image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=400&auto=format&fit=crop",
-		imageLarge: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=800&auto=format&fit=crop",
+		image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&auto=format&fit=crop",
+		imageLarge: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop",
 	},
 	{
 		id: 4,
@@ -42,8 +42,8 @@ const products = [
 		price: "$66.00",
 		priceMax: "$75.00",
 		rating: 4,
-		image: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=400&auto=format&fit=crop",
-		imageLarge: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800&auto=format&fit=crop",
+		image: "https://images.unsplash.com/photo-1628359355624-855f54d48b58?w=400&auto=format&fit=crop",
+		imageLarge: "https://images.unsplash.com/photo-1628359355624-855f54d48b58?w=800&auto=format&fit=crop",
 	},
 ];
 
@@ -67,6 +67,15 @@ function RatingStars({ rating }: { rating: number }) {
 export function FavoritePicksSection() {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const activeProduct = products[activeIndex];
+
+	// Auto-slide every 4 seconds
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setActiveIndex((prev) => (prev + 1) % products.length);
+		}, 4000);
+
+		return () => clearInterval(interval);
+	}, []);
 
 	return (
 		<section className="bg-secondary">
