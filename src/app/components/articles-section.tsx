@@ -6,41 +6,41 @@ import { Button } from "@/components/base/buttons/button";
 const blogPosts = [
 	{
 		id: 1,
-		category: "Health",
-		date: "June 29, 2020",
-		title: "10 Tips for Healthy Mind and Body",
-		image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=800&auto=format&fit=crop",
-		href: "/blog/healthy-mind-body",
+		category: "Whitening",
+		date: "Jan 15, 2026",
+		title: "10 Tips for a Brighter, Whiter Smile",
+		image: "https://mp-cms.medparkhospital.com/assets/bb4a30f0-af60-44ab-99cf-6a8ab20d016f/zoom-banner-1.jpeg",
+		href: "/blog/brighter-smile-tips",
 	},
 	{
 		id: 2,
-		category: "Health",
-		date: "June 20, 2020",
-		title: "How to Maintain Healthy Hair: 10 Easy Tips",
-		image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop",
-		href: "/blog/healthy-hair",
+		category: "Guide",
+		date: "Jan 12, 2026",
+		title: "What to Expect During Your Whitening Session",
+		image: "https://mp-cms.medparkhospital.com/assets/7988113b-562a-4f03-94bc-e106ca849e75",
+		href: "/blog/whitening-session-guide",
 	},
 	{
 		id: 3,
-		category: "Health",
-		date: "June 20, 2020",
-		title: "Aroma Therapy and Aroma Massages",
-		image: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=800&auto=format&fit=crop",
-		href: "/blog/aroma-therapy",
+		category: "Aftercare",
+		date: "Jan 10, 2026",
+		title: "How to Maintain Your Results After Treatment",
+		image: "https://mp-cms.medparkhospital.com/assets/56b474a5-973a-468a-853c-a856f04f6060",
+		href: "/blog/maintain-results",
 	},
 	{
 		id: 4,
-		category: "Health",
-		date: "June 20, 2020",
-		title: "10 Ways to Spend Your Weekend Outside",
-		image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=800&auto=format&fit=crop",
-		href: "/blog/weekend-outside",
+		category: "FAQ",
+		date: "Jan 8, 2026",
+		title: "Professional vs At-Home Whitening: The Truth",
+		image: "https://mp-cms.medparkhospital.com/assets/fd8a0998-0ee8-4657-a6db-d92f0c167b13",
+		href: "/blog/professional-vs-home",
 	},
 ];
 
 export function ArticlesSection() {
 	return (
-		<section className="bg-[#f8f3f0] px-4 py-16 md:px-8 md:py-24 lg:px-16">
+		<section className="bg-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
 			<div className="mx-auto max-w-7xl">
 				{/* Header */}
 				<motion.h2
