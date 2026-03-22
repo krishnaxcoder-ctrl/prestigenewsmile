@@ -267,9 +267,9 @@ export function FavoritePicksSection() {
 					className="relative min-h-[400px] lg:min-h-[700px]"
 				>
 					<img
-						src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?w=800&auto=format&fit=crop"
+						src="https://cdn2.hubspot.net/hubfs/4845087/GSD-Teeth-Whitening-Methods-Blog.jpg"
 						alt="Featured products"
-						className="size-full object-cover"
+						className="size-full object-cover object-right"
 					/>
 				</motion.div>
 			</div>
