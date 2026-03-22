@@ -425,16 +425,22 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                         </ul>
 
                                         <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
-                                            Beauty Benefits
+                                            Suitable For
                                         </h3>
                                         <p className="mt-4 leading-relaxed text-tertiary">
                                             {product.benefits}
                                         </p>
 
-                                      
-                                        <p className="mt-4 leading-relaxed text-tertiary">
-                                            {product.additional_info?.usage}
-                                        </p>
+                                        {product.additional_info?.usage_instructions && (
+                                            <>
+                                                <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
+                                                    How To Use
+                                                </h3>
+                                                <p className="mt-4 leading-relaxed text-tertiary">
+                                                    {product.additional_info.usage_instructions}
+                                                </p>
+                                            </>
+                                        )}
                                     </div>
 
                                     {/* Image */}
@@ -461,46 +467,84 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                         </h3>
                                         <table className="w-full text-sm">
                                             <tbody>
-                                                <tr className="border-b border-secondary">
-                                                    <td className="w-1/3 py-4 font-medium text-primary">Weight</td>
-                                                    <td className="py-4 text-tertiary">{product.additional_info?.weight}</td>
-                                                </tr>
-                                                <tr className="border-b border-secondary">
-                                                    <td className="py-4 font-medium text-primary">Dimensions</td>
-                                                    <td className="py-4 text-tertiary">{product.additional_info?.dimensions}</td>
-                                                </tr>
-                                                <tr className="border-b border-secondary">
-                                                    <td className="py-4 font-medium text-primary">Size Options</td>
-                                                    <td className="py-4 text-tertiary">{(product.sizes ?? []).join(", ")}</td>
-                                                </tr>
-                                                <tr className="border-b border-secondary">
-                                                    <td className="py-4 font-medium text-primary">Skin Type</td>
-                                                    <td className="py-4 text-tertiary">{product.additional_info?.skinType}</td>
-                                                </tr>
-                                                <tr className="border-b border-secondary">
-                                                    <td className="py-4 font-medium text-primary">Shelf Life</td>
-                                                    <td className="py-4 text-tertiary">{product.additional_info?.shelfLife}</td>
-                                                </tr>
-                                                <tr className="border-b border-secondary">
-                                                    <td className="py-4 font-medium text-primary">Made In</td>
-                                                    <td className="py-4 text-tertiary">{product.additional_info?.madeIn}</td>
-                                                </tr>
+                                                {product.additional_info?.size && (
+                                                    <tr className="border-b border-secondary">
+                                                        <td className="w-1/3 py-4 font-medium text-primary">Size</td>
+                                                        <td className="py-4 text-tertiary">{product.additional_info.size}</td>
+                                                    </tr>
+                                                )}
+                                                {product.additional_info?.type && (
+                                                    <tr className="border-b border-secondary">
+                                                        <td className="py-4 font-medium text-primary">Type</td>
+                                                        <td className="py-4 text-tertiary">{product.additional_info.type}</td>
+                                                    </tr>
+                                                )}
+                                                {product.additional_info?.key_ingredient && (
+                                                    <tr className="border-b border-secondary">
+                                                        <td className="py-4 font-medium text-primary">Key Ingredient</td>
+                                                        <td className="py-4 text-tertiary">{product.additional_info.key_ingredient}</td>
+                                                    </tr>
+                                                )}
+                                                {product.additional_info?.formulation && (
+                                                    <tr className="border-b border-secondary">
+                                                        <td className="py-4 font-medium text-primary">Formulation</td>
+                                                        <td className="py-4 text-tertiary">{product.additional_info.formulation}</td>
+                                                    </tr>
+                                                )}
+                                                {product.additional_info?.texture && (
+                                                    <tr className="border-b border-secondary">
+                                                        <td className="py-4 font-medium text-primary">Texture</td>
+                                                        <td className="py-4 text-tertiary">{product.additional_info.texture}</td>
+                                                    </tr>
+                                                )}
+                                                {product.additional_info?.flavor && (
+                                                    <tr className="border-b border-secondary">
+                                                        <td className="py-4 font-medium text-primary">Flavor</td>
+                                                        <td className="py-4 text-tertiary">{product.additional_info.flavor}</td>
+                                                    </tr>
+                                                )}
+                                                {product.additional_info?.skin_type && (
+                                                    <tr className="border-b border-secondary">
+                                                        <td className="py-4 font-medium text-primary">Suitable For</td>
+                                                        <td className="py-4 text-tertiary">{product.additional_info.skin_type}</td>
+                                                    </tr>
+                                                )}
+                                                {product.additional_info?.shelf_life && (
+                                                    <tr className="border-b border-secondary">
+                                                        <td className="py-4 font-medium text-primary">Shelf Life</td>
+                                                        <td className="py-4 text-tertiary">{product.additional_info.shelf_life}</td>
+                                                    </tr>
+                                                )}
+                                                {product.additional_info?.packaging && (
+                                                    <tr className="border-b border-secondary">
+                                                        <td className="py-4 font-medium text-primary">Packaging</td>
+                                                        <td className="py-4 text-tertiary">{product.additional_info.packaging}</td>
+                                                    </tr>
+                                                )}
                                             </tbody>
                                         </table>
 
-                                        <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
-                                            Ingredients
-                                        </h3>
-                                        <p className="text-sm leading-relaxed text-tertiary">
-                                            {product.additional_info?.ingredients}
-                                        </p>
+                                        {product.additional_info?.usage_instructions && (
+                                            <>
+                                                <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
+                                                    How To Use
+                                                </h3>
+                                                <p className="text-sm leading-relaxed text-tertiary">
+                                                    {product.additional_info.usage_instructions}
+                                                </p>
+                                            </>
+                                        )}
 
-                                        <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
-                                            How To Use
-                                        </h3>
-                                        <p className="text-sm leading-relaxed text-tertiary">
-                                            {product.additional_info?.usage}
-                                        </p>
+                                        {product.additional_info?.storage && (
+                                            <>
+                                                <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
+                                                    Storage
+                                                </h3>
+                                                <p className="text-sm leading-relaxed text-tertiary">
+                                                    {product.additional_info.storage}
+                                                </p>
+                                            </>
+                                        )}
                                     </div>
 
                                     {/* Image */}
