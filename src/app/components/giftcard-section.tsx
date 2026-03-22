@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { Button } from "@/components/base/buttons/button";
 import { motion } from "framer-motion";
 
 const giftCardImages = [
@@ -115,14 +114,12 @@ export function GiftcardSection() {
 							}}
 							className="mt-8"
 						>
-							<Button
+							<a
 								href="/gift-cards"
-								color="secondary"
-								size="lg"
-								className="border-primary text-primary uppercase tracking-widest hover:bg-primary hover:text-white"
+								className="inline-block border border-gray-900 bg-transparent px-12 py-4 text-sm uppercase tracking-[0.2em] text-gray-900 transition duration-200 hover:bg-gray-900 hover:text-white"
 							>
 								Learn More
-							</Button>
+							</a>
 						</motion.div>
 					</div>
 				</div>
@@ -137,7 +134,7 @@ export function GiftcardSection() {
 				>
 					{/* Slider Container */}
 					<div
-						className="relative flex h-[500px] cursor-grab items-center overflow-hidden active:cursor-grabbing md:h-[550px] lg:h-[650px]"
+						className="relative flex h-[550px] cursor-grab items-center overflow-hidden active:cursor-grabbing md:h-[650px] lg:h-[700px]"
 						onMouseDown={handleDragStart}
 						onMouseMove={handleDragMove}
 						onMouseUp={handleDragEnd}
@@ -150,19 +147,19 @@ export function GiftcardSection() {
 						<div
 							className="flex items-center transition-transform duration-500 ease-out"
 							style={{
-								transform: `translateX(calc(-${activeIndex * 493}px))`,
+								transform: `translateX(calc(-${activeIndex * 640}px))`,
 							}}
 						>
 							{giftCardImages.map((image, index) => (
 								<div
 									key={image.id}
 									className="relative flex-shrink-0 pr-10"
-									style={{ width: "493px" }}
+									style={{ width: "640px" }}
 								>
 									<img
 										src={image.src}
 										alt={image.alt}
-										className="size-[453px] object-cover"
+										className="size-[600px] object-cover"
 										draggable={false}
 									/>
 								</div>
