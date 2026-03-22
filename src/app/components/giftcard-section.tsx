@@ -74,8 +74,8 @@ export function GiftcardSection() {
 		<section className="bg-primary">
 			<div className="grid grid-cols-1 lg:grid-cols-2">
 				{/* Left Content */}
-				<div className="flex flex-col justify-center px-6 py-16 md:px-12 md:py-20 lg:px-20 lg:py-24">
-					<div className="max-w-lg">
+				<div className="flex flex-col justify-center px-6 py-16 md:px-12 md:py-20 lg:py-24">
+					<div className="ml-auto max-w-7xl lg:px-20">
 						<motion.h2
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
