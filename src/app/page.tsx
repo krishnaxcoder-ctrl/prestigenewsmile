@@ -3,6 +3,7 @@ import { BeforeAfterSection } from "./components/before-after-section";
 import { FAQSection } from "./components/faq-section";
 import { FeaturesSection } from "./components/features-section";
 import { Footer } from "./components/footer";
+import { GiftcardSection } from "./components/giftcard-section";
 import { Header } from "./components/header";
 import { HeroCarousel } from "./components/hero-carousel";
 import { InstagramSection } from "./components/instagram-section";
@@ -23,6 +24,7 @@ export default function Page() {
 				<TaglineSection />
 				<ServicesSection />
 				<ProductsSection />
+				<GiftcardSection />
 				<FeaturesSection />
 				<BeforeAfterSection />
 				<ReviewsSection />
