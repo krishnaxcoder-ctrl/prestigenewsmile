@@ -73,7 +73,7 @@ export function ArticlesSection() {
 								<img
 									src={post.image}
 									alt={post.title}
-									className="aspect-[3/4] w-full object-cover transition duration-500 group-hover:scale-105"
+									className="aspect-[3/4] w-full object-cover object-[70%_center] transition duration-500 group-hover:scale-105"
 								/>
 							</a>
 
@@ -108,14 +108,12 @@ export function ArticlesSection() {
 					transition={{ duration: 0.5, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
 					className="mt-16 text-center"
 				>
-					<Button
+					<a
 						href="/blog"
-						color="secondary"
-						size="lg"
-						className="border-primary text-primary uppercase tracking-widest hover:bg-primary hover:text-white"
+						className="inline-block border border-primary bg-transparent px-12 py-4 text-sm uppercase tracking-[0.2em] text-primary transition duration-200 hover:bg-primary hover:text-white"
 					>
 						View All Posts
-					</Button>
+					</a>
 				</motion.div>
 			</div>
 		</section>
