@@ -110,7 +110,7 @@ export function ArticlesSection() {
 				>
 					<a
 						href="/blog"
-						className="inline-block border border-primary bg-transparent px-12 py-4 text-sm uppercase tracking-[0.2em] text-primary transition duration-200 hover:bg-primary hover:text-white"
+						className="inline-block border border-gray-900 bg-transparent px-12 py-4 text-sm uppercase tracking-[0.2em] text-gray-900 transition duration-200 hover:bg-gray-900 hover:text-white"
 					>
 						View All Posts
 					</a>
