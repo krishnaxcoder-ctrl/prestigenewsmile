@@ -48,7 +48,7 @@ export function ArticlesSection() {
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true, margin: "-100px" }}
 					transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-					className="mb-12 text-center font-serif text-display-xs font-normal text-primary md:mb-16 md:text-display-sm lg:text-display-md"
+					className="mb-1 text-center font-body text-display-xs font-medium text-primary md:mb-8 md:text-display-sm lg:text-display-md"
 				>
 					Blog
 				</motion.h2>
@@ -87,7 +87,7 @@ export function ArticlesSection() {
 								</div>
 
 								{/* Title */}
-								<h3 className="mt-3 font-serif text-lg font-normal leading-snug text-primary md:text-xl">
+								<h3 className="mt-3 font-body text-lg font-normal leading-snug text-primary  md:text-md">
 									<a
 										href={post.href}
 										className="transition duration-100 ease-linear hover:text-brand-600"
