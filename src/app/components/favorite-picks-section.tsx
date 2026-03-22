@@ -35,17 +35,7 @@ const products = [
 		image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&auto=format&fit=crop",
 		imageLarge: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop",
 	},
-	{
-		id: 4,
-		category: "Maintenance",
-		name: "Whitening Mouthwash",
-		price: "$66.00",
-		priceMax: "$75.00",
-		rating: 4,
-		image: "https://images.unsplash.com/photo-1628359355624-855f54d48b58?w=400&auto=format&fit=crop",
-		imageLarge: "https://images.unsplash.com/photo-1628359355624-855f54d48b58?w=800&auto=format&fit=crop",
-	},
-];
+	];
 
 function RatingStars({ rating }: { rating: number }) {
 	return (
@@ -173,7 +163,7 @@ export function FavoritePicksSection() {
 			{/* Desktop Layout */}
 			<div className="hidden lg:grid lg:grid-cols-2">
 				{/* Left Content */}
-				<div className="px-6 py-16 md:px-12 md:py-20 lg:px-16 lg:py-24">
+				<div className="px-6 py-12 md:px-12 md:py-14 lg:px-16 lg:py-16">
 					<div className="mx-auto max-w-xl lg:ml-auto lg:mr-0">
 						{/* Header */}
 						<motion.span
@@ -212,7 +202,7 @@ export function FavoritePicksSection() {
 						</div>
 
 						{/* Product List */}
-						<div className="mt-10 space-y-6">
+						<div className="mt-8 space-y-4">
 							{products.map((product, index) => (
 								<motion.a
 									key={product.id}
@@ -264,7 +254,7 @@ export function FavoritePicksSection() {
 					whileInView={{ opacity: 1, x: 0 }}
 					viewport={{ once: true, margin: "-100px" }}
 					transition={{ duration: 0.6, delay: 0.2 }}
-					className="relative min-h-[400px] lg:min-h-[700px]"
+					className="relative min-h-[350px] lg:min-h-[550px]"
 				>
 					<img
 						src="https://cdn2.hubspot.net/hubfs/4845087/GSD-Teeth-Whitening-Methods-Blog.jpg"
