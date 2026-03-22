@@ -1,6 +1,7 @@
 import { ArticlesSection } from "./components/articles-section";
 import { BeforeAfterSection } from "./components/before-after-section";
 import { FAQSection } from "./components/faq-section";
+import { FavoritePicksSection } from "./components/favorite-picks-section";
 import { FeaturesSection } from "./components/features-section";
 import { Footer } from "./components/footer";
 import { GiftcardSection } from "./components/giftcard-section";
@@ -23,6 +24,7 @@ export default function Page() {
 				<TaglineSection />
 				<ServicesSection />
 				<ProductsSection />
+				<FavoritePicksSection />
 				<GiftcardSection />
 				<FeaturesSection />
 				<BeforeAfterSection />
