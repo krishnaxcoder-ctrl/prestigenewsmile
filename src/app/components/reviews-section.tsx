@@ -27,36 +27,36 @@ export function ReviewsSection() {
                     </div>
 
                     {/* Right Side - Testimonial Cards */}
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                         {testimonials.map((testimonial) => (
-                            <div key={testimonial.id} className="bg-gray-50 p-6 md:p-8">
+                            <div key={testimonial.id} className="relative bg-[#f9f9f9] py-5 pl-6 pr-5 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-gradient-to-b before:from-amber-300 before:via-amber-400 before:to-amber-500 before:shadow-[0_0_8px_rgba(251,191,36,0.6)]">
                                 {/* Stars */}
-                                <div className="flex gap-1">
+                                <div className="flex gap-0.5">
                                     {[...Array(testimonial.rating)].map((_, i) => (
-                                        <Star01 key={i} className="size-5 fill-amber-500 text-amber-500" />
+                                        <Star01 key={i} className="size-4 fill-amber-400 text-amber-400" />
                                     ))}
                                 </div>
 
                                 {/* Title */}
-                                <h3 className="mt-5 text-lg font-semibold uppercase tracking-wide text-primary" style={{ fontFamily: "var(--global-heading-font-family)" }}>
+                                <h3 className="mt-4 text-base font-medium uppercase tracking-wide text-primary md:text-lg" style={{ fontFamily: "var(--global-heading-font-family)" }}>
                                     {testimonial.title}
                                 </h3>
 
                                 {/* Content */}
-                                <p className="mt-3 leading-relaxed text-tertiary">
+                                <p className="mt-2 text-sm leading-relaxed text-tertiary">
                                     {testimonial.content}
                                 </p>
 
                                 {/* Author */}
-                                <div className="mt-6 flex items-center gap-4">
+                                <div className="mt-5 flex items-center gap-3">
                                     <img
                                         src={`https://www.untitledui.com/images/avatars/${testimonial.avatar}`}
                                         alt={testimonial.name}
-                                        className="size-12 shrink-0 rounded-full object-cover"
+                                        className="size-10 shrink-0 rounded-full object-cover"
                                     />
                                     <div>
-                                        <div className="font-semibold text-primary">{testimonial.name}</div>
-                                        <div className="text-sm text-brand-600">{testimonial.date}</div>
+                                        <div className="text-sm font-semibold text-primary">{testimonial.name}</div>
+                                        <div className="text-xs text-brand-600">{testimonial.date}</div>
                                     </div>
                                 </div>
                             </div>
