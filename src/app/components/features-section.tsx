@@ -37,6 +37,16 @@ const features = [
 export function FeaturesSection() {
     return (
         <section className="bg-primary">
+            {/* Section Header */}
+            <div className="bg-secondary px-4 pb-6 pt-12 text-center md:pb-8 md:pt-16">
+                <p className="text-sm font-medium uppercase tracking-widest text-tertiary">What We Offer</p>
+                <h2
+                    className="mt-3 text-display-xs font-medium uppercase text-primary md:text-display-sm lg:text-display-md"
+                    style={{ fontFamily: "var(--global-heading-font-family)" }}
+                >
+                    Our Services
+                </h2>
+            </div>
             <div className="flex flex-col">
                 {features.map((feature) => (
                     <div key={feature.id}>
