@@ -16,7 +16,7 @@ const categories = [
         id: 2,
         title: "COMPLETE TREATMENT",
         description: "Two sessions spaced 48 hours apart for darker teeth. Intensified lightening with longer-lasting results.",
-        image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
+        image: "/COMPLETE TREATMENT.avif",
         href: "/services/complete-treatment",
         price: "CHF/€ 169",
     },
