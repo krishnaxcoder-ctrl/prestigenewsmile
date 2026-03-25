@@ -75,7 +75,7 @@ export function ServiceMenuSection() {
     const activeServiceData = services.find((s) => s.id === activeService);
 
     return (
-        <section className="relative py-12 md:py-24" style={{ background: "linear-gradient(135deg, #ffffff 0%, #fdf8f6 30%, #faf0ed 60%, #f5e6e0 100%)" }}>
+        <section className="bg-primary py-12 md:py-24">
             <div className="mx-auto max-w-4xl">
                 {/* Heading */}
                 <h2
@@ -115,7 +115,7 @@ export function ServiceMenuSection() {
                 {/* Description */}
                 <div className="mb-8 text-center md:mb-10">
                     <p
-                        className="mx-auto max-w-lg px-4 text-md italic text-secondary  md:max-w-2xl md:px-0 md:text-2xl"
+                        className="mx-auto max-w-lg px-4 text-md  text-secondary  md:max-w-2xl md:px-0 md:text-2xl"
                         style={{ fontFamily: "var(--global-heading-font-family)" }}
                     >
                         {activeServiceData?.description}

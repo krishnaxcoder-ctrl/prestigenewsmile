@@ -23,8 +23,9 @@ export default function Page() {
 			<main>
 				<HeroSection />
 				<ServiceMenuSection />
-				<TaglineSection />
 				<ServicesSection />
+				<TaglineSection />
+
 				<PriceListSection />
 				<ProductsSection />
 				<FavoritePicksSection />
