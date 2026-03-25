@@ -115,8 +115,8 @@ export function ServiceMenuSection() {
                 {/* Description */}
                 <div className="mb-8 text-center md:mb-10">
                     <p
-                        className="mx-auto max-w-lg px-4 text-2xl text-secondary md:max-w-2xl md:px-0 md:text-3xl"
-                        style={{ fontFamily: "'Eyesome Script', cursive" }}
+                        className="mx-auto max-w-lg px-4 text-xl italic text-secondary md:max-w-2xl md:px-0 md:text-2xl"
+                        style={{ fontFamily: "var(--global-heading-font-family)" }}
                     >
                         {activeServiceData?.description}
                     </p>
