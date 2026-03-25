@@ -14,9 +14,9 @@ export function PriceListSection() {
 		<section className="relative min-h-[900px] overflow-hidden">
 			<div className="absolute inset-0">
 				<img
-					src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop"
+					src="/price-bg.jpg"
 					alt="Smile background"
-					className="size-full object-cover"
+					className="size-full object-cover object-center md:object-center"
 				/>
 				<div className="absolute inset-0 bg-[#8B7B7B]/60" />
 			</div>
