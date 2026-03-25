@@ -2,7 +2,7 @@
 
 import { useRef, useState, useId } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronLeft, ChevronRight, Globe02, Menu01 } from "@untitledui/icons";
+import { ChevronDown, Globe02, Menu01 } from "@untitledui/icons";
 import {
     Button as AriaButton,
     Dialog as AriaDialog,
@@ -15,12 +15,6 @@ import {
 } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
-
-const promoSlides = [
-    { text: "Book your session today", linkText: "CHF 99", linkHref: "/contact" },
-    { text: "Up to 7 shades lighter in one session", linkText: "Learn more", linkHref: "/about" },
-    { text: "Duo offer: -10% for two people", linkText: "Book now", linkHref: "/contact" },
-];
 
 const navItems = [
     { label: "Home", href: "/" },
@@ -179,7 +173,6 @@ export const Header = () => {
 
     return (
         <header ref={headerRef} className="sticky top-0 z-50 w-full bg-primary">
-            <PromoBanner />
             <div className="border-b border-secondary">
                 <div className="relative mx-auto flex h-16 max-w-full items-center justify-between px-4 md:h-18 md:px-8">
                     <Link href="/" className="flex shrink-0 items-center">
