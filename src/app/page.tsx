@@ -1,5 +1,6 @@
 import { ArticlesSection } from "./components/articles-section";
 import { BeforeAfterSection } from "./components/before-after-section";
+import { ContactSection } from "./components/contact-section";
 import { FAQSection } from "./components/faq-section";
 import { FavoritePicksSection } from "./components/favorite-picks-section";
 import { FeaturesSection } from "./components/features-section";
@@ -7,6 +8,7 @@ import { Footer } from "./components/footer";
 import { GiftcardSection } from "./components/giftcard-section";
 import { Header } from "./components/header";
 import { HeroCarousel } from "./components/hero-carousel";
+import { HeroSection } from "./components/hero-section";
 import { InstagramSection } from "./components/instagram-section";
 import { MarqueeSection } from "./components/marquee-section";
 import { PriceListSection } from "./components/price-list-section";
@@ -20,6 +22,7 @@ export default function Page() {
 		<div className="overflow-x-hidden">
 			<Header />
 			<main>
+				<HeroSection />
 				<HeroCarousel />
 				<MarqueeSection />
 				<TaglineSection />
@@ -34,6 +37,7 @@ export default function Page() {
 				<FAQSection />
 				<ArticlesSection />
 				<InstagramSection />
+				<ContactSection />
 				<Footer />
 			</main>
 		</div>
