@@ -74,7 +74,7 @@ export function BeforeAfterSection() {
                             </div>
 
                             {/* Caption */}
-                            <div className="mt-4 text-center">
+                            <div className="mt-5 text-center">
                                 <h3
                                     className="text-md font-medium uppercase tracking-wide text-primary md:text-lg"
                                     style={{ fontFamily: "var(--global-heading-font-family)" }}
@@ -84,7 +84,10 @@ export function BeforeAfterSection() {
                                 <p className="mt-1 text-sm text-tertiary">
                                     {item.description}
                                 </p>
-                                <p className="mt-2 text-sm font-medium uppercase tracking-wide text-primary">
+                                <p
+                                    className="mt-3 text-xl font-semibold text-brand-600 md:text-2xl"
+                                    style={{ fontFamily: "var(--global-heading-font-family)" }}
+                                >
                                     {item.price}
                                 </p>
                             </div>
