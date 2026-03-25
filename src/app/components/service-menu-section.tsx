@@ -115,7 +115,7 @@ export function ServiceMenuSection() {
                 {/* Description */}
                 <div className="mb-8 text-center md:mb-10">
                     <p
-                        className="mx-auto max-w-lg px-4 text-xl italic text-secondary md:max-w-2xl md:px-0 md:text-2xl"
+                        className="mx-auto max-w-lg px-4 text-md italic text-secondary  md:max-w-2xl md:px-0 md:text-2xl"
                         style={{ fontFamily: "var(--global-heading-font-family)" }}
                     >
                         {activeServiceData?.description}
@@ -126,7 +126,7 @@ export function ServiceMenuSection() {
                 <div className="text-center">
                     <Link
                         href="/services"
-                        className="inline-block border border-gray-900 bg-gray-900 px-8 py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:bg-transparent hover:text-gray-900 md:px-10 md:py-4 md:text-xs"
+                        className="inline-block border border-gray-900 bg-transparent px-8 py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-gray-900 transition-colors hover:bg-gray-900 hover:text-white md:px-10 md:py-4 md:text-xs"
                     >
                         View Service Menu
                     </Link>
