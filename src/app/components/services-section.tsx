@@ -8,7 +8,7 @@ const categories = [
         id: 1,
         title: "RADIANCE SESSION",
         description: "A first whitening or maintenance treatment. Results visible from the very first session with up to 7 shades lighter.",
-        image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop",
+        image: "/RADIANCE SESSION.png",
         href: "/services/radiance-session",
         price: "CHF/€ 99",
     },

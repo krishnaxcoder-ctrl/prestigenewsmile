@@ -36,7 +36,11 @@
       "Bash(cmd /c \"dir c:\\\\Users\\\\Krishna\\\\asdqwe\\\\*.jpeg\")",
       "Bash(powershell -Command \"Invoke-RestMethod -Uri ''https://kaybntynrpmgyiuvxbpr.supabase.co/storage/v1/object/products/miswak-toothpaste-box.jpeg'' -Method Post -Headers @{''Authorization''=''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtheWJudHlucnBtZ3lpdXZ4YnByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMzI5MTYsImV4cCI6MjA4OTYwODkxNn0.aNFLxLcdFxuvIKi-viAHufXEXj9CtU8aL8Mse8d_k20''; ''Content-Type''=''image/jpeg''} -InFile ''C:\\\\Users\\\\Krishna\\\\asdqwe\\\\WhatsApp Image 2026-03-21 at 3.23.58 PM \\(1\\).jpeg''\")",
       "Bash(powershell -Command \"Invoke-RestMethod -Uri ''https://kaybntynrpmgyiuvxbpr.supabase.co/storage/v1/object/products/miswak-toothpaste-lifestyle.jpeg'' -Method Post -Headers @{''Authorization''=''Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtheWJudHlucnBtZ3lpdXZ4YnByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMzI5MTYsImV4cCI6MjA4OTYwODkxNn0.aNFLxLcdFxuvIKi-viAHufXEXj9CtU8aL8Mse8d_k20''; ''Content-Type''=''image/jpeg''} -InFile ''C:\\\\Users\\\\Krishna\\\\asdqwe\\\\WhatsApp Image 2026-03-21 at 3.23.58 PM.jpeg''\")",
-      "WebFetch(domain:www.medparkhospital.com)"
+      "WebFetch(domain:www.medparkhospital.com)",
+      "Bash(cmd /c dir \"c:\\\\Users\\\\Krishna\\\\asdqwe\\\\public\\\\RADIANCE*\")",
+      "Bash(cmd /c dir \"c:\\\\Users\\\\Krishna\\\\Downloads\\\\RADIANCE*\")",
+      "Bash(powershell:*)",
+      "Bash(cmd /c \"dir c:\\\\Users\\\\Krishna\\\\asdqwe\\\\public\\\\*RADIANCE* 2>nul\")"
     ]
   }
 }
