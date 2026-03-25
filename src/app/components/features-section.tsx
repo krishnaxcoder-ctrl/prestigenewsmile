@@ -43,15 +43,14 @@ export function FeaturesSection() {
                         {/* Mobile Layout - Image card with overlay text */}
                         <a
                             href={feature.buttonHref}
-                            className="relative block aspect-[4/5] overflow-hidden md:hidden"
+                            className="relative block aspect-[4/2.5] overflow-hidden md:hidden p-3"
                         >
                             <img
                                 src={feature.image}
                                 alt={feature.title}
                                 className="size-full object-cover object-center"
                             />
-                            {/* Overlay gradient for text readability */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent" />
+                           
                             {/* Overlay content */}
                             <div className="absolute inset-0 flex flex-col justify-center px-6">
                                 <h2
