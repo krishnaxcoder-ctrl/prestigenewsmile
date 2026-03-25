@@ -66,7 +66,7 @@ export function FeaturesSection() {
                                     <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
 
                                     {/* Overlay content */}
-                                    <div className="absolute inset-0 flex flex-col justify-center px-6">
+                                    <div className="absolute inset-0 flex flex-col justify-end px-6 pb-6">
                                         <h2
                                             className="text-display-xs font-medium uppercase leading-tight text-white"
                                             style={{ fontFamily: "var(--global-heading-font-family)" }}
