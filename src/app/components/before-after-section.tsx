@@ -86,10 +86,7 @@ export function BeforeAfterSection() {
                                         {item.description}
                                     </p>
                                 </div>
-                                <p
-                                    className="text-xl font-semibold text-brand-600 md:text-2xl"
-                                    style={{ fontFamily: "var(--global-heading-font-family)" }}
-                                >
+                                <p className="text-xl font-normal tracking-tight text-brand-600 md:text-2xl">
                                     {item.price}
                                 </p>
                             </div>
