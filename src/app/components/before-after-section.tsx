@@ -3,17 +3,19 @@
 const transformations = [
     {
         id: 1,
-        before: "/",
-        after: "/bigwhite.jpg",
+        before: "/teeth before and after images/3.png",
+        after: "/teeth before and after images/4.png",
         title: "Teeth Whitening",
-        description: "Up to 7 shades lighter in one session",
+        description: "Up to 7 shades lighter",
+        price: "CHF/€ 99",
     },
     {
         id: 2,
-        before: "/1image.png",
-        after: "/bigwhite.jpg",
+        before: "/teeth before and after images/3.png",
+        after: "/teeth before and after images/4.png",
         title: "Complete Treatment",
         description: "Two sessions for dramatic results",
+        price: "CHF/€ 169",
     },
 ];
 
@@ -81,6 +83,9 @@ export function BeforeAfterSection() {
                                 </h3>
                                 <p className="mt-1 text-sm text-tertiary">
                                     {item.description}
+                                </p>
+                                <p className="mt-2 text-sm font-medium uppercase tracking-wide text-primary">
+                                    {item.price}
                                 </p>
                             </div>
                         </div>
