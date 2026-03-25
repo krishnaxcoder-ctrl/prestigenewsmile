@@ -3,14 +3,14 @@
 const transformations = [
     {
         id: 1,
-        before: "/bigyellow.jpg",
+        before: "/",
         after: "/bigwhite.jpg",
         title: "Teeth Whitening",
         description: "Up to 7 shades lighter in one session",
     },
     {
         id: 2,
-        before: "/bigyellow.jpg",
+        before: "/1image.png",
         after: "/bigwhite.jpg",
         title: "Complete Treatment",
         description: "Two sessions for dramatic results",
