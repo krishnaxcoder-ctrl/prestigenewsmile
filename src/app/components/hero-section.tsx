@@ -10,12 +10,12 @@ export function HeroSection() {
                 {/* Background Image */}
                 <div className="absolute inset-0">
                     <img
-                        src="/aigenerated.png"
+                        src="/bghero.webp"
                         alt="Teeth whitening treatment"
                         className="size-full object-cover object-center"
                     />
                     {/* Overlay for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent md:from-black/50 md:via-black/20" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-amber-950/70 via-amber-900/30 to-transparent md:from-amber-950/60 md:via-amber-900/20" />
                 </div>
 
                 {/* Content */}
