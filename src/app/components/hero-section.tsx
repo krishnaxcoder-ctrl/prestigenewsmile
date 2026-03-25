@@ -58,12 +58,53 @@ export function HeroSection() {
                     </div>
                 </div>
 
+                {/* Desktop Contact Info - Inside Hero */}
+                <div className="absolute inset-x-0 bottom-0 hidden bg-white/10 backdrop-blur-md md:block">
+                    <div className=" max-w-7xl px-8 py-6 lg:px-20">
+                        <div className="grid grid-cols-3 gap-8">
+                            {/* Contact */}
+                            <div className="text-left">
+                                <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+                                    Contact
+                                </h3>
+                                <div className="mt-2 space-y-0.5">
+                                    <p className="text-sm text-white/80">T: +41 22 123 4567</p>
+                                    <p className="text-sm text-white/80">hello@prestigesmile.studio</p>
+                                </div>
+                            </div>
+
+                            {/* Hours */}
+                            <div className="text-left">
+                                <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+                                    Hours
+                                </h3>
+                                <div className="mt-2 space-y-0.5">
+                                    <p className="text-sm text-white/80">Mon to Fri: 10:00 am — 7:00 pm</p>
+                                    <p className="text-sm text-white/80">Sat: 10:00 am — 5:00 pm</p>
+                                    <p className="text-sm text-white/80">Sun: Closed</p>
+                                </div>
+                            </div>
+
+                            {/* Location */}
+                            <div className="text-left">
+                                <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+                                    Location
+                                </h3>
+                                <div className="mt-2 space-y-0.5">
+                                    <p className="text-sm text-white/80">12 Rue du Rhône,</p>
+                                    <p className="text-sm text-white/80">1204 Geneva, Switzerland</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            {/* Contact Info Section */}
-            <div className="bg-secondary px-6 py-10 md:px-8 md:py-14">
+            {/* Mobile Contact Info Section - Below Hero */}
+            <div className="bg-secondary px-6 py-10 md:hidden">
                 <div className="mx-auto max-w-5xl">
-                    <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6">
+                    <div className="grid grid-cols-1 gap-8">
                         {/* Contact */}
                         <div className="flex flex-col items-center text-center">
                             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
