@@ -39,84 +39,111 @@ export function FeaturesSection() {
         <section className="bg-primary">
             <div className="flex flex-col">
                 {features.map((feature) => (
-                    <div
-                        key={feature.id}
-                        className="grid grid-cols-1 md:grid-cols-2"
-                    >
-                        {/* Image */}
-                        <div
-                            className={`relative aspect-[3/2] overflow-hidden md:aspect-auto md:h-[650px] ${
-                                feature.imagePosition === "right" ? "md:order-2" : "md:order-1"
-                            }`}
+                    <div key={feature.id}>
+                        {/* Mobile Layout - Image card with overlay text */}
+                        <a
+                            href={feature.buttonHref}
+                            className="relative block aspect-[4/5] overflow-hidden md:hidden"
                         >
                             <img
                                 src={feature.image}
                                 alt={feature.title}
                                 className="size-full object-cover object-center"
                             />
-                            {/* Subtle overlay gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
-                        </div>
-
-                        {/* Content */}
-                        <div
-                            className={`flex flex-col justify-center bg-secondary px-6 py-10 md:px-12 md:py-12 lg:px-20 lg:py-14 ${
-                                feature.imagePosition === "right" ? "md:order-1" : "md:order-2"
-                            }`}
-                        >
-                            <div className="max-w-lg">
-                                {/* Tag */}
-                                <span className="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                                    {feature.tag}
-                                </span>
-
-                                {/* Subtitle */}
-                                {feature.subtitle && (
-                                    <span className="mt-5 block text-sm font-medium uppercase tracking-widest text-tertiary">
-                                        {feature.subtitle}
-                                    </span>
-                                )}
-
-                                {/* Title */}
-                                <h2 className="mt-3 text-display-xs font-semibold uppercase leading-tight text-primary md:text-display-sm lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
-                                    {feature.title}{" "}
-                                    <span className="text-brand-600">
-                                        {feature.titleHighlight}
-                                    </span>
+                            {/* Overlay gradient for text readability */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent" />
+                            {/* Overlay content */}
+                            <div className="absolute inset-0 flex flex-col justify-center px-6">
+                                <h2
+                                    className="text-display-xs font-medium uppercase leading-tight text-white"
+                                    style={{ fontFamily: "var(--global-heading-font-family)" }}
+                                >
+                                    {feature.title}<br />
+                                    {feature.titleHighlight}
                                 </h2>
+                                <span className="mt-4 text-sm font-medium text-white underline underline-offset-4">
+                                    Discover Now
+                                </span>
+                            </div>
+                        </a>
 
-                                {/* Description */}
-                                {feature.description && (
-                                    <p className="mt-5 text-md leading-relaxed text-tertiary md:text-lg">
-                                        {feature.description}
-                                    </p>
-                                )}
+                        {/* Desktop Layout - Split image and content */}
+                        <div className="hidden md:grid md:grid-cols-2">
+                            {/* Image */}
+                            <div
+                                className={`relative overflow-hidden md:h-[650px] ${
+                                    feature.imagePosition === "right" ? "md:order-2" : "md:order-1"
+                                }`}
+                            >
+                                <img
+                                    src={feature.image}
+                                    alt={feature.title}
+                                    className="size-full object-cover object-center"
+                                />
+                                {/* Subtle overlay gradient */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                            </div>
 
-                                {/* Highlights */}
-                                {feature.highlights && (
-                                    <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-                                        {feature.highlights.map((highlight, i) => (
-                                            <span
-                                                key={i}
-                                                className="flex items-center gap-2 text-sm font-medium text-secondary"
-                                            >
-                                                <span className="size-1.5 rounded-full bg-brand-600" />
-                                                {highlight}
-                                            </span>
-                                        ))}
+                            {/* Content */}
+                            <div
+                                className={`flex flex-col justify-center bg-secondary px-12 py-12 lg:px-20 lg:py-14 ${
+                                    feature.imagePosition === "right" ? "md:order-1" : "md:order-2"
+                                }`}
+                            >
+                                <div className="max-w-lg">
+                                    {/* Tag */}
+                                    <span className="inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
+                                        {feature.tag}
+                                    </span>
+
+                                    {/* Subtitle */}
+                                    {feature.subtitle && (
+                                        <span className="mt-5 block text-sm font-medium uppercase tracking-widest text-tertiary">
+                                            {feature.subtitle}
+                                        </span>
+                                    )}
+
+                                    {/* Title */}
+                                    <h2 className="mt-3 text-display-sm font-semibold uppercase leading-tight text-primary lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
+                                        {feature.title}{" "}
+                                        <span className="text-brand-600">
+                                            {feature.titleHighlight}
+                                        </span>
+                                    </h2>
+
+                                    {/* Description */}
+                                    {feature.description && (
+                                        <p className="mt-5 text-md leading-relaxed text-tertiary md:text-lg">
+                                            {feature.description}
+                                        </p>
+                                    )}
+
+                                    {/* Highlights */}
+                                    {feature.highlights && (
+                                        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+                                            {feature.highlights.map((highlight, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="flex items-center gap-2 text-sm font-medium text-secondary"
+                                                >
+                                                    <span className="size-1.5 rounded-full bg-brand-600" />
+                                                    {highlight}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {/* Button */}
+                                    <div className="mt-8">
+                                        <Button
+                                            href={feature.buttonHref}
+                                            color="primary"
+                                            size="lg"
+                                            iconTrailing={ArrowRight}
+                                        >
+                                            {feature.buttonText}
+                                        </Button>
                                     </div>
-                                )}
-
-                                {/* Button */}
-                                <div className="mt-8">
-                                    <Button
-                                        href={feature.buttonHref}
-                                        color="primary"
-                                        size="lg"
-                                        iconTrailing={ArrowRight}
-                                    >
-                                        {feature.buttonText}
-                                    </Button>
                                 </div>
                             </div>
                         </div>
