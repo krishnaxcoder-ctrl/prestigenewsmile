@@ -27,7 +27,7 @@ export function PriceListSection() {
 						<h2 className="text-display-sm font-light uppercase tracking-[0.3em] text-white md:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
 							Price List
 						</h2>
-						<p className="mt-2 font-serif text-xl italic text-white/90 md:text-2xl">
+						<p className="mt-2 text-xl text-white/90 md:text-2xl" style={{ fontFamily: "'Eyesome Script', cursive" }}>
 							Blanchiment dentaire
 						</p>
 						<div className="mt-6 inline-block rounded-full bg-white/20 px-6 py-2 backdrop-blur-sm">

@@ -2,6 +2,31 @@
 @import "./theme.css";
 @import "./typography.css";
 
+/* Eyesome Font Family */
+@font-face {
+    font-family: "Eyesome Script";
+    src: url("/font/Eyesome Script.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Eyesome";
+    src: url("/font/Eyesome Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Eyesome";
+    src: url("/font/Eyesome Italic.otf") format("opentype");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-react-aria-components";
 @plugin "tailwindcss-animate";
