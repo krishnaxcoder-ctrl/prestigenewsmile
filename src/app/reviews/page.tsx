@@ -9,9 +9,9 @@ const avatars = [
     "olivia-rhye", "phoenix-baker", "lana-steiner", "demi-wilkinson", "candice-wu",
     "natali-craig", "drew-cano", "orlando-diggs", "andi-lane", "kate-morrison",
     "koray-okumus", "aliah-lane", "rene-wells", "lori-bryson", "noah-pierre",
-    "mathilde-lewis", "zahir-mays", "elisa-maier", "eva-bond", "zaid-schwartz",
-    "alex-starnes", "caitlyn-king", "joshua-wilson", "christopher-yates", "mollie-hall",
-    "kelly-williams", "eleanor-pena", "amélie-laurent", "priya-sharma", "arjun-mehta"
+    "mathilde-lewis", "zahir-mays", "olivia-rhye", "phoenix-baker", "lana-steiner",
+    "demi-wilkinson", "candice-wu", "natali-craig", "drew-cano", "orlando-diggs",
+    "andi-lane", "kate-morrison", "koray-okumus", "aliah-lane", "rene-wells"
 ];
 
 const testimonials = [
@@ -31,7 +31,7 @@ const testimonials = [
         role: "Business Owner",
         location: "Lyon, France",
         avatar: avatars[1],
-        content: "Best investment I've made in myself. The results speak for themselves - everyone keeps complimenting my smile!",
+        content: "Best investment I've made in myself. The results speak for themselves - everyone keeps complimenting my smile! Would definitely recommend to anyone looking for professional whitening.",
         rating: 5,
         badge: "5 Shades",
     },
@@ -71,7 +71,7 @@ const testimonials = [
         role: "Photographer",
         location: "Basel, Switzerland",
         avatar: avatars[5],
-        content: "The difference is unbelievable. My before and after photos look like two different people!",
+        content: "The difference is unbelievable. My before and after photos look like two different people! As a photographer, I know lighting tricks, but this is real transformation.",
         rating: 5,
         badge: "8 Shades",
     },
@@ -111,7 +111,7 @@ const testimonials = [
         role: "Sales Manager",
         location: "Lausanne, Switzerland",
         avatar: avatars[9],
-        content: "Confidence boost like no other. I used to hide my smile in photos, now I can't stop showing it off!",
+        content: "Confidence boost like no other. I used to hide my smile in photos, now I can't stop showing it off! The team made the whole experience comfortable and enjoyable.",
         rating: 5,
         badge: "6 Shades",
     },
@@ -121,7 +121,7 @@ const testimonials = [
         role: "Nurse",
         location: "Stockholm, Sweden",
         avatar: avatars[10],
-        content: "The sensitivity was minimal and gone within a day. The team really knows what they're doing. Amazing results!",
+        content: "The sensitivity was minimal and gone within a day. The team really knows what they're doing. Amazing results that exceeded my expectations. Very professional service!",
         rating: 5,
         badge: "No Pain",
     },
@@ -171,7 +171,7 @@ const testimonials = [
         role: "Financial Analyst",
         location: "Zurich, Switzerland",
         avatar: avatars[15],
-        content: "ROI on this treatment is incredible. Better than any product I've bought. Professional results that last.",
+        content: "ROI on this treatment is incredible. Better than any product I've bought. Professional results that last and the value for money is exceptional. Highly recommend!",
         rating: 5,
         badge: "8 Shades",
     },
@@ -241,7 +241,7 @@ const testimonials = [
         role: "Graphic Designer",
         location: "Copenhagen, Denmark",
         avatar: avatars[22],
-        content: "The before/after difference is like a filter in real life! So happy with my brighter smile. The team was lovely too.",
+        content: "The before/after difference is like a filter in real life! So happy with my brighter smile. The team was lovely too and made sure I was comfortable throughout the process.",
         rating: 5,
         badge: "6 Shades",
     },
@@ -323,22 +323,30 @@ export default function ReviewsPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Section */}
-                <section className="border-b border-teal-400 bg-teal-50 px-4 py-16 md:px-8 md:py-20 lg:px-16">
-                    <div className="mx-auto max-w-7xl">
-                        {/* Title */}
-                        <motion.h1
+                <section className="bg-white px-4 py-16 md:px-8 md:py-20 lg:px-16">
+                    <div className="mx-auto max-w-7xl text-center">
+                        <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="text-sm font-medium uppercase tracking-wider text-teal-600"
+                            className="text-sm font-medium uppercase tracking-widest text-tertiary"
                         >
-                            What our customers say...
+                            Testimonials
+                        </motion.p>
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="mt-4 text-display-sm font-medium uppercase text-primary md:text-display-md lg:text-display-lg"
+                            style={{ fontFamily: "var(--global-heading-font-family)" }}
+                        >
+                            What Our Clients Say
                         </motion.h1>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                            className="mt-3 max-w-2xl text-2xl font-semibold text-primary md:text-3xl"
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="mx-auto mt-4 max-w-2xl text-tertiary"
                         >
                             Real stories from our happy clients who transformed their smiles with Prestige Smile
                         </motion.p>
@@ -346,12 +354,12 @@ export default function ReviewsPage() {
                 </section>
 
                 {/* Testimonials Masonry Grid */}
-                <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
+                <section className="bg-white px-4 pb-16 md:px-8 md:pb-20 lg:px-16">
                     <div className="mx-auto max-w-7xl">
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                             {/* Distribute testimonials across 3 columns horizontally */}
                             {[0, 1, 2].map((colIndex) => (
-                                <div key={colIndex} className="flex flex-col gap-6">
+                                <div key={colIndex} className="flex flex-col gap-5">
                                     {testimonials
                                         .filter((_, i) => i % 3 === colIndex)
                                         .map((testimonial, index) => (
@@ -360,38 +368,34 @@ export default function ReviewsPage() {
                                                 initial={{ opacity: 0, y: 20 }}
                                                 whileInView={{ opacity: 1, y: 0 }}
                                                 viewport={{ once: true }}
-                                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                                className="rounded-md border border-teal-400 bg-primary p-3"
+                                                transition={{ duration: 0.5, delay: index * 0.05 }}
+                                                className="relative bg-gradient-to-br from-amber-50/80 to-orange-50/50 py-5 pl-6 pr-5 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-gradient-to-b before:from-amber-300 before:via-amber-400 before:to-amber-500 before:shadow-[0_0_8px_rgba(251,191,36,0.6)]"
                                             >
-                                                {/* Header: Stars & Badge */}
-                                                <div className="flex items-center justify-between">
-                                                    <div className="flex gap-0.5">
-                                                        {[...Array(testimonial.rating)].map((_, i) => (
-                                                            <Star01 key={i} className="size-4 fill-amber-400 text-amber-400" />
-                                                        ))}
-                                                    </div>
-                                                    {testimonial.badge && (
-                                                        <span className="rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
-                                                            {testimonial.badge}
-                                                        </span>
-                                                    )}
+                                                {/* Stars */}
+                                                <div className="flex gap-0.5">
+                                                    {[...Array(testimonial.rating)].map((_, i) => (
+                                                        <Star01 key={i} className="size-4 fill-amber-400 text-amber-400" />
+                                                    ))}
                                                 </div>
 
-                                                {/* Quote */}
-                                                <p className="mt-4 leading-relaxed text-primary">"{testimonial.content}"</p>
+                                                {/* Title from badge */}
+                                                <h3 className="mt-4 text-base font-medium uppercase tracking-wide text-primary" style={{ fontFamily: "var(--global-heading-font-family)" }}>
+                                                    {testimonial.badge}
+                                                </h3>
 
-                                                {/* Author: Avatar + Name + Role • Location */}
-                                                <div className="mt-6 flex items-center gap-3">
+                                                {/* Quote */}
+                                                <p className="mt-2 text-sm leading-relaxed text-tertiary line-clamp-3">"{testimonial.content}"</p>
+
+                                                {/* Author */}
+                                                <div className="mt-5 flex items-center gap-3">
                                                     <img
                                                         src={`https://www.untitledui.com/images/avatars/${testimonial.avatar}`}
                                                         alt={testimonial.name}
                                                         className="size-10 shrink-0 rounded-full object-cover"
                                                     />
                                                     <div>
-                                                        <div className="font-semibold text-primary">{testimonial.name}</div>
-                                                        <div className="text-sm text-tertiary">
-                                                            {testimonial.role} <span className="text-quaternary">•</span> {testimonial.location}
-                                                        </div>
+                                                        <div className="text-sm font-semibold text-primary">{testimonial.name}</div>
+                                                        <div className="text-xs text-brand-600">{testimonial.role}</div>
                                                     </div>
                                                 </div>
                                             </motion.div>
@@ -403,7 +407,7 @@ export default function ReviewsPage() {
                 </section>
 
                 {/* Before & After Section */}
-                <section className="border-t border-secondary bg-secondary/30 px-4 py-12 md:px-8 md:py-16 lg:px-16">
+                <section className="bg-white px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -412,7 +416,8 @@ export default function ReviewsPage() {
                             transition={{ duration: 0.5 }}
                             className="text-center"
                         >
-                            <h2 className="text-3xl font-semibold text-primary md:text-4xl">
+                            <p className="text-sm font-medium uppercase tracking-widest text-tertiary">Transformations</p>
+                            <h2 className="mt-4 text-display-xs font-medium uppercase text-primary md:text-display-sm lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
                                 See the Results
                             </h2>
                             <p className="mx-auto mt-4 max-w-xl text-tertiary">
@@ -478,15 +483,12 @@ export default function ReviewsPage() {
                             ))}
                         </motion.div>
 
-                        <div className="mt-8 text-center">
+                        <div className="mt-10 text-center">
                             <a
                                 href="/booking"
-                                className="inline-flex items-center gap-2 text-brand-600 transition hover:text-brand-700"
+                                className="inline-block border border-gray-900 bg-transparent px-8 py-3 text-sm font-medium uppercase text-gray-900 transition duration-100 ease-linear hover:bg-gray-900 hover:text-white"
                             >
-                                <span className="font-medium">See more results</span>
-                                <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
+                                Book Your Session
                             </a>
                         </div>
                     </div>
