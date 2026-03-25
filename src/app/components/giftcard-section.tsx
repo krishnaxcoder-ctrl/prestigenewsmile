@@ -63,7 +63,7 @@ export function GiftcardSection() {
 				</div>
 				<div className="relative order-1 lg:order-2">
 					<div
-						className="relative flex h-[320px] cursor-grab items-center overflow-hidden active:cursor-grabbing md:h-[650px] lg:h-[700px]"
+						className="relative flex h-[320px] cursor-grab items-center overflow-hidden pl-4 active:cursor-grabbing md:h-[650px] md:pl-0 lg:h-[700px]"
 						onMouseDown={handleDragStart}
 						onMouseMove={handleDragMove}
 						onMouseUp={handleDragEnd}
@@ -86,7 +86,7 @@ export function GiftcardSection() {
 							))}
 						</div>
 					</div>
-					<div className="absolute inset-x-0 bottom-8 flex justify-center gap-3">
+					<div className="absolute inset-x-0 bottom-0 flex justify-end gap-3 pr-4 md:pr-8">
 						{giftCardImages.map((_, index) => (
 							<button
 								key={index}
