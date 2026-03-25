@@ -45,7 +45,7 @@ export function ProductsSection() {
                         <span className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
                             Our Picks
                         </span>
-                        <h2 className="mt-4 text-display-xs font-semibold text-primary md:text-display-sm lg:text-display-md">
+                        <h2 className="mt-4 text-display-xs font-semibold uppercase text-primary md:text-display-sm lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
                             Explore Top <span className="text-brand-600">Selling</span>
                         </h2>
                         <p className="mt-3 max-w-2xl text-md text-tertiary md:text-lg">

@@ -30,7 +30,7 @@ export const CTASection = memo(function CTASection() {
                     <div className="mb-3 inline-flex sm:hidden">
                         <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">Limited Slots Available</span>
                     </div>
-                    <h2 className="text-xl font-semibold tracking-tight text-white sm:text-3xl md:text-display-sm lg:text-display-md">Ready to transform your smile?</h2>
+                    <h2 className="text-xl font-semibold uppercase tracking-tight text-white sm:text-3xl md:text-display-sm lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>Ready to transform your smile?</h2>
                     <p className="mt-2 max-w-2xl text-sm leading-relaxed text-teal-100 sm:mt-4 sm:text-base lg:text-lg">
                         Join <span className="font-semibold text-white">500+ happy clients</span> who have already brightened their smiles.
                         <span className="hidden sm:inline"> Book your appointment today and see results in just one session.</span>

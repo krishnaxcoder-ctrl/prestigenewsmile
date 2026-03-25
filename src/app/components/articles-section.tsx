@@ -11,7 +11,7 @@ export function ArticlesSection() {
 	return (
 		<section className="bg-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
 			<div className="mx-auto max-w-7xl">
-				<h2 className="mb-1 text-center font-body text-display-xs font-medium text-primary md:mb-8 md:text-display-sm lg:text-display-md">
+				<h2 className="mb-1 text-center text-display-xs font-medium uppercase text-primary md:mb-8 md:text-display-sm lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
 					Blog
 				</h2>
 				<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">

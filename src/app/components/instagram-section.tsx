@@ -28,7 +28,7 @@ export function InstagramSection() {
                     </svg>
                     <span className="h-px w-12 bg-border-primary" />
                 </div>
-                <h2 className="text-display-xs font-semibold text-primary md:text-display-sm">
+                <h2 className="text-display-xs font-semibold uppercase text-primary md:text-display-sm" style={{ fontFamily: "var(--global-heading-font-family)" }}>
                     Follow Us on{" "}
                     <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent">Instagram</span>
                 </h2>

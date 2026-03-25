@@ -24,7 +24,7 @@ export function FAQSection() {
                 <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
                     <div>
                         <span className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">FAQ</span>
-                        <h2 className="mt-4 text-display-xs font-semibold text-primary md:text-display-sm">
+                        <h2 className="mt-4 text-display-xs font-semibold uppercase text-primary md:text-display-sm" style={{ fontFamily: "var(--global-heading-font-family)" }}>
                             Frequently Asked <span className="text-brand-600">Questions</span>
                         </h2>
                         <p className="mt-4 text-tertiary">Find answers to common questions about our teeth whitening services and products.</p>

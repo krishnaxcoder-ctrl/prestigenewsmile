@@ -45,7 +45,7 @@ export function GiftcardSection() {
 			<div className="grid grid-cols-1 lg:grid-cols-2">
 				<div className="flex flex-col justify-center px-6 py-16 md:px-12 md:py-20 lg:py-24">
 					<div className="ml-auto max-w-7xl lg:px-20">
-						<h2 className="font-serif text-display-xs font-normal text-primary md:text-display-sm lg:text-display-md">
+						<h2 className="text-display-xs font-normal uppercase text-primary md:text-display-sm lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
 							Gift Cards
 						</h2>
 						<p className="mt-6 text-md leading-relaxed text-tertiary md:text-lg">

@@ -106,7 +106,7 @@ export function FavoritePicksSection() {
 				{/* Section Header */}
 				<div className="text-center">
 					<span className="text-xs uppercase tracking-widest text-tertiary">New Collection</span>
-					<h2 className="mt-2 font-body text-2xl font-semibold uppercase text-primary md:text-3xl lg:text-display-xs">
+					<h2 className="mt-2 text-2xl font-semibold uppercase text-primary md:text-3xl lg:text-display-xs" style={{ fontFamily: "var(--global-heading-font-family)" }}>
 						Beauty For Every Story
 					</h2>
 				</div>

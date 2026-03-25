@@ -22,7 +22,7 @@ export function ReviewsSection() {
                 <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
                     <div>
                         <p className="text-sm font-medium uppercase tracking-wider text-teal-600">What our customers say...</p>
-                        <h2 className="mt-3 max-w-2xl text-2xl font-semibold text-primary md:text-3xl">
+                        <h2 className="mt-3 max-w-2xl text-2xl font-semibold uppercase text-primary md:text-3xl" style={{ fontFamily: "var(--global-heading-font-family)" }}>
                             Real stories from our happy clients
                         </h2>
                     </div>

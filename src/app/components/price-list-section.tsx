@@ -23,7 +23,7 @@ export function PriceListSection() {
 			<div className="relative z-10 flex min-h-[900px] flex-col items-center justify-center px-4 py-16 md:py-24">
 				<div className="w-full max-w-xl">
 					<div className="mb-10 text-center">
-						<h2 className="font-serif text-display-sm font-light uppercase tracking-[0.3em] text-white md:text-display-md">
+						<h2 className="text-display-sm font-light uppercase tracking-[0.3em] text-white md:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
 							Price List
 						</h2>
 						<p className="mt-2 font-serif text-xl italic text-white/90 md:text-2xl">

@@ -78,7 +78,7 @@ export function FeaturesSection() {
                                 )}
 
                                 {/* Title */}
-                                <h2 className="mt-3 text-display-xs font-semibold leading-tight text-primary md:text-display-sm lg:text-display-md">
+                                <h2 className="mt-3 text-display-xs font-semibold uppercase leading-tight text-primary md:text-display-sm lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
                                     {feature.title}{" "}
                                     <span className="text-brand-600">
                                         {feature.titleHighlight}

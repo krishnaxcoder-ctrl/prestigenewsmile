@@ -48,7 +48,7 @@ export function NewsletterSection() {
                                 </span>
                             </div>
 
-                            <h3 className="text-2xl font-semibold text-primary md:text-3xl lg:text-4xl">
+                            <h3 className="text-2xl font-semibold text-primary md:text-3xl lg:text-4xl" style={{ fontFamily: "var(--global-heading-font-family)" }}>
                                 Join Our Beauty Community
                             </h3>
                             <p className="mt-4 text-secondary">
@@ -140,7 +140,7 @@ export function NewsletterSection() {
                             <span className="text-sm font-medium text-white">Newsletter</span>
                         </div>
 
-                        <h2 className="text-xl font-semibold uppercase tracking-wide text-white sm:text-display-xs md:text-display-sm">
+                        <h2 className="text-xl font-semibold uppercase tracking-wide text-white sm:text-display-xs md:text-display-sm" style={{ fontFamily: "var(--global-heading-font-family)" }}>
                             Glow First!
                             <br />
                             Sign Up For Updates
