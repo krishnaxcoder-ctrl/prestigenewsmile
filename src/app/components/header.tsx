@@ -183,7 +183,7 @@ export const Header = () => {
                         <a href="tel:+41783000619" className="hidden items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary lg:flex">
                             +41 78 300 06 19
                         </a>
-                        <Link href="/contact" className="rounded-lg bg-brand-solid px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-brand-700 sm:px-5 sm:py-2.5 sm:text-sm">
+                        <Link href="/contact" className="rounded-lg bg-[#7c5d48] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-amber-800 sm:px-5 sm:py-2.5 sm:text-sm">
                             Book Now
                         </Link>
                         <AriaDialogTrigger>
