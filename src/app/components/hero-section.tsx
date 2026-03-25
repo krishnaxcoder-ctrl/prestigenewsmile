@@ -10,9 +10,9 @@ export function HeroSection() {
                 {/* Background Image */}
                 <div className="absolute inset-0">
                     <img
-                        src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop"
-                        alt="Beauty and wellness"
-                        className="size-full object-cover object-top"
+                        src="/aigenerated.png"
+                        alt="Teeth whitening treatment"
+                        className="size-full object-cover object-center"
                     />
                     {/* Overlay for text readability */}
                     <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent md:from-black/50 md:via-black/20" />
@@ -21,15 +21,25 @@ export function HeroSection() {
                 {/* Content */}
                 <div className="relative flex min-h-[50vh] flex-col justify-center px-6 py-16 md:min-h-[85vh] md:px-12 lg:px-20">
                     <div className="max-w-lg">
-                        {/* Decorative line */}
-                        <div className="mb-6 h-px w-16 bg-white/60" />
+                        {/* Tagline */}
+                        <div className="mb-4 flex items-center gap-3">
+                            <span className="h-px w-3 bg-white/50" />
+                            <span className="text-xs font-medium uppercase tracking-[0.25em] text-white/80">
+                                Prestige Smile Studio
+                            </span>
+                        </div>
 
                         <h1
-                            className="text-display-xs font-normal italic leading-tight text-white md:text-display-sm lg:text-display-md"
+                            className="text-display-xs font-normal  leading-tight text-white md:text-display-sm lg:text-display-md"
                             style={{ fontFamily: "var(--global-heading-font-family)" }}
                         >
                             Always Make Room for a Brighter Smile in Your Life
                         </h1>
+
+                        {/* Description */}
+                        <p className="mt-4 max-w-md text-md leading-relaxed text-white/70 md:text-base">
+                            Professional teeth whitening in the heart of Geneva. Reveal your brightest, most confident smile.
+                        </p>
 
                         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
                             <Link
@@ -47,6 +57,7 @@ export function HeroSection() {
                         </div>
                     </div>
                 </div>
+
             </div>
 
             {/* Contact Info Section */}
