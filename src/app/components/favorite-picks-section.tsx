@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Star01 } from "@untitledui/icons";
+import { useState } from "react";
+import { Star01, Heart, Eye, ChevronLeft, ChevronRight } from "@untitledui/icons";
 
 const products = [
 	{
@@ -49,109 +49,102 @@ function RatingStars({ rating }: { rating: number }) {
 	);
 }
 
-export function FavoritePicksSection() {
-	const [activeIndex, setActiveIndex] = useState(0);
-	const activeProduct = products[activeIndex];
+function ProductCard({ product }: { product: (typeof products)[0] }) {
+	return (
+		<div className="group flex flex-col">
+			{/* Image Container */}
+			<div className="relative aspect-square overflow-hidden bg-[#f5f5f5]">
+				<img
+					src={product.image}
+					alt={product.name}
+					className="size-full object-contain p-4 transition duration-100 ease-linear group-hover:scale-105"
+				/>
+				{/* Action Icons */}
+				<div className="absolute right-3 top-3 flex flex-col gap-2">
+					<button
+						className="flex size-9 items-center justify-center rounded-full bg-white shadow-sm transition duration-100 ease-linear hover:bg-gray-50"
+						aria-label="Add to wishlist"
+					>
+						<Heart className="size-5 text-gray-700" />
+					</button>
+					<button
+						className="flex size-9 items-center justify-center rounded-full bg-white shadow-sm transition duration-100 ease-linear hover:bg-gray-50"
+						aria-label="Quick view"
+					>
+						<Eye className="size-5 text-gray-700" />
+					</button>
+				</div>
+			</div>
+			{/* Product Info */}
+			<div className="mt-4 flex flex-col gap-1">
+				<h3 className="text-sm font-medium text-primary line-clamp-2">{product.name}</h3>
+				<RatingStars rating={product.rating} />
+				<p className="text-sm font-semibold text-primary">{product.price}</p>
+			</div>
+			{/* Add to Cart Button */}
+			<button className="mt-3 border border-gray-900 px-4 py-2.5 text-sm font-medium text-gray-900 transition duration-100 ease-linear hover:bg-gray-900 hover:text-white">
+				Add To Cart
+			</button>
+		</div>
+	);
+}
 
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setActiveIndex((prev) => (prev + 1) % products.length);
-		}, 4000);
-		return () => clearInterval(interval);
-	}, []);
+export function FavoritePicksSection() {
+	const [startIndex, setStartIndex] = useState(0);
+	const visibleCount = 2;
+
+	const handlePrev = () => {
+		setStartIndex((prev) => (prev === 0 ? products.length - visibleCount : prev - 1));
+	};
+
+	const handleNext = () => {
+		setStartIndex((prev) => (prev >= products.length - visibleCount ? 0 : prev + 1));
+	};
+
+	const visibleProducts = products.slice(startIndex, startIndex + visibleCount);
 
 	return (
-		<section className="bg-secondary">
-			{/* Mobile Layout */}
-			<div className="block lg:hidden">
-				<div className="px-6 py-12">
-					<span className="text-xs uppercase tracking-widest text-tertiary">Our Picks</span>
-					<h2 className="mt-3 font-body text-2xl font-medium uppercase text-primary md:text-3xl">
-						Our Favorite Picks <span className="text-tertiary">Shop</span>
+		<section className="bg-white py-12 md:py-16 lg:py-20">
+			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				{/* Section Header */}
+				<div className="text-center">
+					<span className="text-xs uppercase tracking-widest text-tertiary">New Collection</span>
+					<h2 className="mt-2 font-body text-2xl font-semibold uppercase text-primary md:text-3xl lg:text-display-xs">
+						Beauty For Every Story
 					</h2>
+				</div>
+
+				{/* Products Grid */}
+				<div className="mt-10 grid grid-cols-2 gap-4 md:gap-6">
+					{visibleProducts.map((product) => (
+						<ProductCard key={product.id} product={product} />
+					))}
+				</div>
+
+				{/* Bottom Navigation */}
+				<div className="mt-10 flex items-center justify-between">
 					<a
 						href="/shop"
-						className="mt-6 inline-block border border-gray-900 bg-gray-900 px-6 py-3 text-xs uppercase tracking-[0.2em] text-white hover:bg-transparent hover:text-gray-900"
+						className="border-b border-gray-900 pb-1 text-sm font-medium text-gray-900 transition duration-100 ease-linear hover:border-gray-600 hover:text-gray-600"
 					>
 						View All
 					</a>
-					<div className="mt-8">
-						<div className="aspect-[3/4] w-full overflow-hidden">
-							<img src={activeProduct.imageLarge} alt={activeProduct.name} className="size-full object-cover" />
-						</div>
-						<div className="mt-6 flex items-end justify-between">
-							<div>
-								<span className="text-xs uppercase tracking-widest text-tertiary">{activeProduct.category}</span>
-								<h3 className="mt-1 font-body text-base font-medium uppercase tracking-wide text-primary">{activeProduct.name}</h3>
-							</div>
-							<div className="text-right">
-								<RatingStars rating={activeProduct.rating} />
-								<p className="mt-1 text-sm text-tertiary">
-									{activeProduct.price} <span className="text-quaternary">—</span> {activeProduct.priceMax}
-								</p>
-							</div>
-						</div>
-						<div className="mt-6 flex justify-center gap-2">
-							{products.map((_, index) => (
-								<button
-									key={index}
-									onClick={() => setActiveIndex(index)}
-									className={`size-2.5 rounded-full ${index === activeIndex ? "bg-gray-900" : "border border-gray-400 bg-transparent"}`}
-									aria-label={`Go to product ${index + 1}`}
-								/>
-							))}
-						</div>
+					<div className="flex items-center gap-3">
+						<button
+							onClick={handlePrev}
+							className="flex size-10 items-center justify-center rounded-sm border border-gray-300 bg-white text-gray-900 shadow-sm transition duration-100 ease-linear hover:bg-gray-50"
+							aria-label="Previous products"
+						>
+							<ChevronLeft className="size-5" />
+						</button>
+						<button
+							onClick={handleNext}
+							className="flex size-10 items-center justify-center rounded-sm border border-gray-300 bg-white text-gray-900 shadow-sm transition duration-100 ease-linear hover:bg-gray-50"
+							aria-label="Next products"
+						>
+							<ChevronRight className="size-5" />
+						</button>
 					</div>
-				</div>
-			</div>
-
-			{/* Desktop Layout */}
-			<div className="hidden lg:grid lg:grid-cols-2">
-				<div className="px-6 py-12 md:px-12 md:py-14 lg:px-16 lg:py-16">
-					<div className="mx-auto max-w-xl lg:ml-auto lg:mr-0">
-						<span className="text-xs uppercase tracking-widest text-tertiary">Our Picks</span>
-						<div className="mt-3 flex flex-wrap items-start justify-between gap-4">
-							<h2 className="font-body text-display-xs font-medium uppercase text-primary md:text-display-sm">
-								Our Favorite<br />Picks <span className="text-tertiary">Shop</span>
-							</h2>
-							<a
-								href="/shop"
-								className="inline-block border border-gray-900 bg-gray-900 px-6 py-3 text-xs uppercase tracking-[0.2em] text-white hover:bg-transparent hover:text-gray-900"
-							>
-								View All
-							</a>
-						</div>
-						<div className="mt-8 space-y-4">
-							{products.map((product) => (
-								<a key={product.id} href={`/shop/${product.id}`} className="group flex items-center gap-6">
-									<div className="size-28 shrink-0 overflow-hidden bg-[#f5e6e0]">
-										<img src={product.image} alt={product.name} className="size-full object-cover" />
-									</div>
-									<div className="flex flex-1 items-center justify-between gap-4">
-										<div>
-											<span className="text-xs uppercase tracking-widest text-tertiary">{product.category}</span>
-											<h3 className="mt-1 font-body text-sm font-medium uppercase tracking-wide text-primary group-hover:text-brand-600 md:text-base">
-												{product.name}
-											</h3>
-										</div>
-										<div className="text-right">
-											<RatingStars rating={product.rating} />
-											<p className="mt-1 text-sm text-tertiary">
-												{product.price} <span className="text-quaternary">—</span> {product.priceMax}
-											</p>
-										</div>
-									</div>
-								</a>
-							))}
-						</div>
-					</div>
-				</div>
-				<div className="relative min-h-[350px] lg:min-h-[550px]">
-					<img
-						src="https://cdn2.hubspot.net/hubfs/4845087/GSD-Teeth-Whitening-Methods-Blog.jpg"
-						alt="Featured products"
-						className="size-full object-cover object-right"
-					/>
 				</div>
 			</div>
 		</section>
