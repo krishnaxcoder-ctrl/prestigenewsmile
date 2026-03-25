@@ -114,7 +114,7 @@ export function ServiceMenuSection() {
                 <div className="text-center">
                     <Link
                         href="/services"
-                        className="inline-block bg-primary px-6 py-3 text-[10px] font-medium uppercase tracking-[0.15em] text-white transition-colors hover:bg-gray-800 md:px-8 md:py-4 md:text-xs md:tracking-[0.2em]"
+                        className="inline-block border border-gray-900 bg-gray-900 px-8 py-3.5 text-[11px] font-medium uppercase tracking-[0.2em] text-white transition-colors hover:bg-transparent hover:text-gray-900 md:px-10 md:py-4 md:text-xs"
                     >
                         View Service Menu
                     </Link>
