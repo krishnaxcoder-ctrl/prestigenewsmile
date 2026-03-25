@@ -11,16 +11,17 @@ const paymentMethods = ["Twint", "Révolut", "Cash"];
 
 export function PriceListSection() {
 	return (
-		<section className="relative min-h-[900px] overflow-hidden">
+		<section className="relative min-h-[750px] overflow-hidden">
 			<div className="absolute inset-0">
 				<img
 					src="/price-bg.jpg"
 					alt="Smile background"
-					className="size-full object-cover object-center md:object-center"
+					className="size-full object-cover"
+					style={{ objectPosition: "-300px 50%" }}
 				/>
 				<div className="absolute inset-0 bg-[#8B7B7B]/60" />
 			</div>
-			<div className="relative z-10 flex min-h-[900px] flex-col items-center justify-center px-4 py-16 md:py-24">
+			<div className="relative z-10 flex min-h-[750px] flex-col items-center justify-center px-4 py-16 md:py-24">
 				<div className="w-full max-w-xl">
 					<div className="mb-10 text-center">
 						<h2 className="text-display-sm font-light uppercase tracking-[0.3em] text-white md:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
