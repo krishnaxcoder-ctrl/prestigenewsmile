@@ -20,7 +20,7 @@ export function ReviewsSection() {
                         </h2>
                         <a
                             href="/reviews"
-                            className="mt-8 inline-block border border-gray-900 bg-transparent px-8 py-3 text-sm font-medium uppercase text-gray-900 transition duration-100 ease-linear hover:bg-gray-900 hover:text-white"
+                            className="mt-8 hidden border border-gray-900 bg-transparent px-8 py-3 text-sm font-medium uppercase text-gray-900 transition duration-100 ease-linear hover:bg-gray-900 hover:text-white lg:inline-block"
                         >
                             View All
                         </a>
@@ -62,6 +62,16 @@ export function ReviewsSection() {
                             </div>
                         ))}
                     </div>
+                </div>
+
+                {/* Mobile View All Button */}
+                <div className="mt-8 text-center lg:hidden">
+                    <a
+                        href="/reviews"
+                        className="inline-block border border-gray-900 bg-transparent px-8 py-3 text-sm font-medium uppercase text-gray-900 transition duration-100 ease-linear hover:bg-gray-900 hover:text-white"
+                    >
+                        View All
+                    </a>
                 </div>
             </div>
         </section>
