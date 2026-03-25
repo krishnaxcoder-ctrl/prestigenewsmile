@@ -140,6 +140,16 @@ export interface ProductAdditionalInfo {
     madeIn?: string;
     skinType?: string;
     usage?: string;
+    size?: string;
+    type?: string;
+    key_ingredient?: string;
+    formulation?: string;
+    texture?: string;
+    flavor?: string;
+    skin_type?: string;
+    shelf_life?: string;
+    packaging?: string;
+    storage?: string;
 }
 
 export interface Product {

@@ -431,13 +431,13 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             {product.benefits}
                                         </p>
 
-                                        {product.additional_info?.usage_instructions && (
+                                        {product.additional_info?.usage && (
                                             <>
                                                 <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
                                                     How To Use
                                                 </h3>
                                                 <p className="mt-4 leading-relaxed text-tertiary">
-                                                    {product.additional_info.usage_instructions}
+                                                    {product.additional_info.usage}
                                                 </p>
                                             </>
                                         )}
@@ -524,13 +524,13 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             </tbody>
                                         </table>
 
-                                        {product.additional_info?.usage_instructions && (
+                                        {product.additional_info?.usage && (
                                             <>
                                                 <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wider text-primary">
                                                     How To Use
                                                 </h3>
                                                 <p className="text-sm leading-relaxed text-tertiary">
-                                                    {product.additional_info.usage_instructions}
+                                                    {product.additional_info.usage}
                                                 </p>
                                             </>
                                         )}
