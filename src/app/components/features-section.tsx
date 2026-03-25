@@ -51,30 +51,36 @@ export function FeaturesSection() {
                 {features.map((feature) => (
                     <div key={feature.id}>
                         {/* Mobile Layout - Image card with overlay text */}
-                        <a
-                            href={feature.buttonHref}
-                            className="relative block aspect-[4/2.5] overflow-hidden md:hidden p-3"
-                        >
-                            <img
-                                src={feature.image}
-                                alt={feature.title}
-                                className="size-full object-cover object-center"
-                            />
-                           
-                            {/* Overlay content */}
-                            <div className="absolute inset-0 flex flex-col justify-center px-6">
-                                <h2
-                                    className="text-display-xs font-medium uppercase leading-tight text-white"
-                                    style={{ fontFamily: "var(--global-heading-font-family)" }}
-                                >
-                                    {feature.title}<br />
-                                    {feature.titleHighlight}
-                                </h2>
-                                <span className="mt-4 text-sm font-medium text-white underline underline-offset-4">
-                                    Discover Now
-                                </span>
-                            </div>
-                        </a>
+                        <div className="md:hidden">
+                            <a
+                                href={feature.buttonHref}
+                                className="block p-3"
+                            >
+                                <div className="relative aspect-[4/2.5] overflow-hidden">
+                                    <img
+                                        src={feature.image}
+                                        alt={feature.title}
+                                        className="size-full object-cover object-center"
+                                    />
+                                    {/* Overlay gradient for text readability */}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+
+                                    {/* Overlay content */}
+                                    <div className="absolute inset-0 flex flex-col justify-center px-6">
+                                        <h2
+                                            className="text-display-xs font-medium uppercase leading-tight text-white"
+                                            style={{ fontFamily: "var(--global-heading-font-family)" }}
+                                        >
+                                            {feature.title}<br />
+                                            {feature.titleHighlight}
+                                        </h2>
+                                        <span className="mt-4 text-sm font-medium text-white underline underline-offset-4">
+                                            Discover Now
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
 
                         {/* Desktop Layout - Split image and content */}
                         <div className="hidden md:grid md:grid-cols-2">
@@ -158,6 +164,12 @@ export function FeaturesSection() {
                         </div>
                     </div>
                 ))}
+            </div>
+            {/* Mobile Section Description */}
+            <div className="bg-secondary px-4 py-6 text-center md:hidden">
+                <p className="text-sm leading-relaxed text-tertiary">
+                    Experience professional teeth whitening with personalized care. Our treatments are safe, effective, and designed to give you a naturally brighter smile.
+                </p>
             </div>
         </section>
     );
