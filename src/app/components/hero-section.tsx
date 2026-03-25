@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Phone01, Clock, MarkerPin01 } from "@untitledui/icons";
 
 export function HeroSection() {
     return (
@@ -56,9 +55,6 @@ export function HeroSection() {
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6">
                         {/* Contact */}
                         <div className="flex flex-col items-center text-center">
-                            <div className="mb-4 flex size-11 items-center justify-center rounded-full border border-brand-200 bg-brand-50">
-                                <Phone01 className="size-5 text-brand-600" />
-                            </div>
                             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                                 Contact
                             </h3>
@@ -70,9 +66,6 @@ export function HeroSection() {
 
                         {/* Hours */}
                         <div className="flex flex-col items-center text-center">
-                            <div className="mb-4 flex size-11 items-center justify-center rounded-full border border-brand-200 bg-brand-50">
-                                <Clock className="size-5 text-brand-600" />
-                            </div>
                             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                                 Hours
                             </h3>
@@ -85,9 +78,6 @@ export function HeroSection() {
 
                         {/* Location */}
                         <div className="flex flex-col items-center text-center">
-                            <div className="mb-4 flex size-11 items-center justify-center rounded-full border border-brand-200 bg-brand-50">
-                                <MarkerPin01 className="size-5 text-brand-600" />
-                            </div>
                             <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
                                 Location
                             </h3>
