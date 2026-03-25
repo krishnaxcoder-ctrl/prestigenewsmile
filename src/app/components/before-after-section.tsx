@@ -17,6 +17,38 @@ const transformations = [
         description: "Two sessions for dramatic results",
         price: "CHF/€ 169",
     },
+    {
+        id: 3,
+        before: "/teeth before and after images/1.png",
+        after: "/teeth before and after images/2.png",
+        title: "Teeth Whitening",
+        description: "Up to 7 shades lighter",
+        price: "CHF/€ 99",
+    },
+    {
+        id: 4,
+        before: "/teeth before and after images/11.png",
+        after: "/teeth before and after images/6.png",
+        title: "Teeth Whitening",
+        description: "Up to 7 shades lighter",
+        price: "CHF/€ 169",
+    },
+    {
+        id: 5,
+        before: "/teeth before and after images/3.png",
+        after: "/teeth before and after images/4.png",
+        title: "Teeth Whitening",
+        description: "Up to 7 shades lighter",
+        price: "CHF/€ 99",
+    },
+    {
+        id: 6,
+        before: "/teeth before and after images/13.png",
+        after: "/teeth before and after images/14.png",
+        title: "Complete Treatment",
+        description: "Two sessions for dramatic results",
+        price: "CHF/€ 169",
+    },
 ];
 
 export function BeforeAfterSection() {
