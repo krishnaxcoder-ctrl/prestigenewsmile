@@ -2,36 +2,43 @@
 
 export const TaglineSection = () => {
     return (
-        <section className="flex flex-col items-center justify-center px-4 py-16 md:py-24 lg:py-32">
-            <span className="text-xs font-medium uppercase tracking-widest text-tertiary">
-                Professional Teeth Whitening Studio
-            </span>
-            <div className="mt-6 flex max-w-5xl flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-display-sm font-semibold text-primary md:text-display-md lg:text-display-lg">
-                <span>A BRIGHT</span>
-                <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-10 md:w-28 lg:h-12 lg:w-32">
-                    <img
-                        src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=200&auto=format&fit=crop"
-                        alt="Bright smile"
-                        className="size-full object-cover"
-                    />
-                </span>
-                <span>SMILE IS</span>
-                <span>MUCH MORE</span>
-                <span>THAN A</span>
-                <span className="text-brand-600">DETAIL</span>
-                <span>IT REVEALS</span>
-                <span>THE</span>
-                <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-10 md:w-28 lg:h-12 lg:w-32">
-                    <img
-                        src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=200&auto=format&fit=crop"
-                        alt="Teeth whitening treatment"
-                        className="size-full object-cover"
-                    />
-                </span>
-                <span className="text-brand-600">CONFIDENCE</span>
-                <span>YOU HAVE</span>
-                <span>IN</span>
-                <span className="text-brand-600">YOURSELF.</span>
+        <section className="bg-primary px-4 py-12 md:py-20 lg:py-24">
+            <div className="mx-auto max-w-5xl">
+                <div className="mb-6 text-center">
+                    <span className="text-xs font-medium uppercase tracking-[0.2em] text-tertiary">
+                        Professional Teeth Whitening Studio
+                    </span>
+                </div>
+                <div
+                    className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-display-sm font-normal uppercase tracking-wide text-primary md:gap-x-5 md:gap-y-3 md:text-display-lg lg:text-display-xl"
+                    style={{ fontFamily: "var(--global-heading-font-family)" }}
+                >
+                    <span>A Bright</span>
+                    <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-12 md:w-32 lg:h-14 lg:w-36">
+                        <img
+                            src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=200&auto=format&fit=crop"
+                            alt="Bright smile"
+                            className="size-full object-cover"
+                        />
+                    </span>
+                    <span>Smile Is</span>
+                    <span>Much More</span>
+                    <span>Than A</span>
+                    <span className="text-brand-600">Detail</span>
+                    <span>It Reveals</span>
+                    <span>The</span>
+                    <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-12 md:w-32 lg:h-14 lg:w-36">
+                        <img
+                            src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=200&auto=format&fit=crop"
+                            alt="Teeth whitening treatment"
+                            className="size-full object-cover"
+                        />
+                    </span>
+                    <span className="text-brand-600">Confidence</span>
+                    <span>You Have</span>
+                    <span>In</span>
+                    <span className="text-brand-600">Yourself.</span>
+                </div>
             </div>
         </section>
     );
