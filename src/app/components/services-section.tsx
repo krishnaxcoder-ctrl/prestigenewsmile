@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/base/buttons/button";
+import Link from "next/link";
 import { ArrowUpRight } from "@untitledui/icons";
 
 const categories = [
@@ -47,27 +47,23 @@ export const ServicesSection = () => {
                                 </div>
                             </a>
                             <div className="mt-4 sm:mt-5">
-                                <div className="flex items-center justify-between">
-                                    <h5 className="text-md font-bold uppercase tracking-wide text-primary sm:text-lg" style={{ fontFamily: "var(--global-heading-font-family)" }}>
-                                        <a href={category.href}>{category.title}</a>
-                                    </h5>
-                                    <span className="text-lg font-bold text-brand-600">
+                                <h5 className="text-md font-medium uppercase tracking-wide text-primary sm:text-lg md:text-xl lg:text-xl">
+                                    <a href={category.href}>{category.title}</a>
+                                </h5>
+                                <p className="mt-2 text-sm leading-relaxed text-tertiary sm:mt-3">
+                                    {category.description}
+                                </p>
+                                <div className="mt-4 flex items-center justify-between">
+                                    <Link
+                                        href={category.href}
+                                        className="inline-flex items-center gap-1.5 text-sm font-medium uppercase tracking-wide text-primary underline underline-offset-4 transition-colors hover:text-brand-600"
+                                    >
+                                        Book Now
+                                        <ArrowUpRight className="size-4" />
+                                    </Link>
+                                    <span className="text-sm font-medium uppercase tracking-wide text-primary md:text-md">
                                         {category.price}
                                     </span>
-                                </div>
-                                <div className="mt-2 flex flex-col gap-3 sm:mt-3">
-                                    <p className="text-sm leading-relaxed text-tertiary">
-                                        {category.description}
-                                    </p>
-                                    <Button
-                                        href={category.href}
-                                        color="secondary"
-                                        size="md"
-                                        iconTrailing={ArrowUpRight}
-                                        className="w-fit"
-                                    >
-                                        Book
-                                    </Button>
                                 </div>
                             </div>
                         </div>
