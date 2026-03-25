@@ -369,7 +369,7 @@ export default function ReviewsPage() {
                                                 whileInView={{ opacity: 1, y: 0 }}
                                                 viewport={{ once: true }}
                                                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                                                className="relative bg-gradient-to-br from-amber-50/80 to-orange-50/50 py-5 pl-6 pr-5 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-gradient-to-b before:from-amber-300 before:via-amber-400 before:to-amber-500 before:shadow-[0_0_8px_rgba(251,191,36,0.6)]"
+                                                className="relative bg-white border border-gray-200  py-5 pl-6 pr-5 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-gradient-to-b before:from-amber-300 before:via-amber-400 before:to-amber-500 before:shadow-[0_0_8px_rgba(251,191,36,0.6)]"
                                             >
                                                 {/* Stars */}
                                                 <div className="flex gap-0.5">
