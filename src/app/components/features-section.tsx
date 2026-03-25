@@ -15,7 +15,7 @@ const features = [
         highlights: ["Enamel Safe", "Up to 7 Shades", "Lasting Results"],
         buttonText: "Book Session",
         buttonHref: "/booking",
-        image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=1974&auto=format&fit=crop",
+        image: "https://wordpressthemes.live/WCG10/WCM231_cosmika/cosmetic02/wp-content/uploads/2025/04/banner_01.jpg",
         imagePosition: "left" as const,
     },
     {
@@ -29,7 +29,7 @@ const features = [
         highlights: ["Private Studio", "Personal Approach", "Premium Experience"],
         buttonText: "About Us",
         buttonHref: "/about",
-        image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
+        image: "https://wordpressthemes.live/WCG10/WCM231_cosmika/cosmetic02/wp-content/uploads/2025/04/banner_02.jpg",
         imagePosition: "right" as const,
     },
 ];
