@@ -56,6 +56,18 @@ const services = [
         ),
         description: "Professional-grade whitening products for at-home care. Maintain your results between sessions.",
     },
+    {
+        id: "consultation",
+        name: "CONSULTATION",
+        icon: (
+            <svg viewBox="0 0 64 64" fill="none" className="size-12" stroke="currentColor" strokeWidth="1.5">
+                <circle cx="32" cy="20" r="12" />
+                <path d="M16 52c0-10 7-18 16-18s16 8 16 18" strokeLinecap="round" />
+                <path d="M44 38l8-4M44 44l6 2" strokeLinecap="round" />
+            </svg>
+        ),
+        description: "Book a free consultation to discuss your smile goals. Our experts will create a personalized treatment plan.",
+    },
 ];
 
 export function ServiceMenuSection() {
@@ -63,7 +75,7 @@ export function ServiceMenuSection() {
     const activeServiceData = services.find((s) => s.id === activeService);
 
     return (
-        <section className="bg-primary py-12 md:py-24">
+        <section className="relative py-12 md:py-24" style={{ background: "linear-gradient(135deg, #ffffff 0%, #fdf8f6 30%, #faf0ed 60%, #f5e6e0 100%)" }}>
             <div className="mx-auto max-w-4xl">
                 {/* Heading */}
                 <h2
@@ -75,7 +87,7 @@ export function ServiceMenuSection() {
 
                 {/* Service Icons */}
                 <div className="mb-10 px-4 md:px-0">
-                    <div className="grid grid-cols-4 gap-4 md:gap-10">
+                    <div className="grid grid-cols-5 gap-3 md:gap-10">
                         {services.map((service) => (
                             <button
                                 key={service.id}
@@ -103,7 +115,7 @@ export function ServiceMenuSection() {
                 {/* Description */}
                 <div className="mb-8 text-center md:mb-10">
                     <p
-                        className="mx-auto max-w-sm px-4 text-base text-secondary md:max-w-lg md:px-0 md:text-xl"
+                        className="mx-auto max-w-lg px-4 text-2xl text-secondary md:max-w-2xl md:px-0 md:text-3xl"
                         style={{ fontFamily: "'Eyesome Script', cursive" }}
                     >
                         {activeServiceData?.description}
