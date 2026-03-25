@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useId } from "react";
 import Link from "next/link";
 import {
     ChevronDown,
@@ -180,9 +180,10 @@ const languages = [
 ];
 
 const LanguageSelector = () => {
+    const id = useId();
     return (
         <AriaSelect
-            id="language-selector"
+            id={`language-selector-${id}`}
             defaultSelectedKey="en"
             aria-label="Select language"
             className="relative"
