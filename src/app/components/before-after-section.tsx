@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { motion } from "framer-motion";
 
 export function BeforeAfterSection() {
     const [sliderPosition, setSliderPosition] = useState(50);
@@ -10,64 +9,29 @@ export function BeforeAfterSection() {
 
     const handleMove = useCallback((clientX: number) => {
         if (!containerRef.current) return;
-
         const rect = containerRef.current.getBoundingClientRect();
         const x = clientX - rect.left;
         const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
         setSliderPosition(percentage);
     }, []);
 
-    const handleMouseDown = () => {
-        isDragging.current = true;
-    };
-
-    const handleMouseUp = () => {
-        isDragging.current = false;
-    };
-
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isDragging.current) return;
-        handleMove(e.clientX);
-    };
-
-    const handleTouchMove = (e: React.TouchEvent) => {
-        handleMove(e.touches[0].clientX);
-    };
+    const handleMouseDown = () => { isDragging.current = true; };
+    const handleMouseUp = () => { isDragging.current = false; };
+    const handleMouseMove = (e: React.MouseEvent) => { if (isDragging.current) handleMove(e.clientX); };
+    const handleTouchMove = (e: React.TouchEvent) => { handleMove(e.touches[0].clientX); };
 
     return (
         <section className="bg-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
             <div className="mx-auto max-w-7xl">
-                {/* Header */}
                 <div className="mb-10 text-center md:mb-14">
-                    <motion.span
-                        initial={{ opacity: 0, filter: "blur(8px)" }}
-                        whileInView={{ opacity: 1, filter: "blur(0px)" }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-                        className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700"
-                    >
+                    <span className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
                         Flawless Skin Starts Here
-                    </motion.span>
-
-                    <motion.h2
-                        initial={{ opacity: 0, filter: "blur(8px)" }}
-                        whileInView={{ opacity: 1, filter: "blur(0px)" }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.5, delay: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
-                        className="mt-4 text-display-xs font-semibold uppercase text-primary md:text-display-sm lg:text-display-md"
-                    >
+                    </span>
+                    <h2 className="mt-4 text-display-xs font-semibold uppercase text-primary md:text-display-sm lg:text-display-md">
                         Real <span className="text-brand-600">Transformations</span>
-                    </motion.h2>
+                    </h2>
                 </div>
-
-                {/* Before/After Slider */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                    className="relative"
-                >
+                <div className="relative">
                     <div
                         ref={containerRef}
                         className="relative aspect-[16/9] cursor-ew-resize select-none overflow-hidden"
@@ -78,45 +42,24 @@ export function BeforeAfterSection() {
                         onTouchMove={handleTouchMove}
                         onTouchEnd={handleMouseUp}
                     >
-                        {/* Before Image (Background - Yellow teeth) */}
                         <div className="absolute inset-0">
-                            <img
-                                src="/bigyellow.jpg"
-                                alt="Before"
-                                className="size-full object-cover"
-                                draggable={false}
-                            />
-                            {/* Before Label */}
+                            <img src="/bigyellow.jpg" alt="Before" className="size-full object-cover" draggable={false} />
                             <span className="absolute bottom-3 left-3 rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white backdrop-blur-sm sm:bottom-6 sm:left-6 sm:px-4 sm:py-2 sm:text-sm">
                                 Before
                             </span>
                         </div>
-
-                        {/* After Image (Foreground with clip - White teeth) */}
-                        <div
-                            className="absolute inset-0"
-                            style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
-                        >
-                            <img
-                                src="/bigwhite.jpg"
-                                alt="After"
-                                className="size-full object-cover"
-                                draggable={false}
-                            />
-                            {/* After Label */}
+                        <div className="absolute inset-0" style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}>
+                            <img src="/bigwhite.jpg" alt="After" className="size-full object-cover" draggable={false} />
                             <span className="absolute bottom-3 right-3 rounded-full bg-brand-600 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white sm:bottom-6 sm:right-6 sm:px-4 sm:py-2 sm:text-sm">
                                 After
                             </span>
                         </div>
-
-                        {/* Slider Line */}
                         <div
                             className="absolute bottom-0 top-0 z-10 w-1 bg-white shadow-lg"
                             style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
                         >
-                            {/* Slider Handle */}
                             <div
-                                className="absolute left-1/2 top-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full border-2 border-white bg-brand-600 shadow-xl transition-transform hover:scale-110 sm:size-14 sm:border-4"
+                                className="absolute left-1/2 top-1/2 flex size-10 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full border-2 border-white bg-brand-600 shadow-xl sm:size-14 sm:border-4"
                                 onMouseDown={handleMouseDown}
                             >
                                 <div className="flex items-center gap-1">
@@ -129,20 +72,16 @@ export function BeforeAfterSection() {
                                 </div>
                             </div>
                         </div>
-
-                        {/* Result Text Overlay */}
                         <div className="absolute inset-x-0 top-3 z-10 text-center sm:top-6">
                             <span className="inline-block rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-primary shadow-lg backdrop-blur-sm sm:px-5 sm:py-2.5 sm:text-sm">
                                 Visible result in just 15 days
                             </span>
                         </div>
                     </div>
-
-                    {/* Instructions */}
                     <p className="mt-4 text-center text-sm text-tertiary">
                         Drag the slider to compare before and after results
                     </p>
-                </motion.div>
+                </div>
             </div>
         </section>
     );
