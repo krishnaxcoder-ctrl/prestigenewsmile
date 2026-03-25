@@ -63,7 +63,7 @@ export function GiftcardSection() {
 				</div>
 				<div className="relative order-1 lg:order-2">
 					<div
-						className="relative flex h-[320px] cursor-grab items-center overflow-hidden pl-4 active:cursor-grabbing md:h-[650px] md:pl-0 lg:h-[700px]"
+						className="relative flex h-[350px] cursor-grab items-center overflow-hidden pl-4 active:cursor-grabbing md:h-[650px] md:pl-0 lg:h-[700px]"
 						onMouseDown={handleDragStart}
 						onMouseMove={handleDragMove}
 						onMouseUp={handleDragEnd}
@@ -73,7 +73,7 @@ export function GiftcardSection() {
 						onTouchEnd={handleDragEnd}
 					>
 						<div
-							className="flex items-center transition-transform duration-300 [--slide-width:270px] md:[--slide-width:640px]"
+							className="flex items-center transition-transform duration-300 [--slide-width:320px] md:[--slide-width:640px]"
 							style={{ transform: `translateX(calc(-${activeIndex} * var(--slide-width)))` }}
 						>
 							{giftCardImages.map((image) => (
@@ -81,7 +81,7 @@ export function GiftcardSection() {
 									key={image.id}
 									className="relative w-[var(--slide-width)] flex-shrink-0"
 								>
-									<img src={image.src} alt={image.alt} className="size-[250px] object-cover md:size-[600px]" draggable={false} />
+									<img src={image.src} alt={image.alt} className="size-[300px] object-cover md:size-[600px]" draggable={false} />
 								</div>
 							))}
 						</div>

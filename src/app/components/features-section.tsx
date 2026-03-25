@@ -168,7 +168,7 @@ export function FeaturesSection() {
             </div>
             {/* Mobile Section Description */}
             <div className="bg-secondary px-4 py-6 text-center md:hidden">
-                <p className="text-sm leading-relaxed text-tertiary">
+                <p className="text-md leading-relaxed text-tertiary">
                     Experience professional teeth whitening with personalized care. Our treatments are safe, effective, and designed to give you a naturally brighter smile.
                 </p>
             </div>
