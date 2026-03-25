@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/base/buttons/button";
-import { ArrowRight } from "@untitledui/icons";
+import { ArrowRight, ArrowUpRight } from "@untitledui/icons";
 
 const features = [
     {
@@ -74,8 +74,9 @@ export function FeaturesSection() {
                                             {feature.title}<br />
                                             {feature.titleHighlight}
                                         </h2>
-                                        <span className="mt-4 text-sm font-medium text-white underline underline-offset-4">
+                                        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-white underline underline-offset-4">
                                             Discover Now
+                                            <ArrowUpRight className="size-4" />
                                         </span>
                                     </div>
                                 </div>
