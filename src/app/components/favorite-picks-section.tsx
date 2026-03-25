@@ -10,7 +10,7 @@ const products = [
 		name: "Professional Whitening Gel",
 		price: "$55.00",
 		priceMax: "$64.00",
-		rating: 4,
+		rating: 5,
 		image: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=400&auto=format&fit=crop",
 		imageLarge: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800&auto=format&fit=crop",
 	},
@@ -20,7 +20,7 @@ const products = [
 		name: "Sensitive Toothpaste",
 		price: "$30.00",
 		priceMax: "$35.00",
-		rating: 4,
+		rating: 5,
 		image: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=400&auto=format&fit=crop",
 		imageLarge: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=800&auto=format&fit=crop",
 	},
@@ -53,11 +53,11 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
 	return (
 		<div className="group flex flex-col">
 			{/* Image Container */}
-			<div className="relative aspect-square overflow-hidden bg-[#f5f5f5]">
+			<div className="relative aspect-square overflow-hidden">
 				<img
 					src={product.image}
 					alt={product.name}
-					className="size-full object-contain p-4 transition duration-100 ease-linear group-hover:scale-105"
+					className="size-full object-cover transition duration-100 ease-linear group-hover:scale-105"
 				/>
 				{/* Action Icons */}
 				<div className="absolute right-3 top-3 flex flex-col gap-2">
@@ -90,18 +90,15 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
 }
 
 export function FavoritePicksSection() {
-	const [startIndex, setStartIndex] = useState(0);
-	const visibleCount = 2;
+	const [page, setPage] = useState(0);
 
 	const handlePrev = () => {
-		setStartIndex((prev) => (prev === 0 ? products.length - visibleCount : prev - 1));
+		setPage((prev) => (prev === 0 ? 1 : 0));
 	};
 
 	const handleNext = () => {
-		setStartIndex((prev) => (prev >= products.length - visibleCount ? 0 : prev + 1));
+		setPage((prev) => (prev === 1 ? 0 : 1));
 	};
-
-	const visibleProducts = products.slice(startIndex, startIndex + visibleCount);
 
 	return (
 		<section className="bg-white py-12 md:py-16 lg:py-20">
@@ -115,8 +112,8 @@ export function FavoritePicksSection() {
 				</div>
 
 				{/* Products Grid */}
-				<div className="mt-10 grid grid-cols-2 gap-4 md:gap-6">
-					{visibleProducts.map((product) => (
+				<div className="mt-10 grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3">
+					{products.map((product) => (
 						<ProductCard key={product.id} product={product} />
 					))}
 				</div>
