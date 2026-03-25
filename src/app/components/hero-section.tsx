@@ -20,7 +20,7 @@ export function HeroSection() {
 
                 {/* Content */}
                 <div className="relative flex min-h-[50vh] flex-col justify-center px-6 py-16 md:min-h-[85vh] md:px-12 lg:px-20">
-                    <div className="max-w-lg">
+                    <div className="max-w-2xl">
                         {/* Tagline */}
                         <div className="mb-4 flex items-center gap-3">
                             <span className="h-px w-3 bg-white/50" />
@@ -30,7 +30,7 @@ export function HeroSection() {
                         </div>
 
                         <h1
-                            className="text-display-xs font-normal  leading-tight text-white md:text-display-sm lg:text-display-md"
+                            className="text-display-xs font-medium uppercase  leading-tight text-white  md:text-display-sm lg:text-display-md"
                             style={{ fontFamily: "var(--global-heading-font-family)" }}
                         >
                             Always Make Room for a Brighter Smile in Your Life
