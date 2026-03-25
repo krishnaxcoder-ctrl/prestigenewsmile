@@ -25,31 +25,6 @@ const navItems = [
     { label: "Contact", href: "/contact" },
 ];
 
-const PromoBanner = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % promoSlides.length);
-    const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + promoSlides.length) % promoSlides.length);
-
-    return (
-        <div className="relative flex h-10 items-center justify-center bg-brand-solid text-white">
-            <button onClick={prevSlide} className="absolute left-4 flex size-6 items-center justify-center rounded-full hover:bg-white/10" aria-label="Previous">
-                <ChevronLeft className="size-4" />
-            </button>
-            <div className="flex items-center gap-1.5 px-8 text-center text-[10px] font-medium uppercase tracking-widest sm:px-0 sm:text-xs">
-                <span className="line-clamp-1">{promoSlides[currentSlide].text}</span>
-                {promoSlides[currentSlide].linkText && (
-                    <Link href={promoSlides[currentSlide].linkHref} className="font-semibold underline underline-offset-2 hover:opacity-80">
-                        {promoSlides[currentSlide].linkText}
-                    </Link>
-                )}
-            </div>
-            <button onClick={nextSlide} className="absolute right-4 flex size-6 items-center justify-center rounded-full hover:bg-white/10" aria-label="Next">
-                <ChevronRight className="size-4" />
-            </button>
-        </div>
-    );
-};
-
 const ServicesDropdown = () => {
     const columns = [
         { title: "Treatments", items: [
