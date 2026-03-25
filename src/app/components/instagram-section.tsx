@@ -9,12 +9,6 @@ const instagramPosts = [
     { id: 4, image: "https://plus.unsplash.com/premium_photo-1661436277204-221c8040e4d2?w=600&auto=format&fit=crop&q=60", likes: "2.9k", comments: "67" },
     { id: 5, image: "https://plus.unsplash.com/premium_photo-1677174625968-d1daf44042dc?w=600&auto=format&fit=crop&q=60", likes: "4.2k", comments: "124" },
     { id: 6, image: "https://plus.unsplash.com/premium_photo-1661768526823-8e7941279818?w=600&auto=format&fit=crop&q=60", likes: "1.5k", comments: "29" },
-    { id: 7, image: "https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=600&auto=format&fit=crop&q=60", likes: "3.8k", comments: "85" },
-    { id: 8, image: "https://images.unsplash.com/photo-1588776813677-77aaf5595b83?w=600&auto=format&fit=crop&q=60", likes: "2.1k", comments: "52" },
-    { id: 9, image: "https://ledgeviewdental.com/img/upload/teeth-whitening1_2.jpg", likes: "4.5k", comments: "108" },
-    { id: 10, image: "https://drrickdentistry.com/wp-content/uploads/2019/12/how-does-professional-teeth-whitening-work.gif", likes: "1.9k", comments: "41" },
-    { id: 11, image: "https://dental101.in/wp-content/uploads/2025/09/istockphoto-1492174304-612x612-1.jpg", likes: "3.3k", comments: "76" },
-    { id: 12, image: "https://www.thesmiledesign.com/wp-content/uploads/2025/04/smile-design-blog-teeth-whitening-v3.png", likes: "2.7k", comments: "63" },
 ];
 
 export function InstagramSection() {
@@ -34,7 +28,7 @@ export function InstagramSection() {
                 </h2>
                 <p className="mt-3 text-md text-tertiary">@prestige.smile.studio</p>
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-6">
+            <div className="grid grid-cols-3 gap-2 md:grid-cols-6">
                 {instagramPosts.map((post) => (
                     <a
                         key={post.id}
