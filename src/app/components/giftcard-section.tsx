@@ -43,7 +43,7 @@ export function GiftcardSection() {
 	return (
 		<section className="bg-primary">
 			<div className="grid grid-cols-1 lg:grid-cols-2">
-				<div className="flex flex-col justify-center px-6 py-16 md:px-12 md:py-20 lg:py-24">
+				<div className="order-2 flex flex-col justify-center px-6 py-10 md:px-12 md:py-16 lg:order-1 lg:py-24">
 					<div className="ml-auto max-w-7xl lg:px-20">
 						<h2 className="text-display-xs font-normal uppercase text-primary md:text-display-sm lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
 							Gift Cards
@@ -61,9 +61,9 @@ export function GiftcardSection() {
 						</div>
 					</div>
 				</div>
-				<div className="relative">
+				<div className="relative order-1 lg:order-2">
 					<div
-						className="relative flex h-[550px] cursor-grab items-center overflow-hidden active:cursor-grabbing md:h-[650px] lg:h-[700px]"
+						className="relative flex h-[320px] cursor-grab items-center overflow-hidden active:cursor-grabbing md:h-[650px] lg:h-[700px]"
 						onMouseDown={handleDragStart}
 						onMouseMove={handleDragMove}
 						onMouseUp={handleDragEnd}
@@ -73,12 +73,15 @@ export function GiftcardSection() {
 						onTouchEnd={handleDragEnd}
 					>
 						<div
-							className="flex items-center"
-							style={{ transform: `translateX(calc(-${activeIndex * 640}px))` }}
+							className="flex items-center transition-transform duration-300 [--slide-width:270px] md:[--slide-width:640px]"
+							style={{ transform: `translateX(calc(-${activeIndex} * var(--slide-width)))` }}
 						>
 							{giftCardImages.map((image) => (
-								<div key={image.id} className="relative flex-shrink-0 pr-10" style={{ width: "640px" }}>
-									<img src={image.src} alt={image.alt} className="size-[600px] object-cover" draggable={false} />
+								<div
+									key={image.id}
+									className="relative w-[var(--slide-width)] flex-shrink-0"
+								>
+									<img src={image.src} alt={image.alt} className="size-[250px] object-cover md:size-[600px]" draggable={false} />
 								</div>
 							))}
 						</div>
