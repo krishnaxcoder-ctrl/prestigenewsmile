@@ -11,8 +11,8 @@ const transformations = [
     },
     {
         id: 2,
-        before: "/teeth before and after images/3.png",
-        after: "/teeth before and after images/4.png",
+        before: "/teeth before and after images/13.png",
+        after: "/teeth before and after images/14.png",
         title: "Complete Treatment",
         description: "Two sessions for dramatic results",
         price: "CHF/€ 169",
@@ -46,7 +46,7 @@ export function BeforeAfterSection() {
                             <div className="grid grid-cols-2 gap-3 md:gap-4">
                                 {/* Before */}
                                 <div className="relative overflow-hidden rounded-xl">
-                                    <div className="aspect-[3/4]">
+                                    <div className="aspect-[4/4]">
                                         <img
                                             src={item.before}
                                             alt="Before treatment"
@@ -60,7 +60,7 @@ export function BeforeAfterSection() {
 
                                 {/* After */}
                                 <div className="relative overflow-hidden rounded-xl">
-                                    <div className="aspect-[3/4]">
+                                    <div className="aspect-[4/4]">
                                         <img
                                             src={item.after}
                                             alt="After treatment"
