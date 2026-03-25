@@ -48,23 +48,23 @@ export const ServicesSection = () => {
                             </a>
                             <div className="mt-4 sm:mt-5">
                                 <div className="flex items-center justify-between">
-                                    <h5 className="text-md font-semibold uppercase tracking-wide text-primary sm:text-lg">
+                                    <h5 className="text-md font-bold uppercase tracking-wide text-primary sm:text-lg" style={{ fontFamily: "var(--global-heading-font-family)" }}>
                                         <a href={category.href}>{category.title}</a>
                                     </h5>
                                     <span className="text-lg font-bold text-brand-600">
                                         {category.price}
                                     </span>
                                 </div>
-                                <div className="mt-2 flex flex-col gap-3 sm:mt-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                                <div className="mt-2 flex flex-col gap-3 sm:mt-3">
                                     <p className="text-sm leading-relaxed text-tertiary">
                                         {category.description}
                                     </p>
                                     <Button
                                         href={category.href}
-                                        color="tertiary"
+                                        color="secondary"
                                         size="md"
                                         iconTrailing={ArrowUpRight}
-                                        className="w-fit shrink-0"
+                                        className="w-fit"
                                     >
                                         Book
                                     </Button>
