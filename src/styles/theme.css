@@ -117,19 +117,19 @@
     --color-white: rgb(255 255 255);
     --color-black: rgb(0 0 0);
 
-    /* Premium Teal - Teeth Whitening Aesthetic */
-    --color-brand-25: rgb(240 253 252);
-    --color-brand-50: rgb(230 250 248);
-    --color-brand-100: rgb(204 245 241);
-    --color-brand-200: rgb(153 236 227);
-    --color-brand-300: rgb(94 220 208);
-    --color-brand-400: rgb(45 198 183);
-    --color-brand-500: rgb(20 170 158);
-    --color-brand-600: rgb(13 140 132);
-    --color-brand-700: rgb(15 115 109);
-    --color-brand-800: rgb(17 92 88);
-    --color-brand-900: rgb(18 76 73);
-    --color-brand-950: rgb(8 48 46);
+    /* Warm Brown - #7d6354 */
+    --color-brand-25: rgb(252 250 248);
+    --color-brand-50: rgb(249 245 242);
+    --color-brand-100: rgb(240 232 225);
+    --color-brand-200: rgb(225 210 198);
+    --color-brand-300: rgb(200 175 158);
+    --color-brand-400: rgb(170 138 118);
+    --color-brand-500: rgb(125 99 84);
+    --color-brand-600: rgb(105 82 68);
+    --color-brand-700: rgb(85 65 52);
+    --color-brand-800: rgb(65 48 38);
+    --color-brand-900: rgb(48 35 28);
+    --color-brand-950: rgb(32 22 17);
 
     --color-error-25: rgb(255 251 250);
     --color-error-50: rgb(254 243 242);
