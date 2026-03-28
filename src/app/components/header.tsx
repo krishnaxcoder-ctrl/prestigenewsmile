@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useId } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronDown, Globe02, Menu01 } from "@untitledui/icons";
 import {
@@ -93,9 +93,25 @@ const languages = [
 ];
 
 const LanguageSelector = () => {
-    const id = useId();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Render static placeholder during SSR to avoid hydration mismatch
+    if (!mounted) {
+        return (
+            <div className="flex cursor-pointer items-center gap-1.5 rounded-lg px-2 py-2 text-sm font-medium text-secondary">
+                <Globe02 className="size-4" />
+                <span className="hidden sm:inline">English</span>
+                <ChevronDown className="size-3.5 text-quaternary" />
+            </div>
+        );
+    }
+
     return (
-        <AriaSelect id={`language-selector-${id}`} defaultSelectedKey="en" aria-label="Select language" className="relative">
+        <AriaSelect id="language-selector" defaultSelectedKey="en" aria-label="Select language" className="relative">
             <AriaButton className="flex cursor-pointer items-center gap-1.5 rounded-lg px-2 py-2 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary">
                 <Globe02 className="size-4" />
                 <AriaSelectValue className="hidden sm:inline">{({ selectedText }) => selectedText}</AriaSelectValue>

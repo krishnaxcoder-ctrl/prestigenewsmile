@@ -117,19 +117,19 @@
     --color-white: rgb(255 255 255);
     --color-black: rgb(0 0 0);
 
-    /* Warm Brown - #7d6354 */
-    --color-brand-25: rgb(252 250 248);
-    --color-brand-50: rgb(249 245 242);
-    --color-brand-100: rgb(240 232 225);
-    --color-brand-200: rgb(225 210 198);
-    --color-brand-300: rgb(200 175 158);
-    --color-brand-400: rgb(170 138 118);
-    --color-brand-500: rgb(125 99 84);
-    --color-brand-600: rgb(105 82 68);
-    --color-brand-700: rgb(85 65 52);
-    --color-brand-800: rgb(65 48 38);
-    --color-brand-900: rgb(48 35 28);
-    --color-brand-950: rgb(32 22 17);
+    /* Dusty Rose - #b97679 */
+    --color-brand-25: rgb(253 250 249);
+    --color-brand-50: rgb(247 240 236);
+    --color-brand-100: rgb(240 225 222);
+    --color-brand-200: rgb(225 200 198);
+    --color-brand-300: rgb(185 161 165);
+    --color-brand-400: rgb(193 151 144);
+    --color-brand-500: rgb(185 118 121);
+    --color-brand-600: rgb(154 115 124);
+    --color-brand-700: rgb(142 101 99);
+    --color-brand-800: rgb(115 82 85);
+    --color-brand-900: rgb(90 60 65);
+    --color-brand-950: rgb(60 40 42);
 
     --color-error-25: rgb(255 251 250);
     --color-error-50: rgb(254 243 242);
