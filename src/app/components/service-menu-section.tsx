@@ -87,7 +87,7 @@ export function ServiceMenuSection() {
 
                 {/* Service Icons */}
                 <div className="mb-10 px-4 md:px-0">
-                    <div className="grid grid-cols-5 gap-3 md:gap-10">
+                    <div className="grid grid-cols-3 gap-3 md:gap-10">
                         {services.map((service) => (
                             <button
                                 key={service.id}
@@ -115,7 +115,7 @@ export function ServiceMenuSection() {
                 {/* Description */}
                 <div className="mb-8 text-center md:mb-10">
                     <p
-                        className="mx-auto max-w-lg px-4 text-2xl leading-relaxed text-secondary md:max-w-2xl md:px-0 md:text-4xl"
+                        className="mx-auto max-w-lg px-4 text-4xl leading-relaxed text-secondary md:max-w-2xl md:px-0 md:text-4xl"
                         style={{ fontFamily: 'var(--font-tangerine), cursive', fontWeight: 400 }}
                     >
                         {activeServiceData?.description}
