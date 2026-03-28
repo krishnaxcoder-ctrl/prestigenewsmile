@@ -25,7 +25,7 @@ export function CollectionBanner() {
                 <div className="absolute inset-0 flex flex-col items-start justify-end p-6 text-left md:p-10 lg:p-12">
                     {/* Subtitle */}
                     <span className="text-xs font-medium uppercase tracking-[0.3em] text-white md:text-sm">
-                        New Week - New Arrivals
+                        Private Aesthetic Studio
                     </span>
 
                     {/* Title */}
@@ -33,17 +33,18 @@ export function CollectionBanner() {
                         className="mt-4 text-3xl font-normal uppercase leading-tight text-white md:text-4xl lg:text-5xl xl:text-6xl"
                         style={{ fontFamily: "var(--global-heading-font-family)" }}
                     >
-                        Feeling Blush
+                        Reveal Your
                         <br />
-                        Huda Beauty
+                        Brightest Smile
                     </h2>
 
+                    
                     {/* Button */}
                     <a
-                        href="/shop"
+                        href="/booking"
                         className="mt-6 inline-block bg-white px-6 py-3 text-sm font-medium uppercase tracking-wider text-primary transition duration-300 hover:bg-brand-50 md:mt-8 md:px-8 md:py-3"
                     >
-                        See Collection
+                        Book My Session
                     </a>
                 </div>
             </div>
