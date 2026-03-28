@@ -23,6 +23,22 @@ export function FeaturesSection() {
     return (
         <section className="bg-primary px-4 py-8 md:px-6 md:py-12 lg:px-8">
             <div className="mx-auto max-w-[1400px]">
+                {/* Section Header */}
+                <div className="mb-8 text-center md:mb-12">
+                    <span className="text-xs font-medium uppercase tracking-widest text-brand-600 md:text-sm">
+                        What We Offer
+                    </span>
+                    <h2
+                        className="mt-3 text-2xl font-medium uppercase text-primary md:text-3xl lg:text-4xl"
+                        style={{ fontFamily: "var(--global-heading-font-family)" }}
+                    >
+                        Our Services
+                    </h2>
+                    <p className="mx-auto mt-4 max-w-2xl text-sm text-tertiary md:text-base">
+                        Experience professional teeth whitening with personalized care and lasting results.
+                    </p>
+                </div>
+
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
                     {features.map((feature) => (
                         <a
