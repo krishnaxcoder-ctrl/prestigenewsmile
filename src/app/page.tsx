@@ -32,11 +32,12 @@ export default function Page() {
 				<FavoritePicksSection />
 				<GiftcardSection />
 				<FeaturesSection />
-				<CollectionBanner />
 				<BeforeAfterSection />
 				<ReviewsSection />
 				<FAQSection />
 				<ArticlesSection />
+				<CollectionBanner />
+
 				<InstagramSection />
 				<ContactSection />
 				<Footer />

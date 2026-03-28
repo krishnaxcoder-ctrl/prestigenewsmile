@@ -4,15 +4,13 @@ export function CollectionBanner() {
     return (
         <section className="bg-primary px-4 py-8 md:px-6 md:py-12 lg:px-8">
             {/* Background Image */}
-            <div className="relative mx-auto h-[500px] w-full max-w-[1400px] overflow-hidden md:h-[600px] lg:h-[700px]">
+            <div className="relative mx-auto h-[500px] w-full max-w-[1400px] overflow-hidden md:h-[600px] lg:h-[600px]">
                 <img
                     src="/images/collection-banner.png"
                     alt="Collection Banner"
                     className="size-full object-cover object-center"
                 />
 
-                {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-black/10" />
 
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
