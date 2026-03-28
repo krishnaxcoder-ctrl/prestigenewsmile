@@ -1,6 +1,7 @@
 import { ArticlesSection } from "./components/articles-section";
 import { BeforeAfterSection } from "./components/before-after-section";
 import { CollectionBanner } from "./components/collection-banner";
+import { ComparisonSlider } from "./components/comparison-slider";
 import { ContactSection } from "./components/contact-section";
 import { FAQSection } from "./components/faq-section";
 import { FavoritePicksSection } from "./components/favorite-picks-section";
@@ -32,6 +33,7 @@ export default function Page() {
 				<FavoritePicksSection />
 				<GiftcardSection />
 				<FeaturesSection />
+				<ComparisonSlider />
 				<BeforeAfterSection />
 				<ReviewsSection />
 				<FAQSection />
