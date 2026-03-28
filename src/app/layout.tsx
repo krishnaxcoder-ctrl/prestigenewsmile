@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Jost, Playfair_Display } from "next/font/google";
+import { Jost, Playfair_Display, Tangerine } from "next/font/google";
 import { RouteProvider } from "@/providers/router-provider";
 import { Theme } from "@/providers/theme";
 import { ToastProvider } from "@/components/base/toast/toast";
@@ -16,6 +16,13 @@ const playfairDisplay = Playfair_Display({
     subsets: ["latin"],
     display: "swap",
     variable: "--global-heading-font-family",
+});
+
+const tangerine = Tangerine({
+    subsets: ["latin"],
+    display: "swap",
+    weight: ["400", "700"],
+    variable: "--font-tangerine",
 });
 
 export const metadata: Metadata = {
@@ -52,7 +59,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={cx(jost.variable, playfairDisplay.variable, "bg-primary antialiased")}>
+            <body className={cx(jost.variable, playfairDisplay.variable, tangerine.variable, "bg-primary antialiased")}>
                 <RouteProvider>
                     <Theme>
                         <ToastProvider>{children}</ToastProvider>
