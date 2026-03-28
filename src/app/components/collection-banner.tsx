@@ -2,15 +2,24 @@
 
 export function CollectionBanner() {
     return (
-        <section className="bg-primary px-4 py-8 md:px-6 md:py-12 lg:px-8">
+        <section className="bg-primary px-4 py-8 md:px-6 md:py-12 ">
             {/* Background Image */}
-            <div className="relative mx-auto h-[500px] w-full max-w-[1400px] overflow-hidden md:h-[600px] lg:h-[600px]">
+            <div className="relative mx-auto h-[500px] rounded-sm w-full max-w-[1400px] overflow-hidden md:h-[600px] lg:h-[600px]">
                 <img
                     src="/images/collection-banner.png"
                     alt="Collection Banner"
                     className="size-full object-cover object-center"
                 />
 
+
+                {/* Brand Logo - Bottom Right */}
+                <div className="absolute bottom-0 right-0    hidden md:bottom-0 md:right-10 md:block lg:bottom-4 lg:right-4">
+                    <img
+                        src="/logo.svg"
+                        alt="Brand Logo"
+                        className="h-16 w-auto opacity-90 brightness-0 invert md:h-20 lg:h-16"
+                    />
+                </div>
 
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col items-start justify-end p-6 text-left md:p-10 lg:p-12">
