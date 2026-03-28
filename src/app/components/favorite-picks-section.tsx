@@ -102,7 +102,7 @@ export function FavoritePicksSection() {
 
 	return (
 		<section className="bg-white py-12 md:py-16 lg:py-20">
-			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<div className="text-center">
 					<span className="text-xs uppercase tracking-widest text-tertiary">New Collection</span>

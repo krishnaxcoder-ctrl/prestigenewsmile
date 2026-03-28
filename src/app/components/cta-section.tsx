@@ -15,7 +15,7 @@ export const CTASection = memo(function CTASection() {
     return (
         <section className="relative overflow-hidden bg-teal-600 px-4 py-12 sm:px-6 sm:py-14 md:py-16 lg:py-24">
             <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='3' cy='3' r='1.5' fill='%23ffffff'/%3E%3C/svg%3E")`, backgroundSize: '24px 24px' }} />
-            <div className="relative mx-auto max-w-7xl">
+            <div className="relative mx-auto max-w-[1400px]">
                 <div className="flex flex-col items-center text-center">
                     <div className="mb-4 hidden sm:mb-6 sm:inline-flex">
                         <div className="flex w-max cursor-pointer items-center rounded-full bg-white/10 py-1 pl-1 pr-2 text-sm font-medium text-white shadow-xs backdrop-blur-sm hover:bg-white/20">

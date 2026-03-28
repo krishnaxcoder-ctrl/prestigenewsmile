@@ -10,7 +10,7 @@ const testimonials = [
 export function ReviewsSection() {
     return (
         <section className="bg-white px-4 py-16 md:px-8 md:py-20 lg:px-16">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-[1400px]">
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-[300px_1fr] lg:gap-16">
                     {/* Left Side - Heading */}
                     <div>

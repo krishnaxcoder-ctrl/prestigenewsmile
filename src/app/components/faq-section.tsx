@@ -20,7 +20,7 @@ export function FAQSection() {
 
     return (
         <section className="bg-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-[1400px]">
                 <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
                     <div>
                         <span className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">FAQ</span>

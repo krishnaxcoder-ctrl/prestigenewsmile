@@ -54,7 +54,7 @@ const transformations = [
 export function BeforeAfterSection() {
     return (
         <section className="bg-secondary px-4 py-16 md:px-8 md:py-24">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-[1400px]">
                 {/* Header */}
                 <div className="mb-12 text-center md:mb-16">
                     <span className="text-xs font-medium uppercase tracking-[0.2em] text-tertiary">

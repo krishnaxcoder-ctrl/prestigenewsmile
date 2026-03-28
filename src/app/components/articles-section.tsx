@@ -10,7 +10,7 @@ const blogPosts = [
 export function ArticlesSection() {
 	return (
 		<section className="bg-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
-			<div className="mx-auto max-w-7xl">
+			<div className="mx-auto max-w-[1400px]">
 				<h2 className="mb-6 text-center text-display-xs font-medium uppercase text-primary md:mb-8 md:text-display-sm lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
 				OUR LATEST NEWS
 				</h2>

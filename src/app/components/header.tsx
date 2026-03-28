@@ -55,7 +55,7 @@ const ServicesDropdown = () => {
 
     return (
         <div className="w-full border-b border-secondary bg-primary shadow-lg">
-            <div className="mx-auto max-w-7xl px-4 py-8 md:px-8">
+            <div className="mx-auto max-w-[1400px] px-4 py-8 md:px-8">
                 <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:gap-12">
                     {columns.map((column) => (
                         <div key={column.title}>
@@ -75,7 +75,7 @@ const ServicesDropdown = () => {
                 </div>
             </div>
             <div className="border-t border-secondary bg-secondary/50 px-4 py-4 md:px-8">
-                <div className="mx-auto flex max-w-7xl items-center justify-between">
+                <div className="mx-auto flex max-w-[1400px] items-center justify-between">
                     <div className="flex items-center gap-3">
                         <span className="rounded-full bg-brand-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-700">Limited</span>
                         <span className="text-sm text-secondary">Ambilly, near Geneva — Professional teeth whitening studio</span>

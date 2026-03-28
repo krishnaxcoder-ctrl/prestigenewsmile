@@ -59,7 +59,7 @@ export function HeroSection() {
 
                 {/* Desktop Contact Info - Inside Hero */}
                 <div className="absolute inset-x-0 bottom-0 hidden bg-white/10 backdrop-blur-md md:block">
-                    <div className=" max-w-7xl px-8 py-6 lg:px-20">
+                    <div className=" max-w-[1400px] px-8 py-6 lg:px-20">
                         <div className="grid grid-cols-3 gap-8">
                             {/* Contact */}
                             <div className="text-left">

@@ -26,7 +26,7 @@ const contactInfo = [
 export function ContactSection() {
     return (
         <section className="bg-secondary">
-            <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20">
+            <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-8 md:py-20">
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
                     {contactInfo.map((item) => (
                         <div key={item.id} className="flex flex-col items-center text-center">

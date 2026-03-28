@@ -39,7 +39,7 @@ export function ProductsSection() {
 
     return (
         <section className="bg-primary px-4 py-16 md:px-8 md:py-24 lg:px-16">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-[1400px]">
                 <div className="mb-12 flex flex-col items-center justify-between gap-6 md:mb-16 md:flex-row md:items-end">
                     <div className="text-center md:text-left">
                         <span className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">

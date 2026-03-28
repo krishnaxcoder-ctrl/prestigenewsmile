@@ -33,7 +33,7 @@ const categories = [
 export const ServicesSection = () => {
     return (
         <section className="px-4 py-16 md:py-16">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-[1400px]">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {categories.map((category) => (
                         <div key={category.id} className="group">

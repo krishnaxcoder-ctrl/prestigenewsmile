@@ -52,7 +52,7 @@ export function Footer() {
 		<footer className="w-full bg-secondary">
 			<CTASection />
 			<section className="px-4 py-12 md:px-8 lg:px-16">
-				<div className="mx-auto max-w-7xl">
+				<div className="mx-auto max-w-[1400px]">
 					<div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
 						<div className="col-span-2 mb-4 sm:col-span-2 md:col-span-4 md:mb-0 lg:order-first lg:col-span-1">
 							<Link href="/" className="inline-block">
@@ -88,7 +88,7 @@ export function Footer() {
 				</div>
 			</section>
 			<section className="overflow-hidden border-t border-secondary py-8">
-				<div className="mx-auto flex max-w-7xl justify-center px-6">
+				<div className="mx-auto flex max-w-[1400px] justify-center px-6">
 					<Link href="/">
 						<h2 className="select-none whitespace-nowrap text-4xl font-bold uppercase tracking-wider hover:opacity-80 sm:text-6xl md:text-7xl lg:text-[140px]" style={{ WebkitTextStroke: "2px var(--color-brand-500)", WebkitTextFillColor: "var(--color-bg-secondary)", paintOrder: "stroke fill" }}>
 							PRESTIGE SMILE
@@ -97,7 +97,7 @@ export function Footer() {
 				</div>
 			</section>
 			<section className="border-t border-secondary px-4 py-6 md:px-8 lg:px-16">
-				<div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
+				<div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
 					<p className="order-3 text-xs text-tertiary sm:text-sm md:order-1">© {new Date().getFullYear()} Prestige Smile. All Rights Reserved.</p>
 					<div className="order-1 flex items-center gap-4 md:order-2">
 						<span className="hidden text-sm text-tertiary sm:inline">Follow on:</span>
