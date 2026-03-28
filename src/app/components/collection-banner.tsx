@@ -13,7 +13,7 @@ export function CollectionBanner() {
 
 
                 {/* Brand Logo - Bottom Right */}
-                <div className="absolute bottom-0 right-0    hidden md:bottom-0 md:right-10 md:block lg:bottom-4 lg:right-4">
+                <div className="absolute bottom-0 right-0    hidden md:bottom-0 md:right-10 md:block lg:bottom-4 lg:right-10">
                     <img
                         src="/logo.svg"
                         alt="Brand Logo"
