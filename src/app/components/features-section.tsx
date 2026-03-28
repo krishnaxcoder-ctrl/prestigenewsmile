@@ -7,7 +7,7 @@ const features = [
         titleLine2: "SHINE",
         subtitle: "Protection & Radiance",
         href: "/shop",
-        image: "https://wordpressthemes.live/WCG10/WCM231_cosmika/cosmetic02/wp-content/uploads/2025/04/banner_01.jpg",
+        image: "/images/teeth-whitening-feature.jpg",
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ const features = [
         titleLine2: "SPECIAL",
         subtitle: "Gift Sets & Bundles",
         href: "/shop",
-        image: "https://wordpressthemes.live/WCG10/WCM231_cosmika/cosmetic02/wp-content/uploads/2025/04/banner_02.jpg",
+        image: "/images/teeth-whitening-feature-2.jpg",
     },
 ];
 
