@@ -41,7 +41,7 @@ export function ComparisonSlider() {
         <section className="bg-primary px-4 py-12 md:px-6 md:py-16 lg:py-20">
             <div className="mx-auto max-w-[1400px]">
                 {/* Header */}
-                <div className="mb-8 text-center md:mb-12">
+                <div className="mb-8 text-center md:mb-6">
                     <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-600 md:text-sm">
                         Clear Contrast
                     </span>
@@ -56,7 +56,7 @@ export function ComparisonSlider() {
                 {/* Comparison Container */}
                 <div
                     ref={containerRef}
-                    className="relative mx-auto aspect-[9/5] max-w-8xl cursor-ew-resize select-none overflow-hidden"
+                    className="relative mx-auto aspect-[9/4] max-w-8xl cursor-ew-resize select-none overflow-hidden"
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={handleMouseUp}
@@ -67,7 +67,7 @@ export function ComparisonSlider() {
                 >
                     {/* After Image (Background) */}
                     <img
-                        src="/teeth before and after images/4.png"
+                        src="/compareafter.jpg"
                         alt="After treatment"
                         className="absolute inset-0 size-full object-cover"
                         draggable={false}
@@ -79,7 +79,7 @@ export function ComparisonSlider() {
                         style={{ width: `${sliderPosition}%` }}
                     >
                         <img
-                            src="/teeth before and after images/3.png"
+                            src="/comparebefore.png"
                             alt="Before treatment"
                             className="absolute inset-0 h-full object-cover"
                             style={{ width: `${containerRef.current?.offsetWidth || 1000}px`, maxWidth: 'none' }}
