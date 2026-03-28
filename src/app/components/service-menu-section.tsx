@@ -79,7 +79,7 @@ export function ServiceMenuSection() {
             <div className="mx-auto max-w-4xl">
                 {/* Heading */}
                 <h2
-                    className="mb-8 text-center text-display-xs font-normal text-primary md:mb-16 md:text-display-sm"
+                    className="mb-10 text-center text-display-sm font-normal text-primary md:mb-16 md:text-display-md"
                     style={{ fontFamily: "var(--global-heading-font-family)" }}
                 >
                     Service Menu
@@ -87,20 +87,22 @@ export function ServiceMenuSection() {
 
                 {/* Service Icons */}
                 <div className="mb-10 px-4 md:px-0">
-                    <div className="grid grid-cols-3 gap-3 md:gap-10">
-                        {services.map((service) => (
+                    <div className="grid grid-cols-4 gap-3 md:grid-cols-5 md:gap-10">
+                        {services.map((service, index) => (
                             <button
                                 key={service.id}
                                 onClick={() => setActiveService(service.id)}
                                 className={`flex flex-col items-center gap-2 transition-all duration-200 md:gap-3 ${
+                                    index === 4 ? "hidden md:flex" : ""
+                                } ${
                                     activeService === service.id
                                         ? "text-primary"
                                         : "text-tertiary hover:text-secondary"
                                 }`}
                             >
-                                <div className="text-current [&_svg]:size-8 sm:[&_svg]:size-10 md:[&_svg]:size-12">{service.icon}</div>
+                                <div className="text-current [&_svg]:size-10 sm:[&_svg]:size-12 md:[&_svg]:size-14">{service.icon}</div>
                                 <div className="relative pb-2">
-                                    <span className="whitespace-nowrap text-[8px] font-medium uppercase tracking-[0.05em] sm:text-[10px] sm:tracking-[0.1em] md:text-xs md:tracking-[0.15em]">
+                                    <span className="whitespace-nowrap text-[10px] font-medium uppercase tracking-[0.05em] sm:text-xs sm:tracking-[0.1em] md:text-sm md:tracking-[0.15em]">
                                         {service.name}
                                     </span>
                                     {activeService === service.id && (
@@ -115,7 +117,7 @@ export function ServiceMenuSection() {
                 {/* Description */}
                 <div className="mb-8 text-center md:mb-10">
                     <p
-                        className="mx-auto max-w-lg px-4 text-4xl leading-relaxed text-secondary md:max-w-2xl md:px-0 md:text-4xl"
+                        className="mx-auto max-w-xl px-4 text-3xl leading-relaxed text-secondary md:max-w-3xl md:px-0 md:text-5xl"
                         style={{ fontFamily: 'var(--font-tangerine), cursive', fontWeight: 400 }}
                     >
                         {activeServiceData?.description}
