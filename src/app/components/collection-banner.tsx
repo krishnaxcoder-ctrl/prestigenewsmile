@@ -4,7 +4,7 @@ export function CollectionBanner() {
     return (
         <section className="bg-primary px-4 py-8 md:px-6 md:py-12 ">
             {/* Background Image */}
-            <div className="relative mx-auto h-[500px] rounded-sm w-full max-w-[1400px] overflow-hidden md:h-[600px] lg:h-[600px]">
+            <div className="relative mx-auto h-[500px] rounded-sm w-full max-w-[1400px] overflow-hidden md:h-[650px] lg:h-[650px]">
                 <img
                     src="/images/collection-banner.png"
                     alt="Collection Banner"
