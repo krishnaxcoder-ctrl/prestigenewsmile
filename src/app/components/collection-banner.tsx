@@ -13,7 +13,7 @@ export function CollectionBanner() {
 
 
                 {/* Content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+                <div className="absolute inset-0 flex flex-col items-start justify-end p-6 text-left md:p-10 lg:p-12">
                     {/* Subtitle */}
                     <span className="text-xs font-medium uppercase tracking-[0.3em] text-white md:text-sm">
                         New Week - New Arrivals
@@ -21,7 +21,7 @@ export function CollectionBanner() {
 
                     {/* Title */}
                     <h2
-                        className="mt-4 text-4xl font-normal uppercase leading-tight text-white md:text-5xl lg:text-6xl xl:text-7xl"
+                        className="mt-4 text-3xl font-normal uppercase leading-tight text-white md:text-4xl lg:text-5xl xl:text-6xl"
                         style={{ fontFamily: "var(--global-heading-font-family)" }}
                     >
                         Feeling Blush
@@ -32,7 +32,7 @@ export function CollectionBanner() {
                     {/* Button */}
                     <a
                         href="/shop"
-                        className="mt-8 inline-block bg-white px-8 py-3 text-sm font-medium uppercase tracking-wider text-primary transition duration-300 hover:bg-brand-50 md:px-10 md:py-4 md:text-base"
+                        className="mt-6 inline-block bg-white px-6 py-3 text-sm font-medium uppercase tracking-wider text-primary transition duration-300 hover:bg-brand-50 md:mt-8 md:px-8 md:py-3"
                     >
                         See Collection
                     </a>
