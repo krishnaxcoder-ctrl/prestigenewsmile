@@ -40,7 +40,8 @@
       "Bash(cmd /c dir \"c:\\\\Users\\\\Krishna\\\\asdqwe\\\\public\\\\RADIANCE*\")",
       "Bash(cmd /c dir \"c:\\\\Users\\\\Krishna\\\\Downloads\\\\RADIANCE*\")",
       "Bash(powershell:*)",
-      "Bash(cmd /c \"dir c:\\\\Users\\\\Krishna\\\\asdqwe\\\\public\\\\*RADIANCE* 2>nul\")"
+      "Bash(cmd /c \"dir c:\\\\Users\\\\Krishna\\\\asdqwe\\\\public\\\\*RADIANCE* 2>nul\")",
+      "Bash(move:*)"
     ]
   }
 }

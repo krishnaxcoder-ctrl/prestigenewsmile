@@ -2,11 +2,11 @@
 
 export function CollectionBanner() {
     return (
-        <section className="relative">
+        <section className="bg-primary px-4 py-8 md:px-6 md:py-12 lg:px-8">
             {/* Background Image */}
-            <div className="relative h-[500px] w-full md:h-[600px] lg:h-[700px]">
+            <div className="relative mx-auto h-[500px] w-full max-w-[1400px] overflow-hidden md:h-[600px] lg:h-[700px]">
                 <img
-                    src="/images/collection-banner.jpg"
+                    src="/images/collection-banner.png"
                     alt="Collection Banner"
                     className="size-full object-cover object-center"
                 />
