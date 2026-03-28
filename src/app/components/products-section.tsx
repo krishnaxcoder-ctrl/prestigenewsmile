@@ -52,7 +52,7 @@ export function ProductsSection() {
                             Discover our most loved products, handpicked for their quality and effectiveness.
                         </p>
                     </div>
-                    <Button href="/shop" color="secondary" size="lg" iconTrailing={ArrowRight}>
+                    <Button href="/shop" color="secondary" size="lg" iconTrailing={ArrowRight} className="hidden md:inline-flex">
                         View All
                     </Button>
                 </div>
@@ -62,66 +62,73 @@ export function ProductsSection() {
                         <Loading01 className="size-8 animate-spin text-brand-600" />
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {products.map((product) => (
-                            <div key={product.id} className="group">
-                                <div className="relative aspect-[850/1020] overflow-hidden rounded-2xl border border-secondary bg-secondary">
-                                    <a href={`/product/${product.slug}`} className="block size-full">
-                                        <img
-                                            src={product.images?.[0] ?? ""}
-                                            alt={product.name}
-                                            className="size-full object-cover"
-                                        />
-                                    </a>
-                                    <div className="absolute left-4 top-4 flex flex-col gap-2">
-                                        {(product.badges ?? []).slice(0, 2).map((badge) => (
-                                            <span
-                                                key={badge}
-                                                className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${
-                                                    badge === "Sale" ? "bg-error-500 text-white" : "bg-brand-600 text-white"
-                                                }`}
+                    <>
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            {products.map((product) => (
+                                <div key={product.id} className="group">
+                                    <div className="relative aspect-[850/1020] overflow-hidden rounded-2xl border border-secondary bg-secondary">
+                                        <a href={`/product/${product.slug}`} className="block size-full">
+                                            <img
+                                                src={product.images?.[0] ?? ""}
+                                                alt={product.name}
+                                                className="size-full object-cover"
+                                            />
+                                        </a>
+                                        <div className="absolute left-4 top-4 flex flex-col gap-2">
+                                            {(product.badges ?? []).slice(0, 2).map((badge) => (
+                                                <span
+                                                    key={badge}
+                                                    className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${
+                                                        badge === "Sale" ? "bg-error-500 text-white" : "bg-brand-600 text-white"
+                                                    }`}
+                                                >
+                                                    {badge}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <div className="absolute right-4 top-4">
+                                            <WishlistButton productId={product.id} productName={product.name} size="lg" />
+                                        </div>
+                                        <div className="absolute inset-x-4 bottom-4">
+                                            <Button
+                                                href={`/product/${product.slug}`}
+                                                color="primary"
+                                                size="md"
+                                                iconLeading={ShoppingBag01}
+                                                className="w-full justify-center"
                                             >
-                                                {badge}
-                                            </span>
-                                        ))}
+                                                Select Options
+                                            </Button>
+                                        </div>
                                     </div>
-                                    <div className="absolute right-4 top-4">
-                                        <WishlistButton productId={product.id} productName={product.name} size="lg" />
-                                    </div>
-                                    <div className="absolute inset-x-4 bottom-4">
-                                        <Button
-                                            href={`/product/${product.slug}`}
-                                            color="primary"
-                                            size="md"
-                                            iconLeading={ShoppingBag01}
-                                            className="w-full justify-center"
-                                        >
-                                            Select Options
-                                        </Button>
-                                    </div>
-                                </div>
-                                <div className="mt-4">
-                                    <div className="flex items-center justify-between">
-                                        <a href={`/product/${product.slug}`} className="text-sm text-tertiary hover:text-brand-600">
-                                            {product.category}
-                                        </a>
-                                        <StarRating rating={product.rating || 5} />
-                                    </div>
-                                    <h3 className="mt-2 text-lg font-semibold text-primary">
-                                        <a href={`/product/${product.slug}`} className="hover:text-brand-600">
-                                            {product.name}
-                                        </a>
-                                    </h3>
-                                    <div className="mt-1 flex items-center gap-2">
-                                        <span className="text-md font-medium text-primary">{product.price.toFixed(2)}€</span>
-                                        {product.original_price && product.original_price > product.price && (
-                                            <span className="text-sm text-tertiary line-through">{product.original_price.toFixed(2)}€</span>
-                                        )}
+                                    <div className="mt-4">
+                                        <div className="flex items-center justify-between">
+                                            <a href={`/product/${product.slug}`} className="text-sm text-tertiary hover:text-brand-600">
+                                                {product.category}
+                                            </a>
+                                            <StarRating rating={product.rating || 5} />
+                                        </div>
+                                        <h3 className="mt-2 text-lg font-semibold text-primary">
+                                            <a href={`/product/${product.slug}`} className="hover:text-brand-600">
+                                                {product.name}
+                                            </a>
+                                        </h3>
+                                        <div className="mt-1 flex items-center gap-2">
+                                            <span className="text-md font-medium text-primary">{product.price.toFixed(2)}€</span>
+                                            {product.original_price && product.original_price > product.price && (
+                                                <span className="text-sm text-tertiary line-through">{product.original_price.toFixed(2)}€</span>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                        <div className="mt-8 text-center md:hidden">
+                            <Button href="/shop" color="secondary" size="lg" iconTrailing={ArrowRight}>
+                                View All
+                            </Button>
+                        </div>
+                    </>
                 )}
             </div>
         </section>
