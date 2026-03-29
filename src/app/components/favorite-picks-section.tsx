@@ -1,40 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Star01, Heart, Eye, ChevronLeft, ChevronRight } from "@untitledui/icons";
-
-const products = [
-	{
-		id: 1,
-		category: "Whitening Kit",
-		name: "Professional Whitening Gel",
-		price: "$55.00",
-		priceMax: "$64.00",
-		rating: 5,
-		image: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=400&auto=format&fit=crop",
-		imageLarge: "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=800&auto=format&fit=crop",
-	},
-	{
-		id: 2,
-		category: "Daily Care",
-		name: "Sensitive Toothpaste",
-		price: "$30.00",
-		priceMax: "$35.00",
-		rating: 5,
-		image: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=400&auto=format&fit=crop",
-		imageLarge: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=800&auto=format&fit=crop",
-	},
-	{
-		id: 3,
-		category: "Treatment",
-		name: "Enamel Repair Serum",
-		price: "$65.00",
-		priceMax: "$84.00",
-		rating: 5,
-		image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&auto=format&fit=crop",
-		imageLarge: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=800&auto=format&fit=crop",
-	},
-];
+import { getProducts, type Product } from "@/lib/supabase";
 
 function RatingStars({ rating }: { rating: number }) {
 	return (
@@ -49,13 +17,16 @@ function RatingStars({ rating }: { rating: number }) {
 	);
 }
 
-function ProductCard({ product }: { product: (typeof products)[0] }) {
+function ProductCard({ product }: { product: Product }) {
+	const imageUrl = product.images?.[0] || "https://images.unsplash.com/photo-1571875257727-256c39da42af?w=400&auto=format&fit=crop";
+	const formattedPrice = `$${product.price.toFixed(2)}`;
+
 	return (
 		<div className="group flex flex-col">
 			{/* Image Container */}
 			<div className="relative aspect-square overflow-hidden">
 				<img
-					src={product.image}
+					src={imageUrl}
 					alt={product.name}
 					className="size-full object-cover transition duration-100 ease-linear group-hover:scale-105"
 				/>
@@ -78,8 +49,8 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
 			{/* Product Info */}
 			<div className="mt-4 flex flex-col gap-1">
 				<h3 className="text-sm font-medium text-primary line-clamp-2">{product.name}</h3>
-				<RatingStars rating={product.rating} />
-				<p className="text-sm font-semibold text-primary">{product.price}</p>
+				<RatingStars rating={product.rating ?? 5} />
+				<p className="text-sm font-semibold text-primary">{formattedPrice}</p>
 			</div>
 			{/* Add to Cart Button */}
 			<button className="mt-3 border border-gray-900 px-4 py-2.5 text-sm font-medium text-gray-900 transition duration-100 ease-linear hover:bg-gray-900 hover:text-white">
@@ -90,14 +61,34 @@ function ProductCard({ product }: { product: (typeof products)[0] }) {
 }
 
 export function FavoritePicksSection() {
+	const [products, setProducts] = useState<Product[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
 	const [page, setPage] = useState(0);
+	const productsPerPage = 3;
+
+	useEffect(() => {
+		async function fetchProducts() {
+			try {
+				const data = await getProducts();
+				setProducts(data);
+			} catch (error) {
+				console.error("Failed to fetch products:", error);
+			} finally {
+				setIsLoading(false);
+			}
+		}
+		fetchProducts();
+	}, []);
+
+	const totalPages = Math.ceil(products.length / productsPerPage);
+	const displayedProducts = products.slice(page * productsPerPage, (page + 1) * productsPerPage);
 
 	const handlePrev = () => {
-		setPage((prev) => (prev === 0 ? 1 : 0));
+		setPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
 	};
 
 	const handleNext = () => {
-		setPage((prev) => (prev === 1 ? 0 : 1));
+		setPage((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
 	};
 
 	return (
@@ -112,11 +103,17 @@ export function FavoritePicksSection() {
 				</div>
 
 				{/* Products Grid */}
-				<div className="mt-10 grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
-					{products.map((product) => (
-						<ProductCard key={product.id} product={product} />
-					))}
-				</div>
+				{isLoading ? (
+					<div className="mt-10 flex items-center justify-center py-20">
+						<div className="size-8 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900" />
+					</div>
+				) : (
+					<div className="mt-10 grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
+						{displayedProducts.map((product) => (
+							<ProductCard key={product.id} product={product} />
+						))}
+					</div>
+				)}
 
 				{/* Bottom Navigation */}
 				<div className="mt-10 flex items-center justify-between">
