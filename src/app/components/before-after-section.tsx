@@ -3,51 +3,51 @@
 const transformations = [
     {
         id: 1,
-        before: "/before and after images/4.jpg",
-        after: "/before and after images/3.jpg",
-        title: "Teeth Whitening",
+        before: "/before and after images/1.jpg",
+        after: "/before and after images/2.png",
+        title: "Results after one session",
         description: "Up to 7 shades lighter",
         price: "CHF/€ 99",
     },
     {
         id: 2,
-        before: "/before and after images/5.jpg",
-        after: "/before and after images/6.png",
-        title: "Complete Treatment",
-        description: "Two sessions for dramatic results",
-        price: "CHF/€ 169",
+        before: "/before and after images/4.jpg",
+        after: "/before and after images/3.jpg",
+        title: "Results after one session",
+        description: "Up to 7 shades lighter",
+        price: "CHF/€ 99",
     },
     {
         id: 3,
-        before: "/before and after images/13.jpg",
-        after: "/before and after images/14.jpg",
-        title: "Teeth Whitening",
-        description: "Visible transformation",
+        before: "/before and after images/5.jpg",
+        after: "/before and after images/6.png",
+        title: "Results after one session",
+        description: "Up to 7 shades lighter",
         price: "CHF/€ 99",
     },
     {
         id: 4,
-        before: "/before and after images/11.webp",
-        after: "/before and after images/12.webp",
-        title: "Deep Whitening",
-        description: "Professional-grade results",
-        price: "CHF/€ 169",
+        before: "/before and after images/13.jpg",
+        after: "/before and after images/14.jpg",
+        title: "Results after one session",
+        description: "Up to 7 shades lighter",
+        price: "CHF/€ 99",
     },
     {
         id: 5,
-        before: "/before and after images/1.jpg",
-        after: "/before and after images/2.png",
-        title: "Teeth Whitening",
-        description: "Natural-looking brightness",
+        before: "/before and after images/11.webp",
+        after: "/before and after images/12.webp",
+        title: "Results after one session",
+        description: "Up to 7 shades lighter",
         price: "CHF/€ 99",
     },
     {
         id: 6,
         before: "/before and after images/9.png",
         after: "/before and after images/10.png",
-        title: "Complete Treatment",
-        description: "Maximum whitening effect",
-        price: "CHF/€ 169",
+        title: "Results after one session",
+        description: "Up to 7 shades lighter",
+        price: "CHF/€ 99",
     },
 ];
 
@@ -75,6 +75,13 @@ export function BeforeAfterSection() {
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
                     {transformations.map((item) => (
                         <div key={item.id} className="group">
+                            {/* Card Title */}
+                            <p
+                                className="mb-3 text-center text-sm font-medium uppercase tracking-wider text-tertiary"
+                                style={{ fontFamily: "var(--global-heading-font-family)" }}
+                            >
+                                {item.title}
+                            </p>
                             <div className="grid grid-cols-2 gap-3 md:gap-4">
                                 {/* Before */}
                                 <div className="relative overflow-hidden rounded-xl">
@@ -108,19 +115,21 @@ export function BeforeAfterSection() {
                             {/* Caption */}
                             <div className="mt-5 flex items-center justify-between">
                                 <div>
-                                    <h3
-                                        className="text-md font-medium uppercase tracking-wide text-primary md:text-lg"
-                                        style={{ fontFamily: "var(--global-heading-font-family)" }}
-                                    >
-                                        {item.title}
-                                    </h3>
-                                    <p className="mt-1 text-sm text-tertiary">
+                                    <span className="text-xs font-medium uppercase tracking-wider text-tertiary">
+                                        Price:
+                                    </span>
+                                    <p className="mt-1 text-lg font-medium tracking-tight text-primary md:text-xl">
+                                        {item.price}
+                                    </p>
+                                </div>
+                                <div className="text-right">
+                                    <span className="text-xs font-medium uppercase tracking-wider text-tertiary">
+                                        Results:
+                                    </span>
+                                    <p className="mt-1 text-lg font-medium tracking-tight text-primary md:text-xl">
                                         {item.description}
                                     </p>
                                 </div>
-                                <p className="text-xl font-normal tracking-tight text-brand-600 md:text-2xl">
-                                    {item.price}
-                                </p>
                             </div>
                         </div>
                     ))}
