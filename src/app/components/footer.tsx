@@ -1,6 +1,5 @@
 "use client";
 
-import { CTASection } from "@/app/components/cta-section";
 import Link from "next/link";
 import { Facebook, Instagram } from "@/components/foundations/social-icons";
 
@@ -50,7 +49,6 @@ const legalLinks = [
 export function Footer() {
 	return (
 		<footer className="w-full bg-secondary">
-			<CTASection />
 			<section className="px-4 py-12 md:px-8 lg:px-16">
 				<div className="mx-auto max-w-[1400px]">
 					<div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
