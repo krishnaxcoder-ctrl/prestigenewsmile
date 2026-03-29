@@ -1,60 +1,69 @@
 "use client";
 
 const priceItems = [
-	{ id: 1, name: "Séance de blanchiment dentaire", price: "99 CHF / €", highlighted: false },
-	{ id: 2, name: "Traitement complet - 2 séances", price: "169 CHF / €", highlighted: true },
-	{ id: 3, name: "Séance d'entretien", price: "79 CHF / €", highlighted: false },
-	{ id: 4, name: "Avantage Duo / Couple", price: "-10%", highlighted: false },
+	{ id: 1, name: "Séance de blanchiment dentaire", price: "99 CHF / €", variant: "beige" },
+	{ id: 2, name: "Traitement complet - 2 séances", price: "169 CHF / €", variant: "mauve" },
+	{ id: 3, name: "Séance d'entretien", price: "79 CHF / €", variant: "beige" },
+	{ id: 4, name: "Avantage Duo / Couple", price: "-10%", variant: "mauve" },
 ];
 
 const paymentMethods = ["Twint", "Révolut", "Cash"];
 
 export function PriceListSection() {
 	return (
-		<section className="relative min-h-[750px] overflow-hidden">
-			<div className="absolute inset-0">
-				<img
-					src="/price-bg.jpg"
-					alt="Smile background"
-					className="size-full object-cover"
-					style={{ objectPosition: "-300px 50%" }}
-				/>
-				<div className="absolute inset-0 bg-[#8B7B7B]/60" />
+		<section className="bg-[#F9F7F5]">
+			{/* Top accent line */}
+			<div className="mx-auto max-w-[1400px] px-4 md:px-8">
+				<div className="h-[2px] bg-[#8B6F6F]" />
 			</div>
-			<div className="relative z-10 flex min-h-[750px] flex-col items-center justify-center px-4 py-16 md:py-24">
-				<div className="w-full max-w-xl">
+
+			<div className="mx-auto max-w-[1400px] px-4 py-16 md:px-8 md:py-24">
+				<div className="mx-auto w-full max-w-xl">
+					{/* Header */}
 					<div className="mb-10 text-center">
-						<h2 className="text-display-sm font-light uppercase tracking-[0.3em] text-white md:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
+						<h2
+							className="text-2xl font-light uppercase tracking-[0.3em] text-[#5D4E4E] md:text-display-xs"
+							style={{ fontFamily: "var(--global-heading-font-family)" }}
+						>
 							Price List
 						</h2>
-						<p className="mt-2 text-xl text-white/90 md:text-2xl" style={{ fontFamily: "'Eyesome Script', cursive" }}>
+						<p
+							className="mt-3 text-2xl text-[#8B6F6F] md:text-3xl"
+							style={{ fontFamily: "'Eyesome Script', cursive" }}
+						>
 							Blanchiment dentaire
 						</p>
-						<div className="mt-6 inline-block rounded-full bg-white/20 px-6 py-2 backdrop-blur-sm">
-							<span className="text-sm text-white/90">@prestige.smile.studio</span>
+
+						{/* Instagram handle */}
+						<div className="mt-6 inline-block rounded-full border border-[#C5B8B8] bg-[#E8E2DE] px-5 py-2">
+							<span className="text-sm text-[#8B7B7B]">@prestige.smile.studio</span>
 						</div>
 					</div>
+
+					{/* Price items */}
 					<div className="space-y-4">
 						{priceItems.map((item) => (
 							<div
 								key={item.id}
-								className={`flex items-center justify-between rounded-xl px-6 py-4 backdrop-blur-sm ${
-									item.highlighted
-										? "bg-[#F5E6D3]/95 ring-2 ring-amber-400/50"
-										: "bg-[#F5E6D3]/90"
+								className={`flex items-center justify-between rounded-lg px-6 py-5 ${
+									item.variant === "mauve"
+										? "bg-[#D4C4C4]"
+										: "bg-[#EDE7E2]"
 								}`}
 							>
-								<span className="text-md font-medium text-gray-800 md:text-lg">{item.name}</span>
-								<span className="text-md font-semibold text-gray-700 md:text-lg">{item.price}</span>
+								<span className="text-base font-medium text-[#5D4E4E] md:text-lg">{item.name}</span>
+								<span className="text-base font-semibold text-[#5D4E4E] md:text-lg">{item.price}</span>
 							</div>
 						))}
 					</div>
+
+					{/* Payment methods */}
 					<div className="mt-10 text-center">
-						<div className="flex items-center justify-center gap-2 text-sm text-white/80">
+						<div className="flex items-center justify-center gap-2 text-sm text-[#8B7B7B]">
 							{paymentMethods.map((method, index) => (
 								<span key={method} className="flex items-center gap-2">
 									{method}
-									{index < paymentMethods.length - 1 && <span className="text-white/50">•</span>}
+									{index < paymentMethods.length - 1 && <span className="text-[#C5B8B8]">•</span>}
 								</span>
 							))}
 						</div>
