@@ -43,11 +43,37 @@ const transformations = [
     },
     {
         id: 6,
-        before: "/before and after images/9.png",
-        after: "/before and after images/10.png",
+        before: "/before and after images/7.jpg",
+        after: "/before and after images/8.jpg",
         title: "Results after one session",
         description: "Up to 7 shades lighter",
         price: "CHF/€ 99",
+    },
+    {
+        id: 7,
+        before: "/before and after images/9.png",
+        after: "/before and after images/10.png",
+        title: "Results after two session",
+        description: "Up to 7 shades lighter",
+        price: "CHF/€ 169",
+    },
+
+    {
+        id: 8,
+        before: "/before and after images/11.webp",
+        after: "/before and after images/12.webp",
+        title: "Results after one session",
+        description: "Up to 7 shades lighter",
+        price: "CHF/€ 99",
+    },
+
+    {
+        id: 9,
+        before: "/before and after images/13.jpg",
+        after: "/before and after images/14.jpg",
+        title: "Results after two session",
+        description: "Up to 7 shades lighter",
+        price: "CHF/€ 169",
     },
 ];
 
