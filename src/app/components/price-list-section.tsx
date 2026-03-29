@@ -12,8 +12,8 @@ const paymentMethods = ["Twint", "Révolut", "Cash"];
 export function PriceListSection() {
 	return (
 		<section className="bg-[#F9F7F5]">
-			{/* Top accent line */}
-			<div className="h-[2px] w-full bg-[#8B6F6F]" />
+			{/* Top accent line with glow animation */}
+			<div className="h-[2px] w-full animate-[glow_2s_ease-in-out] bg-[#8B6F6F] shadow-[0_0_10px_rgba(139,111,111,0.8)]" />
 
 			<div className="mx-auto max-w-[1400px] px-4 py-16 md:px-8 md:py-24">
 				<div className="mx-auto w-full max-w-xl">
@@ -72,6 +72,9 @@ export function PriceListSection() {
 					</div>
 				</div>
 			</div>
+
+			{/* Bottom accent line with glow animation */}
+			<div className="h-[2px] w-full animate-[glow_2s_ease-in-out] bg-[#8B6F6F] shadow-[0_0_10px_rgba(139,111,111,0.8)]" />
 		</section>
 	);
 }
