@@ -24,7 +24,7 @@ function ProductCard({ product }: { product: Product }) {
 	return (
 		<div className="group flex flex-col">
 			{/* Image Container */}
-			<div className="relative aspect-square overflow-hidden">
+			<div className="relative aspect-square overflow-hidden border border-gray-100 p-2 shadow-sm">
 				<img
 					src={imageUrl}
 					alt={product.name}

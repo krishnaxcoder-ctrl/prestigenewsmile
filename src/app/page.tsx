@@ -29,8 +29,9 @@ export default function Page() {
 
 				<PriceListSection />
 				<FavoritePicksSection />
-				<GiftcardSection />
 				<FeaturesSection />
+				<GiftcardSection />
+
 				<ComparisonSlider />
 				<BeforeAfterSection />
 				<ReviewsSection />
