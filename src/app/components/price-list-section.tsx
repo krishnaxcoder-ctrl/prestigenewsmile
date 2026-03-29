@@ -40,23 +40,38 @@ export function PriceListSection() {
 
 					{/* Price items */}
 					<div className="space-y-4">
-						{priceItems.map((item) => (
-							<div
-								key={item.id}
-								className={`flex items-center justify-between rounded-lg px-6 py-5 ${
-									item.variant === "mauve"
-										? "bg-[#D4C4C4]"
-										: "bg-[#EDE7E2]"
-								} ${
-									item.highlighted
-										? "ring-2 ring-[#E8D5A3] shadow-[0_0_20px_rgba(232,213,163,0.6)]"
-										: ""
-								}`}
-							>
-								<span className="text-base font-medium text-[#5D4E4E] md:text-lg">{item.name}</span>
-								<span className="text-base font-semibold text-[#5D4E4E] md:text-lg">{item.price}</span>
-							</div>
-						))}
+						{priceItems.map((item) =>
+							item.highlighted ? (
+								<div
+									key={item.id}
+									className="rounded-lg p-[3px] shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+									style={{
+										backgroundImage: "url('https://img.freepik.com/free-vector/gold-metal-background_78370-154.jpg?semt=ais_hybrid&w=740&q=80')",
+										backgroundSize: "cover",
+										backgroundPosition: "center",
+									}}
+								>
+									<div className={`flex items-center justify-between rounded-md px-6 py-5 ${
+										item.variant === "mauve" ? "bg-[#D4C4C4]" : "bg-[#EDE7E2]"
+									}`}>
+										<span className="text-base font-medium text-[#5D4E4E] md:text-lg">{item.name}</span>
+										<span className="text-base font-semibold text-[#5D4E4E] md:text-lg">{item.price}</span>
+									</div>
+								</div>
+							) : (
+								<div
+									key={item.id}
+									className={`flex items-center justify-between rounded-lg px-6 py-5 ${
+										item.variant === "mauve"
+											? "bg-[#D4C4C4]"
+											: "bg-[#EDE7E2]"
+									}`}
+								>
+									<span className="text-base font-medium text-[#5D4E4E] md:text-lg">{item.name}</span>
+									<span className="text-base font-semibold text-[#5D4E4E] md:text-lg">{item.price}</span>
+								</div>
+							)
+						)}
 					</div>
 
 					{/* Payment methods */}
