@@ -12,7 +12,6 @@ import { Header } from "./components/header";
 import { HeroSection } from "./components/hero-section";
 import { InstagramSection } from "./components/instagram-section";
 import { PriceListSection } from "./components/price-list-section";
-import { ProductsSection } from "./components/products-section";
 import { ReviewsSection } from "./components/reviews-section";
 import { ServiceMenuSection } from "./components/service-menu-section";
 import { ServicesSection } from "./components/services-section";
@@ -29,7 +28,6 @@ export default function Page() {
 				<TaglineSection />
 
 				<PriceListSection />
-				<ProductsSection />
 				<FavoritePicksSection />
 				<GiftcardSection />
 				<FeaturesSection />
