@@ -1,53 +1,47 @@
-"use client";
-
-import { Phone01, Clock, MarkerPin01 } from "@untitledui/icons";
-
-const contactInfo = [
-    {
-        id: 1,
-        icon: Phone01,
-        title: "Contacts",
-        lines: ["T: +41 22 123 4567", "hello@prestigesmile.studio"],
-    },
-    {
-        id: 2,
-        icon: Clock,
-        title: "Hours",
-        lines: ["Mon to Fri: 10:00 am — 7:00 pm", "Sat: 10:00 am — 5:00 pm", "Sun: Closed"],
-    },
-    {
-        id: 3,
-        icon: MarkerPin01,
-        title: "Location",
-        lines: ["12 Rue du Rhône,", "1204 Geneva, Switzerland"],
-    },
-];
-
 export function ContactSection() {
     return (
         <section className="bg-secondary">
             <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-8 md:py-20">
-                <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8">
-                    {contactInfo.map((item) => (
-                        <div key={item.id} className="flex flex-col items-center text-center">
-                            <div className="flex size-14 items-center justify-center rounded-full bg-brand-50">
-                                <item.icon className="size-6 text-brand-600" />
-                            </div>
-                            <h3
-                                className="mt-5 text-lg font-medium uppercase tracking-wide text-primary"
-                                style={{ fontFamily: "var(--global-heading-font-family)" }}
-                            >
-                                {item.title}
-                            </h3>
-                            <div className="mt-3 space-y-1">
-                                {item.lines.map((line, index) => (
-                                    <p key={index} className="text-md text-tertiary">
-                                        {line}
-                                    </p>
-                                ))}
+                <div className="mx-auto max-w-md">
+                    {/* Contact */}
+                    <div className="flex items-start gap-3 border-b border-primary/10 pb-5">
+                        <svg className="mt-0.5 size-6 shrink-0 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <div>
+                            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-primary">Contact</h3>
+                            <p className="mt-1.5 text-base text-tertiary">+41 22 123 4567</p>
+                            <p className="text-base text-brand-600">hello@prestigesmile.studio</p>
+                        </div>
+                    </div>
+
+                    {/* Hours */}
+                    <div className="flex items-start gap-3 border-b border-primary/10 py-5">
+                        <svg className="mt-0.5 size-6 shrink-0 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div>
+                            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-primary">Hours</h3>
+                            <div className="mt-1.5 space-y-0.5 text-base text-tertiary">
+                                <p>Mon – Fri: 10:00 am — 7:00 pm</p>
+                                <p>Sat: 10:00 am — 5:00 pm</p>
+                                <p>Sun: Closed</p>
                             </div>
                         </div>
-                    ))}
+                    </div>
+
+                    {/* Location */}
+                    <div className="flex items-start gap-3 pt-5">
+                        <svg className="mt-0.5 size-6 shrink-0 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <div>
+                            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-primary">Location</h3>
+                            <p className="mt-1.5 text-base text-tertiary">12 Rue du Rhône,</p>
+                            <p className="text-base text-tertiary">1204 Geneva, Switzerland</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             {/* Bottom accent line */}
