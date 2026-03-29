@@ -1,10 +1,10 @@
 "use client";
 
 const priceItems = [
-	{ id: 1, name: "Séance de blanchiment dentaire", price: "99 CHF / €", variant: "beige" },
-	{ id: 2, name: "Traitement complet - 2 séances", price: "169 CHF / €", variant: "mauve" },
-	{ id: 3, name: "Séance d'entretien", price: "79 CHF / €", variant: "beige" },
-	{ id: 4, name: "Avantage Duo / Couple", price: "-10%", variant: "mauve" },
+	{ id: 1, name: "Séance de blanchiment dentaire", price: "99 CHF / €", variant: "beige", highlighted: true },
+	{ id: 2, name: "Traitement complet - 2 séances", price: "169 CHF / €", variant: "mauve", highlighted: false },
+	{ id: 3, name: "Séance d'entretien", price: "79 CHF / €", variant: "beige", highlighted: false },
+	{ id: 4, name: "Avantage Duo / Couple", price: "-10%", variant: "mauve", highlighted: false },
 ];
 
 const paymentMethods = ["Twint", "Révolut", "Cash"];
@@ -13,9 +13,7 @@ export function PriceListSection() {
 	return (
 		<section className="bg-[#F9F7F5]">
 			{/* Top accent line */}
-			<div className="mx-auto max-w-[1400px] px-4 md:px-8">
-				<div className="h-[2px] bg-[#8B6F6F]" />
-			</div>
+			<div className="h-[2px] w-full bg-[#8B6F6F]" />
 
 			<div className="mx-auto max-w-[1400px] px-4 py-16 md:px-8 md:py-24">
 				<div className="mx-auto w-full max-w-xl">
@@ -49,6 +47,10 @@ export function PriceListSection() {
 									item.variant === "mauve"
 										? "bg-[#D4C4C4]"
 										: "bg-[#EDE7E2]"
+								} ${
+									item.highlighted
+										? "ring-2 ring-[#E8D5A3] shadow-[0_0_20px_rgba(232,213,163,0.6)]"
+										: ""
 								}`}
 							>
 								<span className="text-base font-medium text-[#5D4E4E] md:text-lg">{item.name}</span>
