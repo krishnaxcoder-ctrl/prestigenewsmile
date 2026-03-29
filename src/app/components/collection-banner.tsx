@@ -18,6 +18,8 @@ export function CollectionBanner() {
                     className="hidden size-full object-cover object-center md:block"
                 />
 
+                {/* Gradient Overlay - Bottom black to top transparent */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
                 {/* Brand Logo - Bottom Right */}
                 <div className="absolute bottom-0 right-0    hidden md:bottom-0 md:right-10 md:block lg:bottom-4 lg:right-10">
