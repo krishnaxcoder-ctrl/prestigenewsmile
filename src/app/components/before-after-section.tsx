@@ -35,8 +35,8 @@ const transformations = [
     },
     {
         id: 5,
-        before: "/before and after images/11.webp",
-        after: "/before and after images/12.webp",
+        before: "/before and after images/7.jpg",
+        after: "/before and after images/8.jpg",
         title: "Results after one session",
         description: "Up to 7 shades lighter",
         price: "CHF/€ 99",
