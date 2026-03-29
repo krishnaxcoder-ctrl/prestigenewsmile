@@ -14,6 +14,7 @@ const instagramPosts = [
 export function InstagramSection() {
     return (
         <section className="bg-secondary py-16 md:py-24">
+            <div className="mx-auto max-w-[1400px] ">
             <div className="mb-10 text-center md:mb-12">
                 <div className="mb-4 flex items-center justify-center gap-3">
                     <span className="h-px w-12 bg-border-primary" />
@@ -28,7 +29,7 @@ export function InstagramSection() {
                 </h2>
                 <p className="mt-3 text-md text-tertiary">@prestige.smile.studio</p>
             </div>
-            <div className="grid grid-cols-3 gap-2 md:grid-cols-6">
+            <div className="grid grid-cols-2 gap-2 md:grid-cols-6">
                 {instagramPosts.map((post) => (
                     <a
                         key={post.id}
@@ -62,6 +63,7 @@ export function InstagramSection() {
                 >
                     Follow Us
                 </a>
+            </div>
             </div>
         </section>
     );
