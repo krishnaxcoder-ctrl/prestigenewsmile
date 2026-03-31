@@ -44,5 +44,9 @@
       "Bash(move:*)",
       "WebFetch(domain:www.prestige-smile.com)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "supabase"
+  ],
+  "enableAllProjectMcpServers": true
 }
