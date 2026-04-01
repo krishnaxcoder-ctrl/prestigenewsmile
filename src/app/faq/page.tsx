@@ -46,7 +46,7 @@ const faqCategories = [
             },
             {
                 question: "Do you offer international shipping?",
-                answer: "Currently, we ship to Switzerland, France, Germany, and Italy. Shipping times vary by location: Switzerland (2-3 days), France (3-5 days), Germany and Italy (5-7 days). Free shipping is available on orders over CHF 120.",
+                answer: "Yes! We deliver within France as well as internationally. All orders include fast shipping with tracking. Estimated delivery time is 2 to 4 business days. Shipping fee is €3.90, and we offer free shipping on orders over €20.",
             },
         ],
     },

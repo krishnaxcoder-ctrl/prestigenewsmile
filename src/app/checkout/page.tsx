@@ -556,8 +556,8 @@ export default function CheckoutPage() {
                                                     <div className="flex items-center gap-3">
                                                         <Truck01 className="size-5 text-brand-600" />
                                                         <div>
-                                                            <p className="font-medium text-primary">Standard Shipping with Tracking</p>
-                                                            <p className="text-sm text-tertiary">2-4 business days</p>
+                                                            <p className="font-medium text-primary">Fast Shipping with Tracking</p>
+                                                            <p className="text-sm text-tertiary">2 to 4 business days</p>
                                                         </div>
                                                     </div>
                                                     <span className="font-semibold text-primary">
@@ -578,8 +578,9 @@ export default function CheckoutPage() {
                                                 <div className="text-sm text-tertiary">
                                                     <p className="font-medium text-primary">Shipping Information</p>
                                                     <ul className="mt-2 space-y-1">
-                                                        <li>• All orders include tracking</li>
-                                                        <li>• Estimated delivery: 2-4 business days</li>
+                                                        <li>• Fast shipping with tracking</li>
+                                                        <li>• Estimated delivery: 2 to 4 business days</li>
+                                                        <li>• Shipping fee: €3.90</li>
                                                         <li>• Free shipping on orders over €20</li>
                                                     </ul>
                                                 </div>

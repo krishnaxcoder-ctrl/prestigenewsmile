@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Shipping & Returns",
-    description: "Learn about our shipping options, delivery zones, and 30-day return policy. Free shipping on orders over €20. Delivery in 2-4 business days with tracking.",
+    description: "Fast shipping with tracking to France and internationally. Free shipping on orders over €20. Delivery in 2 to 4 business days. 30-day return policy.",
 };
 
 export default function ShippingLayout({

@@ -168,16 +168,19 @@ Themes: `light`, `gradient`, `dark`, `outline`, `modern` (gray only), `modern-ne
 
 ## Shipping Configuration
 
-**Standard Shipping Details:**
-- Shipping with tracking included
+**Shipping Details (France & International):**
+- Fast shipping with tracking
 - Estimated delivery time: 2 to 4 business days
 - Shipping fee: €3.90
 - Free shipping on orders over €20
+
+**Coverage:** France and International delivery available
 
 **Currency:** EUR (€)
 
 **Implementation Notes:**
 - Free shipping threshold: €20
-- Standard shipping cost: €3.90
+- Shipping cost: €3.90
+- Same shipping terms for France and international orders
 - All prices displayed in EUR format
-- Shipping info should be shown on: Product pages, Cart, Checkout, Order confirmation, Shipping policy page
+- Shipping info shown on: Product pages, Cart, Checkout, Order confirmation, FAQ, Shipping policy page

@@ -363,7 +363,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                         ) : (
                                             <>Spend <span className="font-semibold text-primary">{amountToFreeShipping.toFixed(2)}€</span> more for free shipping</>
                                         )}
-                                        {" • "}Delivery in 2-4 business days with tracking
+                                        {" • "}Fast delivery in 2-4 business days with tracking
                                     </span>
                                 </div>
                             </motion.div>

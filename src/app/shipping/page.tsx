@@ -8,19 +8,17 @@ import { RatingBadge } from "@/components/foundations/rating-badge";
 
 const shippingOptions = [
     {
-        name: "Standard Shipping",
+        name: "Fast Shipping",
         price: "€3.90",
-        time: "2-4 business days",
-        description: "Free on orders over €20",
+        time: "2 to 4 business days",
+        description: "With tracking • Free on orders over €20",
         icon: Truck01,
     },
 ];
 
 const deliveryZones = [
-    { country: "Switzerland", time: "2-4 days", cost: "€3.90 (Free over €20)" },
-    { country: "France", time: "2-4 days", cost: "€3.90 (Free over €20)" },
-    { country: "Germany", time: "2-4 days", cost: "€3.90 (Free over €20)" },
-    { country: "Italy", time: "2-4 days", cost: "€3.90 (Free over €20)" },
+    { country: "France", time: "2-4 business days", cost: "€3.90 (Free over €20)" },
+    { country: "International", time: "2-4 business days", cost: "€3.90 (Free over €20)" },
 ];
 
 const returnSteps = [
@@ -75,7 +73,7 @@ export default function ShippingPage() {
                                     transition={{ duration: 0.5, delay: 0.2 }}
                                     className="mt-4 text-lg text-tertiary"
                                 >
-                                    Fast delivery across Europe with hassle-free returns within 30 days.
+                                    Fast shipping with tracking to France and internationally. Hassle-free returns within 30 days.
                                 </motion.p>
                             </div>
                             <motion.div

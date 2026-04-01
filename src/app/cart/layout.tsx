@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Shopping Cart",
-    description: "Review your cart and proceed to checkout. Free shipping on orders over €20. Delivery in 2-4 business days with tracking.",
+    description: "Review your cart and proceed to checkout. Fast shipping with tracking. Free shipping on orders over €20. Delivery in 2 to 4 business days.",
 };
 
 export default function CartLayout({
