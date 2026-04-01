@@ -14,9 +14,6 @@ import {
     HelpCircle,
     Package,
     Loading01,
-    MarkerPin01,
-    CheckCircle,
-    XCircle,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
@@ -54,81 +51,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
     const [selectedColor, setSelectedColor] = useState("");
     const [quantity, setQuantity] = useState(1);
     const [activeTab, setActiveTab] = useState("description");
-
-    // Pincode checker state
-    const [pincode, setPincode] = useState("");
-    const [checkingPincode, setCheckingPincode] = useState(false);
-    const [deliveryInfo, setDeliveryInfo] = useState<{
-        available: boolean;
-        message: string;
-        estimatedDays?: string;
-    } | null>(null);
-
-    // French postal code validation (5 digits, valid department prefixes)
-    const validateFrenchPincode = (code: string): { valid: boolean; department?: string } => {
-        // French postal codes are 5 digits
-        if (!/^\d{5}$/.test(code)) {
-            return { valid: false };
-        }
-
-        const departmentCode = parseInt(code.substring(0, 2));
-
-        // Valid French department codes: 01-95 (mainland) + 97x (overseas)
-        const isMainland = departmentCode >= 1 && departmentCode <= 95;
-        const isOverseas = code.startsWith("97");
-        const isCorsica = code.startsWith("20"); // 2A and 2B
-
-        if (isMainland || isOverseas || isCorsica) {
-            // Map department codes to region names (simplified)
-            const regions: Record<string, string> = {
-                "75": "Paris",
-                "69": "Lyon",
-                "13": "Marseille",
-                "31": "Toulouse",
-                "33": "Bordeaux",
-                "59": "Lille",
-                "67": "Strasbourg",
-                "44": "Nantes",
-                "06": "Nice",
-            };
-            const dept = code.substring(0, 2);
-            return { valid: true, department: regions[dept] || `Department ${dept}` };
-        }
-
-        return { valid: false };
-    };
-
-    const checkDelivery = () => {
-        if (!pincode.trim()) {
-            setDeliveryInfo({
-                available: false,
-                message: "Please enter a postal code",
-            });
-            return;
-        }
-
-        setCheckingPincode(true);
-
-        // Simulate API check
-        setTimeout(() => {
-            const validation = validateFrenchPincode(pincode.trim());
-
-            if (validation.valid) {
-                setDeliveryInfo({
-                    available: true,
-                    message: `Delivery available to ${validation.department}`,
-                    estimatedDays: "2-4 business days",
-                });
-            } else {
-                setDeliveryInfo({
-                    available: false,
-                    message: "Please enter a valid French postal code (5 digits)",
-                });
-            }
-
-            setCheckingPincode(false);
-        }, 500);
-    };
 
     useEffect(() => {
         async function fetchProduct() {
@@ -364,69 +286,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                         </button>
                                     </div>
                                 )}
-
-                                {/* Pincode Checker */}
-                                <div className="mt-6 rounded-lg border border-secondary p-4">
-                                    <label className="mb-2 flex items-center gap-2 text-sm font-medium text-primary">
-                                        <MarkerPin01 className="size-4 text-brand-600" />
-                                        Check Delivery Availability
-                                    </label>
-                                    <div className="flex gap-2">
-                                        <input
-                                            type="text"
-                                            value={pincode}
-                                            onChange={(e) => {
-                                                setPincode(e.target.value.replace(/\D/g, "").slice(0, 5));
-                                                setDeliveryInfo(null);
-                                            }}
-                                            onKeyDown={(e) => e.key === "Enter" && checkDelivery()}
-                                            placeholder="Enter French postal code"
-                                            className="flex-1 rounded-lg border border-secondary bg-primary px-3 py-2 text-sm text-primary placeholder:text-placeholder focus:border-brand-500 focus:outline-none"
-                                            maxLength={5}
-                                        />
-                                        <button
-                                            onClick={checkDelivery}
-                                            disabled={checkingPincode}
-                                            className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-700 disabled:opacity-50"
-                                        >
-                                            {checkingPincode ? (
-                                                <Loading01 className="size-4 animate-spin" />
-                                            ) : (
-                                                "Check"
-                                            )}
-                                        </button>
-                                    </div>
-
-                                    {/* Delivery Result */}
-                                    {deliveryInfo && (
-                                        <div className={`mt-3 flex items-start gap-2 rounded-lg p-3 ${
-                                            deliveryInfo.available
-                                                ? "bg-success-50 text-success-700"
-                                                : "bg-error-50 text-error-700"
-                                        }`}>
-                                            {deliveryInfo.available ? (
-                                                <CheckCircle className="mt-0.5 size-4 shrink-0" />
-                                            ) : (
-                                                <XCircle className="mt-0.5 size-4 shrink-0" />
-                                            )}
-                                            <div className="text-sm">
-                                                <p className="font-medium">{deliveryInfo.message}</p>
-                                                {deliveryInfo.available && deliveryInfo.estimatedDays && (
-                                                    <p className="mt-1 text-success-600">
-                                                        Estimated delivery: {deliveryInfo.estimatedDays}
-                                                        <br />
-                                                        <span className="text-xs">
-                                                            {product.price >= freeShippingThreshold
-                                                                ? "Free shipping included"
-                                                                : `Shipping: €3.90 (Free on orders over €20)`
-                                                            }
-                                                        </span>
-                                                    </p>
-                                                )}
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
 
                                 {/* Quantity & Add to Cart */}
                                 <div className="mt-6 flex flex-wrap items-center gap-3">
