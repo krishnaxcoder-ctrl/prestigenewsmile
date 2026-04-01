@@ -218,7 +218,7 @@ export const Header = () => {
     return (
         <header ref={headerRef} className="sticky top-0 z-50 w-full bg-primary">
             <div className="border-b border-secondary">
-                <div className="relative mx-auto flex h-16 max-w-full items-center justify-between px-4 md:h-18 md:px-8">
+                <div className="relative mx-auto flex h-14 max-w-full items-center justify-between px-2 md:h-18 md:px-8">
                     <Link href="/" className="flex shrink-0 items-center">
                         <img src="/logo.svg" alt="Prestige Smile" className="h-8 w-auto sm:h-14" />
                     </Link>
