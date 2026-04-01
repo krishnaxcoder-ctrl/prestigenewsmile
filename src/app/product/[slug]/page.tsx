@@ -201,7 +201,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                 </section>
 
                 {/* Product Section */}
-                <section className="px-4 py-8 md:px-8 md:py-12 lg:px-16">
+                <section className="px-4 py-8 md:px-8 md:py-6 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
                             {/* Image Gallery */}
@@ -307,23 +307,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                     {product.name}
                                 </h1>
 
-                                {/* Price */}
-                                <div className="mt-4 flex items-baseline gap-3">
-                                    <span className="text-3xl font-bold text-primary">
-                                        {product.price.toFixed(2)}€
-                                    </span>
-                                    {product.original_price && product.original_price > product.price && (
-                                        <>
-                                            <span className="text-xl text-tertiary line-through">
-                                                {product.original_price.toFixed(2)}€
-                                            </span>
-                                            <span className="rounded-full bg-error-100 px-2 py-0.5 text-sm font-semibold text-error-700">
-                                                -{Math.round((1 - product.price / product.original_price) * 100)}%
-                                            </span>
-                                        </>
-                                    )}
-                                </div>
-
                                 {/* Stock Status */}
                                 <div className="mt-4">
                                     {product.in_stock ? (
@@ -344,15 +327,51 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                     {product.description}
                                 </p>
 
-                                {/* Divider */}
-                                <div className="my-6 border-t border-secondary" />
 
-                                {/* Size Selection */}
+                                {/* Price (when no sizes) */}
+                                {(product.sizes ?? []).length === 0 && (
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-sm font-semibold text-primary">Price:</span>
+                                        <span className="text-lg font-bold text-brand-600">
+                                            {product.price.toFixed(2)}€
+                                        </span>
+                                        {product.original_price && product.original_price > product.price && (
+                                            <>
+                                                <span className="text-sm text-tertiary line-through">
+                                                    {product.original_price.toFixed(2)}€
+                                                </span>
+                                                <span className="rounded-full bg-error-100 px-2 py-0.5 text-xs font-semibold text-error-700">
+                                                    -{Math.round((1 - product.price / product.original_price) * 100)}%
+                                                </span>
+                                            </>
+                                        )}
+                                    </div>
+                                )}
+
+                                {/* Size Selection & Price */}
                                 {(product.sizes ?? []).length > 0 && (
                                     <div>
                                         <div className="flex items-center justify-between">
-                                            <span className="text-sm font-semibold text-primary">Size</span>
-                                            <span className="text-sm text-brand-600">{selectedSize}</span>
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-sm font-semibold text-primary">Size:</span>
+                                                <span className="text-sm text-brand-600">{selectedSize}</span>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <span className="text-sm font-semibold text-primary">Price:</span>
+                                                <span className="text-lg font-bold text-brand-600">
+                                                    {product.price.toFixed(2)}€
+                                                </span>
+                                                {product.original_price && product.original_price > product.price && (
+                                                    <>
+                                                        <span className="text-sm text-tertiary line-through">
+                                                            {product.original_price.toFixed(2)}€
+                                                        </span>
+                                                        <span className="rounded-full bg-error-100 px-2 py-0.5 text-xs font-semibold text-error-700">
+                                                            -{Math.round((1 - product.price / product.original_price) * 100)}%
+                                                        </span>
+                                                    </>
+                                                )}
+                                            </div>
                                         </div>
                                         <div className="mt-3 flex flex-wrap gap-2">
                                             {(product.sizes ?? []).map((size) => (
@@ -394,50 +413,39 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                     </div>
                                 )}
 
-                                {/* Quantity */}
-                                <div className="mt-6">
-                                    <span className="text-sm font-semibold text-primary">Quantity</span>
-                                    <div className="mt-3 flex items-center gap-4">
-                                        <div className="flex items-center overflow-hidden rounded-lg bg-white ring-1 ring-gray-200">
-                                            <button
-                                                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                                className="flex size-11 items-center justify-center text-gray-500 transition hover:bg-gray-50 hover:text-primary"
-                                            >
-                                                <Minus className="size-4" />
-                                            </button>
-                                            <span className="w-12 text-center text-sm font-semibold text-primary">
-                                                {quantity}
-                                            </span>
-                                            <button
-                                                onClick={() => setQuantity(quantity + 1)}
-                                                className="flex size-11 items-center justify-center text-gray-500 transition hover:bg-gray-50 hover:text-primary"
-                                            >
-                                                <Plus className="size-4" />
-                                            </button>
-                                        </div>
-                                        <span className="text-sm text-tertiary">
-                                            Total: <span className="font-semibold text-primary">{(product.price * quantity).toFixed(2)}€</span>
+                                {/* Quantity & Action Buttons */}
+                                <div className="mt-6 flex flex-wrap items-center gap-3">
+                                    <div className="flex items-center overflow-hidden rounded-lg bg-white ring-1 ring-gray-200">
+                                        <button
+                                            onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                                            className="flex size-11 items-center justify-center text-gray-500 transition hover:bg-gray-50 hover:text-primary"
+                                        >
+                                            <Minus className="size-4" />
+                                        </button>
+                                        <span className="w-10 text-center text-sm font-semibold text-primary">
+                                            {quantity}
                                         </span>
+                                        <button
+                                            onClick={() => setQuantity(quantity + 1)}
+                                            className="flex size-11 items-center justify-center text-gray-500 transition hover:bg-gray-50 hover:text-primary"
+                                        >
+                                            <Plus className="size-4" />
+                                        </button>
                                     </div>
-                                </div>
-
-                                {/* Action Buttons */}
-                                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                                     <Button
                                         color="primary"
-                                        size="xl"
+                                        size="lg"
                                         iconLeading={ShoppingBag01}
                                         onClick={handleAddToCart}
                                         isLoading={addingToCart}
                                         className="flex-1"
                                     >
-                                        Add to Cart
+                                        Add to Cart - {(product.price * quantity).toFixed(2)}€
                                     </Button>
                                     <Button
                                         color="secondary"
-                                        size="xl"
+                                        size="lg"
                                         onClick={handleBuyNow}
-                                        className="flex-1"
                                     >
                                         Buy Now
                                     </Button>
