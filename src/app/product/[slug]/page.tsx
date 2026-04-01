@@ -189,13 +189,11 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                 <section className="border-b border-secondary bg-white px-4 py-4 md:px-8 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <nav className="flex items-center gap-2 text-sm">
-                            <a href="/" className="text-tertiary transition hover:text-brand-600">Home</a>
-                            <ChevronRight className="size-4 text-quaternary" />
-                            <a href="/shop" className="text-tertiary transition hover:text-brand-600">Shop</a>
-                            <ChevronRight className="size-4 text-quaternary" />
-                            <a href="/shop" className="text-tertiary transition hover:text-brand-600">{product.category}</a>
-                            <ChevronRight className="size-4 text-quaternary" />
-                            <span className="font-medium text-primary">{product.name}</span>
+                            <a href="/" className="shrink-0 text-tertiary transition hover:text-brand-600">Home</a>
+                            <ChevronRight className="size-4 shrink-0 text-quaternary" />
+                            <a href="/shop" className="shrink-0 text-tertiary transition hover:text-brand-600">Shop</a>
+                            <ChevronRight className="size-4 shrink-0 text-quaternary" />
+                            <span className="truncate font-medium text-primary">{product.name}</span>
                         </nav>
                     </div>
                 </section>
@@ -290,7 +288,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 className="flex flex-col"
                             >
                                 {/* Category & Rating */}
-                                <div className="flex items-center justify-between">
+                                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                                     <span className="text-sm font-medium text-brand-600">
                                         {product.category}
                                     </span>
@@ -411,8 +409,8 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 )}
 
                                 {/* Quantity & Action Buttons */}
-                                <div className="mt-6 flex flex-wrap items-center gap-3">
-                                    <div className="flex items-center overflow-hidden rounded-lg bg-white ring-1 ring-gray-200">
+                                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                                    <div className="flex items-center justify-center overflow-hidden rounded-lg bg-white ring-1 ring-gray-200 sm:justify-start">
                                         <button
                                             onClick={() => setQuantity(Math.max(1, quantity - 1))}
                                             className="flex size-11 items-center justify-center text-gray-500 transition hover:bg-gray-50 hover:text-primary"
@@ -429,51 +427,54 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             <Plus className="size-4" />
                                         </button>
                                     </div>
-                                    <Button
-                                        color="primary"
-                                        size="lg"
-                                        iconLeading={ShoppingBag01}
-                                        onClick={handleAddToCart}
-                                        isLoading={addingToCart}
-                                        className="flex-1"
-                                    >
-                                        Add to Cart - {(product.price * quantity).toFixed(2)}€
-                                    </Button>
-                                    <Button
-                                        color="secondary"
-                                        size="lg"
-                                        onClick={handleBuyNow}
-                                    >
-                                        Buy Now
-                                    </Button>
+                                    <div className="flex flex-1 gap-3">
+                                        <Button
+                                            color="primary"
+                                            size="lg"
+                                            iconLeading={ShoppingBag01}
+                                            onClick={handleAddToCart}
+                                            isLoading={addingToCart}
+                                            className="flex-1"
+                                        >
+                                            Add to Cart - {(product.price * quantity).toFixed(2)}€
+                                        </Button>
+                                        <Button
+                                            color="secondary"
+                                            size="lg"
+                                            onClick={handleBuyNow}
+                                            className="shrink-0"
+                                        >
+                                            Buy Now
+                                        </Button>
+                                    </div>
                                 </div>
 
                                 {/* Shipping Info */}
-                                <div className={`mt-6 rounded-xl p-4 ${
+                                <div className={`mt-6 rounded-xl p-3 sm:p-4 ${
                                     hasFreeShipping
                                         ? "bg-success-50 ring-1 ring-success-200"
                                         : "bg-brand-50 ring-1 ring-brand-200"
                                 }`}>
-                                    <div className="flex items-center gap-3">
-                                        <div className={`flex size-10 items-center justify-center rounded-full ${
+                                    <div className="flex items-start gap-3 sm:items-center">
+                                        <div className={`flex size-9 shrink-0 items-center justify-center rounded-full sm:size-10 ${
                                             hasFreeShipping ? "bg-success-100" : "bg-brand-100"
                                         }`}>
-                                            <Truck01 className={`size-5 ${
+                                            <Truck01 className={`size-4 sm:size-5 ${
                                                 hasFreeShipping ? "text-success-600" : "text-brand-600"
                                             }`} />
                                         </div>
                                         <div>
                                             {hasFreeShipping ? (
                                                 <>
-                                                    <p className="font-semibold text-success-700">Free Shipping</p>
-                                                    <p className="text-sm text-success-600">Your order qualifies for free delivery!</p>
+                                                    <p className="text-sm font-semibold text-success-700 sm:text-base">Free Shipping</p>
+                                                    <p className="text-xs text-success-600 sm:text-sm">Your order qualifies for free delivery!</p>
                                                 </>
                                             ) : (
                                                 <>
-                                                    <p className="font-semibold text-brand-700">
+                                                    <p className="text-sm font-semibold text-brand-700 sm:text-base">
                                                         Add {amountToFreeShipping.toFixed(2)}€ for free shipping
                                                     </p>
-                                                    <p className="text-sm text-brand-600">Free shipping on orders over €20</p>
+                                                    <p className="text-xs text-brand-600 sm:text-sm">Free shipping on orders over €20</p>
                                                 </>
                                             )}
                                         </div>
@@ -481,12 +482,14 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 </div>
 
                                 {/* Features */}
-                                <div className="mt-6 grid grid-cols-3 gap-4">
+                                <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
                                     {features.map((feature) => (
-                                        <div key={feature.title} className="flex flex-col items-center rounded-xl bg-white p-4 text-center ring-1 ring-gray-100">
-                                            <feature.icon className="size-6 text-brand-600" />
-                                            <p className="mt-2 text-xs font-semibold text-primary">{feature.title}</p>
-                                            <p className="mt-0.5 text-xs text-tertiary">{feature.description}</p>
+                                        <div key={feature.title} className="flex items-center gap-3 rounded-xl bg-white p-3 ring-1 ring-gray-100 sm:flex-col sm:p-4 sm:text-center">
+                                            <feature.icon className="size-5 shrink-0 text-brand-600 sm:size-6" />
+                                            <div className="sm:mt-2">
+                                                <p className="text-sm font-semibold text-primary sm:text-xs">{feature.title}</p>
+                                                <p className="text-xs text-tertiary sm:mt-0.5">{feature.description}</p>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
