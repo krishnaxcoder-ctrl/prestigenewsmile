@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Facebook, Instagram } from "@/components/foundations/social-icons";
+import { Phone01, Mail01, MarkerPin01, Clock } from "@untitledui/icons";
 
 const footerLinks = {
 	services: { title: "Services", links: [
@@ -31,14 +32,6 @@ const footerLinks = {
 		{ label: "Cookie Policy", href: "/cookies" },
 		{ label: "Legal Notice", href: "/legal-notice" },
 	]},
-	contact: { title: "Contact", links: [
-		{ label: "+41 78 300 06 19", href: "tel:+41783000619" },
-		{ label: "@prestige.smile.studio", href: "https://www.instagram.com/prestige.smile.studio/" },
-		{ label: "Ambilly, near Geneva", href: "/contact" },
-		{ label: "Mon-Fri: 10am - 8pm", href: "/contact" },
-		{ label: "Sat: 10am - 7pm", href: "/contact" },
-		{ label: "Sun: Closed", href: "/contact" },
-	]},
 };
 
 const socialLinks = [
@@ -54,41 +47,105 @@ const legalLinks = [
 ];
 
 export function Footer() {
+	const linkSections = [footerLinks.services, footerLinks.shop, footerLinks.information, footerLinks.legal];
+
 	return (
 		<footer className="w-full bg-secondary">
-			<section className="px-4 py-8 md:px-8 lg:px-16">
+			<section className="px-4 py-12 md:px-8 lg:px-16">
 				<div className="mx-auto max-w-[1400px]">
-					<div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-						<div className="col-span-2 mb-4 sm:col-span-2 md:col-span-3 md:mb-0 lg:order-first lg:col-span-1">
+					{/* Main Footer Grid */}
+					<div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
+						{/* Logo & Brand Section */}
+						<div className="lg:col-span-4">
 							<Link href="/" className="inline-block">
-								<img src="/logo.svg" alt="Prestige Smile" className="h-18 w-auto" />
+								<img src="/logo.svg" alt="Prestige Smile" className="h-16 w-auto" />
 							</Link>
-							<p className="mt-3 text-sm text-secondary">
+							<p className="mt-4 max-w-sm text-sm leading-relaxed text-secondary">
 								A bright smile is much more than a detail: it reveals the confidence you have in yourself. Professional teeth whitening in Ambilly, near Geneva.
 							</p>
-							<div className="mt-6">
-								<p className="text-xs text-tertiary">Payment Methods</p>
-								<p className="mt-2 text-sm text-secondary">Twint • Revolut • Cash</p>
+
+							{/* Social Links */}
+							<div className="mt-6 flex items-center gap-3">
+								{socialLinks.map((social) => (
+									<a
+										key={social.label}
+										href={social.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label={social.label}
+										className="flex size-10 items-center justify-center rounded-full bg-primary text-secondary transition hover:bg-brand-100 hover:text-brand-600"
+									>
+										<social.icon className="size-5" />
+									</a>
+								))}
 							</div>
 						</div>
-						{Object.values(footerLinks).map((section) => (
-							<div key={section.title}>
-								<h3 className="text-sm font-semibold uppercase tracking-wider text-primary">{section.title}</h3>
-								<ul className="mt-4 space-y-3">
-									{section.links.map((link) => (
-										<li key={link.label}>
-											{link.href.startsWith("http") || link.href.startsWith("tel:") ? (
-												<a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined} className="text-sm text-secondary hover:text-primary">
-													{link.label}
-												</a>
-											) : (
-												<Link href={link.href} className="text-sm text-secondary hover:text-primary">{link.label}</Link>
-											)}
-										</li>
-									))}
-								</ul>
+
+						{/* Links Section - 4 columns */}
+						<div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
+							{linkSections.map((section) => (
+								<div key={section.title}>
+									<h3 className="text-xs font-semibold uppercase tracking-widest text-primary">{section.title}</h3>
+									<ul className="mt-4 space-y-2.5">
+										{section.links.map((link) => (
+											<li key={link.label}>
+												{link.href.startsWith("http") || link.href.startsWith("tel:") ? (
+													<a href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined} className="text-sm text-tertiary transition hover:text-brand-600">
+														{link.label}
+													</a>
+												) : (
+													<Link href={link.href} className="text-sm text-tertiary transition hover:text-brand-600">{link.label}</Link>
+												)}
+											</li>
+										))}
+									</ul>
+								</div>
+							))}
+						</div>
+					</div>
+
+					{/* Contact & Payment Row */}
+					<div className="mt-10 grid grid-cols-1 gap-8 border-t border-secondary pt-10 md:grid-cols-3">
+						{/* Contact Info */}
+						<div className="flex items-start gap-3">
+							<div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-100">
+								<Phone01 className="size-5 text-brand-600" />
 							</div>
-						))}
+							<div>
+								<p className="text-xs font-medium uppercase tracking-wider text-tertiary">Call Us</p>
+								<a href="tel:+41783000619" className="mt-1 block text-sm font-medium text-primary hover:text-brand-600">+41 78 300 06 19</a>
+							</div>
+						</div>
+
+						<div className="flex items-start gap-3">
+							<div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-100">
+								<MarkerPin01 className="size-5 text-brand-600" />
+							</div>
+							<div>
+								<p className="text-xs font-medium uppercase tracking-wider text-tertiary">Location</p>
+								<p className="mt-1 text-sm font-medium text-primary">Ambilly, near Geneva</p>
+							</div>
+						</div>
+
+						<div className="flex items-start gap-3">
+							<div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-100">
+								<Clock className="size-5 text-brand-600" />
+							</div>
+							<div>
+								<p className="text-xs font-medium uppercase tracking-wider text-tertiary">Hours</p>
+								<p className="mt-1 text-sm text-primary">Mon-Fri: 10am-8pm • Sat: 10am-7pm</p>
+							</div>
+						</div>
+					</div>
+
+					{/* Payment Methods */}
+					<div className="mt-8 flex flex-wrap items-center gap-6 border-t border-secondary pt-8">
+						<p className="text-xs font-medium uppercase tracking-wider text-tertiary">Payment Methods</p>
+						<div className="flex items-center gap-4">
+							<span className="rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-secondary">Twint</span>
+							<span className="rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-secondary">Revolut</span>
+							<span className="rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-secondary">Cash</span>
+						</div>
 					</div>
 				</div>
 			</section>
