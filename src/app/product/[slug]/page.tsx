@@ -266,7 +266,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                             onClick={() => setSelectedImage(index)}
                                             className={`relative size-20 shrink-0 overflow-hidden rounded-xl bg-white transition sm:size-24 ${
                                                 selectedImage === index
-                                                    ? "ring-2 ring-brand-600 ring-offset-2"
+                                                    ? "sm:ring-2 sm:ring-brand-600 sm:ring-offset-2"
                                                     : "opacity-70 hover:opacity-100"
                                             }`}
                                         >

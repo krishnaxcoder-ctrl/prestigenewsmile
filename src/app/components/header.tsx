@@ -18,32 +18,36 @@ import { cx } from "@/utils/cx";
 
 const navItems = [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/about", hasDropdown: true },
+    { label: "Services", href: "/about#services", hasDropdown: true },
     { label: "Shop", href: "/shop" },
     { label: "About", href: "/about" },
+    { label: "Gift Cards", href: "/gift-cards" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
 ];
 
 const ServicesDropdown = () => {
     const columns = [
-        { title: "Treatments", items: [
+        { title: "Services", items: [
             { label: "Radiance Session", description: "1 hour • CHF 99", href: "/about#services" },
             { label: "Complete Treatment", description: "2 sessions • CHF 169", href: "/about#services" },
             { label: "Maintenance Session", description: "Touch-up • CHF 79", href: "/about#services" },
             { label: "Duo Offer", description: "2 people • -10%", href: "/about#services" },
-        ]},
-        { title: "Information", items: [
-            { label: "How It Works", description: "Session process", href: "/about#how-it-works" },
-            { label: "FAQs", description: "Common questions", href: "/faq" },
-            { label: "Shipping & Delivery", description: "Delivery info", href: "/shipping" },
-            { label: "Refund Policy", description: "Returns & refunds", href: "/refunds" },
+            { label: "Gift Cards", description: "Perfect gift", href: "/gift-cards" },
         ]},
         { title: "Shop", items: [
             { label: "All Products", description: "Browse collection", href: "/shop" },
-            { label: "Gift Cards", description: "Perfect gift", href: "/gift-cards" },
             { label: "My Cart", description: "View cart", href: "/cart" },
             { label: "My Account", description: "Orders & settings", href: "/account" },
+            { label: "My Orders", description: "Order history", href: "/account/orders" },
+            { label: "My Wishlist", description: "Saved items", href: "/account/wishlist" },
+        ]},
+        { title: "Information", items: [
+            { label: "About Us", description: "Our story", href: "/about" },
+            { label: "FAQs", description: "Common questions", href: "/faq" },
+            { label: "Shipping & Delivery", description: "Delivery info", href: "/shipping" },
+            { label: "Refund Policy", description: "Returns & refunds", href: "/refunds" },
+            { label: "Service Disclaimer", description: "Important notice", href: "/disclaimer" },
         ]},
         { title: "Legal", items: [
             { label: "Terms & Conditions", description: "CGV - Our policies", href: "/terms" },
@@ -131,22 +135,71 @@ const LanguageSelector = () => {
     );
 };
 
+const mobileMenuSections = [
+    { title: "Services", items: [
+        { label: "Radiance Session", href: "/about#services" },
+        { label: "Complete Treatment", href: "/about#services" },
+        { label: "Maintenance Session", href: "/about#services" },
+        { label: "Duo Offer", href: "/about#services" },
+        { label: "Gift Cards", href: "/gift-cards" },
+    ]},
+    { title: "Shop", items: [
+        { label: "All Products", href: "/shop" },
+        { label: "My Cart", href: "/cart" },
+        { label: "My Account", href: "/account" },
+        { label: "My Orders", href: "/account/orders" },
+        { label: "My Wishlist", href: "/account/wishlist" },
+    ]},
+    { title: "Information", items: [
+        { label: "About Us", href: "/about" },
+        { label: "FAQs", href: "/faq" },
+        { label: "Shipping & Delivery", href: "/shipping" },
+        { label: "Refund Policy", href: "/refunds" },
+        { label: "Service Disclaimer", href: "/disclaimer" },
+    ]},
+    { title: "Legal", items: [
+        { label: "Terms & Conditions", href: "/terms" },
+        { label: "Privacy Policy", href: "/privacy" },
+        { label: "Cookie Policy", href: "/cookies" },
+        { label: "Legal Notice", href: "/legal-notice" },
+    ]},
+];
+
 const MobileNav = () => {
     const [expandedItems, setExpandedItems] = useState<string[]>([]);
-    const toggleItem = (label: string) => setExpandedItems((prev) => prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]);
+    const toggleItem = (title: string) => setExpandedItems((prev) => prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title]);
 
     return (
-        <nav className="flex flex-col bg-primary">
-            <ul className="flex flex-col py-2">
-                {navItems.map((item) => (
-                    <li key={item.label} className="border-b border-secondary last:border-b-0">
-                        {item.hasDropdown ? (
-                            <button onClick={() => toggleItem(item.label)} className="flex w-full items-center justify-between px-4 py-3 text-md font-medium text-primary">
-                                {item.label}
-                                <ChevronDown className={cx("size-5 text-quaternary", expandedItems.includes(item.label) && "-rotate-180")} />
-                            </button>
-                        ) : (
-                            <Link href={item.href} className="block px-4 py-3 text-md font-medium text-primary">{item.label}</Link>
+        <nav className="flex h-[calc(100vh-64px)] flex-col bg-primary md:h-[calc(100vh-72px)]">
+            <ul className="flex flex-1 flex-col overflow-y-auto">
+                {/* Main nav links */}
+                <li className="border-b border-secondary">
+                    <Link href="/" className="block px-4 py-4 text-md font-medium text-primary">Home</Link>
+                </li>
+                <li className="border-b border-secondary">
+                    <Link href="/contact" className="block px-4 py-4 text-md font-medium text-primary">Contact</Link>
+                </li>
+
+                {/* Expandable sections */}
+                {mobileMenuSections.map((section) => (
+                    <li key={section.title} className="border-b border-secondary">
+                        <button
+                            onClick={() => toggleItem(section.title)}
+                            className="flex w-full items-center justify-between px-4 py-4 text-md font-medium text-primary"
+                        >
+                            {section.title}
+                            <ChevronDown className={cx("size-5 text-quaternary transition-transform", expandedItems.includes(section.title) && "-rotate-180")} />
+                        </button>
+                        {expandedItems.includes(section.title) && (
+                            <ul className="bg-secondary/50 pb-2">
+                                {section.items.map((item) => (
+                                    <li key={item.label}>
+                                        <Link href={item.href} className="block px-6 py-2.5 text-sm text-secondary hover:text-brand-600">
+                                            {item.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
                         )}
                     </li>
                 ))}
@@ -206,8 +259,8 @@ export const Header = () => {
                             <AriaButton id="mobile-menu-trigger" aria-label="Menu" className={({ isFocusVisible, isHovered }) => cx("group ml-2 flex size-10 cursor-pointer items-center justify-center rounded-lg lg:hidden", isHovered && "bg-primary_hover", isFocusVisible && "outline-2 outline-offset-2 outline-focus-ring")}>
                                 <Menu01 className="size-6 text-secondary" />
                             </AriaButton>
-                            <AriaPopover triggerRef={headerRef} className="w-full shadow-lg lg:hidden" offset={0} containerPadding={0} placement="bottom left">
-                                <AriaDialog className="outline-hidden">
+                            <AriaPopover triggerRef={headerRef} className="w-screen shadow-lg lg:hidden" offset={0} containerPadding={0} placement="bottom left">
+                                <AriaDialog className="w-full outline-hidden">
                                     <MobileNav />
                                 </AriaDialog>
                             </AriaPopover>
