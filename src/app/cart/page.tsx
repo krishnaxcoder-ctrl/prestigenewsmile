@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import {
     Minus,
@@ -13,10 +13,14 @@ import {
     Shield01,
     RefreshCcw01,
     Loading01,
+    CheckCircle,
+    Tag01,
+    ArrowRight,
+    Clock,
+    Package,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
-import { RatingBadge } from "@/components/foundations/rating-badge";
 import {
     getCartItems,
     updateCartItemQuantity,
@@ -39,18 +43,24 @@ interface CartItemWithProduct {
 const features = [
     {
         icon: Truck01,
-        title: "Free Shipping",
-        description: "On orders over €20",
+        title: "Fast Shipping",
+        description: "2-4 business days with tracking",
+        color: "text-brand-600",
+        bg: "bg-brand-50",
     },
     {
         icon: Shield01,
         title: "Secure Payment",
-        description: "100% secure checkout",
+        description: "Twint, Revolut & Cash",
+        color: "text-success-600",
+        bg: "bg-success-50",
     },
     {
         icon: RefreshCcw01,
         title: "Easy Returns",
         description: "30-day return policy",
+        color: "text-warning-600",
+        bg: "bg-warning-50",
     },
 ];
 
@@ -58,9 +68,10 @@ export default function CartPage() {
     const [cartItems, setCartItems] = useState<CartItemWithProduct[]>([]);
     const [loading, setLoading] = useState(true);
     const [couponCode, setCouponCode] = useState("");
+    const [couponApplied, setCouponApplied] = useState(false);
     const [updating, setUpdating] = useState<string | null>(null);
+    const [removingItem, setRemovingItem] = useState<string | null>(null);
 
-    // Fetch cart items from Supabase
     useEffect(() => {
         async function fetchCartItems() {
             try {
@@ -91,9 +102,7 @@ export default function CartPage() {
             await updateCartItemQuantity(id, newQuantity);
             setCartItems((items) =>
                 items.map((item) =>
-                    item.id === id
-                        ? { ...item, quantity: newQuantity }
-                        : item
+                    item.id === id ? { ...item, quantity: newQuantity } : item
                 )
             );
         } catch (error) {
@@ -104,14 +113,16 @@ export default function CartPage() {
     };
 
     const removeItem = async (id: string) => {
-        setUpdating(id);
+        setRemovingItem(id);
         try {
             await removeFromCart(id);
-            setCartItems((items) => items.filter((item) => item.id !== id));
+            setTimeout(() => {
+                setCartItems((items) => items.filter((item) => item.id !== id));
+                setRemovingItem(null);
+            }, 300);
         } catch (error) {
             console.error("Error removing item:", error);
-        } finally {
-            setUpdating(null);
+            setRemovingItem(null);
         }
     };
 
@@ -131,8 +142,12 @@ export default function CartPage() {
         (sum, item) => sum + item.product.price * item.quantity,
         0
     );
-    const shipping = subtotal >= 20 ? 0 : 3.90;
+    const freeShippingThreshold = 20;
+    const shipping = subtotal >= freeShippingThreshold ? 0 : 3.90;
     const total = subtotal + shipping;
+    const progressToFreeShipping = Math.min((subtotal / freeShippingThreshold) * 100, 100);
+    const amountToFreeShipping = Math.max(freeShippingThreshold - subtotal, 0);
+    const itemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
     if (loading) {
         return (
@@ -140,8 +155,10 @@ export default function CartPage() {
                 <Header />
                 <main className="flex min-h-screen items-center justify-center bg-primary">
                     <div className="flex flex-col items-center gap-4">
-                        <Loading01 className="size-8 animate-spin text-brand-600" />
-                        <p className="text-tertiary">Loading cart...</p>
+                        <div className="relative">
+                            <Loading01 className="size-10 animate-spin text-brand-600" />
+                        </div>
+                        <p className="text-tertiary">Loading your cart...</p>
                     </div>
                 </main>
                 <Footer />
@@ -152,302 +169,402 @@ export default function CartPage() {
     return (
         <div className="overflow-x-hidden">
             <Header />
-            <main className="bg-primary">
-                {/* Hero Header */}
-                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+            <main className="min-h-screen bg-gray-50">
+                {/* Free Shipping Progress Banner */}
+                {cartItems.length > 0 && (
+                    <section className="border-b border-brand-100 bg-gradient-to-r from-brand-50 to-teal-50 px-4 py-4 md:px-8 lg:px-16">
+                        <div className="mx-auto max-w-7xl">
+                            <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
+                                <div className="flex items-center gap-2">
+                                    <Truck01 className="size-5 text-brand-600" />
+                                    <span className="text-sm font-medium text-primary">
+                                        {shipping === 0 ? (
+                                            <span className="flex items-center gap-1.5">
+                                                <CheckCircle className="size-4 text-success-500" />
+                                                You've unlocked FREE shipping!
+                                            </span>
+                                        ) : (
+                                            <>Add <span className="font-bold text-brand-600">{amountToFreeShipping.toFixed(2)}€</span> more for FREE shipping</>
+                                        )}
+                                    </span>
+                                </div>
+                                <div className="flex-1 sm:max-w-xs">
+                                    <div className="h-2 overflow-hidden rounded-full bg-white shadow-inner">
+                                        <motion.div
+                                            initial={{ width: 0 }}
+                                            animate={{ width: `${progressToFreeShipping}%` }}
+                                            transition={{ duration: 0.5, ease: "easeOut" }}
+                                            className={`h-full rounded-full ${shipping === 0 ? "bg-success-500" : "bg-brand-500"}`}
+                                        />
+                                    </div>
+                                </div>
+                                <span className="text-xs text-tertiary">
+                                    {subtotal.toFixed(2)}€ / {freeShippingThreshold}€
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+                )}
+
+                {/* Page Header */}
+                <section className="border-b border-secondary bg-white px-4 py-8 md:px-8 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="uppercase transition hover:text-teal-600">Home</a>
+                            <a href="/" className="transition hover:text-brand-600">Home</a>
                             <span>/</span>
-                            <span className="uppercase text-teal-600">Cart</span>
+                            <a href="/shop" className="transition hover:text-brand-600">Shop</a>
+                            <span>/</span>
+                            <span className="text-primary">Cart</span>
                         </nav>
-                        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-                            <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
-                                Shopping <span className="text-teal-600">Cart</span>
-                            </h1>
-                            <div className="hidden shrink-0 md:block">
-                                <RatingBadge rating={4.9} title="Trusted Checkout" subtitle="Secure & Fast" />
+                        <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                            <div>
+                                <h1 className="text-2xl font-bold text-primary md:text-3xl">
+                                    Shopping Cart
+                                </h1>
+                                <p className="mt-1 text-tertiary">
+                                    {itemCount > 0 ? `${itemCount} item${itemCount > 1 ? "s" : ""} in your cart` : "Your cart is empty"}
+                                </p>
                             </div>
+                            {cartItems.length > 0 && (
+                                <Button href="/shop" color="secondary" size="sm" iconLeading={ArrowRight} className="hidden sm:flex">
+                                    Continue Shopping
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </section>
 
                 {/* Cart Content */}
-                <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
+                <section className="px-4 py-8 md:px-8 md:py-12 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         {cartItems.length > 0 ? (
-                            <div className="grid gap-12 lg:grid-cols-3">
+                            <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
                                 {/* Cart Items */}
                                 <div className="lg:col-span-2">
-                                    {/* Desktop Table Header */}
-                                    <div className="hidden border-b border-secondary pb-4 md:grid md:grid-cols-12 md:gap-4">
-                                        <div className="col-span-6 text-xs font-semibold uppercase tracking-wider text-tertiary">
-                                            Product
-                                        </div>
-                                        <div className="col-span-2 text-center text-xs font-semibold uppercase tracking-wider text-tertiary">
-                                            Price
-                                        </div>
-                                        <div className="col-span-2 text-center text-xs font-semibold uppercase tracking-wider text-tertiary">
-                                            Quantity
-                                        </div>
-                                        <div className="col-span-2 text-right text-xs font-semibold uppercase tracking-wider text-tertiary">
-                                            Total
+                                    <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
+                                        {/* Items List */}
+                                        <AnimatePresence>
+                                            {cartItems.map((item, index) => (
+                                                <motion.div
+                                                    key={item.id}
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    animate={{
+                                                        opacity: removingItem === item.id ? 0 : 1,
+                                                        y: 0,
+                                                        x: removingItem === item.id ? -100 : 0,
+                                                        height: removingItem === item.id ? 0 : "auto"
+                                                    }}
+                                                    exit={{ opacity: 0, x: -100, height: 0 }}
+                                                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                                                    className={`border-b border-secondary last:border-b-0 ${updating === item.id ? "opacity-60" : ""}`}
+                                                >
+                                                    <div className="p-4 sm:p-6">
+                                                        <div className="flex gap-4">
+                                                            {/* Product Image */}
+                                                            <a
+                                                                href={`/product/${item.product.slug}`}
+                                                                className="group relative shrink-0 overflow-hidden rounded-xl"
+                                                            >
+                                                                <img
+                                                                    src={item.product.images?.[0] ?? ""}
+                                                                    alt={item.product.name}
+                                                                    className="size-24 object-cover transition duration-300 group-hover:scale-105 sm:size-28"
+                                                                />
+                                                                {updating === item.id && (
+                                                                    <div className="absolute inset-0 flex items-center justify-center bg-white/80">
+                                                                        <Loading01 className="size-5 animate-spin text-brand-600" />
+                                                                    </div>
+                                                                )}
+                                                            </a>
+
+                                                            {/* Product Details */}
+                                                            <div className="flex flex-1 flex-col justify-between">
+                                                                <div>
+                                                                    <div className="flex items-start justify-between gap-2">
+                                                                        <div>
+                                                                            <p className="text-xs font-medium uppercase tracking-wider text-brand-600">
+                                                                                {item.product.category}
+                                                                            </p>
+                                                                            <a
+                                                                                href={`/product/${item.product.slug}`}
+                                                                                className="mt-1 block text-sm font-semibold text-primary transition hover:text-brand-600 sm:text-base"
+                                                                            >
+                                                                                {item.product.name}
+                                                                            </a>
+                                                                        </div>
+                                                                        <button
+                                                                            onClick={() => removeItem(item.id)}
+                                                                            className="rounded-full p-1.5 text-tertiary transition hover:bg-error-50 hover:text-error-500"
+                                                                            aria-label="Remove item"
+                                                                        >
+                                                                            <X className="size-4" />
+                                                                        </button>
+                                                                    </div>
+
+                                                                    {/* Variants */}
+                                                                    <div className="mt-2 flex flex-wrap gap-2">
+                                                                        {item.size && (
+                                                                            <span className="inline-flex items-center rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary">
+                                                                                Size: {item.size}
+                                                                            </span>
+                                                                        )}
+                                                                        {item.color && (
+                                                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary">
+                                                                                <span
+                                                                                    className="size-2.5 rounded-full"
+                                                                                    style={{ backgroundColor: item.color }}
+                                                                                />
+                                                                                {item.color}
+                                                                            </span>
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+
+                                                                {/* Price & Quantity */}
+                                                                <div className="mt-4 flex items-center justify-between">
+                                                                    {/* Quantity Selector */}
+                                                                    <div className="flex items-center overflow-hidden rounded-lg border border-secondary bg-white">
+                                                                        <button
+                                                                            onClick={() => updateQuantity(item.id, -1)}
+                                                                            disabled={item.quantity <= 1}
+                                                                            className="flex size-9 items-center justify-center text-tertiary transition hover:bg-secondary hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
+                                                                        >
+                                                                            <Minus className="size-3.5" />
+                                                                        </button>
+                                                                        <span className="w-10 text-center text-sm font-semibold text-primary">
+                                                                            {item.quantity}
+                                                                        </span>
+                                                                        <button
+                                                                            onClick={() => updateQuantity(item.id, 1)}
+                                                                            className="flex size-9 items-center justify-center text-tertiary transition hover:bg-secondary hover:text-primary"
+                                                                        >
+                                                                            <Plus className="size-3.5" />
+                                                                        </button>
+                                                                    </div>
+
+                                                                    {/* Price */}
+                                                                    <div className="text-right">
+                                                                        <p className="text-lg font-bold text-primary">
+                                                                            {(item.product.price * item.quantity).toFixed(2)}€
+                                                                        </p>
+                                                                        {item.quantity > 1 && (
+                                                                            <p className="text-xs text-tertiary">
+                                                                                {item.product.price.toFixed(2)}€ each
+                                                                            </p>
+                                                                        )}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            ))}
+                                        </AnimatePresence>
+
+                                        {/* Cart Actions */}
+                                        <div className="flex items-center justify-between border-t border-secondary bg-gray-50 px-4 py-4 sm:px-6">
+                                            <Button href="/shop" color="link-gray" size="sm" iconLeading={ArrowRight}>
+                                                Continue Shopping
+                                            </Button>
+                                            <button
+                                                onClick={handleClearCart}
+                                                className="flex items-center gap-1.5 text-sm text-tertiary transition hover:text-error-500"
+                                            >
+                                                <Trash01 className="size-4" />
+                                                Clear Cart
+                                            </button>
                                         </div>
                                     </div>
 
-                                    {/* Cart Items */}
-                                    <div className="divide-y divide-secondary">
-                                        {cartItems.map((item, index) => (
+                                    {/* Features Section */}
+                                    <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                        {features.map((feature, index) => (
                                             <motion.div
-                                                key={item.id}
-                                                initial={{ opacity: 0, y: 10 }}
+                                                key={feature.title}
+                                                initial={{ opacity: 0, y: 20 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ duration: 0.3, delay: index * 0.1 }}
-                                                className={`py-6 ${updating === item.id ? "opacity-50" : ""}`}
+                                                transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
+                                                className="flex items-center gap-3 rounded-xl bg-white p-4 shadow-sm"
                                             >
-                                                {/* Mobile Layout */}
-                                                <div className="flex gap-4 md:hidden">
-                                                    <a href={`/product/${item.product.slug}`} className="shrink-0">
-                                                        <img
-                                                            src={item.product.images?.[0] ?? ""}
-                                                            alt={item.product.name}
-                                                            className="size-24 rounded-lg bg-secondary object-cover"
-                                                        />
-                                                    </a>
-                                                    <div className="flex flex-1 flex-col">
-                                                        <div className="flex items-start justify-between">
-                                                            <div>
-                                                                <a href={`/product/${item.product.slug}`} className="font-semibold text-primary hover:text-brand-600">
-                                                                    {item.product.name}
-                                                                </a>
-                                                                <p className="mt-0.5 text-xs text-tertiary">{item.product.category}</p>
-                                                                {item.size && <p className="mt-1 text-xs text-tertiary">Size: {item.size}</p>}
-                                                            </div>
-                                                            <button
-                                                                onClick={() => removeItem(item.id)}
-                                                                className="text-tertiary transition hover:text-error-500"
-                                                            >
-                                                                <X className="size-5" />
-                                                            </button>
-                                                        </div>
-                                                        <div className="mt-4 flex items-center justify-between">
-                                                            <div className="flex items-center border border-secondary">
-                                                                <button
-                                                                    onClick={() => updateQuantity(item.id, -1)}
-                                                                    className="flex size-8 items-center justify-center text-tertiary transition hover:text-primary"
-                                                                >
-                                                                    <Minus className="size-3" />
-                                                                </button>
-                                                                <span className="w-8 text-center text-sm font-medium text-primary">
-                                                                    {item.quantity}
-                                                                </span>
-                                                                <button
-                                                                    onClick={() => updateQuantity(item.id, 1)}
-                                                                    className="flex size-8 items-center justify-center text-tertiary transition hover:text-primary"
-                                                                >
-                                                                    <Plus className="size-3" />
-                                                                </button>
-                                                            </div>
-                                                            <span className="font-semibold text-primary">
-                                                                {(item.product.price * item.quantity).toFixed(2)}€
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                                                <div className={`flex size-10 shrink-0 items-center justify-center rounded-full ${feature.bg}`}>
+                                                    <feature.icon className={`size-5 ${feature.color}`} />
                                                 </div>
-
-                                                {/* Desktop Layout */}
-                                                <div className="hidden items-center gap-4 md:grid md:grid-cols-12">
-                                                    <div className="col-span-6 flex items-center gap-4">
-                                                        <a href={`/product/${item.product.slug}`} className="shrink-0">
-                                                            <img
-                                                                src={item.product.images?.[0] ?? ""}
-                                                                alt={item.product.name}
-                                                                className="size-20 rounded-lg bg-secondary object-cover"
-                                                            />
-                                                        </a>
-                                                        <div>
-                                                            <a href={`/product/${item.product.slug}`} className="font-semibold text-primary hover:text-brand-600">
-                                                                {item.product.name}
-                                                            </a>
-                                                            <p className="mt-0.5 text-xs text-tertiary">{item.product.category}</p>
-                                                            {item.size && <p className="mt-1 text-xs text-tertiary">Size: {item.size}</p>}
-                                                            <button
-                                                                onClick={() => removeItem(item.id)}
-                                                                className="mt-2 flex items-center gap-1 text-xs text-tertiary transition hover:text-error-500"
-                                                            >
-                                                                <Trash01 className="size-3" />
-                                                                Remove
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-span-2 text-center">
-                                                        <span className="font-medium text-primary">
-                                                            {item.product.price.toFixed(2)}€
-                                                        </span>
-                                                    </div>
-                                                    <div className="col-span-2 flex justify-center">
-                                                        <div className="flex items-center border border-secondary">
-                                                            <button
-                                                                onClick={() => updateQuantity(item.id, -1)}
-                                                                className="flex size-9 items-center justify-center text-tertiary transition hover:text-primary"
-                                                            >
-                                                                <Minus className="size-4" />
-                                                            </button>
-                                                            <span className="w-10 text-center text-sm font-medium text-primary">
-                                                                {item.quantity}
-                                                            </span>
-                                                            <button
-                                                                onClick={() => updateQuantity(item.id, 1)}
-                                                                className="flex size-9 items-center justify-center text-tertiary transition hover:text-primary"
-                                                            >
-                                                                <Plus className="size-4" />
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-span-2 text-right">
-                                                        <span className="font-semibold text-primary">
-                                                            {(item.product.price * item.quantity).toFixed(2)}€
-                                                        </span>
-                                                    </div>
+                                                <div>
+                                                    <p className="text-sm font-semibold text-primary">{feature.title}</p>
+                                                    <p className="text-xs text-tertiary">{feature.description}</p>
                                                 </div>
                                             </motion.div>
                                         ))}
                                     </div>
-
-                                    {/* Continue Shopping */}
-                                    <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                                        <Button href="/shop" color="secondary" size="md">
-                                            Continue Shopping
-                                        </Button>
-                                        <button
-                                            onClick={handleClearCart}
-                                            className="flex items-center gap-2 text-sm text-tertiary transition hover:text-error-500"
-                                        >
-                                            <Trash01 className="size-4" />
-                                            Clear Cart
-                                        </button>
-                                    </div>
                                 </div>
 
-                                {/* Order Summary */}
+                                {/* Order Summary - Sticky */}
                                 <div className="lg:col-span-1">
-                                    <div className="rounded-2xl border border-secondary bg-secondary p-6">
-                                        <h2 className="text-lg font-semibold text-primary">
-                                            Order Summary
-                                        </h2>
-
-                                        {/* Coupon Code */}
-                                        <div className="mt-6">
-                                            <label className="text-sm font-medium text-primary">
-                                                Coupon Code
-                                            </label>
-                                            <div className="mt-2 flex gap-2">
-                                                <input
-                                                    type="text"
-                                                    value={couponCode}
-                                                    onChange={(e) => setCouponCode(e.target.value)}
-                                                    placeholder="Enter code"
-                                                    className="flex-1 rounded-lg border border-secondary bg-primary px-4 py-2 text-sm text-primary placeholder:text-placeholder focus:border-brand-500 focus:outline-none"
-                                                />
-                                                <Button color="secondary" size="sm">
-                                                    Apply
-                                                </Button>
-                                            </div>
-                                        </div>
-
-                                        {/* Summary */}
-                                        <div className="mt-6 space-y-4 border-t border-secondary pt-6">
-                                            <div className="flex items-center justify-between text-sm">
-                                                <span className="text-tertiary">Subtotal</span>
-                                                <span className="font-medium text-primary">
-                                                    {subtotal.toFixed(2)}€
-                                                </span>
-                                            </div>
-                                            <div className="flex items-center justify-between text-sm">
-                                                <span className="text-tertiary">Shipping</span>
-                                                <span className="font-medium text-primary">
-                                                    {shipping === 0 ? "Free" : `${shipping.toFixed(2)}€`}
-                                                </span>
-                                            </div>
-                                            {shipping > 0 && (
-                                                <p className="text-xs text-brand-600">
-                                                    Spend {(20 - subtotal).toFixed(2)}€ more for free shipping!
-                                                </p>
-                                            )}
-                                        </div>
-
-                                        <div className="mt-6 flex items-center justify-between border-t border-secondary pt-6">
-                                            <span className="text-lg font-semibold text-primary">
-                                                Total
-                                            </span>
-                                            <span className="text-xl font-bold text-primary">
-                                                {total.toFixed(2)}€
-                                            </span>
-                                        </div>
-
-                                        <Button
-                                            href="/checkout"
-                                            color="primary"
-                                            size="lg"
-                                            className="mt-6 w-full justify-center"
+                                    <div className="sticky top-24">
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.4, delay: 0.2 }}
+                                            className="overflow-hidden rounded-2xl bg-white shadow-sm"
                                         >
-                                            Proceed to Checkout
-                                        </Button>
-
-                                        {/* Payment Icons */}
-                                        <div className="mt-6 flex items-center justify-center gap-2">
-                                            <span className="text-xs text-tertiary">We accept:</span>
-                                            <div className="flex gap-2 text-tertiary">
-                                                <span className="text-xs font-medium">Twint</span>
-                                                <span>•</span>
-                                                <span className="text-xs font-medium">Revolut</span>
-                                                <span>•</span>
-                                                <span className="text-xs font-medium">Cash</span>
+                                            <div className="border-b border-secondary bg-gray-50 px-6 py-4">
+                                                <h2 className="text-lg font-bold text-primary">
+                                                    Order Summary
+                                                </h2>
                                             </div>
-                                        </div>
-                                    </div>
 
-                                    {/* Features */}
-                                    <div className="mt-6 space-y-4">
-                                        {features.map((feature) => (
-                                            <div key={feature.title} className="flex items-center gap-3">
-                                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-50">
-                                                    <feature.icon className="size-5 text-brand-600" />
+                                            <div className="p-6">
+                                                {/* Coupon Code */}
+                                                <div className="mb-6">
+                                                    <label className="mb-2 flex items-center gap-2 text-sm font-medium text-primary">
+                                                        <Tag01 className="size-4 text-tertiary" />
+                                                        Coupon Code
+                                                    </label>
+                                                    <div className="flex gap-2">
+                                                        <input
+                                                            type="text"
+                                                            value={couponCode}
+                                                            onChange={(e) => setCouponCode(e.target.value)}
+                                                            placeholder="Enter code"
+                                                            disabled={couponApplied}
+                                                            className="flex-1 rounded-lg border border-secondary bg-gray-50 px-4 py-2.5 text-sm text-primary placeholder:text-placeholder focus:border-brand-500 focus:bg-white focus:outline-none disabled:opacity-50"
+                                                        />
+                                                        <Button
+                                                            color={couponApplied ? "tertiary" : "secondary"}
+                                                            size="md"
+                                                            onClick={() => setCouponApplied(!couponApplied)}
+                                                        >
+                                                            {couponApplied ? "Remove" : "Apply"}
+                                                        </Button>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <p className="text-sm font-medium text-primary">{feature.title}</p>
-                                                    <p className="text-xs text-tertiary">{feature.description}</p>
+
+                                                {/* Summary Lines */}
+                                                <div className="space-y-3 border-t border-secondary pt-6">
+                                                    <div className="flex items-center justify-between text-sm">
+                                                        <span className="text-tertiary">Subtotal ({itemCount} items)</span>
+                                                        <span className="font-medium text-primary">{subtotal.toFixed(2)}€</span>
+                                                    </div>
+                                                    <div className="flex items-center justify-between text-sm">
+                                                        <span className="flex items-center gap-1.5 text-tertiary">
+                                                            <Truck01 className="size-4" />
+                                                            Shipping
+                                                        </span>
+                                                        <span className={`font-medium ${shipping === 0 ? "text-success-600" : "text-primary"}`}>
+                                                            {shipping === 0 ? "FREE" : `${shipping.toFixed(2)}€`}
+                                                        </span>
+                                                    </div>
+                                                    {shipping > 0 && (
+                                                        <motion.div
+                                                            initial={{ opacity: 0, height: 0 }}
+                                                            animate={{ opacity: 1, height: "auto" }}
+                                                            className="rounded-lg bg-brand-50 px-3 py-2"
+                                                        >
+                                                            <p className="text-xs text-brand-700">
+                                                                🎉 Add <strong>{amountToFreeShipping.toFixed(2)}€</strong> more for free shipping!
+                                                            </p>
+                                                        </motion.div>
+                                                    )}
+                                                </div>
+
+                                                {/* Total */}
+                                                <div className="mt-6 flex items-center justify-between border-t border-secondary pt-6">
+                                                    <span className="text-base font-semibold text-primary">Total</span>
+                                                    <div className="text-right">
+                                                        <span className="text-2xl font-bold text-primary">{total.toFixed(2)}€</span>
+                                                        <p className="text-xs text-tertiary">VAT included</p>
+                                                    </div>
+                                                </div>
+
+                                                {/* Checkout Button */}
+                                                <Button
+                                                    href="/checkout"
+                                                    color="primary"
+                                                    size="lg"
+                                                    className="mt-6 w-full justify-center"
+                                                    iconTrailing={ArrowRight}
+                                                >
+                                                    Checkout
+                                                </Button>
+
+                                                {/* Trust Badges */}
+                                                <div className="mt-6 space-y-3">
+                                                    <div className="flex items-center justify-center gap-2 text-xs text-tertiary">
+                                                        <Shield01 className="size-4 text-success-500" />
+                                                        <span>Secure checkout with SSL encryption</span>
+                                                    </div>
+                                                    <div className="flex items-center justify-center gap-3 border-t border-secondary pt-4">
+                                                        <span className="text-xs text-tertiary">We accept:</span>
+                                                        <div className="flex gap-2">
+                                                            <span className="rounded bg-secondary px-2 py-1 text-xs font-semibold text-secondary">Twint</span>
+                                                            <span className="rounded bg-secondary px-2 py-1 text-xs font-semibold text-secondary">Revolut</span>
+                                                            <span className="rounded bg-secondary px-2 py-1 text-xs font-semibold text-secondary">Cash</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        ))}
+                                        </motion.div>
+
+                                        {/* Shipping Info */}
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.4, delay: 0.3 }}
+                                            className="mt-4 rounded-xl border border-secondary bg-white p-4"
+                                        >
+                                            <div className="flex items-start gap-3">
+                                                <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-50">
+                                                    <Package className="size-4 text-brand-600" />
+                                                </div>
+                                                <div className="text-sm">
+                                                    <p className="font-semibold text-primary">Fast Shipping</p>
+                                                    <p className="mt-0.5 text-tertiary">
+                                                        2-4 business days • Tracking included
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </motion.div>
                                     </div>
                                 </div>
                             </div>
                         ) : (
                             /* Empty Cart */
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                className="py-16 text-center"
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.4 }}
+                                className="mx-auto max-w-md py-16 text-center"
                             >
-                                <div className="mx-auto flex size-24 items-center justify-center rounded-full bg-secondary">
-                                    <ShoppingBag01 className="size-12 text-tertiary" />
+                                <div className="mx-auto flex size-32 items-center justify-center rounded-full bg-gradient-to-br from-brand-50 to-teal-50">
+                                    <ShoppingBag01 className="size-16 text-brand-400" />
                                 </div>
-                                <h2 className="mt-6 text-xl font-semibold text-primary">
+                                <h2 className="mt-8 text-2xl font-bold text-primary">
                                     Your cart is empty
                                 </h2>
-                                <p className="mt-2 text-tertiary">
-                                    Looks like you haven't added anything to your cart yet.
+                                <p className="mt-3 text-tertiary">
+                                    Looks like you haven't added anything yet. Start exploring our products!
                                 </p>
                                 <Button
                                     href="/shop"
                                     color="primary"
                                     size="lg"
                                     className="mt-8"
-                                    iconLeading={ShoppingBag01}
+                                    iconTrailing={ArrowRight}
                                 >
                                     Start Shopping
                                 </Button>
+
+                                {/* Features for empty state */}
+                                <div className="mt-12 grid grid-cols-3 gap-4">
+                                    {features.map((feature) => (
+                                        <div key={feature.title} className="text-center">
+                                            <div className={`mx-auto flex size-12 items-center justify-center rounded-full ${feature.bg}`}>
+                                                <feature.icon className={`size-6 ${feature.color}`} />
+                                            </div>
+                                            <p className="mt-2 text-xs font-medium text-primary">{feature.title}</p>
+                                        </div>
+                                    ))}
+                                </div>
                             </motion.div>
                         )}
                     </div>
