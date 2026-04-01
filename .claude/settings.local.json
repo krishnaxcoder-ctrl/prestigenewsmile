@@ -42,11 +42,16 @@
       "Bash(powershell:*)",
       "Bash(cmd /c \"dir c:\\\\Users\\\\Krishna\\\\asdqwe\\\\public\\\\*RADIANCE* 2>nul\")",
       "Bash(move:*)",
-      "WebFetch(domain:www.prestige-smile.com)"
+      "WebFetch(domain:www.prestige-smile.com)",
+      "WebFetch(domain:eur-lex.europa.eu)",
+      "WebFetch(domain:www.legifrance.gouv.fr)",
+      "WebFetch(domain:www.cnil.fr)",
+      "WebFetch(domain:ec.europa.eu)",
+      "WebFetch(domain:consumer-redress.ec.europa.eu)"
     ]
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "supabase"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AlertTriangle, Info, CheckCircle, XCircle } from "@untitledui/icons";
+import { AlertTriangle, InfoCircle, CheckCircle, XCircle } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 
@@ -360,7 +360,7 @@ export default function DisclaimerPage() {
                             className="mb-8 rounded-xl bg-blue-50 p-6"
                         >
                             <div className="flex items-start gap-3">
-                                <Info className="mt-0.5 size-5 shrink-0 text-blue-600" />
+                                <InfoCircle className="mt-0.5 size-5 shrink-0 text-blue-600" />
                                 <div>
                                     <p className="text-md text-tertiary">
                                         <strong className="text-primary">Last Updated:</strong> April 2025
