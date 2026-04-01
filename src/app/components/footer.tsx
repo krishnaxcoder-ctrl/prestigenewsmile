@@ -22,8 +22,13 @@ const footerLinks = {
 		{ label: "About Us", href: "/about" },
 		{ label: "FAQs", href: "/faq" },
 		{ label: "Shipping & Returns", href: "/shipping" },
-		{ label: "Privacy Policy", href: "/privacy" },
+		{ label: "Service Disclaimer", href: "/disclaimer" },
+	]},
+	legal: { title: "Legal", links: [
 		{ label: "Terms & Conditions", href: "/terms" },
+		{ label: "Privacy Policy", href: "/privacy" },
+		{ label: "Cookie Policy", href: "/cookies" },
+		{ label: "Legal Notice", href: "/legal-notice" },
 	]},
 	contact: { title: "Contact", links: [
 		{ label: "+41 78 300 06 19", href: "tel:+41783000619" },
@@ -43,7 +48,8 @@ const socialLinks = [
 const legalLinks = [
 	{ label: "Terms & Conditions", href: "/terms" },
 	{ label: "Privacy Policy", href: "/privacy" },
-	{ label: "Shipping & Returns", href: "/shipping" },
+	{ label: "Cookie Policy", href: "/cookies" },
+	{ label: "Legal Notice", href: "/legal-notice" },
 ];
 
 export function Footer() {
@@ -51,8 +57,8 @@ export function Footer() {
 		<footer className="w-full bg-secondary">
 			<section className="px-4 py-8 md:px-8 lg:px-16">
 				<div className="mx-auto max-w-[1400px]">
-					<div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
-						<div className="col-span-2 mb-4 sm:col-span-2 md:col-span-4 md:mb-0 lg:order-first lg:col-span-1">
+					<div className="grid grid-cols-2 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+						<div className="col-span-2 mb-4 sm:col-span-2 md:col-span-3 md:mb-0 lg:order-first lg:col-span-1">
 							<Link href="/" className="inline-block">
 								<img src="/logo.svg" alt="Prestige Smile" className="h-18 w-auto" />
 							</Link>

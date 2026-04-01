@@ -37,7 +37,7 @@ const ServicesDropdown = () => {
             { label: "How It Works", description: "Session process", href: "/about#how-it-works" },
             { label: "FAQs", description: "Common questions", href: "/faq" },
             { label: "Shipping & Returns", description: "Delivery info", href: "/shipping" },
-            { label: "Terms & Conditions", description: "Our policies", href: "/terms" },
+            { label: "Service Disclaimer", description: "Treatment info", href: "/disclaimer" },
         ]},
         { title: "Shop", items: [
             { label: "All Products", description: "Browse collection", href: "/shop" },
@@ -45,11 +45,11 @@ const ServicesDropdown = () => {
             { label: "My Cart", description: "View cart", href: "/cart" },
             { label: "My Account", description: "Orders & settings", href: "/account" },
         ]},
-        { title: "Contact", items: [
-            { label: "Book a Session", description: "Schedule appointment", href: "/contact" },
-            { label: "Contact Us", description: "Questions?", href: "/contact" },
-            { label: "About Us", description: "Our story", href: "/about" },
-            { label: "Privacy Policy", description: "Your data", href: "/privacy" },
+        { title: "Legal", items: [
+            { label: "Terms & Conditions", description: "CGV - Our policies", href: "/terms" },
+            { label: "Privacy Policy", description: "GDPR compliant", href: "/privacy" },
+            { label: "Cookie Policy", description: "Cookie usage", href: "/cookies" },
+            { label: "Legal Notice", description: "Mentions légales", href: "/legal-notice" },
         ]},
     ];
 
