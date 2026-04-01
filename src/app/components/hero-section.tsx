@@ -6,7 +6,7 @@ export function HeroSection() {
     return (
         <section>
             {/* Hero Image Section */}
-            <div className="relative min-h-[50vh] md:min-h-[85vh]">
+            <div className="relative min-h-[50vh] md:min-h-[calc(100vh-72px)]">
                 {/* Background Image */}
                 <div className="absolute inset-0">
                     <img
@@ -19,7 +19,7 @@ export function HeroSection() {
                 </div>
 
                 {/* Content */}
-                <div className="relative flex min-h-[50vh] flex-col justify-center px-6 py-16 md:min-h-[85vh] md:px-12 lg:px-20">
+                <div className="relative flex min-h-[50vh] flex-col justify-center px-6 py-16 md:min-h-[calc(100vh-72px)] md:px-12 lg:px-20">
                     <div className="max-w-lg">
                         {/* Tagline */}
                         <div className="mb-4 flex items-center gap-3">
