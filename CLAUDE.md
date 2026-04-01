@@ -165,3 +165,19 @@ import { FeaturedIcon } from "@/components/foundations/featured-icon/featured-ic
 ```
 
 Themes: `light`, `gradient`, `dark`, `outline`, `modern` (gray only), `modern-neue` (gray only)
+
+## Shipping Configuration
+
+**Standard Shipping Details:**
+- Shipping with tracking included
+- Estimated delivery time: 2 to 4 business days
+- Shipping fee: €3.90
+- Free shipping on orders over €20
+
+**Currency:** EUR (€)
+
+**Implementation Notes:**
+- Free shipping threshold: €20
+- Standard shipping cost: €3.90
+- All prices displayed in EUR format
+- Shipping info should be shown on: Product pages, Cart, Checkout, Order confirmation, Shipping policy page

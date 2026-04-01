@@ -40,7 +40,7 @@ const features = [
     {
         icon: Truck01,
         title: "Free Shipping",
-        description: "On orders over $120",
+        description: "On orders over €20",
     },
     {
         icon: Shield01,
@@ -131,7 +131,7 @@ export default function CartPage() {
         (sum, item) => sum + item.product.price * item.quantity,
         0
     );
-    const shipping = subtotal >= 120 ? 0 : 10;
+    const shipping = subtotal >= 20 ? 0 : 3.90;
     const total = subtotal + shipping;
 
     if (loading) {
@@ -371,7 +371,7 @@ export default function CartPage() {
                                             </div>
                                             {shipping > 0 && (
                                                 <p className="text-xs text-brand-600">
-                                                    Spend {(120 - subtotal).toFixed(2)}€ more for free shipping!
+                                                    Spend {(20 - subtotal).toFixed(2)}€ more for free shipping!
                                                 </p>
                                             )}
                                         </div>

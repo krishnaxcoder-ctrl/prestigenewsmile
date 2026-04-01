@@ -18,6 +18,7 @@ import {
     Building07,
     Globe01,
     Loading01,
+    Package,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
@@ -124,7 +125,8 @@ export default function CheckoutPage() {
         (sum, item) => sum + item.product.price * item.quantity,
         0
     );
-    const shipping = formData.shippingMethod === "express" ? 15 : 0;
+    // Free shipping on orders over €20, otherwise €3.90
+    const shipping = subtotal >= 20 ? 0 : 3.90;
     const total = subtotal + shipping;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -549,49 +551,39 @@ export default function CheckoutPage() {
                                             Shipping Method
                                         </h2>
                                         <div className="mt-6 space-y-3">
-                                            <label className={`flex cursor-pointer items-center justify-between rounded-lg border p-4 transition ${
-                                                formData.shippingMethod === "standard"
-                                                    ? "border-brand-600 bg-brand-50"
-                                                    : "border-secondary hover:border-brand-300"
-                                            }`}>
-                                                <div className="flex items-center gap-3">
-                                                    <input
-                                                        type="radio"
-                                                        name="shippingMethod"
-                                                        value="standard"
-                                                        checked={formData.shippingMethod === "standard"}
-                                                        onChange={handleInputChange}
-                                                        className="size-4 accent-brand-600"
-                                                    />
-                                                    <div>
-                                                        <p className="font-medium text-primary">Free Standard Shipping</p>
-                                                        <p className="text-sm text-tertiary">5-7 business days</p>
+                                            <div className="rounded-lg border border-brand-600 bg-brand-50 p-4">
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-3">
+                                                        <Truck01 className="size-5 text-brand-600" />
+                                                        <div>
+                                                            <p className="font-medium text-primary">Standard Shipping with Tracking</p>
+                                                            <p className="text-sm text-tertiary">2-4 business days</p>
+                                                        </div>
                                                     </div>
+                                                    <span className="font-semibold text-primary">
+                                                        {subtotal >= 20 ? "Free" : "€3.90"}
+                                                    </span>
                                                 </div>
-                                                <span className="font-semibold text-primary">Free</span>
-                                            </label>
+                                                {subtotal < 20 && (
+                                                    <p className="mt-3 text-sm text-brand-600">
+                                                        Add {(20 - subtotal).toFixed(2)}€ more to get free shipping!
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
 
-                                            <label className={`flex cursor-pointer items-center justify-between rounded-lg border p-4 transition ${
-                                                formData.shippingMethod === "express"
-                                                    ? "border-brand-600 bg-brand-50"
-                                                    : "border-secondary hover:border-brand-300"
-                                            }`}>
-                                                <div className="flex items-center gap-3">
-                                                    <input
-                                                        type="radio"
-                                                        name="shippingMethod"
-                                                        value="express"
-                                                        checked={formData.shippingMethod === "express"}
-                                                        onChange={handleInputChange}
-                                                        className="size-4 accent-brand-600"
-                                                    />
-                                                    <div>
-                                                        <p className="font-medium text-primary">Express Shipping</p>
-                                                        <p className="text-sm text-tertiary">1-2 business days</p>
-                                                    </div>
+                                        <div className="mt-6 rounded-lg bg-secondary p-4">
+                                            <div className="flex items-start gap-3">
+                                                <Package className="mt-0.5 size-5 text-tertiary" />
+                                                <div className="text-sm text-tertiary">
+                                                    <p className="font-medium text-primary">Shipping Information</p>
+                                                    <ul className="mt-2 space-y-1">
+                                                        <li>• All orders include tracking</li>
+                                                        <li>• Estimated delivery: 2-4 business days</li>
+                                                        <li>• Free shipping on orders over €20</li>
+                                                    </ul>
                                                 </div>
-                                                <span className="font-semibold text-primary">$15.00</span>
-                                            </label>
+                                            </div>
                                         </div>
 
                                         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-between">
@@ -773,7 +765,7 @@ export default function CheckoutPage() {
                                 {/* Trust Badge */}
                                 <div className="mt-6 flex items-center justify-center gap-2 text-sm text-tertiary">
                                     <Truck01 className="size-4" />
-                                    <span>Free shipping on orders over 120€</span>
+                                    <span>Free shipping on orders over €20</span>
                                 </div>
                             </div>
                         </div>

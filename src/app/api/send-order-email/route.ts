@@ -38,8 +38,8 @@ export async function POST(request: NextRequest) {
                 <tr>
                     <td style="padding: 12px; border-bottom: 1px solid #e5e7eb;">${item.name}${item.size ? ` (${item.size})` : ""}</td>
                     <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: center;">${item.quantity}</td>
-                    <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">CHF ${item.price.toFixed(2)}</td>
-                    <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">CHF ${(item.price * item.quantity).toFixed(2)}</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">€ ${item.price.toFixed(2)}</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">€ ${(item.price * item.quantity).toFixed(2)}</td>
                 </tr>
             `
             )
@@ -118,11 +118,11 @@ export async function POST(request: NextRequest) {
                 <table style="width: 100%; border-collapse: collapse;">
                     <tr>
                         <td style="padding: 8px 0; color: #6b7280;">Subtotal:</td>
-                        <td style="padding: 8px 0; color: #111827; text-align: right;">CHF ${data.subtotal.toFixed(2)}</td>
+                        <td style="padding: 8px 0; color: #111827; text-align: right;">€ ${data.subtotal.toFixed(2)}</td>
                     </tr>
                     <tr>
                         <td style="padding: 8px 0; color: #6b7280;">Shipping (${data.shippingMethod}):</td>
-                        <td style="padding: 8px 0; color: #111827; text-align: right;">${data.shippingCost === 0 ? "Free" : `CHF ${data.shippingCost.toFixed(2)}`}</td>
+                        <td style="padding: 8px 0; color: #111827; text-align: right;">${data.shippingCost === 0 ? "Free" : `€ ${data.shippingCost.toFixed(2)}`}</td>
                     </tr>
                     <tr>
                         <td style="padding: 8px 0; color: #6b7280;">Payment Method:</td>
@@ -130,7 +130,7 @@ export async function POST(request: NextRequest) {
                     </tr>
                     <tr style="border-top: 2px solid #e5e7eb;">
                         <td style="padding: 12px 0 0 0; color: #111827; font-weight: 700; font-size: 18px;">Total:</td>
-                        <td style="padding: 12px 0 0 0; color: #0d9488; font-weight: 700; font-size: 18px; text-align: right;">CHF ${data.total.toFixed(2)}</td>
+                        <td style="padding: 12px 0 0 0; color: #0d9488; font-weight: 700; font-size: 18px; text-align: right;">€ ${data.total.toFixed(2)}</td>
                     </tr>
                 </table>
             </div>

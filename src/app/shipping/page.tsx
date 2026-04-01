@@ -9,25 +9,18 @@ import { RatingBadge } from "@/components/foundations/rating-badge";
 const shippingOptions = [
     {
         name: "Standard Shipping",
-        price: "Free",
-        time: "5-7 business days",
-        description: "Free on orders over CHF 120",
+        price: "€3.90",
+        time: "2-4 business days",
+        description: "Free on orders over €20",
         icon: Truck01,
-    },
-    {
-        name: "Express Shipping",
-        price: "CHF 15",
-        time: "1-2 business days",
-        description: "Priority handling and delivery",
-        icon: Package,
     },
 ];
 
 const deliveryZones = [
-    { country: "Switzerland", time: "2-3 days", cost: "Free over CHF 120" },
-    { country: "France", time: "3-5 days", cost: "CHF 10" },
-    { country: "Germany", time: "5-7 days", cost: "CHF 12" },
-    { country: "Italy", time: "5-7 days", cost: "CHF 12" },
+    { country: "Switzerland", time: "2-4 days", cost: "€3.90 (Free over €20)" },
+    { country: "France", time: "2-4 days", cost: "€3.90 (Free over €20)" },
+    { country: "Germany", time: "2-4 days", cost: "€3.90 (Free over €20)" },
+    { country: "Italy", time: "2-4 days", cost: "€3.90 (Free over €20)" },
 ];
 
 const returnSteps = [
@@ -91,7 +84,7 @@ export default function ShippingPage() {
                                 transition={{ duration: 0.5, delay: 0.2 }}
                                 className="hidden shrink-0 md:block"
                             >
-                                <RatingBadge rating={4.9} title="Free Shipping" subtitle="On orders over CHF 120" />
+                                <RatingBadge rating={4.9} title="Free Shipping" subtitle="On orders over €20" />
                             </motion.div>
                         </div>
                     </div>

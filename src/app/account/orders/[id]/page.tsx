@@ -303,11 +303,11 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                                                 </div>
                                                 <div className="flex flex-col items-end justify-center">
                                                     <span className="font-semibold text-primary">
-                                                        CHF {(Number(item.price) * item.quantity).toFixed(2)}
+                                                        {(Number(item.price) * item.quantity).toFixed(2)}€
                                                     </span>
                                                     {item.quantity > 1 && (
                                                         <span className="text-sm text-tertiary">
-                                                            CHF {Number(item.price).toFixed(2)} each
+                                                            {Number(item.price).toFixed(2)}€ each
                                                         </span>
                                                     )}
                                                 </div>
