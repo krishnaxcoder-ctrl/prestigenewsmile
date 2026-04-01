@@ -352,10 +352,6 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                 {(product.sizes ?? []).length > 0 && (
                                     <div>
                                         <div className="flex items-center justify-between">
-                                            <div className="flex items-center gap-3">
-                                                <span className="text-sm font-semibold text-primary">Size:</span>
-                                                <span className="text-sm text-brand-600">{selectedSize}</span>
-                                            </div>
                                             <div className="flex items-center gap-2">
                                                 <span className="text-sm font-semibold text-primary">Price:</span>
                                                 <span className="text-lg font-bold text-brand-600">
@@ -372,6 +368,7 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
                                                     </>
                                                 )}
                                             </div>
+                                      
                                         </div>
                                         <div className="mt-3 flex flex-wrap gap-2">
                                             {(product.sizes ?? []).map((size) => (
