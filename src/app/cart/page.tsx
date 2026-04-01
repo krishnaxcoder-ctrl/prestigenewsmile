@@ -170,42 +170,6 @@ export default function CartPage() {
         <div className="overflow-x-hidden">
             <Header />
             <main className="min-h-screen bg-gray-50">
-                {/* Free Shipping Progress Banner */}
-                {cartItems.length > 0 && (
-                    <section className="border-b border-brand-100 bg-gradient-to-r from-brand-50 to-teal-50 px-4 py-4 md:px-8 lg:px-16">
-                        <div className="mx-auto max-w-7xl">
-                            <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
-                                <div className="flex items-center gap-2">
-                                    <Truck01 className="size-5 text-brand-600" />
-                                    <span className="text-sm font-medium text-primary">
-                                        {shipping === 0 ? (
-                                            <span className="flex items-center gap-1.5">
-                                                <CheckCircle className="size-4 text-success-500" />
-                                                You've unlocked FREE shipping!
-                                            </span>
-                                        ) : (
-                                            <>Add <span className="font-bold text-brand-600">{amountToFreeShipping.toFixed(2)}€</span> more for FREE shipping</>
-                                        )}
-                                    </span>
-                                </div>
-                                <div className="flex-1 sm:max-w-xs">
-                                    <div className="h-2 overflow-hidden rounded-full bg-white shadow-inner">
-                                        <motion.div
-                                            initial={{ width: 0 }}
-                                            animate={{ width: `${progressToFreeShipping}%` }}
-                                            transition={{ duration: 0.5, ease: "easeOut" }}
-                                            className={`h-full rounded-full ${shipping === 0 ? "bg-success-500" : "bg-brand-500"}`}
-                                        />
-                                    </div>
-                                </div>
-                                <span className="text-xs text-tertiary">
-                                    {subtotal.toFixed(2)}€ / {freeShippingThreshold}€
-                                </span>
-                            </div>
-                        </div>
-                    </section>
-                )}
-
                 {/* Page Header */}
                 <section className="border-b border-secondary bg-white px-4 py-8 md:px-8 lg:px-16">
                     <div className="mx-auto max-w-7xl">
@@ -396,6 +360,57 @@ export default function CartPage() {
                                             </motion.div>
                                         ))}
                                     </div>
+
+                                    {/* Free Shipping Progress Bar */}
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3, delay: 0.5 }}
+                                        className={`mt-4 overflow-hidden rounded-xl p-4 ${
+                                            shipping === 0
+                                                ? "bg-gradient-to-r from-success-50 to-teal-50 border border-success-200"
+                                                : "bg-gradient-to-r from-brand-50 to-teal-50 border border-brand-200"
+                                        }`}
+                                    >
+                                        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                                            <div className="flex items-center gap-2">
+                                                {shipping === 0 ? (
+                                                    <div className="flex size-8 items-center justify-center rounded-full bg-success-100">
+                                                        <CheckCircle className="size-5 text-success-600" />
+                                                    </div>
+                                                ) : (
+                                                    <div className="flex size-8 items-center justify-center rounded-full bg-brand-100">
+                                                        <Truck01 className="size-5 text-brand-600" />
+                                                    </div>
+                                                )}
+                                                <div>
+                                                    <p className={`text-sm font-semibold ${shipping === 0 ? "text-success-700" : "text-brand-700"}`}>
+                                                        {shipping === 0 ? (
+                                                            "🎉 You've unlocked FREE shipping!"
+                                                        ) : (
+                                                            <>Add <span className="font-bold">{amountToFreeShipping.toFixed(2)}€</span> more for FREE shipping</>
+                                                        )}
+                                                    </p>
+                                                    <p className="text-xs text-tertiary">
+                                                        {shipping === 0 ? "Your order qualifies for free delivery" : "Free shipping on orders over €20"}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                <div className="h-2.5 w-full overflow-hidden rounded-full bg-white shadow-inner sm:w-32">
+                                                    <motion.div
+                                                        initial={{ width: 0 }}
+                                                        animate={{ width: `${progressToFreeShipping}%` }}
+                                                        transition={{ duration: 0.8, ease: "easeOut" }}
+                                                        className={`h-full rounded-full ${shipping === 0 ? "bg-success-500" : "bg-brand-500"}`}
+                                                    />
+                                                </div>
+                                                <span className={`whitespace-nowrap text-xs font-medium ${shipping === 0 ? "text-success-600" : "text-brand-600"}`}>
+                                                    {subtotal.toFixed(2)}€ / {freeShippingThreshold}€
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </motion.div>
                                 </div>
 
                                 {/* Order Summary - Sticky */}
