@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Truck01, RefreshCcw01, Package, Clock, Globe01, CheckCircle, AlertCircle, FileText } from "@untitledui/icons";
+import { Truck01, RefreshCcw01, Package, Clock, Globe01, CheckCircle, AlertCircle, File01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
@@ -279,7 +279,7 @@ export default function ShippingPage() {
                             className="mt-16"
                         >
                             <div className="flex items-center gap-3">
-                                <FileText className="size-6 text-blue-600" />
+                                <File01 className="size-6 text-blue-600" />
                                 <h2 className="text-2xl font-semibold text-primary">
                                     14-Day Withdrawal Right (Droit de Rétractation)
                                 </h2>

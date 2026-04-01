@@ -21,7 +21,8 @@ const footerLinks = {
 	information: { title: "Information", links: [
 		{ label: "About Us", href: "/about" },
 		{ label: "FAQs", href: "/faq" },
-		{ label: "Shipping & Returns", href: "/shipping" },
+		{ label: "Shipping & Delivery", href: "/shipping" },
+		{ label: "Refund Policy", href: "/refunds" },
 		{ label: "Service Disclaimer", href: "/disclaimer" },
 	]},
 	legal: { title: "Legal", links: [

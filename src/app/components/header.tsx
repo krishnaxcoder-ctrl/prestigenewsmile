@@ -36,8 +36,8 @@ const ServicesDropdown = () => {
         { title: "Information", items: [
             { label: "How It Works", description: "Session process", href: "/about#how-it-works" },
             { label: "FAQs", description: "Common questions", href: "/faq" },
-            { label: "Shipping & Returns", description: "Delivery info", href: "/shipping" },
-            { label: "Service Disclaimer", description: "Treatment info", href: "/disclaimer" },
+            { label: "Shipping & Delivery", description: "Delivery info", href: "/shipping" },
+            { label: "Refund Policy", description: "Returns & refunds", href: "/refunds" },
         ]},
         { title: "Shop", items: [
             { label: "All Products", description: "Browse collection", href: "/shop" },
