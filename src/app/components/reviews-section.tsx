@@ -31,7 +31,7 @@ export function ReviewsSection() {
                     {/* Right Side - Testimonial Cards */}
                     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-5 md:gap-y-8">
                         {testimonials.map((testimonial) => (
-                            <div key={testimonial.id} className="relative bg-white border border-gray-200 py-5 pl-6 pr-5 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-gradient-to-b before:from-amber-300 before:via-amber-400 before:to-amber-500 before:shadow-[0_0_8px_rgba(251,191,36,0.6)]">
+                            <div key={testimonial.id} className="relative bg-white border border-gray-200 py-5 pl-6 pr-5 before:absolute before:inset-y-0 before:left-0 before:w-1 before:rounded-full before:bg-gradient-to-b before:from-[#e8ddd5] before:via-[#d4c4b8] before:to-[#c5b5a8]">
                                 {/* Stars */}
                                 <div className="flex gap-0.5">
                                     {[...Array(testimonial.rating)].map((_, i) => (
