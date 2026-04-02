@@ -138,15 +138,6 @@ export function Footer() {
 						</div>
 					</div>
 
-					{/* Payment Methods */}
-					<div className="mt-8 flex flex-wrap items-center gap-6 border-t border-secondary pt-8">
-						<p className="text-xs font-medium uppercase tracking-wider text-tertiary">Payment Methods</p>
-						<div className="flex items-center gap-4">
-							<span className="rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-secondary">Twint</span>
-							<span className="rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-secondary">Revolut</span>
-							<span className="rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-secondary">Cash</span>
-						</div>
-					</div>
 				</div>
 			</section>
 			<section className="overflow-hidden border-t border-secondary py-8">
