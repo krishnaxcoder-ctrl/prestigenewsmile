@@ -5,6 +5,8 @@ import { Star01 } from "@untitledui/icons";
 const testimonials = [
     { id: 1, name: "Natalie Schaller", date: "04 July, 2025", avatar: "olivia-rhye", title: "Shiny Finds For Every Mood", content: "Great selection, excellent quality, my go-to store for all beauty needs. Highly recommend!", rating: 5 },
     { id: 2, name: "Jhone Doe", date: "02 July, 2025", avatar: "phoenix-baker", title: "Perfect Pieces For Everyone", content: "Exceptional products, amazing customer service, and my skin has never looked better!", rating: 5 },
+    { id: 3, name: "Sarah Mitchell", date: "28 June, 2025", avatar: "lana-steiner", title: "Amazing Transformation", content: "My teeth have never been whiter! The results exceeded my expectations. Will definitely come back!", rating: 5 },
+    { id: 4, name: "Michael Chen", date: "25 June, 2025", avatar: "demi-wilkinson", title: "Professional & Friendly", content: "The staff was incredibly professional and made me feel comfortable throughout the entire process.", rating: 5 },
 ];
 
 export function ReviewsSection() {
@@ -27,7 +29,7 @@ export function ReviewsSection() {
                     </div>
 
                     {/* Right Side - Testimonial Cards */}
-                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-5 md:gap-y-8">
                         {testimonials.map((testimonial) => (
                             <div key={testimonial.id} className="relative bg-white border border-gray-200 py-5 pl-6 pr-5 before:absolute before:inset-y-0 before:left-0 before:w-0.5 before:bg-gradient-to-b before:from-amber-300 before:via-amber-400 before:to-amber-500 before:shadow-[0_0_8px_rgba(251,191,36,0.6)]">
                                 {/* Stars */}
