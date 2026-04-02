@@ -95,20 +95,36 @@ export function FavoritePicksSection() {
 		<section className="bg-white py-12 md:py-16 lg:py-20">
 			<div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
-				<div className="text-center">
-					<span className="text-xs uppercase tracking-widest text-tertiary">New Collection</span>
-					<h2 className="mt-2 text-2xl font-semibold uppercase text-primary md:text-3xl lg:text-display-xs" style={{ fontFamily: "var(--global-heading-font-family)" }}>
-						Beauty For Every Story
+				<div className="mb-8 text-center md:mb-12">
+					<p className="text-[10px] font-medium uppercase tracking-[0.25em] text-brand-600 md:text-xs">
+						New Collection
+					</p>
+					<h2
+						className="mt-3 text-2xl font-light leading-tight tracking-tight text-primary md:text-3xl lg:text-4xl"
+						style={{ fontFamily: "'Cormorant Garamond', serif" }}
+					>
+						Beauty For{" "}
+						<em className="italic text-brand-600">Every Story</em>
 					</h2>
+					<p className="mx-auto mt-4 max-w-2xl text-sm font-light tracking-wide text-tertiary md:text-base">
+						Discover our curated selection of premium teeth whitening products
+					</p>
+				</div>
+
+				{/* Decorative Divider */}
+				<div className="mb-10 flex items-center justify-center gap-4 md:mb-14">
+					<div className="h-px w-15 bg-brand-600 opacity-50" />
+					<div className="size-1.5 rounded-full bg-brand-600 opacity-60" />
+					<div className="h-px w-15 bg-brand-600 opacity-50" />
 				</div>
 
 				{/* Products Grid */}
 				{isLoading ? (
-					<div className="mt-10 flex items-center justify-center py-20">
+					<div className="flex items-center justify-center py-20">
 						<div className="size-8 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900" />
 					</div>
 				) : (
-					<div className="mt-10 grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
+					<div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
 						{displayedProducts.map((product) => (
 							<ProductCard key={product.id} product={product} />
 						))}

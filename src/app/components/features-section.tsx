@@ -25,18 +25,26 @@ export function FeaturesSection() {
             <div className="mx-auto max-w-[1400px]">
                 {/* Section Header */}
                 <div className="mb-8 text-center md:mb-12">
-                    <span className="text-xs font-medium uppercase tracking-widest text-brand-600 md:text-sm">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-brand-600 md:text-xs">
                         What We Offer
-                    </span>
-                    <h2
-                        className="mt-3 text-2xl font-medium uppercase text-primary md:text-3xl lg:text-4xl"
-                        style={{ fontFamily: "var(--global-heading-font-family)" }}
-                    >
-                        Our Services
-                    </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-sm text-tertiary md:text-base">
-                        Experience professional teeth whitening with personalized care and lasting results.
                     </p>
+                    <h2
+                        className="mt-3 text-2xl font-light leading-tight tracking-tight text-primary md:text-3xl lg:text-4xl"
+                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    >
+                        Our Services,{" "}
+                        <em className="italic text-brand-600">Your Smile</em>
+                    </h2>
+                    <p className="mx-auto mt-4 max-w-2xl text-sm font-light tracking-wide text-tertiary md:text-base">
+                        Experience professional teeth whitening with personalized care and lasting results
+                    </p>
+                </div>
+
+                {/* Decorative Divider */}
+                <div className="mb-10 flex items-center justify-center gap-4 md:mb-14">
+                    <div className="h-px w-15 bg-brand-600 opacity-50" />
+                    <div className="size-1.5 rounded-full bg-brand-600 opacity-60" />
+                    <div className="h-px w-15 bg-brand-600 opacity-50" />
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">

@@ -41,16 +41,20 @@ export function ComparisonSlider() {
         <section className="bg-primary px-4 py-12 md:px-6 md:py-16 lg:py-20">
             <div className="mx-auto max-w-[1400px]">
                 {/* Header */}
-                <div className="mb-8 text-center md:mb-6">
-                    <span className="text-xs font-medium uppercase tracking-[0.2em] text-brand-600 md:text-sm">
+                <div className="mb-8 text-center md:mb-12">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-brand-600 md:text-xs">
                         Clear Contrast
-                    </span>
+                    </p>
                     <h2
-                        className="mt-3 text-2xl font-normal uppercase text-primary md:text-3xl lg:text-display-sm"
-                        style={{ fontFamily: "var(--global-heading-font-family)" }}
+                        className="mt-3 text-2xl font-light leading-tight tracking-tight text-primary md:text-3xl lg:text-4xl"
+                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
                     >
-                        See The Difference
+                        See The{" "}
+                        <em className="italic text-brand-600">Difference</em>
                     </h2>
+                    <p className="mx-auto mt-4 max-w-2xl text-sm font-light tracking-wide text-tertiary md:text-base">
+                        Slide to reveal the stunning before and after transformation
+                    </p>
                 </div>
 
                 {/* Comparison Container */}
