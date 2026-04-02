@@ -21,8 +21,12 @@ export function ArticlesSection() {
 					<p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-gray-500">
 						Stay informed with tips, guides, and insights about teeth whitening and oral care
 					</p>
-					{/* Decorative Line */}
-					<div className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#d4c4b8] to-transparent" />
+					{/* Decorative Divider */}
+					<div className="mt-8 flex items-center justify-center gap-4">
+						<div className="h-px flex-1 max-w-32 bg-gradient-to-r from-transparent via-brand-600/30 to-brand-600/50" />
+						<div className="size-2 rotate-45 border border-brand-600/60" />
+						<div className="h-px flex-1 max-w-32 bg-gradient-to-l from-transparent via-brand-600/30 to-brand-600/50" />
+					</div>
 				</div>
 				<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 					{blogPosts.map((post) => (
