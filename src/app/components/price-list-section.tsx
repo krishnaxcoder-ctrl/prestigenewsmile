@@ -19,18 +19,21 @@ export function PriceListSection() {
 				<div className="mx-auto w-full max-w-xl">
 					{/* Header */}
 					<div className="mb-10 text-center">
-						<h2
-							className="text-2xl font-light uppercase tracking-[0.3em] text-[#5D4E4E] md:text-display-xs"
-							style={{ fontFamily: "var(--global-heading-font-family)" }}
-						>
-							Price List
+						<p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">Our Pricing</p>
+						<h2 className="mt-4 text-3xl font-light text-[#5D4E4E] md:text-4xl lg:text-5xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+							Price{" "}
+							<span className="italic text-brand-600">List</span>
 						</h2>
-						<p
-							className="mt-3 text-2xl text-[#8B6F6F] md:text-3xl"
-							style={{ fontFamily: "'Eyesome Script', cursive" }}
-						>
-							Blanchiment dentaire
+						<p className="mt-3 text-lg text-[#8B6F6F] md:text-xl">
+							Teeth Whitening Services
 						</p>
+
+						{/* Decorative Divider */}
+						<div className="mt-6 flex items-center justify-center gap-4">
+							<div className="h-px w-16 bg-gradient-to-r from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
+							<div className="size-2 rotate-45 border border-brand-600/60" />
+							<div className="h-px w-16 bg-gradient-to-l from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
+						</div>
 
 						{/* Instagram handle */}
 						<div className="mt-6 inline-block rounded-full border border-[#C5B8B8] bg-[#E8E2DE] px-5 py-2">
