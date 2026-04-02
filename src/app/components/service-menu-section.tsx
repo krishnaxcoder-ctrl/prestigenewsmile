@@ -77,13 +77,20 @@ export function ServiceMenuSection() {
     return (
         <section className="bg-gradient-to-b from-[#fff0f4  ] to-white py-12 md:py-24">
             <div className="mx-auto max-w-4xl">
-                {/* Heading */}
-                <h2
-                    className="mb-10 text-center text-display-sm font-normal text-primary md:mb-16 md:text-display-md"
-                    style={{ fontFamily: "var(--global-heading-font-family)" }}
-                >
-                    Service Menu
-                </h2>
+                {/* Section Header */}
+                <div className="mb-10 text-center md:mb-16">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">What We Offer</p>
+                    <h2 className="mt-4 text-3xl font-light text-primary md:text-4xl lg:text-5xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                        Service{" "}
+                        <span className="italic text-brand-600">Menu</span>
+                    </h2>
+                    {/* Decorative Divider */}
+                    <div className="mt-6 flex items-center justify-center gap-4">
+                        <div className="h-px w-16 bg-gradient-to-r from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
+                        <div className="size-2 rotate-45 border border-brand-600/60" />
+                        <div className="h-px w-16 bg-gradient-to-l from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
+                    </div>
+                </div>
 
                 {/* Service Icons */}
                 <div className="mb-10 px-4 md:px-0">
