@@ -29,7 +29,7 @@ export function FeaturesSection() {
                         What We Offer
                     </p>
                     <h2
-                        className="mt-3 text-2xl font-light leading-tight tracking-tight text-primary md:text-3xl lg:text-4xl"
+                        className="mt-3 text-2xl font-medium leading-tight tracking-tight text-primary md:text-3xl lg:text-5xl"
                         style={{ fontFamily: "'Cormorant Garamond', serif" }}
                     >
                         Our Services,{" "}
