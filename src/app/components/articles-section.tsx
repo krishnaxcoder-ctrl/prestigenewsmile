@@ -9,11 +9,21 @@ const blogPosts = [
 
 export function ArticlesSection() {
 	return (
-		<section className="bg-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
+		<section className="bg-white px-4 py-16 md:px-8 md:py-24 lg:px-16">
 			<div className="mx-auto max-w-[1400px]">
-				<h2 className="mb-6 text-center text-display-xs font-medium uppercase text-primary md:mb-8 md:text-display-sm lg:text-display-md" style={{ fontFamily: "var(--global-heading-font-family)" }}>
-				OUR LATEST NEWS
-				</h2>
+				{/* Section Header */}
+				<div className="mb-12 text-center md:mb-16">
+					<p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">Blog & Tips</p>
+					<h2 className="mt-4 text-3xl font-light text-primary md:text-4xl lg:text-5xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+						Our Latest{" "}
+						<span className="italic text-brand-600">News</span>
+					</h2>
+					<p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-gray-500">
+						Stay informed with tips, guides, and insights about teeth whitening and oral care
+					</p>
+					{/* Decorative Line */}
+					<div className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#d4c4b8] to-transparent" />
+				</div>
 				<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 					{blogPosts.map((post) => (
 						<article key={post.id} className="group">
