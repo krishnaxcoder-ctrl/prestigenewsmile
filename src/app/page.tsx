@@ -34,8 +34,9 @@ export default function Page() {
 				<ComparisonSlider />
 				<WhiteningResults />
 				<ReviewsSection />
-				<FAQSection />
 				<ArticlesSection />
+				<FAQSection />
+
 				<CollectionBanner />
 				<GiftcardSection />
 
