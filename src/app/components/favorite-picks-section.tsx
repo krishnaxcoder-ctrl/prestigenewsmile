@@ -145,8 +145,34 @@ export function FavoritePicksSection() {
 							<div className="flex flex-col">
 								<ProductCard product={currentProduct} />
 
+								{/* Shipping Details */}
+								<div className="mt-5 rounded-xl border border-gray-100 bg-gradient-to-br from-gray-50 to-white p-4">
+									<div className="flex items-center gap-2 text-sm font-medium text-gray-900">
+										<svg className="size-4 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+											<path strokeLinecap="round" strokeLinejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+										</svg>
+										Shipping Info
+									</div>
+									<div className="mt-3 space-y-2">
+										<div className="flex items-center justify-between text-xs">
+											<span className="text-gray-500">Delivery</span>
+											<span className="font-medium text-gray-700">2-4 business days</span>
+										</div>
+										<div className="flex items-center justify-between text-xs">
+											<span className="text-gray-500">Shipping</span>
+											<span className="font-medium text-gray-700">€3.90</span>
+										</div>
+										<div className="flex items-center gap-1.5 pt-1 text-xs text-brand-600">
+											<svg className="size-3.5" fill="currentColor" viewBox="0 0 20 20">
+												<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+											</svg>
+											<span className="font-medium">Free shipping over €20</span>
+										</div>
+									</div>
+								</div>
+
 								{/* Navigation */}
-								<div className="mt-6 flex items-center justify-between rounded-xl bg-white px-4 py-3 shadow-sm">
+								<div className="mt-4 flex items-center justify-between rounded-xl bg-white px-4 py-3 shadow-sm">
 									<div className="flex items-center gap-3">
 										<button
 											onClick={handlePrev}
