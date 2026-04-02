@@ -113,9 +113,9 @@ export function WhiteningResults() {
           width: 100%;
           text-align: center;
           padding: 14px 20px;
-          background: linear-gradient(135deg, #b09080, #a08070);
-          border: none;
-          color: white;
+          background: linear-gradient(135deg, #f5ebe6, #efe4dd);
+          border: 1px solid #e0d5ce;
+          color: #8a7268;
           font-family: 'Jost', sans-serif;
           font-size: 11px;
           font-weight: 500;
@@ -124,13 +124,15 @@ export function WhiteningResults() {
           cursor: pointer;
           border-radius: 8px;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(176, 144, 128, 0.3);
+          box-shadow: 0 2px 8px rgba(176, 144, 128, 0.15);
         }
 
         .wt-cta:hover {
-          background: linear-gradient(135deg, #a08070, #907060);
+          background: linear-gradient(135deg, #efe4dd, #e8dbd3);
+          border-color: #d4c9c1;
+          color: #6d5a52;
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(176, 144, 128, 0.4);
+          box-shadow: 0 4px 12px rgba(176, 144, 128, 0.25);
         }
 
         .wt-cta:active {
