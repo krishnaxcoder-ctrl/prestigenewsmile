@@ -263,7 +263,7 @@ export function WhiteningResults() {
 
         <h2 className="wt-title-anim" style={{
           fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "clamp(2rem, 5vw,4xl)",
+          fontSize: "clamp(2rem, 5vw,2rem)",
           fontWeight: 300,
           textAlign: "center",
           color: "#1a1a1a",
