@@ -173,12 +173,73 @@ export function WhiteningResults() {
         @media (max-width: 768px) {
           .wt-grid {
             grid-template-columns: 1fr;
+            gap: 1.5rem;
+          }
+
+          .wt-section {
+            padding: 3rem 1rem !important;
+          }
+
+          .wt-card-images {
+            height: 220px !important;
+          }
+
+          .wt-card-body {
+            padding: 1.25rem 1rem 1.25rem !important;
+          }
+
+          .wt-badge-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.75rem !important;
+          }
+
+          .wt-session-badge {
+            font-size: 9px !important;
+            padding: 6px 10px !important;
+          }
+
+          .wt-price {
+            font-size: 1.6rem !important;
+          }
+
+          .wt-stats {
+            flex-direction: column !important;
+            gap: 1rem !important;
+            padding: 0.875rem 1rem !important;
+          }
+
+          .wt-stats-divider {
+            width: 100% !important;
+            height: 1px !important;
+          }
+
+          .wt-stat-item {
+            width: 100% !important;
+          }
+
+          .wt-stat-icon {
+            width: 36px !important;
+            height: 36px !important;
+          }
+
+          .wt-center-btn {
+            width: 30px !important;
+            height: 30px !important;
+            font-size: 10px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .wt-card-images {
+            height: 180px !important;
           }
         }
       `}</style>
 
       <section
         ref={sectionRef}
+        className="wt-section"
         style={{
           fontFamily: "'Jost', sans-serif",
           padding: "5rem 2rem",
@@ -240,7 +301,7 @@ export function WhiteningResults() {
               {/* Before / After image area */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", position: "relative" }}>
                 {/* Before */}
-                <div style={{
+                <div className="wt-card-images" style={{
                   position: "relative",
                   height: 320,
                   overflow: "hidden",
@@ -260,7 +321,7 @@ export function WhiteningResults() {
                 </div>
 
                 {/* After */}
-                <div style={{
+                <div className="wt-card-images" style={{
                   position: "relative",
                   height: 320,
                   overflow: "hidden",
@@ -281,7 +342,7 @@ export function WhiteningResults() {
 
                 {/* Center divider */}
                 <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 2, height: "100%", background: "rgba(255,255,255,0.9)", zIndex: 2 }} />
-                <div style={{
+                <div className="wt-center-btn" style={{
                   position: "absolute", top: "50%", left: "50%",
                   transform: "translate(-50%, -50%)",
                   width: 36, height: 36, borderRadius: "50%",
@@ -293,10 +354,10 @@ export function WhiteningResults() {
               </div>
 
               {/* Card Body */}
-              <div style={{ padding: "1.5rem 1.75rem 1.75rem", background: "linear-gradient(to bottom, #fafafa, #ffffff)" }}>
+              <div className="wt-card-body" style={{ padding: "1.5rem 1.75rem 1.75rem", background: "linear-gradient(to bottom, #fafafa, #ffffff)" }}>
                 {/* Session Badge & Price Row */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
-                  <span style={{
+                <div className="wt-badge-row" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
+                  <span className="wt-session-badge" style={{
                     display: "inline-flex", alignItems: "center", gap: 6,
                     fontSize: 10, fontWeight: 500,
                     letterSpacing: "0.12em", textTransform: "uppercase",
@@ -309,7 +370,7 @@ export function WhiteningResults() {
                     {t.session}
                   </span>
                   <div style={{ textAlign: "right" }}>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", fontWeight: 400, color: "#1a1a1a", lineHeight: 1, letterSpacing: "-0.02em" }}>
+                    <div className="wt-price" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", fontWeight: 400, color: "#1a1a1a", lineHeight: 1, letterSpacing: "-0.02em" }}>
                       {t.price}
                       <span style={{ fontSize: "0.9rem", color: "#b09080", fontFamily: "'Jost', sans-serif", fontWeight: 400, marginLeft: 4 }}>
                         {t.currency}
@@ -319,14 +380,14 @@ export function WhiteningResults() {
                 </div>
 
                 {/* Results Stats */}
-                <div style={{
+                <div className="wt-stats" style={{
                   display: "flex", alignItems: "center", gap: "1.5rem",
                   padding: "1rem 1.25rem", marginBottom: "1.25rem",
                   background: "#f8f6f4", borderRadius: 12,
                   border: "1px solid rgba(176, 144, 128, 0.15)"
                 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
-                    <div style={{
+                  <div className="wt-stat-item" style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
+                    <div className="wt-stat-icon" style={{
                       width: 40, height: 40, borderRadius: "50%",
                       background: "linear-gradient(135deg, #f5f5f5, #fafafa)",
                       display: "flex", alignItems: "center", justifyContent: "center",
@@ -341,9 +402,9 @@ export function WhiteningResults() {
                       </div>
                     </div>
                   </div>
-                  <div style={{ width: 1, height: 36, background: "rgba(0, 0, 0, 0.08)" }} />
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
-                    <div style={{
+                  <div className="wt-stats-divider" style={{ width: 1, height: 36, background: "rgba(0, 0, 0, 0.08)" }} />
+                  <div className="wt-stat-item" style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
+                    <div className="wt-stat-icon" style={{
                       width: 40, height: 40, borderRadius: "50%",
                       background: "linear-gradient(135deg, #f5f5f5, #fafafa)",
                       display: "flex", alignItems: "center", justifyContent: "center",
