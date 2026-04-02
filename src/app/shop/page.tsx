@@ -191,220 +191,34 @@ export default function ShopPage() {
                 <section className="px-4 py-12 md:px-8 md:py-6 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
-                            {/* Sidebar Filters - Desktop */}
-                            <aside className="hidden w-64 shrink-0 lg:block">
-                                <div className="sticky top-24 space-y-8">
-                                    {/* Clear Filters Button */}
-                                    {hasActiveFilters && (
-                                        <button
-                                            onClick={clearFilters}
-                                            className="flex items-center gap-2 text-sm font-medium text-brand-600 transition hover:text-brand-700"
-                                        >
-                                            <X className="size-4" />
-                                            Clear All Filters
-                                        </button>
-                                    )}
-
-                                    {/* Categories */}
-                                    <div>
-                                        <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">
-                                            Categories
-                                        </h3>
-                                        <ul className="space-y-2">
-                                            {categories.map((category) => (
-                                                <li key={category}>
-                                                    <button
-                                                        onClick={() => handleCategoryChange(category)}
-                                                        className={`text-sm transition ${
-                                                            selectedCategory === category
-                                                                ? "font-medium text-brand-600"
-                                                                : "text-tertiary hover:text-primary"
-                                                        }`}
-                                                    >
-                                                        {category}
-                                                    </button>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Price Range */}
-                                    <div>
-                                        <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">
-                                            Price Range
-                                        </h3>
-                                        <div className="space-y-4">
-                                            <input
-                                                type="range"
-                                                min="0"
-                                                max="150"
-                                                value={priceRange[1]}
-                                                onChange={(e) => handlePriceChange(parseInt(e.target.value))}
-                                                className="w-full accent-brand-600"
-                                            />
-                                            <div className="flex items-center justify-between text-sm text-tertiary">
-                                                <span>${priceRange[0]}</span>
-                                                <span>${priceRange[1]}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Availability */}
-                                    <div>
-                                        <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">
-                                            Availability
-                                        </h3>
-                                        <label className="flex cursor-pointer items-center gap-3">
-                                            <input
-                                                type="checkbox"
-                                                className="size-4 accent-brand-600"
-                                                checked={inStockOnly}
-                                                onChange={(e) => handleInStockChange(e.target.checked)}
-                                            />
-                                            <span className="text-sm text-tertiary">In Stock Only</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </aside>
-
                             {/* Main Content */}
                             <div className="flex-1">
-                                {/* Active Filters */}
-                                {hasActiveFilters && (
-                                    <div className="mb-4 flex flex-wrap items-center gap-2">
-                                        <span className="text-sm text-tertiary">Active filters:</span>
-                                        {selectedCategory !== "All Products" && (
-                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
-                                                {selectedCategory}
-                                                <button
-                                                    onClick={() => handleCategoryChange("All Products")}
-                                                    className="transition hover:text-brand-900"
-                                                >
-                                                    <X className="size-3" />
-                                                </button>
-                                            </span>
-                                        )}
-                                        {priceRange[1] < 150 && (
-                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
-                                                Up to ${priceRange[1]}
-                                                <button
-                                                    onClick={() => handlePriceChange(150)}
-                                                    className="transition hover:text-brand-900"
-                                                >
-                                                    <X className="size-3" />
-                                                </button>
-                                            </span>
-                                        )}
-                                        {inStockOnly && (
-                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
-                                                In Stock Only
-                                                <button
-                                                    onClick={() => handleInStockChange(false)}
-                                                    className="transition hover:text-brand-900"
-                                                >
-                                                    <X className="size-3" />
-                                                </button>
-                                            </span>
-                                        )}
-                                        <button
-                                            onClick={clearFilters}
-                                            className="text-xs text-tertiary underline transition hover:text-primary"
-                                        >
-                                            Clear all
-                                        </button>
-                                    </div>
-                                )}
 
-                                {/* Toolbar */}
-                                <div className="mb-8 flex flex-col gap-4 border-b border-secondary pb-4 sm:flex-row sm:items-center sm:justify-between">
-                                    <div className="flex items-center gap-4">
-                                        {/* Mobile Filter Button */}
-                                        <button
-                                            onClick={() => setShowFilters(!showFilters)}
-                                            className="flex items-center gap-2 text-sm text-tertiary transition hover:text-primary lg:hidden"
-                                        >
-                                            <FilterLines className="size-4" />
-                                            Filters
-                                            {hasActiveFilters && (
-                                                <span className="flex size-5 items-center justify-center rounded-full bg-brand-600 text-xs text-white">
-                                                    {(selectedCategory !== "All Products" ? 1 : 0) + (priceRange[1] < 150 ? 1 : 0) + (inStockOnly ? 1 : 0)}
-                                                </span>
-                                            )}
-                                        </button>
-
-                                        <p className="text-sm text-tertiary">
-                                            Showing <span className="font-medium text-primary">{sortedProducts.length}</span> products
-                                        </p>
-                                    </div>
-
-                                    <div className="flex items-center gap-4">
-                                        {/* Sort */}
-                                        <div className="relative">
-                                            <select
-                                                value={sortBy}
-                                                onChange={(e) => setSortBy(e.target.value)}
-                                                className="appearance-none rounded-lg border border-secondary bg-primary py-2 pl-4 pr-10 text-sm text-primary focus:border-brand-500 focus:outline-none"
+                                {/* Featured Images Gallery */}
+                                <div className="mb-12">
+                                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                                        {[
+                                            { src: "/images/newnew1.png", alt: "Natural Care" },
+                                            { src: "/images/newnew2.png", alt: "Herbal Formula" },
+                                            { src: "/images/newnew3.png", alt: "Oral Wellness" },
+                                            { src: "/images/newnew4.png", alt: "Premium Quality" },
+                                        ].map((image, index) => (
+                                            <motion.div
+                                                key={index}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.4, delay: index * 0.1 }}
+                                                className="group relative aspect-square overflow-hidden rounded-2xl bg-gray-50 shadow-sm"
                                             >
-                                                {sortOptions.map((option) => (
-                                                    <option key={option.value} value={option.value}>
-                                                        {option.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-tertiary" />
-                                        </div>
-
-                                        {/* View Mode */}
-                                        <div className="hidden items-center gap-1 sm:flex">
-                                            <button
-                                                onClick={() => setViewMode("grid")}
-                                                className={`rounded p-2 transition ${
-                                                    viewMode === "grid" ? "bg-secondary text-primary" : "text-tertiary hover:text-primary"
-                                                }`}
-                                            >
-                                                <Grid01 className="size-4" />
-                                            </button>
-                                            <button
-                                                onClick={() => setViewMode("list")}
-                                                className={`rounded p-2 transition ${
-                                                    viewMode === "list" ? "bg-secondary text-primary" : "text-tertiary hover:text-primary"
-                                                }`}
-                                            >
-                                                <List className="size-4" />
-                                            </button>
-                                        </div>
+                                                <img
+                                                    src={image.src}
+                                                    alt={image.alt}
+                                                    className="size-full object-cover transition duration-500 group-hover:scale-105"
+                                                />
+                                            </motion.div>
+                                        ))}
                                     </div>
                                 </div>
-
-                                {/* Mobile Filters */}
-                                {showFilters && (
-                                    <motion.div
-                                        initial={{ opacity: 0, height: 0 }}
-                                        animate={{ opacity: 1, height: "auto" }}
-                                        exit={{ opacity: 0, height: 0 }}
-                                        className="mb-8 rounded-lg border border-secondary bg-secondary p-4 lg:hidden"
-                                    >
-                                        <div className="mb-4 flex items-center justify-between">
-                                            <h3 className="font-semibold text-primary">Filters</h3>
-                                            <button onClick={() => setShowFilters(false)}>
-                                                <X className="size-5 text-tertiary" />
-                                            </button>
-                                        </div>
-                                        <div className="space-y-4">
-                                            <select
-                                                value={selectedCategory}
-                                                onChange={(e) => setSelectedCategory(e.target.value)}
-                                                className="w-full rounded-lg border border-secondary bg-primary px-4 py-2 text-sm"
-                                            >
-                                                {categories.map((category) => (
-                                                    <option key={category} value={category}>
-                                                        {category}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </div>
-                                    </motion.div>
-                                )}
 
                                 {/* Product Grid */}
                                 <div className={`grid gap-6 ${
