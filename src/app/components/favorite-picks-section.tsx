@@ -190,31 +190,13 @@ export function FavoritePicksSection() {
 							{galleryImages.map((image, index) => (
 								<div
 									key={index}
-									className="group relative aspect-square cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition duration-500 hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)]"
+									className="relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)]"
 								>
-									{/* Image */}
 									<img
 										src={image.src}
 										alt={image.alt}
-										className="size-full object-cover transition duration-700 ease-out group-hover:scale-110"
+										className="size-full object-cover"
 									/>
-
-									{/* Gradient Overlay */}
-									<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
-
-									{/* Label */}
-									<div className="absolute inset-x-0 bottom-0 translate-y-full p-5 transition duration-500 group-hover:translate-y-0">
-										<p className="text-sm font-medium uppercase tracking-wider text-white/90">
-											{image.label}
-										</p>
-										<div className="mt-2 flex items-center gap-2 text-white/70">
-											<span className="text-xs">Explore</span>
-											<ArrowRight className="size-3" />
-										</div>
-									</div>
-
-									{/* Corner Accent */}
-									<div className="absolute right-4 top-4 size-8 rounded-full bg-white/20 opacity-0 backdrop-blur-sm transition duration-300 group-hover:opacity-100" />
 								</div>
 							))}
 						</div>
