@@ -11,14 +11,6 @@ const treatments = [
     shades: 7,
     progressPercent: 78,
   },
-  {
-    id: 2,
-    session: "Single Session Treatment",
-    price: "99",
-    currency: "CHF/€",
-    shades: 7,
-    progressPercent: 78,
-  },
 ];
 
 function TeethSVG({ variant }: { variant: "before" | "after" }) {

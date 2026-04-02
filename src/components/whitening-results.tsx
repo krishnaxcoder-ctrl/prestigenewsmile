@@ -13,16 +13,7 @@ const treatments = [
     before: "/before and after images/1.jpg",
     after: "/before and after images/2.png",
   },
-  {
-    id: 2,
-    session: "Single Session Treatment",
-    price: "99",
-    currency: "CHF/€",
-    shades: 7,
-    progressPercent: 78,
-    before: "/before and after images/4.jpg",
-    after: "/before and after images/3.jpg",
-  },
+
   {
     id: 3,
     session: "Two Session Treatment",
@@ -431,7 +422,7 @@ export function WhiteningResults() {
         </div>
 
         {/* Footer note */}
-        <p style={{ textAlign: "center", marginTop: "3rem", fontSize: 11, color: "#aaa", letterSpacing: "0.08em" }}>
+        <p style={{ textAlign: "center", marginTop: "3rem", fontSize: 14, color: "#aaa", letterSpacing: "0.08em" }}>
           Individual results may vary &nbsp;·&nbsp; All treatments performed by certified professionals
         </p>
       </section>
