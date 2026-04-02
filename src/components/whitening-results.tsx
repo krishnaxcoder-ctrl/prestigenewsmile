@@ -128,11 +128,11 @@ export function WhiteningResults() {
         }
 
         .wt-cta:hover {
-          background: linear-gradient(135deg, #efe4dd, #e8dbd3);
-          border-color: #d4c9c1;
-          color: #6d5a52;
+          background: #1a1a1a;
+          border-color: #1a1a1a;
+          color: #ffffff;
           transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(176, 144, 128, 0.25);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .wt-cta:active {
