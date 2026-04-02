@@ -30,7 +30,6 @@ export default function Page() {
 				<PriceListSection />
 				<FavoritePicksSection />
 				<FeaturesSection />
-				<GiftcardSection />
 
 				<ComparisonSlider />
 				<WhiteningResults />
@@ -38,6 +37,7 @@ export default function Page() {
 				<FAQSection />
 				<ArticlesSection />
 				<CollectionBanner />
+				<GiftcardSection />
 
 				<InstagramSection />
 				<ContactSection />
