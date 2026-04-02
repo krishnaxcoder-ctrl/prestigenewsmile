@@ -60,11 +60,17 @@ function ProductCard({ product }: { product: Product }) {
 	);
 }
 
+const galleryImages = [
+	{ src: "/images/newnew1.png", alt: "Natural care" },
+	{ src: "/images/newnew2.png", alt: "Herbal ingredients" },
+	{ src: "/images/newnew3.png", alt: "Oral health" },
+	{ src: "/images/newnew4.png", alt: "Premium quality" },
+];
+
 export function FavoritePicksSection() {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [page, setPage] = useState(0);
-	const productsPerPage = 3;
+	const [productIndex, setProductIndex] = useState(0);
 
 	useEffect(() => {
 		async function fetchProducts() {
@@ -80,16 +86,15 @@ export function FavoritePicksSection() {
 		fetchProducts();
 	}, []);
 
-	const totalPages = Math.ceil(products.length / productsPerPage);
-	const displayedProducts = products.slice(page * productsPerPage, (page + 1) * productsPerPage);
-
 	const handlePrev = () => {
-		setPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
+		setProductIndex((prev) => (prev === 0 ? Math.max(0, products.length - 1) : prev - 1));
 	};
 
 	const handleNext = () => {
-		setPage((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
+		setProductIndex((prev) => (prev >= products.length - 1 ? 0 : prev + 1));
 	};
+
+	const currentProduct = products[productIndex];
 
 	return (
 		<section className="bg-white py-12 md:py-16 lg:py-20">
@@ -118,43 +123,75 @@ export function FavoritePicksSection() {
 					<div className="h-px w-15 bg-brand-600 opacity-50" />
 				</div>
 
-				{/* Products Grid */}
-				{isLoading ? (
-					<div className="flex items-center justify-center py-20">
-						<div className="size-8 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900" />
+				{/* 3-Column Layout */}
+				<div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+					{/* Column 1 - Product */}
+					<div className="flex flex-col">
+						{isLoading ? (
+							<div className="flex aspect-square items-center justify-center">
+								<div className="size-8 animate-spin rounded-full border-4 border-gray-200 border-t-gray-900" />
+							</div>
+						) : currentProduct ? (
+							<>
+								<ProductCard product={currentProduct} />
+								{/* Navigation */}
+								<div className="mt-4 flex items-center justify-between">
+									<span className="text-sm text-gray-500">
+										{productIndex + 1} / {products.length}
+									</span>
+									<div className="flex items-center gap-2">
+										<button
+											onClick={handlePrev}
+											className="flex size-9 items-center justify-center rounded-sm border border-gray-300 bg-white text-gray-900 shadow-sm transition duration-100 ease-linear hover:bg-gray-50"
+											aria-label="Previous product"
+										>
+											<ChevronLeft className="size-4" />
+										</button>
+										<button
+											onClick={handleNext}
+											className="flex size-9 items-center justify-center rounded-sm border border-gray-300 bg-white text-gray-900 shadow-sm transition duration-100 ease-linear hover:bg-gray-50"
+											aria-label="Next product"
+										>
+											<ChevronRight className="size-4" />
+										</button>
+									</div>
+								</div>
+							</>
+						) : (
+							<div className="flex aspect-square items-center justify-center text-gray-400">
+								No products available
+							</div>
+						)}
 					</div>
-				) : (
-					<div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-3">
-						{displayedProducts.map((product) => (
-							<ProductCard key={product.id} product={product} />
-						))}
-					</div>
-				)}
 
-				{/* Bottom Navigation */}
-				<div className="mt-10 flex items-center justify-between">
+					{/* Columns 2 & 3 - Image Gallery (2x2 Grid) */}
+					<div className="lg:col-span-2">
+						<div className="grid grid-cols-2 gap-4">
+							{galleryImages.map((image, index) => (
+								<div
+									key={index}
+									className="group relative aspect-square overflow-hidden rounded-lg bg-gray-50"
+								>
+									<img
+										src={image.src}
+										alt={image.alt}
+										className="size-full object-contain p-4 transition duration-300 ease-out group-hover:scale-105"
+									/>
+									<div className="absolute inset-0 bg-black/0 transition duration-300 group-hover:bg-black/5" />
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+
+				{/* View All Link */}
+				<div className="mt-10 text-center">
 					<a
 						href="/shop"
-						className="border-b border-gray-900 pb-1 text-sm font-medium text-gray-900 transition duration-100 ease-linear hover:border-gray-600 hover:text-gray-600"
+						className="inline-block border-b border-gray-900 pb-1 text-sm font-medium text-gray-900 transition duration-100 ease-linear hover:border-gray-600 hover:text-gray-600"
 					>
-						View All
+						View All Products
 					</a>
-					<div className="flex items-center gap-3">
-						<button
-							onClick={handlePrev}
-							className="flex size-10 items-center justify-center rounded-sm border border-gray-300 bg-white text-gray-900 shadow-sm transition duration-100 ease-linear hover:bg-gray-50"
-							aria-label="Previous products"
-						>
-							<ChevronLeft className="size-5" />
-						</button>
-						<button
-							onClick={handleNext}
-							className="flex size-10 items-center justify-center rounded-sm border border-gray-300 bg-white text-gray-900 shadow-sm transition duration-100 ease-linear hover:bg-gray-50"
-							aria-label="Next products"
-						>
-							<ChevronRight className="size-5" />
-						</button>
-					</div>
 				</div>
 			</div>
 		</section>
