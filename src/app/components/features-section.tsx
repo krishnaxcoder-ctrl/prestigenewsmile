@@ -24,7 +24,7 @@ export function FeaturesSection() {
         <section className="bg-primary px-4 py-8 md:px-6 md:py-24 lg:px-8">
             <div className="mx-auto max-w-[1400px]">
                 {/* Section Header */}
-                <div className="mb-8 text-center md:mb-12">
+                <div className="mb-8 text-center md:mb-6">
                     <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-brand-600 md:text-xs">
                         What We Offer
                     </p>
@@ -41,7 +41,7 @@ export function FeaturesSection() {
                 </div>
 
                 {/* Decorative Divider */}
-                <div className="mb-10 flex items-center justify-center gap-4 md:mb-14">
+                <div className="mb-10 flex items-center justify-center gap-4 md:mb-6">
                     <div className="h-px w-15 bg-brand-600 opacity-50" />
                     <div className="size-1.5 rounded-full bg-brand-600 opacity-60" />
                     <div className="h-px w-15 bg-brand-600 opacity-50" />

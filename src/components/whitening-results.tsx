@@ -281,14 +281,14 @@ export function WhiteningResults() {
           textAlign: "center",
           color: "#888",
           letterSpacing: "0.05em",
-          margin: "0 0 3rem",
+          margin: "0 0 2rem",
           fontFamily: "'Jost', sans-serif",
         }}>
           See the transformations our clients have achieved with professional whitening
         </p>
 
         {/* Divider */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginBottom: "3.5rem" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", marginBottom: "2rem" }}>
           <div style={{ width: 60, height: 0.5, background: "#b09080", opacity: 0.5 }} />
           <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#b09080", opacity: 0.6 }} />
           <div style={{ width: 60, height: 0.5, background: "#b09080", opacity: 0.5 }} />
