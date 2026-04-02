@@ -13,18 +13,28 @@ export function ReviewsSection() {
     return (
         <section className="bg-[#faf8f6] px-4 py-16 md:px-8 md:py-20 lg:px-16">
             <div className="mx-auto max-w-[1400px]">
-                <div className="grid grid-cols-1 gap-10 lg:grid-cols-[300px_1fr] lg:gap-16">
+                <div className="grid grid-cols-1 gap-10 lg:grid-cols-[400px_1fr] lg:gap-16">
                     {/* Left Side - Heading */}
                     <div>
-                        <p className="text-sm font-medium uppercase tracking-widest text-tertiary">Testimonial</p>
-                        <h2 className="mt-4 text-display-sm font-medium uppercase text-primary md:text-display-md lg:text-display-lg" style={{ fontFamily: "var(--global-heading-font-family)" }}>
-                            What Client Say
+                        <p className="text-sm font-medium uppercase tracking-widest text-brand-600">Testimonial</p>
+
+                        <h2 className="mt-3 text-display-sm font-medium text-primary md:text-display-md lg:text-display-lg" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                            What Our <br className="hidden lg:block" />
+                            <span className="italic text-brand-600">Clients Say</span>
                         </h2>
+
+                          <p className="mt-6 text-sm leading-relaxed text-gray-500">
+                            Discover why hundreds of clients trust us for their smile transformation journey.
+                        </p>
+
                         <a
                             href="/reviews"
-                            className="mt-8 hidden border border-gray-900 bg-transparent px-8 py-3 text-sm font-medium uppercase text-gray-900 transition duration-100 ease-linear hover:bg-gray-900 hover:text-white lg:inline-block"
+                            className="mt-8 hidden items-center gap-2 border border-brand-600 bg-transparent px-8 py-3 text-sm font-medium uppercase text-brand-600 transition duration-200 ease-linear hover:bg-brand-600 hover:text-white lg:inline-flex"
                         >
-                            View All
+                            View All Reviews
+                            <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
                         </a>
                     </div>
 
