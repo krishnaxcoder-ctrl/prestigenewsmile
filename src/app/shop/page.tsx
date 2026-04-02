@@ -193,152 +193,170 @@ export default function ShopPage() {
                         <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
                             {/* Main Content */}
                             <div className="flex-1">
-
-                                {/* Featured Images Gallery */}
-                                <div className="mb-12">
-                                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-                                        {[
-                                            { src: "/images/newnew1.png", alt: "Natural Care" },
-                                            { src: "/images/newnew2.png", alt: "Herbal Formula" },
-                                            { src: "/images/newnew3.png", alt: "Oral Wellness" },
-                                            { src: "/images/newnew4.png", alt: "Premium Quality" },
-                                        ].map((image, index) => (
-                                            <motion.div
-                                                key={index}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ duration: 0.4, delay: index * 0.1 }}
-                                                className="group relative aspect-square overflow-hidden rounded-2xl bg-gray-50 shadow-sm"
-                                            >
-                                                <img
-                                                    src={image.src}
-                                                    alt={image.alt}
-                                                    className="size-full object-cover transition duration-500 group-hover:scale-105"
-                                                />
-                                            </motion.div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Product Grid */}
-                                <div className={`grid gap-6 ${
-                                    viewMode === "grid"
-                                        ? "grid-cols-2 md:grid-cols-3"
-                                        : "grid-cols-1"
-                                }`}>
+                                {/* Product List */}
+                                <div className="space-y-6">
                                     {sortedProducts.map((product, index) => (
                                         <motion.div
                                             key={product.slug}
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.4, delay: index * 0.05 }}
-                                            className={`group ${viewMode === "list" ? "flex gap-6" : ""}`}
+                                            className="group overflow-hidden rounded-2xl border border-secondary bg-white shadow-sm transition hover:shadow-md"
                                         >
-                                            {/* Product Image */}
-                                            <div className={`relative overflow-hidden rounded-2xl border border-secondary bg-secondary ${
-                                                viewMode === "list" ? "aspect-square w-48 shrink-0" : "aspect-[850/1020]"
-                                            }`}>
-                                                <a href={`/product/${product.slug}`} className="block size-full">
-                                                    <img
-                                                        src={product.images?.[0] ?? ""}
-                                                        alt={product.name}
-                                                        className="absolute inset-0 size-full object-cover transition duration-500 group-hover:opacity-0"
-                                                    />
-                                                    <img
-                                                        src={product.images?.[1] ?? product.images?.[0] ?? ""}
-                                                        alt={product.name}
-                                                        className="absolute inset-0 size-full object-cover opacity-0 transition duration-500 group-hover:opacity-100"
-                                                    />
-                                                </a>
-
-                                                {/* Badges */}
-                                                <div className="absolute left-3 top-3 flex flex-col gap-1.5">
-                                                    {(product.badges ?? []).slice(0, 1).map((badge) => (
-                                                        <span
-                                                            key={badge}
-                                                            className={`rounded-full px-2.5 py-1 text-xs font-semibold uppercase ${
-                                                                badge === "Sale"
-                                                                    ? "bg-error-500 text-white"
-                                                                    : badge === "Best Seller"
-                                                                    ? "bg-warning-500 text-white"
-                                                                    : "bg-brand-600 text-white"
-                                                            }`}
-                                                        >
-                                                            {badge}
-                                                        </span>
-                                                    ))}
-                                                </div>
-
-                                                {/* Action Buttons */}
-                                                <div className="absolute right-3 top-3 flex flex-col gap-2 opacity-0 transition duration-300 group-hover:opacity-100">
-                                                    <WishlistButton
-                                                        productId={product.id}
-                                                        productName={product.name}
-                                                        size="md"
-                                                    />
-                                                </div>
-
-                                                {/* Add to Cart Button */}
-                                                <div className="absolute inset-x-3 bottom-3 translate-y-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                                                    <Button
-                                                        href={`/product/${product.slug}`}
-                                                        color="primary"
-                                                        size="sm"
-                                                        iconLeading={ShoppingBag01}
-                                                        className="w-full justify-center"
-                                                    >
-                                                        Select Options
-                                                    </Button>
-                                                </div>
-                                            </div>
-
-                                            {/* Product Details */}
-                                            <div className={`${viewMode === "list" ? "flex flex-1 flex-col justify-center" : "mt-4"}`}>
-                                                <div className="flex items-center justify-between">
-                                                    <a
-                                                        href={`/product/${product.slug}`}
-                                                        className="text-xs text-tertiary transition hover:text-brand-600"
-                                                    >
-                                                        {product.category}
+                                            <div className="flex flex-col md:flex-row">
+                                                {/* Product Image */}
+                                                <div className="relative aspect-square w-full shrink-0 overflow-hidden bg-gray-50 md:w-80">
+                                                    <a href={`/product/${product.slug}`} className="block size-full">
+                                                        <img
+                                                            src={product.images?.[0] ?? ""}
+                                                            alt={product.name}
+                                                            className="size-full object-cover transition duration-500 group-hover:scale-105"
+                                                        />
                                                     </a>
-                                                    <StarRating rating={product.rating ?? 0} />
-                                                </div>
 
-                                                <h3 className="mt-2 text-sm font-semibold text-primary sm:text-base">
-                                                    <a
-                                                        href={`/product/${product.slug}`}
-                                                        className="transition hover:text-brand-600"
-                                                    >
-                                                        {product.name}
-                                                    </a>
-                                                </h3>
-
-                                                <div className="mt-2 flex items-center gap-2">
-                                                    <span className="font-semibold text-primary">
-                                                        {product.price.toFixed(2)}€
-                                                    </span>
-                                                    {product.original_price && product.original_price > product.price && (
-                                                        <span className="text-sm text-tertiary line-through">
-                                                            {product.original_price.toFixed(2)}€
-                                                        </span>
-                                                    )}
-                                                </div>
-
-                                                {viewMode === "list" && (
-                                                    <div className="mt-4">
-                                                        <Button
-                                                            href={`/product/${product.slug}`}
-                                                            color="primary"
-                                                            size="sm"
-                                                            iconLeading={ShoppingBag01}
-                                                        >
-                                                            View Product
-                                                        </Button>
+                                                    {/* Badges */}
+                                                    <div className="absolute left-4 top-4 flex flex-col gap-1.5">
+                                                        {(product.badges ?? []).slice(0, 1).map((badge) => (
+                                                            <span
+                                                                key={badge}
+                                                                className={`rounded-full px-3 py-1.5 text-xs font-semibold uppercase ${
+                                                                    badge === "Sale"
+                                                                        ? "bg-error-500 text-white"
+                                                                        : badge === "Best Seller"
+                                                                        ? "bg-warning-500 text-white"
+                                                                        : "bg-brand-600 text-white"
+                                                                }`}
+                                                            >
+                                                                {badge}
+                                                            </span>
+                                                        ))}
                                                     </div>
-                                                )}
+
+                                                    {/* Wishlist Button */}
+                                                    <div className="absolute right-4 top-4">
+                                                        <WishlistButton
+                                                            productId={product.id}
+                                                            productName={product.name}
+                                                            size="md"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                {/* Product Details */}
+                                                <div className="flex flex-1 flex-col justify-between p-6 md:p-8">
+                                                    <div>
+                                                        {/* Category & Rating */}
+                                                        <div className="flex items-center justify-between">
+                                                            <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
+                                                                {product.category}
+                                                            </span>
+                                                            <div className="flex items-center gap-2">
+                                                                <StarRating rating={product.rating ?? 0} />
+                                                                <span className="text-sm text-tertiary">(124 reviews)</span>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Title */}
+                                                        <h3 className="mt-4 text-xl font-semibold text-primary md:text-2xl">
+                                                            <a
+                                                                href={`/product/${product.slug}`}
+                                                                className="transition hover:text-brand-600"
+                                                            >
+                                                                {product.name}
+                                                            </a>
+                                                        </h3>
+
+                                                        {/* Description */}
+                                                        <p className="mt-3 text-sm leading-relaxed text-tertiary line-clamp-2 md:line-clamp-3">
+                                                            {product.description || "Professional teeth whitening product for a brighter, more confident smile. Gentle formula suitable for sensitive teeth."}
+                                                        </p>
+
+                                                        {/* Features */}
+                                                        <div className="mt-4 flex flex-wrap gap-2">
+                                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
+                                                                <svg className="size-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                                                Fast Results
+                                                            </span>
+                                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
+                                                                <svg className="size-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                                                Enamel Safe
+                                                            </span>
+                                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
+                                                                <svg className="size-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+                                                                Professional Grade
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    {/* Price & Actions */}
+                                                    <div className="mt-6 flex flex-col gap-4 border-t border-gray-100 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                                                        <div className="flex items-baseline gap-3">
+                                                            <span className="text-2xl font-bold text-primary md:text-3xl">
+                                                                {product.price.toFixed(2)}€
+                                                            </span>
+                                                            {product.original_price && product.original_price > product.price && (
+                                                                <span className="text-lg text-tertiary line-through">
+                                                                    {product.original_price.toFixed(2)}€
+                                                                </span>
+                                                            )}
+                                                            {product.in_stock && (
+                                                                <span className="rounded-full bg-success-50 px-2 py-0.5 text-xs font-medium text-success-700">
+                                                                    In Stock
+                                                                </span>
+                                                            )}
+                                                        </div>
+
+                                                        <div className="flex gap-3">
+                                                            <Button
+                                                                href={`/product/${product.slug}`}
+                                                                color="secondary"
+                                                                size="md"
+                                                            >
+                                                                View Details
+                                                            </Button>
+                                                            <Button
+                                                                href={`/product/${product.slug}`}
+                                                                color="primary"
+                                                                size="md"
+                                                                iconLeading={ShoppingBag01}
+                                                            >
+                                                                Add to Cart
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </motion.div>
                                     ))}
+                                </div>
+
+                                {/* Featured Images Gallery */}
+                                <div className="mt-12">
+                                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                                        {[
+                                            { src: "/images/newnew1.png", label: "Natural Care" },
+                                            { src: "/images/newnew2.png", label: "Herbal Formula" },
+                                            { src: "/images/newnew3.png", label: "Oral Wellness" },
+                                            { src: "/images/newnew4.png", label: "Premium Quality" },
+                                        ].map((image, index) => (
+                                            <motion.div
+                                                key={index}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.4, delay: index * 0.1 }}
+                                                className="group relative aspect-square overflow-hidden bg-gray-50 shadow-sm"
+                                            >
+                                                <img
+                                                    src={image.src}
+                                                    alt={image.label}
+                                                    className="size-full object-cover transition duration-500 group-hover:scale-105"
+                                                />
+                                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                                                    <span className="text-sm font-medium text-white">{image.label}</span>
+                                                </div>
+                                            </motion.div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
