@@ -88,10 +88,10 @@ export function FeaturesSection() {
                                 <div className="mt-4 h-0.5 w-12 bg-brand-500 transition-all duration-500 group-hover:w-20" />
 
                                 {/* CTA Link */}
-                                <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-brand-400 transition group-hover:text-white">
+                                <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-white transition group-hover:text-white">
                                     Discover Now
                                     <svg
-                                        className="size-4 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                        className="size-4 transition duration-300  "
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"

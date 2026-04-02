@@ -110,7 +110,7 @@ export function FavoritePicksSection() {
 		<section className="bg-gradient-to-b from-white via-gray-50/30 to-white py-16 md:py-20 lg:py-24">
 			<div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
-				<div className="mb-12 text-center md:mb-16">
+				<div className="mb-6 text-center md:mb-8">
 					<p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-brand-600 md:text-xs">
 						Featured Collection
 					</p>
@@ -127,7 +127,7 @@ export function FavoritePicksSection() {
 				</div>
 
 				{/* Decorative Divider */}
-				<div className="mb-12 flex items-center justify-center gap-4 md:mb-16">
+				<div className="mb-6 flex items-center justify-center gap-4 md:mb-8">
 					<div className="h-px flex-1 bg-gradient-to-r from-transparent via-brand-600/30 to-brand-600/50" />
 					<div className="size-2 rotate-45 border border-brand-600/60" />
 					<div className="h-px flex-1 bg-gradient-to-l from-transparent via-brand-600/30 to-brand-600/50" />
