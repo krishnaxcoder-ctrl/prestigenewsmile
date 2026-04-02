@@ -75,52 +75,6 @@ const treatments = [
   },
 ];
 
-function ShadeBar({ percent }: { percent: number }) {
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setWidth(percent), 400);
-    return () => clearTimeout(timeout);
-  }, [percent]);
-
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: "1rem" }}>
-      <span style={labelStyle}>Whitening</span>
-      <div
-        style={{
-          flex: 1,
-          height: 5,
-          borderRadius: 3,
-          background: "linear-gradient(to right, #c5a898, #f5f0ec)",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            height: "100%",
-            borderRadius: 3,
-            background: "linear-gradient(to right, #c5a898, #e8ddd5)",
-            width: `${width}%`,
-            transition: "width 1.2s cubic-bezier(0.4, 0, 0.2, 1)",
-          }}
-        />
-      </div>
-      <span style={{ ...labelStyle, color: "#b09080" }}>7 shades</span>
-    </div>
-  );
-}
-
-const labelStyle: React.CSSProperties = {
-  fontSize: 9,
-  fontWeight: 500,
-  letterSpacing: "0.2em",
-  textTransform: "uppercase",
-  color: "#9a8a80",
-  whiteSpace: "nowrap",
-  fontFamily: "'Jost', sans-serif",
-};
-
 export function WhiteningResults() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -162,26 +116,34 @@ export function WhiteningResults() {
         }
 
         .wt-cta {
-          display: block;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 100%;
           text-align: center;
-          padding: 10px;
-          background: transparent;
-          border: 0.5px solid #b09080;
-          color: #b09080;
+          padding: 14px 20px;
+          background: linear-gradient(135deg, #b09080, #a08070);
+          border: none;
+          color: white;
           font-family: 'Jost', sans-serif;
-          font-size: 10px;
+          font-size: 11px;
           font-weight: 500;
-          letter-spacing: 0.2em;
+          letter-spacing: 0.15em;
           text-transform: uppercase;
           cursor: pointer;
-          border-radius: 1px;
-          transition: background 0.2s, color 0.2s;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(176, 144, 128, 0.3);
         }
 
         .wt-cta:hover {
-          background: #b09080;
-          color: white;
+          background: linear-gradient(135deg, #a08070, #907060);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(176, 144, 128, 0.4);
+        }
+
+        .wt-cta:active {
+          transform: translateY(0);
         }
 
         @keyframes fadeUp {
@@ -331,41 +293,76 @@ export function WhiteningResults() {
               </div>
 
               {/* Card Body */}
-              <div style={{ padding: "1.25rem 1.5rem 1.5rem", borderTop: "0.5px solid rgba(0,0,0,0.08)" }}>
-                <span style={{
-                  display: "inline-block", fontSize: 9, fontWeight: 500,
-                  letterSpacing: "0.18em", textTransform: "uppercase",
-                  color: "#b09080", marginBottom: "1rem",
-                  fontFamily: "'Jost', sans-serif",
-                }}>
-                  {t.session}
-                </span>
-
-                <ShadeBar percent={t.progressPercent} />
-
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1.25rem" }}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                    <span style={labelStyle}>Price</span>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.4rem", fontWeight: 300, color: "#1a1a1a", lineHeight: 1 }}>
+              <div style={{ padding: "1.5rem 1.75rem 1.75rem", background: "linear-gradient(to bottom, #fafafa, #ffffff)" }}>
+                {/* Session Badge & Price Row */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
+                  <span style={{
+                    display: "inline-flex", alignItems: "center", gap: 6,
+                    fontSize: 10, fontWeight: 500,
+                    letterSpacing: "0.12em", textTransform: "uppercase",
+                    color: "#b09080", background: "transparent",
+                    padding: "8px 14px", borderRadius: 20,
+                    fontFamily: "'Jost', sans-serif",
+                    border: "1.5px solid #b09080",
+                  }}>
+                    <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#b09080" }} />
+                    {t.session}
+                  </span>
+                  <div style={{ textAlign: "right" }}>
+                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", fontWeight: 400, color: "#1a1a1a", lineHeight: 1, letterSpacing: "-0.02em" }}>
                       {t.price}
-                      <span style={{ fontSize: "0.85rem", color: "#b09080", fontFamily: "'Jost', sans-serif", fontWeight: 300, marginLeft: 2 }}>
+                      <span style={{ fontSize: "0.9rem", color: "#b09080", fontFamily: "'Jost', sans-serif", fontWeight: 400, marginLeft: 4 }}>
                         {t.currency}
-                      </span>
-                    </div>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                    <span style={labelStyle}>Results</span>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.4rem", fontWeight: 300, color: "#1a1a1a", lineHeight: 1 }}>
-                      {t.shades}
-                      <span style={{ fontSize: "0.85rem", color: "#b09080", fontFamily: "'Jost', sans-serif", fontWeight: 300, marginLeft: 2 }}>
-                        shades lighter
                       </span>
                     </div>
                   </div>
                 </div>
 
+                {/* Results Stats */}
+                <div style={{
+                  display: "flex", alignItems: "center", gap: "1.5rem",
+                  padding: "1rem 1.25rem", marginBottom: "1.25rem",
+                  background: "#f8f6f4", borderRadius: 12,
+                  border: "1px solid rgba(176, 144, 128, 0.15)"
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
+                    <div style={{
+                      width: 40, height: 40, borderRadius: "50%",
+                      background: "linear-gradient(135deg, #e8ddd5, #f5f0ec)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      border: "2px solid #b09080"
+                    }}>
+                      <span style={{ fontSize: 16, fontWeight: 600, color: "#b09080" }}>✓</span>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9a8a80", marginBottom: 2 }}>Results</div>
+                      <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontWeight: 400, color: "#1a1a1a" }}>
+                        Up to <strong style={{ color: "#b09080" }}>{t.shades} shades</strong> lighter
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ width: 1, height: 36, background: "rgba(176, 144, 128, 0.2)" }} />
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
+                    <div style={{
+                      width: 40, height: 40, borderRadius: "50%",
+                      background: "linear-gradient(135deg, #e8ddd5, #f5f0ec)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      border: "2px solid #b09080"
+                    }}>
+                      <span style={{ fontSize: 14, color: "#b09080" }}>⏱</span>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9a8a80", marginBottom: 2 }}>Duration</div>
+                      <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontWeight: 400, color: "#1a1a1a" }}>
+                        <strong style={{ color: "#b09080" }}>60</strong> minutes
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <button className="wt-cta">
-                  Book Your Session →
+                  Book Your Session
+                  <span style={{ marginLeft: 8, transition: "transform 0.2s" }}>→</span>
                 </button>
               </div>
             </div>
