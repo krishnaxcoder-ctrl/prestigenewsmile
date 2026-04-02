@@ -328,33 +328,33 @@ export function WhiteningResults() {
                   <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
                     <div style={{
                       width: 40, height: 40, borderRadius: "50%",
-                      background: "linear-gradient(135deg, #e8ddd5, #f5f0ec)",
+                      background: "linear-gradient(135deg, #f5f5f5, #fafafa)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      border: "2px solid #b09080"
+                      border: "1.5px solid #e0e0e0"
                     }}>
-                      <span style={{ fontSize: 16, fontWeight: 600, color: "#b09080" }}>✓</span>
+                      <span style={{ fontSize: 16, fontWeight: 600, color: "#888" }}>✓</span>
                     </div>
                     <div>
-                      <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9a8a80", marginBottom: 2 }}>Results</div>
+                      <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#999", marginBottom: 2 }}>Results</div>
                       <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontWeight: 400, color: "#1a1a1a" }}>
-                        Up to <strong style={{ color: "#b09080" }}>{t.shades} shades</strong> lighter
+                        Up to <strong style={{ color: "#666" }}>{t.shades} shades</strong> lighter
                       </div>
                     </div>
                   </div>
-                  <div style={{ width: 1, height: 36, background: "rgba(176, 144, 128, 0.2)" }} />
+                  <div style={{ width: 1, height: 36, background: "rgba(0, 0, 0, 0.08)" }} />
                   <div style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}>
                     <div style={{
                       width: 40, height: 40, borderRadius: "50%",
-                      background: "linear-gradient(135deg, #e8ddd5, #f5f0ec)",
+                      background: "linear-gradient(135deg, #f5f5f5, #fafafa)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      border: "2px solid #b09080"
+                      border: "1.5px solid #e0e0e0"
                     }}>
-                      <span style={{ fontSize: 14, color: "#b09080" }}>⏱</span>
+                      <span style={{ fontSize: 14, color: "#888" }}>⏱</span>
                     </div>
                     <div>
-                      <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9a8a80", marginBottom: 2 }}>Duration</div>
+                      <div style={{ fontSize: 11, fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", color: "#999", marginBottom: 2 }}>Duration</div>
                       <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem", fontWeight: 400, color: "#1a1a1a" }}>
-                        <strong style={{ color: "#b09080" }}>60</strong> minutes
+                        <strong style={{ color: "#666" }}>60</strong> minutes
                       </div>
                     </div>
                   </div>
