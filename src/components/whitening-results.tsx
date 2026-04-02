@@ -330,7 +330,7 @@ export function WhiteningResults() {
                       width: 40, height: 40, borderRadius: "50%",
                       background: "linear-gradient(135deg, #f5f5f5, #fafafa)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      border: "1.5px solid #e0e0e0"
+                      border: "1.5px solid #d5ccc5"
                     }}>
                       <span style={{ fontSize: 16, fontWeight: 600, color: "#888" }}>✓</span>
                     </div>
@@ -347,7 +347,7 @@ export function WhiteningResults() {
                       width: 40, height: 40, borderRadius: "50%",
                       background: "linear-gradient(135deg, #f5f5f5, #fafafa)",
                       display: "flex", alignItems: "center", justifyContent: "center",
-                      border: "1.5px solid #e0e0e0"
+                      border: "1.5px solid #d5ccc5"
                     }}>
                       <span style={{ fontSize: 14, color: "#888" }}>⏱</span>
                     </div>
