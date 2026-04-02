@@ -121,7 +121,7 @@ export function FavoritePicksSection() {
 						Curated For{" "}
 						<em className="font-normal italic text-brand-600">Your Smile</em>
 					</h2>
-					<p className="mx-auto mt-5 max-w-xl text-sm font-light leading-relaxed text-gray-500 md:text-base">
+					<p className="mx-auto mt-5 max-w-2xl text-sm font-light leading-relaxed text-gray-500 md:text-base">
 						Handpicked premium products designed to transform and elevate your oral care routine
 					</p>
 				</div>
