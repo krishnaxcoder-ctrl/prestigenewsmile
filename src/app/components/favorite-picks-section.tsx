@@ -128,9 +128,9 @@ export function FavoritePicksSection() {
 
 				{/* Decorative Divider */}
 				<div className="mb-12 flex items-center justify-center gap-4 md:mb-16">
-					<div className="h-px w-16 bg-gradient-to-r from-transparent to-brand-600/50" />
+					<div className="h-px flex-1 bg-gradient-to-r from-transparent via-brand-600/30 to-brand-600/50" />
 					<div className="size-2 rotate-45 border border-brand-600/60" />
-					<div className="h-px w-16 bg-gradient-to-l from-transparent to-brand-600/50" />
+					<div className="h-px flex-1 bg-gradient-to-l from-transparent via-brand-600/30 to-brand-600/50" />
 				</div>
 
 				{/* 3-Column Layout */}
