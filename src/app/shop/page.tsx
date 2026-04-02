@@ -162,7 +162,7 @@ export default function ShopPage() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: 0.1 }}
-                                    className="text-2xl font-semibold uppercase text-primary md:text-3xl"
+                                    className="text-2xl font-semibold text-primary md:text-3xl"
                                 >
                                     Shop Our <span className="text-brand-600">Premium</span> Collection
                                 </motion.h1>

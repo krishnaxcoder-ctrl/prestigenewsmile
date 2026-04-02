@@ -79,6 +79,12 @@ export default function ProductPage({ params }: { params: Promise<{ slug: string
         async function fetchProduct() {
             try {
                 const data = await getProductBySlug(slug);
+                if (!data) {
+                    setProduct(null);
+                    setLoading(false);
+                    return;
+                }
+
                 setProduct(data);
                 if (data.sizes && data.sizes.length > 0) setSelectedSize(data.sizes[0]);
                 if (data.colors && data.colors.length > 0) setSelectedColor(data.colors[0]);

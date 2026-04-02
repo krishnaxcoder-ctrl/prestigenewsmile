@@ -171,7 +171,7 @@ export default function CartPage() {
             <Header />
             <main className="min-h-screen bg-gray-50">
                 {/* Page Header */}
-                <section className="border-b border-secondary bg-white px-4 py-8 md:px-8 lg:px-16">
+                <section className="border-b border-secondary bg-white px-4 py-2 md:px-8 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
                             <a href="/" className="transition hover:text-brand-600">Home</a>

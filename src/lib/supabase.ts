@@ -230,14 +230,17 @@ export async function getProducts() {
     return data as unknown as Product[];
 }
 
-export async function getProductBySlug(slug: string) {
+export async function getProductBySlug(slug: string): Promise<Product | null> {
     const { data, error } = await supabase
         .from("products")
         .select("*")
         .eq("slug", slug)
         .single();
 
-    if (error) throw error;
+    if (error) {
+        if (error.code === "PGRST116") return null; // Not found
+        throw error;
+    }
     return data as unknown as Product;
 }
 
