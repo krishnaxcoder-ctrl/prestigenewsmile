@@ -1,5 +1,4 @@
 import { ArticlesSection } from "./components/articles-section";
-import { BeforeAfterSection } from "./components/before-after-section";
 import { CollectionBanner } from "./components/collection-banner";
 import { ComparisonSlider } from "./components/comparison-slider";
 import { ContactSection } from "./components/contact-section";
@@ -16,6 +15,7 @@ import { ReviewsSection } from "./components/reviews-section";
 import { ServiceMenuSection } from "./components/service-menu-section";
 import { ServicesSection } from "./components/services-section";
 import { TaglineSection } from "./components/tagline-section";
+import { WhiteningResults } from "@/components/whitening-results";
 
 export default function Page() {
 	return (
@@ -33,7 +33,7 @@ export default function Page() {
 				<GiftcardSection />
 
 				<ComparisonSlider />
-				<BeforeAfterSection />
+				<WhiteningResults />
 				<ReviewsSection />
 				<FAQSection />
 				<ArticlesSection />
