@@ -20,23 +20,33 @@ export function HeroSection() {
 
                 {/* Content */}
                 <div className="relative flex min-h-[50vh] flex-col justify-center px-6 py-16 md:min-h-[calc(100vh-72px)] md:px-12 lg:px-20">
-                    <div className="max-w-lg">
+                    <div className="max-w-xl">
                         {/* Tagline */}
-                        <div className="mb-4 flex items-center gap-3">
-                            <span className="h-px w-3 bg-white/50" />
-                            <span className="text-xs font-medium uppercase tracking-[0.25em] text-white/80">
+                        <div className="mb-5 flex items-center gap-3">
+                            <div className="h-px w-8 bg-gradient-to-r from-white/60 to-white/30" />
+                            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-white/90">
                                 Prestige Smile Studio
                             </span>
+                            <div className="h-px w-8 bg-gradient-to-l from-white/60 to-white/30" />
                         </div>
 
                         <h1
-                            className="text-display-xs font-normal  leading-tight text-white md:text-display-sm lg:text-display-md"
+                            className="text-3xl font-light max-w-sm leading-tight text-white md:text-4xl lg:text-5xl xl:text-4xl"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
                         >
-                            Always Make Room for a Brighter Smile in Your Life
+                            Always Make Room for a
+                            Brighter Smile in Your Life
                         </h1>
 
+                        {/* Decorative Divider */}
+                        <div className="my-6 flex items-center gap-3">
+                            <div className="h-px w-12 bg-gradient-to-r from-white/50 to-white/20" />
+                            <div className="size-1.5 rotate-45 border border-white/50" />
+                            <div className="h-px w-12 bg-gradient-to-l from-white/50 to-white/20" />
+                        </div>
+
                         {/* Description */}
-                        <p className="mt-4 max-w-md text-md leading-relaxed text-white/70 md:text-base">
+                        <p className="max-w-md text-base leading-relaxed text-white/80 md:text-lg">
                             Professional teeth whitening in the heart of Geneva. Reveal your brightest, most confident smile.
                         </p>
 
