@@ -79,7 +79,7 @@ export default function BookingPage() {
                                             </div>
                                             <div>
                                                 <h3 className="font-semibold text-primary">Location</h3>
-                                                <p className="mt-1 text-sm text-tertiary">Ambilly, near Geneva</p>
+                                                <p className="mt-1 text-sm text-tertiary">1 rue Jean Moulin, 74100 Ambilly</p>
                                                 <p className="text-sm text-tertiary">Switzerland</p>
                                             </div>
                                         </div>

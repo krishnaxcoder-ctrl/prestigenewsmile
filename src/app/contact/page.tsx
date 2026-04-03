@@ -36,7 +36,7 @@ const contactInfo = [
     {
         icon: MarkerPin01,
         title: "Location",
-        details: ["Ambilly, near Geneva", "Switzerland"],
+        details: ["1 rue Jean Moulin, 74100 Ambilly", "France (near Geneva)"],
         action: { label: "Get directions", href: "#map" },
     },
     {

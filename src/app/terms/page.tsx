@@ -12,7 +12,7 @@ const sections = [
 
 Seller Information:
 Company Name: Prestige Smile
-Address: Ambilly, France (near Geneva)
+Address: 1 rue Jean Moulin, 74100 Ambilly, France
 Email: hello@prestigesmile.ch
 Phone: +41 78 300 06 19
 SIRET: [To be completed]
@@ -458,7 +458,7 @@ We encourage you to review these terms periodically.`,
         content: `For any questions about these Terms and Conditions:
 
 Prestige Smile
-Address: Ambilly, France (near Geneva)
+Address: 1 rue Jean Moulin, 74100 Ambilly, France
 Email: hello@prestigesmile.ch
 Phone: +41 78 300 06 19
 Instagram: @prestige.smile.studio

@@ -61,7 +61,7 @@ export function Footer() {
 								<img src="/logo.svg" alt="Prestige Smile" className="h-16 w-auto" />
 							</Link>
 							<p className="mt-4 max-w-sm text-sm leading-relaxed text-secondary">
-								A bright smile is much more than a detail: it reveals the confidence you have in yourself. Professional teeth whitening in Ambilly, near Geneva.
+								A bright smile is much more than a detail: it reveals the confidence you have in yourself. Professional teeth whitening at 1 rue Jean Moulin, 74100 Ambilly, near Geneva.
 							</p>
 
 							{/* Social Links */}
@@ -123,7 +123,7 @@ export function Footer() {
 							</div>
 							<div>
 								<p className="text-xs font-medium uppercase tracking-wider text-tertiary">Location</p>
-								<p className="mt-1 text-sm font-medium text-primary">Ambilly, near Geneva</p>
+								<p className="mt-1 text-sm font-medium text-primary">1 rue Jean Moulin, 74100 Ambilly</p>
 							</div>
 						</div>
 

@@ -100,8 +100,8 @@ export function HeroSection() {
                                     Location
                                 </h3>
                                 <div className="mt-2 space-y-0.5">
-                                    <p className="text-sm text-white/80">12 Rue du Rhône,</p>
-                                    <p className="text-sm text-white/80">1204 Geneva, Switzerland</p>
+                                    <p className="text-sm text-white/80">1 rue Jean Moulin,</p>
+                                    <p className="text-sm text-white/80">74100 Ambilly, France</p>
                                 </div>
                             </div>
                         </div>
@@ -148,8 +148,8 @@ export function HeroSection() {
                         </svg>
                         <div>
                             <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-primary">Location</h3>
-                            <p className="mt-1.5 text-sm text-tertiary">12 Rue du Rhône,</p>
-                            <p className="text-sm text-tertiary">1204 Geneva, Switzerland</p>
+                            <p className="mt-1.5 text-sm text-tertiary">1 rue Jean Moulin,</p>
+                            <p className="text-sm text-tertiary">74100 Ambilly, France</p>
                         </div>
                     </div>
                 </div>

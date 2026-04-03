@@ -82,7 +82,7 @@ const ServicesDropdown = () => {
                 <div className="mx-auto flex max-w-[1400px] items-center justify-between">
                     <div className="flex items-center gap-3">
                         <span className="rounded-full bg-brand-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-700">Limited</span>
-                        <span className="text-sm text-secondary">Ambilly, near Geneva — Professional teeth whitening studio</span>
+                        <span className="text-sm text-secondary">1 rue Jean Moulin, 74100 Ambilly — Professional teeth whitening studio</span>
                     </div>
                     <Link href="/contact" className="text-xs font-semibold uppercase tracking-wider text-brand-secondary hover:text-brand-primary">Book Now →</Link>
                 </div>

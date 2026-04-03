@@ -55,7 +55,7 @@ const faqCategories = [
         faqs: [
             {
                 question: "How do I book an appointment?",
-                answer: "You can book an appointment through our online booking system, by calling us at +41 78 300 06 19, or by visiting our studio in Ambilly. We recommend booking at least 1 week in advance, especially for weekend appointments.",
+                answer: "You can book an appointment through our online booking system, by calling us at +41 78 300 06 19, or by visiting our studio at 1 rue Jean Moulin, 74100 Ambilly. We recommend booking at least 1 week in advance, especially for weekend appointments.",
             },
             {
                 question: "What is your cancellation policy?",

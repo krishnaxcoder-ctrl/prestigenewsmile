@@ -11,7 +11,7 @@ const sections = [
 
 Company Name: Prestige Smile
 Legal Form: [Auto-entrepreneur / SARL / SAS - to be completed]
-Registered Address: Ambilly, France (near Geneva)
+Registered Address: 1 rue Jean Moulin, 74100 Ambilly, France
 SIRET Number: [To be completed]
 RCS Registration: [To be completed]
 VAT Number (TVA Intracommunautaire): [To be completed if applicable]
@@ -95,7 +95,7 @@ Consumer Mediator: [Mediator name and contact to be completed]
 
 Before contacting the mediator, you must first attempt to resolve the dispute directly with Prestige Smile by sending a written complaint to:
 Email: hello@prestigesmile.ch
-Address: Ambilly, France
+Address: 1 rue Jean Moulin, 74100 Ambilly, France
 
 The mediator can be contacted within one year of the date of your written complaint.`,
     },
@@ -104,7 +104,7 @@ The mediator can be contacted within one year of the date of your written compla
         content: `For any questions regarding these legal notices, please contact us:
 
 Prestige Smile
-Address: Ambilly, France (near Geneva)
+Address: 1 rue Jean Moulin, 74100 Ambilly, France
 Email: hello@prestigesmile.ch
 Phone: +41 78 300 06 19
 Instagram: @prestige.smile.studio
