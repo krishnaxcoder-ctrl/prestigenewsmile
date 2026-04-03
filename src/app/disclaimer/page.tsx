@@ -265,10 +265,20 @@ export default function DisclaimerPage() {
                             <span className="uppercase text-brand-600">Service Disclaimer</span>
                         </nav>
                         <div className="max-w-3xl">
-                            <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
-                                Service Terms & <span className="text-brand-600">Disclaimer</span>
-                            </h1>
-                            <p className="mt-4 text-lg text-tertiary">
+                            <motion.h1
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.1 }}
+                                className="text-2xl font-semibold uppercase text-primary md:text-3xl"
+                            >
+                                Service Terms & <span className="text-amber-600">Disclaimer</span>
+                            </motion.h1>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="mt-4 text-lg text-tertiary"
+                            >
                                 Important information about our cosmetic teeth whitening services. Please read carefully before booking.
                             </p>
                         </div>
@@ -340,7 +350,12 @@ export default function DisclaimerPage() {
                 {/* Content */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
-                        <div className="mb-8 rounded-xl bg-brand-50 p-6">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="mb-8 rounded-xl bg-blue-50 p-6"
+                        >
                             <div className="flex items-start gap-3">
                                 <InfoCircle className="mt-0.5 size-5 shrink-0 text-brand-600" />
                                 <div>
