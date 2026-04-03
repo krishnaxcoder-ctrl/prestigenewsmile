@@ -231,7 +231,7 @@ For significant changes, we may notify you directly or request renewed consent.`
         content: `If you have questions about this disclaimer or our services:
 
 Prestige Smile
-Address: Ambilly, France (near Geneva)
+Address: 1 rue Jean Moulin, 74100 Ambilly, France
 Email: hello@prestigesmile.ch
 Phone: +41 78 300 06 19
 Instagram: @prestige.smile.studio
@@ -260,12 +260,12 @@ export default function DisclaimerPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <section className="border-b border-amber-300 bg-amber-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+                <section className="border-b border-brand-300 bg-brand-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="uppercase transition hover:text-amber-600">Home</a>
+                            <a href="/" className="uppercase transition hover:text-brand-600">Home</a>
                             <span>/</span>
-                            <span className="uppercase text-amber-600">Service Disclaimer</span>
+                            <span className="uppercase text-brand-600">Service Disclaimer</span>
                         </nav>
                         <div className="max-w-3xl">
                             <motion.h1
@@ -274,7 +274,7 @@ export default function DisclaimerPage() {
                                 transition={{ duration: 0.5, delay: 0.1 }}
                                 className="text-2xl font-semibold uppercase text-primary md:text-3xl"
                             >
-                                Service Terms & <span className="text-amber-600">Disclaimer</span>
+                                Service Terms & <span className="text-brand-600">Disclaimer</span>
                             </motion.h1>
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
@@ -289,10 +289,10 @@ export default function DisclaimerPage() {
                 </section>
 
                 {/* Important Notice Banner */}
-                <section className="bg-amber-100 px-4 py-6 md:px-8 lg:px-16">
+                <section className="bg-brand-100 px-4 py-6 md:px-8 lg:px-16">
                     <div className="mx-auto max-w-7xl">
-                        <div className="flex items-start gap-4 rounded-xl border border-amber-300 bg-white p-6">
-                            <AlertTriangle className="mt-0.5 size-6 shrink-0 text-amber-600" />
+                        <div className="flex items-start gap-4 rounded-xl border border-brand-300 bg-white p-6">
+                            <AlertTriangle className="mt-0.5 size-6 shrink-0 text-brand-600" />
                             <div>
                                 <h3 className="font-semibold text-primary">Important Notice</h3>
                                 <p className="mt-1 text-sm text-tertiary">
@@ -357,10 +357,10 @@ export default function DisclaimerPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
-                            className="mb-8 rounded-xl bg-blue-50 p-6"
+                            className="mb-8 rounded-xl bg-brand-50 p-6"
                         >
                             <div className="flex items-start gap-3">
-                                <InfoCircle className="mt-0.5 size-5 shrink-0 text-blue-600" />
+                                <InfoCircle className="mt-0.5 size-5 shrink-0 text-brand-600" />
                                 <div>
                                     <p className="text-md text-tertiary">
                                         <strong className="text-primary">Last Updated:</strong> April 2025

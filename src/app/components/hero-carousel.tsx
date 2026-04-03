@@ -113,7 +113,7 @@ export const HeroCarousel = () => {
                 <div className="absolute left-6 top-6 z-10">
                     <div className="rounded-full bg-white/95 px-4 py-2 shadow-lg backdrop-blur-sm">
                         <span className="text-xs font-semibold uppercase tracking-wider text-brand-600">
-                            Ambilly • Near Geneva
+                            1 rue Jean Moulin, 74100 Ambilly
                         </span>
                     </div>
                 </div>

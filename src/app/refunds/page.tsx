@@ -35,14 +35,14 @@ To exercise your right of withdrawal, you must inform us of your decision by a c
 
 Email: hello@prestigesmile.ch
 Phone: +41 78 300 06 19
-Address: Ambilly, France (near Geneva)
+Address: 1 rue Jean Moulin, 74100 Ambilly, France
 
 You may use the following model withdrawal form (but it is not obligatory):
 
 ---
 WITHDRAWAL FORM
 
-To: Prestige Smile, Ambilly, France
+To: Prestige Smile, 1 rue Jean Moulin, 74100 Ambilly, France
 Email: hello@prestigesmile.ch
 
 I hereby give notice that I withdraw from my contract of sale of the following goods/services:
@@ -336,7 +336,7 @@ If you paid import duties on your original order, you may be able to reclaim the
         content: `For any questions about refunds or returns:
 
 Prestige Smile
-Address: Ambilly, France (near Geneva)
+Address: 1 rue Jean Moulin, 74100 Ambilly, France
 Email: hello@prestigesmile.ch
 Phone: +41 78 300 06 19
 Instagram: @prestige.smile.studio

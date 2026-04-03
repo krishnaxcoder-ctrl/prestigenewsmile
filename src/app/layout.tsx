@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         default: "Prestige Smile | Professional Teeth Whitening in Geneva",
         template: "%s | Prestige Smile",
     },
-    description: "Private aesthetic teeth whitening studio in Ambilly, near Geneva. Give your smile a visibly whiter, brighter and more natural glow. Up to 7 shades lighter in one session.",
+    description: "Private aesthetic teeth whitening studio at 1 rue Jean Moulin, 74100 Ambilly, near Geneva. Give your smile a visibly whiter, brighter and more natural glow. Up to 7 shades lighter in one session.",
     keywords: ["teeth whitening", "Geneva", "Ambilly", "cosmetic dentistry", "smile", "whitening treatment", "aesthetic"],
     authors: [{ name: "Prestige Smile" }],
     openGraph: {

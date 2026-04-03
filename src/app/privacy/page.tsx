@@ -12,7 +12,7 @@ const sections = [
 
 Data Controller:
 Prestige Smile
-Address: Ambilly, France (near Geneva)
+Address: 1 rue Jean Moulin, 74100 Ambilly, France
 Email: hello@prestigesmile.ch
 Phone: +41 78 300 06 19
 SIRET: [To be completed]
@@ -236,7 +236,7 @@ You have the right not to be subject to decisions based solely on automated proc
 
 Email: hello@prestigesmile.ch
 Phone: +41 78 300 06 19
-Address: Ambilly, France (near Geneva)
+Address: 1 rue Jean Moulin, 74100 Ambilly, France
 
 8.1 Request Requirements
 Please provide:
@@ -423,7 +423,7 @@ Continued use of our services after changes constitutes acceptance of the update
 
 Data Controller:
 Prestige Smile
-Address: Ambilly, France (near Geneva)
+Address: 1 rue Jean Moulin, 74100 Ambilly, France
 Email: hello@prestigesmile.ch
 Phone: +41 78 300 06 19
 

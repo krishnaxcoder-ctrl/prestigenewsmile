@@ -38,8 +38,8 @@ export function ContactSection() {
                         </svg>
                         <div>
                             <h3 className="text-base font-semibold uppercase tracking-[0.15em] text-primary">Location</h3>
-                            <p className="mt-2 text-lg text-tertiary">12 Rue du Rhône,</p>
-                            <p className="text-lg text-tertiary">1204 Geneva, Switzerland</p>
+                            <p className="mt-2 text-lg text-tertiary">1 rue Jean Moulin,</p>
+                            <p className="text-lg text-tertiary">74100 Ambilly, France</p>
                         </div>
                     </div>
                 </div>
