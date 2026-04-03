@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 
@@ -130,22 +127,12 @@ export default function LegalNoticePage() {
                             <span className="uppercase text-brand-600">Legal Notice</span>
                         </nav>
                         <div className="max-w-3xl">
-                            <motion.h1
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.1 }}
-                                className="text-2xl font-semibold uppercase text-primary md:text-3xl"
-                            >
+                            <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
                                 Legal <span className="text-brand-600">Notice</span>
-                            </motion.h1>
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                                className="mt-4 text-lg text-tertiary"
-                            >
+                            </h1>
+                            <p className="mt-4 text-lg text-tertiary">
                                 Mentions Légales - Required information under French law (LCEN)
-                            </motion.p>
+                            </p>
                         </div>
                     </div>
                 </section>
@@ -153,36 +140,25 @@ export default function LegalNoticePage() {
                 {/* Content */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="mb-8 rounded-xl bg-brand-50 p-6"
-                        >
+                        <div className="mb-8 rounded-xl bg-brand-50 p-6">
                             <p className="text-md text-tertiary">
                                 <strong className="text-primary">Last Updated:</strong> April 2025
                             </p>
                             <p className="mt-2 text-md text-tertiary">
                                 In accordance with Law No. 2004-575 of June 21, 2004 (LCEN - Loi pour la Confiance dans l'Économie Numérique), this page provides the legal information required for this website.
                             </p>
-                        </motion.div>
+                        </div>
 
                         <div className="space-y-10">
                             {sections.map((section, index) => (
-                                <motion.div
-                                    key={section.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                                >
+                                <div key={section.title}>
                                     <h2 className="text-xl font-semibold text-primary">
                                         {section.title}
                                     </h2>
                                     <div className="mt-4 whitespace-pre-line text-md leading-relaxed text-tertiary">
                                         {section.content}
                                     </div>
-                                </motion.div>
+                                </div>
                             ))}
                         </div>
                     </div>

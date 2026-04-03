@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Truck01, RefreshCcw01, Package, Clock, Globe01, CheckCircle, AlertCircle, File01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
@@ -64,31 +61,16 @@ export default function ShippingPage() {
                         </nav>
                         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
                             <div className="max-w-3xl">
-                                <motion.h1
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.1 }}
-                                    className="text-2xl font-semibold uppercase text-primary md:text-3xl"
-                                >
+                                <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
                                     Shipping & <span className="text-brand-600">Returns</span>
-                                </motion.h1>
-                                <motion.p
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.2 }}
-                                    className="mt-4 text-lg text-tertiary"
-                                >
+                                </h1>
+                                <p className="mt-4 text-lg text-tertiary">
                                     Fast shipping with tracking. 14-day legal withdrawal right for EU consumers.
-                                </motion.p>
+                                </p>
                             </div>
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                                className="hidden shrink-0 md:block"
-                            >
+                            <div className="hidden shrink-0 md:block">
                                 <RatingBadge rating={4.9} title="Free Shipping" subtitle="On orders over €20" />
-                            </motion.div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -97,11 +79,7 @@ export default function ShippingPage() {
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         {/* Shipping Options */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                        >
+                        <div>
                             <h2 className="text-2xl font-semibold text-primary">
                                 Shipping Options
                             </h2>
@@ -131,16 +109,10 @@ export default function ShippingPage() {
                                     </div>
                                 ))}
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* Delivery Zones */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="mt-16"
-                        >
+                        <div className="mt-16">
                             <div className="flex items-center gap-3">
                                 <Globe01 className="size-6 text-brand-600" />
                                 <h2 className="text-2xl font-semibold text-primary">
@@ -173,16 +145,10 @@ export default function ShippingPage() {
                                     </tbody>
                                 </table>
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* International Orders Section */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="mt-16"
-                        >
+                        <div className="mt-16">
                             <div className="flex items-center gap-3">
                                 <Globe01 className="size-6 text-purple-600" />
                                 <h2 className="text-2xl font-semibold text-primary">
@@ -268,16 +234,10 @@ export default function ShippingPage() {
                                     </ul>
                                 </div>
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* 14-Day Withdrawal Right - Legal Requirement */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="mt-16"
-                        >
+                        <div className="mt-16">
                             <div className="flex items-center gap-3">
                                 <File01 className="size-6 text-blue-600" />
                                 <h2 className="text-2xl font-semibold text-primary">
@@ -353,16 +313,10 @@ export default function ShippingPage() {
                                     ))}
                                 </ul>
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* Extended Returns Policy */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="mt-16"
-                        >
+                        <div className="mt-16">
                             <div className="flex items-center gap-3">
                                 <RefreshCcw01 className="size-6 text-brand-600" />
                                 <h2 className="text-2xl font-semibold text-primary">
@@ -407,16 +361,10 @@ export default function ShippingPage() {
                                     ))}
                                 </ul>
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* Return Process */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="mt-12"
-                        >
+                        <div className="mt-12">
                             <h3 className="text-xl font-semibold text-primary">
                                 How to Return an Item
                             </h3>
@@ -433,16 +381,10 @@ export default function ShippingPage() {
                                     </div>
                                 ))}
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* Refund Info */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="mt-12 rounded-2xl border border-secondary bg-primary p-6"
-                        >
+                        <div className="mt-12 rounded-2xl border border-secondary bg-primary p-6">
                             <div className="flex items-center gap-3">
                                 <Clock className="size-6 text-brand-600" />
                                 <h3 className="text-lg font-semibold text-primary">Refund Information</h3>
@@ -461,16 +403,10 @@ export default function ShippingPage() {
                                     <strong>Shipping costs:</strong> For legal withdrawals within 14 days, original standard shipping is refunded. Return shipping is paid by the customer unless the return is due to our error or a defective product.
                                 </p>
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* Service Cancellations */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="mt-12 rounded-2xl border border-secondary bg-secondary/30 p-6"
-                        >
+                        <div className="mt-12 rounded-2xl border border-secondary bg-secondary/30 p-6">
                             <div className="flex items-center gap-3">
                                 <Package className="size-6 text-brand-600" />
                                 <h3 className="text-lg font-semibold text-primary">Service Appointment Cancellations</h3>
@@ -489,21 +425,15 @@ export default function ShippingPage() {
                                     <strong>Eligibility refunds:</strong> If you are deemed ineligible for treatment after completing the health questionnaire, you will receive a full refund.
                                 </p>
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* Contact */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5 }}
-                            className="mt-12 text-center"
-                        >
+                        <div className="mt-12 text-center">
                             <h3 className="text-lg font-semibold text-primary">Questions?</h3>
                             <p className="mt-2 text-tertiary">
                                 Contact us at <a href="mailto:hello@prestigesmile.ch" className="text-brand-600 hover:underline">hello@prestigesmile.ch</a> or call <a href="tel:+41783000619" className="text-brand-600 hover:underline">+41 78 300 06 19</a>
                             </p>
-                        </motion.div>
+                        </div>
                     </div>
                 </section>
             </main>

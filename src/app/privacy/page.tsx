@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
@@ -452,31 +449,16 @@ export default function PrivacyPage() {
                         </nav>
                         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
                             <div className="max-w-3xl">
-                                <motion.h1
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.1 }}
-                                    className="text-2xl font-semibold uppercase text-primary md:text-3xl"
-                                >
+                                <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
                                     Privacy <span className="text-brand-600">Policy</span>
-                                </motion.h1>
-                                <motion.p
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.2 }}
-                                    className="mt-4 text-lg text-tertiary"
-                                >
+                                </h1>
+                                <p className="mt-4 text-lg text-tertiary">
                                     Politique de Confidentialité - How we protect your personal data under GDPR and French law.
-                                </motion.p>
+                                </p>
                             </div>
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                                className="hidden shrink-0 md:block"
-                            >
+                            <div className="hidden shrink-0 md:block">
                                 <RatingBadge rating={4.9} title="Data Protected" subtitle="GDPR Compliant" />
-                            </motion.div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -484,36 +466,25 @@ export default function PrivacyPage() {
                 {/* Content */}
                 <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
                     <div className="mx-auto max-w-7xl">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="mb-8 rounded-xl bg-brand-50 p-6"
-                        >
+                        <div className="mb-8 rounded-xl bg-brand-50 p-6">
                             <p className="text-md text-tertiary">
                                 <strong className="text-primary">Last Updated:</strong> April 2025
                             </p>
                             <p className="mt-2 text-md text-tertiary">
                                 This Privacy Policy explains how Prestige Smile collects, uses, and protects your personal data in compliance with the General Data Protection Regulation (GDPR) and French data protection laws (Loi Informatique et Libertés).
                             </p>
-                        </motion.div>
+                        </div>
 
                         <div className="space-y-10">
                             {sections.map((section, index) => (
-                                <motion.div
-                                    key={section.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                                >
+                                <div key={section.title}>
                                     <h2 className="text-xl font-semibold text-primary">
                                         {section.title}
                                     </h2>
                                     <div className="mt-4 whitespace-pre-line text-md leading-relaxed text-tertiary">
                                         {section.content}
                                     </div>
-                                </motion.div>
+                                </div>
                             ))}
                         </div>
                     </div>
