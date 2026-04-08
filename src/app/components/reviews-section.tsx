@@ -72,7 +72,7 @@ export function ReviewsSection() {
                 <div className="mt-8 text-center lg:hidden">
                     <a
                         href="/reviews"
-                        className="inline-block border border-gray-900 bg-transparent px-8 py-3 text-sm font-medium uppercase text-gray-900 transition duration-100 ease-linear hover:bg-gray-900 hover:text-white"
+                        className="block w-full border border-gray-900 bg-transparent px-8 py-3 text-center text-sm font-medium uppercase text-gray-900 transition duration-100 ease-linear hover:bg-gray-900 hover:text-white"
                     >
                         View All
                     </a>

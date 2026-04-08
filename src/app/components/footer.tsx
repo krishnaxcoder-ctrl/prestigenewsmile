@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram } from "@/components/foundations/social-icons";
+import { Instagram } from "@/components/foundations/social-icons";
 import { Phone01, Mail01, MarkerPin01, Clock } from "@untitledui/icons";
 
 const footerLinks = {
@@ -36,7 +36,6 @@ const footerLinks = {
 
 const socialLinks = [
 	{ icon: Instagram, href: "https://www.instagram.com/prestige.smile.studio/", label: "Instagram" },
-	{ icon: Facebook, href: "https://facebook.com", label: "Facebook" },
 ];
 
 const legalLinks = [

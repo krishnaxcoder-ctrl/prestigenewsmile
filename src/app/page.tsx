@@ -13,6 +13,7 @@ import { InstagramSection } from "./components/instagram-section";
 import { OpeningHoursSection } from "./components/opening-hours-section";
 import { PriceListSection } from "./components/price-list-section";
 import { ReviewsSection } from "./components/reviews-section";
+import { AboutSection } from "./components/about-section";
 import { ServiceMenuSection } from "./components/service-menu-section";
 import { ServicesSection } from "./components/services-section";
 import { TaglineSection } from "./components/tagline-section";
@@ -32,6 +33,7 @@ export default function Page() {
 				<FavoritePicksSection />
 				<FeaturesSection />
 
+				<AboutSection />
 				<ComparisonSlider />
 				<WhiteningResults />
 				<ReviewsSection />

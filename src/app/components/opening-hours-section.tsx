@@ -13,30 +13,48 @@ export function OpeningHoursSection() {
         <section className="bg-cover bg-center bg-no-repeat px-4 py-12 md:py-16" style={{ backgroundImage: "url('/bgreviewssection.webp')" }}>
             <div className="mx-auto grid max-w-5xl grid-cols-1 overflow-hidden rounded-2xl lg:grid-cols-2">
                 {/* Left - CTA */}
-                <div className="flex flex-col  justify-center bg-white px-10 py-14  text-left lg:py-20">
-                    <p
-                        className="text-sm  uppercase tracking-[0.3em] text-[#8b6b5a]"
-                    >
+                <div className="hidden flex-col justify-center bg-white px-5 py-10 text-left lg:flex lg:py-20">
+                    <p className="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">
                         Ready for a brighter smile?
                     </p>
 
-                    <div className="my-5 h-px w-16 bg-[#c9bdb3]" />
+                    <div className="my-5 h-px w-full bg-[#c9bdb3]" />
 
                     <h2
-                        className="text-3xl text-left font-medium leading-snug text-[#4a3728] xl:text-4xl"
+                        className="text-3xl font-medium leading-snug text-[#4a3728] xl:text-5xl"
                         style={{ fontFamily: "'Eyesome Script', cursive" }}
                     >
                         Book your whitening consultation today!
                     </h2>
 
-                    <div className="my-5 h-px w-16 bg-[#c9bdb3]" />
+                    <p className="mt-4 text-sm leading-relaxed text-[#8b6b5a]">
+                        Transform your smile with our professional teeth whitening treatments. Safe, effective, and tailored to your needs.
+                    </p>
 
-                    <div className="flex items-center gap-1">
-                        <svg className="size-8 text-[#c9bdb3]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 8 4 8 7c0 2 .5 4 1 5.5C7.5 14 6 16 6 18c0 2.5 2.5 4 6 4s6-1.5 6-4c0-2-1.5-4-3-5.5.5-1.5 1-3.5 1-5.5 0-3-1.5-5-4-5z" /></svg>
-                        <svg className="size-8 text-[#c9bdb3]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 8 4 8 7c0 2 .5 4 1 5.5C7.5 14 6 16 6 18c0 2.5 2.5 4 6 4s6-1.5 6-4c0-2-1.5-4-3-5.5.5-1.5 1-3.5 1-5.5 0-3-1.5-5-4-5z" /></svg>
-                        <svg className="ml-1 size-8 text-[#c9bdb3]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 8 4 8 7c0 2 .5 4 1 5.5C7.5 14 6 16 6 18c0 2.5 2.5 4 6 4s6-1.5 6-4c0-2-1.5-4-3-5.5.5-1.5 1-3.5 1-5.5 0-3-1.5-5-4-5z" /></svg>
-                        <svg className="size-8 text-[#c9bdb3]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 8 4 8 7c0 2 .5 4 1 5.5C7.5 14 6 16 6 18c0 2.5 2.5 4 6 4s6-1.5 6-4c0-2-1.5-4-3-5.5.5-1.5 1-3.5 1-5.5 0-3-1.5-5-4-5z" /></svg>
+                    <div className="my-5 h-px w-full bg-[#c9bdb3]" />
+
+                    {/* Features */}
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                            <div className="flex size-8 items-center justify-center rounded-full bg-[#f5efe9]">
+                                <svg className="size-4 text-[#8b6b5a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#5a4639]">Professional whitening in 30 minutes</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <div className="flex size-8 items-center justify-center rounded-full bg-[#f5efe9]">
+                                <svg className="size-4 text-[#8b6b5a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#5a4639]">Safe &amp; gentle on sensitive teeth</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <div className="flex size-8 items-center justify-center rounded-full bg-[#f5efe9]">
+                                <svg className="size-4 text-[#8b6b5a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#5a4639]">Up to 8 shades whiter</span>
+                        </div>
                     </div>
+
                 </div>
 
                 {/* Right - Opening Hours Card */}

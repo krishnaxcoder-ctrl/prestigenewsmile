@@ -211,8 +211,8 @@ export function FavoritePicksSection() {
 					</div>
 
 					{/* Columns 2 & 3 - Image Gallery (2x2 Grid) */}
-					<div className="lg:col-span-2">
-						<div className="grid grid-cols-2 gap-4 md:gap-6">
+					<div className="hidden lg:col-span-2 lg:block">
+						<div className=" grid grid-cols-2 gap-4 md:gap-6">
 							{galleryImages.map((image, index) => (
 								<div
 									key={index}
