@@ -1,10 +1,10 @@
 "use client";
 
 const blogPosts = [
-	{ id: 1, category: "Whitening", date: "Jan 15, 2026", title: "10 Tips for a Brighter, Whiter Smile", image: "https://mp-cms.medparkhospital.com/assets/bb4a30f0-af60-44ab-99cf-6a8ab20d016f/zoom-banner-1.jpeg", href: "/blog/brighter-smile-tips" },
-	{ id: 2, category: "Guide", date: "Jan 12, 2026", title: "What to Expect During Your Whitening Session", image: "https://mp-cms.medparkhospital.com/assets/7988113b-562a-4f03-94bc-e106ca849e75", href: "/blog/whitening-session-guide" },
-	{ id: 3, category: "Aftercare", date: "Jan 10, 2026", title: "How to Maintain Your Results After Treatment", image: "https://mp-cms.medparkhospital.com/assets/56b474a5-973a-468a-853c-a856f04f6060", href: "/blog/maintain-results" },
-	{ id: 4, category: "FAQ", date: "Jan 8, 2026", title: "Professional vs At-Home Whitening: The Truth", image: "https://mp-cms.medparkhospital.com/assets/fd8a0998-0ee8-4657-a6db-d92f0c167b13", href: "/blog/professional-vs-home" },
+	{ id: 1, category: "Whitening", date: "Jan 15, 2026", title: "10 Tips for a Brighter, Whiter Smile", image: "https://mp-cms.medparkhospital.com/assets/bb4a30f0-af60-44ab-99cf-6a8ab20d016f/zoom-banner-1.jpeg", href: "/articles/brighter-smile-tips" },
+	{ id: 2, category: "Guide", date: "Jan 12, 2026", title: "What to Expect During Your Whitening Session", image: "https://mp-cms.medparkhospital.com/assets/7988113b-562a-4f03-94bc-e106ca849e75", href: "/articles/whitening-session-guide" },
+	{ id: 3, category: "Aftercare", date: "Jan 10, 2026", title: "How to Maintain Your Results After Treatment", image: "https://mp-cms.medparkhospital.com/assets/56b474a5-973a-468a-853c-a856f04f6060", href: "/articles/maintain-results" },
+	{ id: 4, category: "FAQ", date: "Jan 8, 2026", title: "Professional vs At-Home Whitening: The Truth", image: "https://mp-cms.medparkhospital.com/assets/fd8a0998-0ee8-4657-a6db-d92f0c167b13", href: "/articles/professional-vs-home" },
 ];
 
 export function ArticlesSection() {
@@ -49,7 +49,7 @@ export function ArticlesSection() {
 				</div>
 				<div className="mt-16 text-center">
 					<a
-						href="/blog"
+						href="/articles"
 						className="inline-block border border-gray-900 bg-transparent px-12 py-4 text-sm uppercase tracking-[0.2em] text-gray-900 hover:bg-gray-900 hover:text-white"
 					>
 						View All Posts

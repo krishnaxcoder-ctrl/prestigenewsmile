@@ -5,7 +5,7 @@ const items = [
     {
         title: "Blog",
         subtitle: "The latest industry new and guides curated by our expert team.",
-        href: "/blog",
+        href: "/articles",
         Icon: BookClosed,
     },
     {

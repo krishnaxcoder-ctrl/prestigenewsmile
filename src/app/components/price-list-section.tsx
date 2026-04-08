@@ -35,10 +35,7 @@ export function PriceListSection() {
 							<div className="h-px w-16 bg-gradient-to-l from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
 						</div>
 
-						{/* Instagram handle */}
-						<div className="mt-6 inline-block rounded-full border border-[#C5B8B8] bg-[#E8E2DE] px-5 py-2">
-							<span className="text-sm text-[#8B7B7B]">@prestige.smile.studio</span>
-						</div>
+						
 					</div>
 
 					{/* Price items */}

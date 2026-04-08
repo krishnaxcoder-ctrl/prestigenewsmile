@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
 const treatments = [
   {
     id: 1,
@@ -67,18 +65,6 @@ const treatments = [
 ];
 
 export function WhiteningResults() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
-      { threshold: 0.15 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <>
       <style>{`
@@ -89,21 +75,6 @@ export function WhiteningResults() {
           border: 0.5px solid rgba(0,0,0,0.1);
           border-radius: 2px;
           overflow: hidden;
-          transition: transform 0.35s ease;
-          opacity: 0;
-          transform: translateY(24px);
-        }
-
-        .wt-card.visible {
-          animation: fadeUp 0.7s ease forwards;
-        }
-
-        .wt-card:nth-child(2).visible {
-          animation-delay: 0.15s;
-        }
-
-        .wt-card:hover {
-          transform: translateY(-5px) !important;
         }
 
         .wt-cta {
@@ -123,38 +94,6 @@ export function WhiteningResults() {
           text-transform: uppercase;
           cursor: pointer;
           border-radius: 8px;
-          transition: all 0.3s ease;
-          box-shadow: 0 2px 8px rgba(176, 144, 128, 0.15);
-        }
-
-        .wt-cta:hover {
-          background: #1a1a1a;
-          border-color: #1a1a1a;
-          color: #ffffff;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .wt-cta:active {
-          transform: translateY(0);
-        }
-
-        @keyframes fadeUp {
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes titleReveal {
-          from { opacity: 0; transform: translateY(16px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .wt-title-anim {
-          animation: titleReveal 0.8s ease forwards;
-        }
-
-        .wt-sub-anim {
-          animation: titleReveal 0.8s 0.15s ease forwards;
-          opacity: 0;
         }
 
         .wt-grid {
@@ -231,7 +170,6 @@ export function WhiteningResults() {
       `}</style>
 
       <section
-        ref={sectionRef}
         className="wt-section"
         style={{
           fontFamily: "'Jost', sans-serif",
@@ -241,7 +179,7 @@ export function WhiteningResults() {
         }}
       >
         {/* Header */}
-        <p className="wt-title-anim" style={{
+        <p style={{
           fontSize: 12,
           fontWeight: 500,
           letterSpacing: "0.25em",
@@ -254,7 +192,7 @@ export function WhiteningResults() {
           Client Transformations
         </p>
 
-        <h2 className="wt-title-anim" style={{
+        <h2 style={{
           fontFamily: "'Cormorant Garamond', serif",
           fontSize: "clamp(2rem, 5vw, 3rem)",
           fontWeight: 300,
@@ -268,7 +206,7 @@ export function WhiteningResults() {
           <em style={{ fontStyle: "italic", color: "#b09080" }}>Radiant Smiles</em>
         </h2>
 
-        <p className="wt-sub-anim" style={{
+        <p style={{
           fontSize: 13,
           fontWeight: 300,
           textAlign: "center",
@@ -290,7 +228,7 @@ export function WhiteningResults() {
         {/* Cards Grid */}
         <div className="wt-grid">
           {treatments.map((t) => (
-            <div key={t.id} className={`wt-card${visible ? " visible" : ""}`}>
+            <div key={t.id} className="wt-card">
               {/* Before / After image area */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", position: "relative" }}>
                 {/* Before */}
@@ -416,7 +354,7 @@ export function WhiteningResults() {
 
                 <button className="wt-cta">
                   Book Your Session
-                  <span style={{ marginLeft: 8, transition: "transform 0.2s" }}>→</span>
+                  <span style={{ marginLeft: 8 }}>→</span>
                 </button>
               </div>
             </div>
