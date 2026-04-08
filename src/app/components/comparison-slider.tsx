@@ -80,13 +80,12 @@ export function ComparisonSlider() {
                     {/* Before Image (Clipped) */}
                     <div
                         className="absolute inset-0 overflow-hidden"
-                        style={{ width: `${sliderPosition}%` }}
+                        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                     >
                         <img
                             src="/comparebefore.png"
                             alt="Before treatment"
-                            className="absolute inset-0 h-full object-cover"
-                            style={{ width: `${containerRef.current?.offsetWidth || 1000}px`, maxWidth: 'none' }}
+                            className="absolute inset-0 size-full object-cover"
                             draggable={false}
                         />
                     </div>
