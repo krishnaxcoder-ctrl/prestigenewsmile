@@ -30,8 +30,8 @@ export function ContactSection() {
                             <div>
                                 <h3 className="text-base font-semibold uppercase tracking-[0.15em] text-primary">Hours</h3>
                                 <div className="mt-2 space-y-1 text-lg text-tertiary">
-                                    <p>Mon – Fri: 10:00 am — 7:00 pm</p>
-                                    <p>Sat: 10:00 am — 5:00 pm</p>
+                                    <p>Mon – Fri: 10:00 am — 8:00 pm</p>
+                                    <p>Sat: 10:00 am — 7:00 pm</p>
                                     <p>Sun: Closed</p>
                                 </div>
                             </div>

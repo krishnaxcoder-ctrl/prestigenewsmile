@@ -88,8 +88,8 @@ export function HeroSection() {
                                     Hours
                                 </h3>
                                 <div className="mt-2 space-y-0.5">
-                                    <p className="text-sm text-white/80">Mon to Fri: 10:00 am — 7:00 pm</p>
-                                    <p className="text-sm text-white/80">Sat: 10:00 am — 5:00 pm</p>
+                                    <p className="text-sm text-white/80">Mon to Fri: 10:00 am — 8:00 pm</p>
+                                    <p className="text-sm text-white/80">Sat: 10:00 am — 7:00 pm</p>
                                     <p className="text-sm text-white/80">Sun: Closed</p>
                                 </div>
                             </div>
@@ -133,8 +133,8 @@ export function HeroSection() {
                         <div>
                             <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-primary">Hours</h3>
                             <div className="mt-1.5 space-y-0.5 text-sm text-tertiary">
-                                <p>Mon – Fri: 10:00 am — 7:00 pm</p>
-                                <p>Sat: 10:00 am — 5:00 pm</p>
+                                <p>Mon – Fri: 10:00 am — 8:00 pm</p>
+                                <p>Sat: 10:00 am — 7:00 pm</p>
                                 <p>Sun: Closed</p>
                             </div>
                         </div>
