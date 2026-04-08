@@ -3,8 +3,8 @@
 import { Star01 } from "@untitledui/icons";
 
 const testimonials = [
-    { id: 1, name: "Natalie Schaller", date: "04 July, 2025", avatar: "olivia-rhye", title: "Shiny Finds For Every Mood", content: "Great selection, excellent quality, my go-to store for all beauty needs. Highly recommend!", rating: 5 },
-    { id: 2, name: "Jhone Doe", date: "02 July, 2025", avatar: "phoenix-baker", title: "Perfect Pieces For Everyone", content: "Exceptional products, amazing customer service, and my skin has never looked better!", rating: 5 },
+    { id: 1, name: "Mélanie", date: "04 July, 2025", avatar: "olivia-rhye", title: "A Real Confidence Boost", content: "I'm honestly so impressed with the results of my teeth whitening session! I noticed a visible difference right after the treatment, my teeth look so much brighter but still natural. The entire process was comfortable, and the team made me feel at ease from start to finish. Highly recommend for anyone wanting a confidence boost in their smile!", rating: 5 },
+    { id: 2, name: "Leyna Gonzalez", date: "02 July, 2025", avatar: "phoenix-baker", title: "Un Sourire Incroyable", content: "Merci pour ta performance exceptionnelle ! Je suis absolument ravie du résultat, j'ai aujourd'hui un sourire incroyable, plus lumineux et plein de confiance. L'expérience a été très agréable du début à la fin, avec beaucoup de professionnalisme et d'attention aux détails. On sent vraiment la passion dans ton travail. Continue comme ça, tu fais un travail remarquable!", rating: 5 },
     { id: 3, name: "Sarah Mitchell", date: "28 June, 2025", avatar: "lana-steiner", title: "Amazing Transformation", content: "My teeth have never been whiter! The results exceeded my expectations. Will definitely come back!", rating: 5 },
     { id: 4, name: "Michael Chen", date: "25 June, 2025", avatar: "demi-wilkinson", title: "Professional & Friendly", content: "The staff was incredibly professional and made me feel comfortable throughout the entire process.", rating: 5 },
 ];
