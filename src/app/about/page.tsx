@@ -39,22 +39,10 @@ const values = [
 
 const team = [
     {
-        name: "Sophie Martin",
+        name: "Anaëlle",
         role: "Founder & CEO",
-        image: "https://randomuser.me/api/portraits/women/44.jpg",
-        bio: "With over 15 years in the beauty industry, Sophie founded Prestige Smile with a vision to make professional teeth whitening accessible to everyone.",
-    },
-    {
-        name: "Emma Laurent",
-        role: "Head of Product Development",
-        image: "https://randomuser.me/api/portraits/women/68.jpg",
-        bio: "Emma leads our R&D team, ensuring every product meets the highest standards of safety and efficacy.",
-    },
-    {
-        name: "Marie Dubois",
-        role: "Lead Specialist",
-        image: "https://randomuser.me/api/portraits/women/65.jpg",
-        bio: "Marie brings her expertise in cosmetic dentistry to help clients achieve their dream smile.",
+        image: "/client.webp",
+        bio: "Passionate about aesthetics and well-being, I founded Prestige Smile Studio with a clear vision: to offer everyone access to a brighter, more confident smile. Every session is tailored to your needs, using safe and effective techniques for visible results from the very first appointment.",
     },
 ];
 
@@ -64,12 +52,12 @@ export default function AboutPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+                <section className="border-b border-brand-400 bg-brand-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="uppercase transition hover:text-teal-600">Home</a>
+                            <a href="/" className="uppercase transition hover:text-brand-600">Home</a>
                             <span>/</span>
-                            <span className="uppercase text-teal-600">About</span>
+                            <span className="uppercase text-brand-600">About</span>
                         </nav>
                         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
                             <div className="max-w-3xl">
@@ -79,7 +67,7 @@ export default function AboutPage() {
                                     transition={{ duration: 0.5, delay: 0.1 }}
                                     className="text-2xl font-semibold uppercase text-primary md:text-3xl"
                                 >
-                                    About <span className="text-teal-600">Prestige Smile</span>
+                                    About <span className="text-brand-600">Prestige Smile</span>
                                 </motion.h1>
                                 <motion.p
                                     initial={{ opacity: 0, y: 20 }}
@@ -230,14 +218,14 @@ export default function AboutPage() {
                                 Our Team
                             </span>
                             <h2 className="text-2xl font-semibold text-primary md:text-3xl lg:text-4xl">
-                                Meet the Experts
+                                Meet the Founder
                             </h2>
                             <p className="mx-auto mt-4 max-w-2xl text-tertiary">
-                                Our dedicated team of professionals is committed to helping you achieve your best smile.
+                                The person behind Prestige Smile Studio, dedicated to helping you achieve your best smile.
                             </p>
                         </motion.div>
 
-                        <div className="mt-12 grid gap-8 md:grid-cols-3">
+                        <div className="mt-12 mx-auto max-w-sm">
                             {team.map((member, index) => (
                                 <motion.div
                                     key={member.name}
