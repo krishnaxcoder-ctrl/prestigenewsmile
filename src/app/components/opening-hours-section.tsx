@@ -13,22 +13,23 @@ export function OpeningHoursSection() {
         <section className="bg-cover bg-center bg-no-repeat px-4 py-12 md:py-16" style={{ backgroundImage: "url('/bgreviewssection.webp')" }}>
             <div className="mx-auto max-w-md">
                 {/* Card */}
-                <div className="relative rounded-2xl bg-[#d9cfc7] px-6 py-8 shadow-sm sm:px-10 sm:py-10">
+                <div className="relative rounded-2xl bg-[#e8dfd8] px-6 py-8 shadow-sm sm:px-10 sm:py-10">
                     {/* Pin decorations */}
                     <div className="absolute left-4 top-4 size-3 rounded-full bg-[#e8e0d0] shadow-inner sm:left-6 sm:top-6 sm:size-4" />
                     <div className="absolute right-4 top-4 size-3 rounded-full bg-[#e8e0d0] shadow-inner sm:right-6 sm:top-6 sm:size-4" />
 
                     {/* Title */}
                     <div className="mb-6 text-center sm:mb-8">
+                        <img src="/logo.svg" alt="Prestige Smile Studio" className="mx-auto mb-4 h-12 sm:h-16" />
                         <h2
-                            className="text-2xl font-medium uppercase tracking-[0.15em] text-[#5a3d2b] sm:text-3xl"
+                            className="text-4xl font-medium uppercase tracking-[0.15em] text-[#5a3d2b] sm:text-5xl"
                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                         >
                             Opening
                         </h2>
                         <p
-                            className="mt-0.5 text-lg italic text-[#8b6b5a] sm:text-xl"
-                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                            className="mt-0.5 text-5xl text-[#8b6b5a] sm:text-6xl"
+                            style={{ fontFamily: "'Abramo Script', cursive" }}
                         >
                             hours
                         </p>
