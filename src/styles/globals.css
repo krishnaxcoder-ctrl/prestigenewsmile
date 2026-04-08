@@ -2,6 +2,16 @@
 @import "./theme.css";
 @import "./typography.css";
 
+/* Abramo Font Family */
+@font-face {
+    font-family: "Abramo Script";
+    src: url("/Abramo-Font/Abramo Script.woff2") format("woff2"),
+         url("/Abramo-Font/Abramo Script.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Eyesome Font Family */
 @font-face {
     font-family: "Eyesome Script";

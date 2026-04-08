@@ -11,24 +11,48 @@ export function OpeningHoursSection() {
 
     return (
         <section className="bg-cover bg-center bg-no-repeat px-4 py-12 md:py-16" style={{ backgroundImage: "url('/bgreviewssection.webp')" }}>
-            <div className="mx-auto max-w-md">
-                {/* Card */}
-                <div className="relative rounded-2xl bg-[#d9cfc7] px-6 py-8 shadow-sm sm:px-10 sm:py-10">
-                    {/* Pin decorations */}
-                    <div className="absolute left-4 top-4 size-3 rounded-full bg-[#e8e0d0] shadow-inner sm:left-6 sm:top-6 sm:size-4" />
-                    <div className="absolute right-4 top-4 size-3 rounded-full bg-[#e8e0d0] shadow-inner sm:right-6 sm:top-6 sm:size-4" />
+            <div className="mx-auto grid max-w-5xl grid-cols-1 overflow-hidden rounded-2xl lg:grid-cols-2">
+                {/* Left - CTA */}
+                <div className="flex flex-col  justify-center bg-white px-10 py-14  text-left lg:py-20">
+                    <p
+                        className="text-sm  uppercase tracking-[0.3em] text-[#8b6b5a]"
+                    >
+                        Ready for a brighter smile?
+                    </p>
 
+                    <div className="my-5 h-px w-16 bg-[#c9bdb3]" />
+
+                    <h2
+                        className="text-3xl text-left font-medium leading-snug text-[#4a3728] xl:text-4xl"
+                        style={{ fontFamily: "'Eyesome Script', cursive" }}
+                    >
+                        Book your whitening consultation today!
+                    </h2>
+
+                    <div className="my-5 h-px w-16 bg-[#c9bdb3]" />
+
+                    <div className="flex items-center gap-1">
+                        <svg className="size-8 text-[#c9bdb3]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 8 4 8 7c0 2 .5 4 1 5.5C7.5 14 6 16 6 18c0 2.5 2.5 4 6 4s6-1.5 6-4c0-2-1.5-4-3-5.5.5-1.5 1-3.5 1-5.5 0-3-1.5-5-4-5z" /></svg>
+                        <svg className="size-8 text-[#c9bdb3]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 8 4 8 7c0 2 .5 4 1 5.5C7.5 14 6 16 6 18c0 2.5 2.5 4 6 4s6-1.5 6-4c0-2-1.5-4-3-5.5.5-1.5 1-3.5 1-5.5 0-3-1.5-5-4-5z" /></svg>
+                        <svg className="ml-1 size-8 text-[#c9bdb3]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 8 4 8 7c0 2 .5 4 1 5.5C7.5 14 6 16 6 18c0 2.5 2.5 4 6 4s6-1.5 6-4c0-2-1.5-4-3-5.5.5-1.5 1-3.5 1-5.5 0-3-1.5-5-4-5z" /></svg>
+                        <svg className="size-8 text-[#c9bdb3]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.5 2 8 4 8 7c0 2 .5 4 1 5.5C7.5 14 6 16 6 18c0 2.5 2.5 4 6 4s6-1.5 6-4c0-2-1.5-4-3-5.5.5-1.5 1-3.5 1-5.5 0-3-1.5-5-4-5z" /></svg>
+                    </div>
+                </div>
+
+                {/* Right - Opening Hours Card */}
+                <div className="bg-[#fcf5f0] px-6 py-8 sm:px-10 sm:py-10">
                     {/* Title */}
                     <div className="mb-6 text-center sm:mb-8">
+                        <img src="/logobookingnow1.png" alt="Prestige Smile Studio" className="mx-auto h-15 sm:h-10" />
                         <h2
-                            className="text-2xl font-medium uppercase tracking-[0.15em] text-[#5a3d2b] sm:text-3xl"
+                            className="text-3xl font-medium uppercase tracking-[0.15em] text-[#5a3d2b] sm:text-5xl"
                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                         >
                             Opening
                         </h2>
                         <p
-                            className="mt-0.5 text-lg italic text-[#8b6b5a] sm:text-xl"
-                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                            className="mt-1 text-6xl text-[#8b6b5a]"
+                            style={{ fontFamily: "'Abramo Script', cursive" }}
                         >
                             hours
                         </p>
@@ -48,23 +72,23 @@ export function OpeningHoursSection() {
                             </div>
                         ))}
                     </div>
-                </div>
 
-                {/* QR Code Section */}
-                <div className="mt-8 flex items-center justify-center gap-4 sm:gap-6">
-                    <div>
-                        <p className="text-lg font-bold text-primary sm:text-xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                            Scan here.
-                        </p>
-                        <p className="text-xs uppercase tracking-widest text-tertiary sm:text-sm">
-                            To book your<br />appointment.
-                        </p>
+                    {/* QR Code */}
+                    <div className="mt-8 flex items-center justify-center gap-4 sm:gap-6">
+                        <div>
+                            <p className="text-2xl font-bold text-primary sm:text-3xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                                Scan here.
+                            </p>
+                            <p className="text-sm uppercase tracking-widest text-tertiary sm:text-base">
+                                To book your<br />appointment.
+                            </p>
+                        </div>
+                        <img
+                            src="/qrcode.png"
+                            alt="QR code to book appointment"
+                            className="size-28 border-2 border-[#c9bdb3] sm:size-32"
+                        />
                     </div>
-                    <img
-                        src="/qrcode.png"
-                        alt="QR code to book appointment"
-                        className="size-20 sm:size-24"
-                    />
                 </div>
             </div>
         </section>

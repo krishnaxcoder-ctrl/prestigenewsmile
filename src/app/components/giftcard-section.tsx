@@ -41,7 +41,7 @@ export function GiftcardSection() {
 	}, [isDragging, activeIndex]);
 
 	return (
-		<section className="bg-primary">
+		<section className="bg-primary py-10">
 			<div className="grid grid-cols-1 lg:grid-cols-2">
 				<div className="order-2 flex flex-col justify-center px-6 py-10 md:px-12 md:py-16 lg:order-1 lg:py-30">
 					<div className="ml-auto max-w-[1400px] lg:px-20">
