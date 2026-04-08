@@ -8,7 +8,7 @@ export function AboutSection() {
                     <div className="relative mx-auto w-full max-w-sm md:max-w-none">
                         <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
                             <img
-                                src="/logobookingnow1.png"
+                                src="/client.webp"
                                 alt="Anaëlle - Prestige Smile Studio"
                                 className="size-full object-cover"
                             />

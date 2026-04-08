@@ -72,9 +72,9 @@ export function Footer() {
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label={social.label}
-										className="flex size-10 items-center justify-center rounded-full bg-primary text-secondary transition hover:bg-brand-100 hover:text-brand-600"
+										className="flex size-12 items-center justify-center rounded-full bg-primary text-secondary transition hover:bg-brand-100 hover:text-brand-600"
 									>
-										<social.icon className="size-5" />
+										<social.icon className="size-7" />
 									</a>
 								))}
 							</div>
@@ -156,7 +156,7 @@ export function Footer() {
 						<div className="flex items-center gap-3">
 							{socialLinks.map((social) => (
 								<a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label} className="text-secondary hover:text-primary">
-									<social.icon className="size-5" />
+									<social.icon className="size-7" />
 								</a>
 							))}
 						</div>
