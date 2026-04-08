@@ -281,7 +281,7 @@ export default function CheckoutPage() {
                         animate={{ opacity: 1, scale: 1 }}
                         className="mx-auto max-w-md px-4 py-16 text-center"
                     >
-                        <div className="mx-auto flex size-24 items-center justify-center rounded-full bg-gradient-to-br from-brand-50 to-teal-50">
+                        <div className="mx-auto flex size-24 items-center justify-center rounded-full bg-gradient-to-br from-brand-50 to-brand-50">
                             <Package className="size-12 text-brand-400" />
                         </div>
                         <h1 className="mt-6 text-2xl font-bold text-primary">Your cart is empty</h1>
@@ -545,8 +545,8 @@ export default function CheckoutPage() {
                                     transition={{ duration: 0.3, delay: 0.5 }}
                                     className={`mt-4 overflow-hidden rounded-xl p-4 ${
                                         shipping === 0
-                                            ? "bg-gradient-to-r from-success-50 to-teal-50 border border-success-200"
-                                            : "bg-gradient-to-r from-brand-50 to-teal-50 border border-brand-200"
+                                            ? "bg-gradient-to-r from-success-50 to-brand-50 border border-success-200"
+                                            : "bg-gradient-to-r from-brand-50 to-brand-50 border border-brand-200"
                                     }`}
                                 >
                                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

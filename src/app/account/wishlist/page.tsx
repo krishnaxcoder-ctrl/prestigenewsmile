@@ -131,18 +131,18 @@ export default function WishlistPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+                <section className="border-b border-brand-400 bg-brand-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="uppercase transition hover:text-teal-600">Home</a>
+                            <a href="/" className="uppercase transition hover:text-brand-600">Home</a>
                             <span>/</span>
-                            <a href="/account" className="uppercase transition hover:text-teal-600">Account</a>
+                            <a href="/account" className="uppercase transition hover:text-brand-600">Account</a>
                             <span>/</span>
-                            <span className="uppercase text-teal-600">Wishlist</span>
+                            <span className="uppercase text-brand-600">Wishlist</span>
                         </nav>
                         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
                             <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
-                                My <span className="text-teal-600">Wishlist</span>
+                                My <span className="text-brand-600">Wishlist</span>
                             </h1>
                             <div className="hidden shrink-0 md:block">
                                 <RatingBadge rating={4.9} title="Save Favorites" subtitle="Never Miss a Deal" />

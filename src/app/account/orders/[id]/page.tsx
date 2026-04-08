@@ -197,21 +197,21 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+                <section className="border-b border-brand-400 bg-brand-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="uppercase transition hover:text-teal-600">Home</a>
+                            <a href="/" className="uppercase transition hover:text-brand-600">Home</a>
                             <span>/</span>
-                            <a href="/account" className="uppercase transition hover:text-teal-600">Account</a>
+                            <a href="/account" className="uppercase transition hover:text-brand-600">Account</a>
                             <span>/</span>
-                            <a href="/account/orders" className="uppercase transition hover:text-teal-600">Orders</a>
+                            <a href="/account/orders" className="uppercase transition hover:text-brand-600">Orders</a>
                             <span>/</span>
-                            <span className="uppercase text-teal-600">{order.order_number}</span>
+                            <span className="uppercase text-brand-600">{order.order_number}</span>
                         </nav>
                         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                             <div>
                                 <h1 className="text-2xl font-semibold uppercase text-primary md:text-3xl">
-                                    Order <span className="text-teal-600">{order.order_number}</span>
+                                    Order <span className="text-brand-600">{order.order_number}</span>
                                 </h1>
                                 <p className="mt-1 text-tertiary">
                                     Placed on {formatDate(order.created_at)} at {formatTime(order.created_at)}

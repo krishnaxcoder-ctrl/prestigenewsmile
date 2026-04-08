@@ -368,8 +368,8 @@ export default function CartPage() {
                                         transition={{ duration: 0.3, delay: 0.5 }}
                                         className={`mt-4 overflow-hidden rounded-xl p-4 ${
                                             shipping === 0
-                                                ? "bg-gradient-to-r from-success-50 to-teal-50 border border-success-200"
-                                                : "bg-gradient-to-r from-brand-50 to-teal-50 border border-brand-200"
+                                                ? "bg-gradient-to-r from-success-50 to-brand-50 border border-success-200"
+                                                : "bg-gradient-to-r from-brand-50 to-brand-50 border border-brand-200"
                                         }`}
                                     >
                                         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -550,7 +550,7 @@ export default function CartPage() {
                                 transition={{ duration: 0.4 }}
                                 className="mx-auto max-w-md py-16 text-center"
                             >
-                                <div className="mx-auto flex size-32 items-center justify-center rounded-full bg-gradient-to-br from-brand-50 to-teal-50">
+                                <div className="mx-auto flex size-32 items-center justify-center rounded-full bg-gradient-to-br from-brand-50 to-brand-50">
                                     <ShoppingBag01 className="size-16 text-brand-400" />
                                 </div>
                                 <h2 className="mt-8 text-2xl font-bold text-primary">

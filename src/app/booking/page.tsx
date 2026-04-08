@@ -13,12 +13,12 @@ export default function BookingPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <section className="border-b border-teal-400 bg-teal-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
+                <section className="border-b border-brand-400 bg-brand-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="uppercase transition hover:text-teal-600">Home</a>
+                            <a href="/" className="uppercase transition hover:text-brand-600">Home</a>
                             <span>/</span>
-                            <span className="uppercase text-teal-600">Booking</span>
+                            <span className="uppercase text-brand-600">Booking</span>
                         </nav>
                         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
                             <div className="max-w-3xl">
@@ -28,7 +28,7 @@ export default function BookingPage() {
                                     transition={{ duration: 0.5, delay: 0.1 }}
                                     className="text-2xl font-semibold uppercase text-primary md:text-3xl"
                                 >
-                                    Book Your <span className="text-teal-600">Appointment</span>
+                                    Book Your <span className="text-brand-600">Appointment</span>
                                 </motion.h1>
                                 <motion.p
                                     initial={{ opacity: 0, y: 20 }}
