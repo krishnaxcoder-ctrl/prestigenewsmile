@@ -6,9 +6,9 @@ import { Phone01, Mail01, MarkerPin01, Clock } from "@untitledui/icons";
 
 const footerLinks = {
 	services: { title: "Services", links: [
-		{ label: "Radiance Session", href: "/about#services" },
+		{ label: "Initial Teeth Whitening Session", href: "/about#services" },
 		{ label: "Complete Treatment", href: "/about#services" },
-		{ label: "Maintenance Session", href: "/about#services" },
+		{ label: "Maintenance Session (Touch-up)", href: "/about#services" },
 		{ label: "Duo Offer", href: "/about#services" },
 		{ label: "Gift Cards", href: "/gift-cards" },
 	]},

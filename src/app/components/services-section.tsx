@@ -6,7 +6,7 @@ import { ArrowUpRight } from "@untitledui/icons";
 const categories = [
     {
         id: 1,
-        title: "RADIANCE SESSION",
+        title: "INITIAL TEETH WHITENING SESSION",
         description: "A first whitening or maintenance treatment. Results visible from the very first session with up to 7 shades lighter.",
         image: "/RADIANCE SESSION.png",
         href: "/services/radiance-session",
@@ -22,7 +22,7 @@ const categories = [
     },
     {
         id: 3,
-        title: "MAINTENANCE SESSION",
+        title: "MAINTENANCE SESSION (TOUCH-UP)",
         description: "Revive the radiance of your smile and prolong results. Recommended approximately 6 months after initial treatment.",
         image: "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?q=80&w=2070&auto=format&fit=crop",
         href: "/services/maintenance",

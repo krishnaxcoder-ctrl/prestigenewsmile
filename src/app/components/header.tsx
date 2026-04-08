@@ -29,9 +29,9 @@ const navItems = [
 const ServicesDropdown = () => {
     const columns = [
         { title: "Services", items: [
-            { label: "Radiance Session", description: "1 hour • CHF 99", href: "/about#services" },
+            { label: "Initial Teeth Whitening Session", description: "1 hour • CHF 99", href: "/about#services" },
             { label: "Complete Treatment", description: "2 sessions • CHF 169", href: "/about#services" },
-            { label: "Maintenance Session", description: "Touch-up • CHF 79", href: "/about#services" },
+            { label: "Maintenance Session (Touch-up)", description: "Touch-up • CHF 79", href: "/about#services" },
             { label: "Duo Offer", description: "2 people • -10%", href: "/about#services" },
             { label: "Gift Cards", description: "Perfect gift", href: "/gift-cards" },
         ]},
@@ -137,9 +137,9 @@ const LanguageSelector = () => {
 
 const mobileMenuSections = [
     { title: "Services", items: [
-        { label: "Radiance Session", href: "/about#services" },
+        { label: "Initial Teeth Whitening Session", href: "/about#services" },
         { label: "Complete Treatment", href: "/about#services" },
-        { label: "Maintenance Session", href: "/about#services" },
+        { label: "Maintenance Session (Touch-up)", href: "/about#services" },
         { label: "Duo Offer", href: "/about#services" },
         { label: "Gift Cards", href: "/gift-cards" },
     ]},

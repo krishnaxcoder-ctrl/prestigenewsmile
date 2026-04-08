@@ -13,7 +13,7 @@ const faqCategories = [
         faqs: [
             {
                 question: "How long does a teeth whitening session take?",
-                answer: "A typical teeth whitening session takes between 45 to 60 minutes. Our Radiance Session includes consultation, preparation, and the whitening treatment itself. For optimal results, we recommend the Complete Treatment which includes multiple sessions over several weeks.",
+                answer: "A typical teeth whitening session takes between 45 to 60 minutes. Our Initial Teeth Whitening Session includes consultation, preparation, and the whitening treatment itself. For optimal results, we recommend the Complete Treatment which includes multiple sessions over several weeks.",
             },
             {
                 question: "Is teeth whitening safe?",

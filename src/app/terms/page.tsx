@@ -27,9 +27,9 @@ We strive to provide accurate descriptions, images, and pricing for all products
 Our cosmetic teeth whitening services are NON-MEDICAL treatments performed by trained technicians. Services are subject to availability and eligibility requirements. Please refer to our Service Terms & Disclaimer for complete information.
 
 2.3 Service Offerings:
-• Radiance Session (1 session): €99
+• Initial Teeth Whitening Session (1 session): €99
 • Complete Treatment (2 sessions): €169
-• Maintenance Session: €79
+• Maintenance Session (Touch-up): €79
 • Duo Offer: 10% discount for two people
 
 2.4 Availability
