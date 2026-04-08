@@ -37,22 +37,15 @@ export function ReviewsSection() {
                     </div>
 
                     {/* Right Side - Testimonial Cards */}
-                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-5 md:gap-y-8">
+                    <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-2 md:gap-x-5 md:gap-y-8">
                         {testimonials.map((testimonial) => (
                             <div key={testimonial.id} className="relative bg-white border border-gray-200 py-5 pl-6 pr-5 before:absolute before:inset-y-0 before:left-0 before:w-1 before:rounded-full before:bg-gradient-to-b before:from-[#e8ddd5] before:via-[#d4c4b8] before:to-[#c5b5a8]">
-                                {/* Stars */}
-                                <div className="flex gap-0.5">
-                                    {[...Array(testimonial.rating)].map((_, i) => (
-                                        <Star01 key={i} className="size-4 fill-amber-400 text-amber-400" />
-                                    ))}
-                                </div>
-
                                 {/* Content */}
-                                <p className="mt-4 text-sm leading-relaxed text-tertiary">
+                                <p className="text-sm leading-relaxed text-tertiary">
                                     {testimonial.content}
                                 </p>
 
-                                {/* Author */}
+                                {/* Author & Stars */}
                                 <div className="mt-5 flex items-center gap-3">
                                     <img
                                         src={testimonial.avatar.startsWith("/") ? testimonial.avatar : `https://www.untitledui.com/images/avatars/${testimonial.avatar}`}
@@ -60,9 +53,14 @@ export function ReviewsSection() {
                                         className="size-14 shrink-0 object-cover"
                                         style={{ clipPath: "polygon(50% 0%, 59% 2%, 63% 8%, 71% 6%, 78% 12%, 80% 20%, 88% 22%, 92% 30%, 97% 37%, 100% 46%, 98% 55%, 100% 63%, 95% 70%, 92% 78%, 86% 82%, 80% 88%, 74% 92%, 66% 94%, 58% 98%, 50% 100%, 42% 98%, 34% 94%, 26% 92%, 20% 88%, 14% 82%, 8% 78%, 5% 70%, 0% 63%, 2% 55%, 0% 46%, 3% 37%, 8% 30%, 12% 22%, 20% 20%, 22% 12%, 29% 6%, 37% 8%, 41% 2%)" }}
                                     />
-                                    <div>
+                                    <div className="flex-1">
                                         <div className="text-base font-semibold text-primary">{testimonial.name}</div>
                                         <div className="text-xs text-brand-600">{testimonial.date}</div>
+                                    </div>
+                                    <div className="flex gap-0.5">
+                                        {[...Array(testimonial.rating)].map((_, i) => (
+                                            <Star01 key={i} className="size-4 fill-amber-400 text-amber-400" />
+                                        ))}
                                     </div>
                                 </div>
                             </div>
