@@ -29,7 +29,8 @@ export function InstagramSection() {
                 </h2>
                 <p className="mt-3 text-md text-tertiary">@prestige.smile.studio</p>
             </div>
-            <div className="grid grid-cols-2 gap-2 md:grid-cols-6">
+            </div>
+            <div className="grid grid-cols-2 gap-[5px] md:grid-cols-6">
                 {instagramPosts.map((post) => (
                     <a
                         key={post.id}
@@ -63,7 +64,6 @@ export function InstagramSection() {
                 >
                     Follow Us
                 </a>
-            </div>
             </div>
         </section>
     );
