@@ -47,7 +47,8 @@
       "WebFetch(domain:www.legifrance.gouv.fr)",
       "WebFetch(domain:www.cnil.fr)",
       "WebFetch(domain:ec.europa.eu)",
-      "WebFetch(domain:consumer-redress.ec.europa.eu)"
+      "WebFetch(domain:consumer-redress.ec.europa.eu)",
+      "Bash(xargs grep:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
