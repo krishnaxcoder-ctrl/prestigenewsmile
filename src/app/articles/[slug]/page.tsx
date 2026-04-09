@@ -246,7 +246,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 							<span className="rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
 								{post.category}
 							</span>
-							<h1 className="mt-4 max-w-4xl text-2xl font-light text-white sm:text-3xl lg:text-4xl xl:text-5xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+							<h1 className="mt-4 max-w-6xl text-2xl font-light text-white sm:text-3xl lg:text-4xl xl:text-5xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
 								{post.title}
 							</h1>
 						</div>
@@ -255,7 +255,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
 				{/* Meta bar */}
 				<section className="border-b border-secondary bg-white">
-					<div className="mx-auto flex max-w-7xl flex-wrap items-center gap-4 px-4 py-4 sm:gap-6 sm:px-6 lg:px-8">
+					<div className="mx-auto flex max-w-screen-2xl flex-wrap items-center gap-4 px-4 py-4 sm:gap-6 sm:px-6 lg:px-8">
 						<div className="flex items-center gap-3">
 							<div className="flex size-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white">
 								{post.authorInitials}
@@ -282,8 +282,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 				</section>
 
 				{/* Content */}
-				<section className="bg-white py-12 sm:py-16">
-					<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<section className="bg-white py-12 sm:py-8">
+					<div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
 						<div className="grid gap-10 lg:grid-cols-[1fr_360px]">
 							{/* Article */}
 							<article className="space-y-6">
@@ -409,7 +409,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 				{/* Related Posts Grid */}
 				{relatedPosts.length > 0 && (
 					<section className="border-t border-secondary bg-[#faf8f5] py-16 sm:py-20">
-						<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+						<div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
 							<div className="text-center">
 								<h2 className="text-2xl font-normal tracking-tight text-primary sm:text-3xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
 									Related <span className="font-medium italic text-brand-600">Articles</span>
