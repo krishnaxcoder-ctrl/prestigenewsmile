@@ -9,7 +9,7 @@ const testimonials = [
     { id: 3, name: "Gianni Di Dio", date: "", avatar: "/avatar1.png", title: "", content: "Un grand merci à Anaëlle pour l'accueil, son professionnalisme. Explique bien les procédures. Très précises dans son travail. Dents blanches dès la première séance. Après 2 séances, il y a une grande différence avec des dents éclatantes. Prix très abordable. Je recommande vivement.", rating: 5 },
     { id: 4, name: "Hamza Khouadra", date: "", avatar: "/avatar2.webp", title: "", content: "Un service 5 étoiles, impeccable et très professionnel. Vous pouvez y aller les yeux fermés. Je suis très satisfait du résultat et je reviendrai sans aucun doute Merci beaucoup !", rating: 5 },
     { id: 5, name: "Pierre Nivoliez", date: "", avatar: "/avatar1.png", title: "", content: "Anaelle est très attentionnée et professionnelle. Bonne expérience, je recommande ses services.", rating: 5 },
-    { id: 6, name: "Houda Rhoualem", date: "", avatar: "/avatar2.webp", title: "", content: "J'ai réalisé un blanchiment dentaire chez Anaëlle et je suis absolument ravie du résultat ! Elle est très professionnelle, douce et à l'écoute. Elle a pris le temps de bien expliquer chaque étape du soin et de répondre à toutes mes questions, le résultat est naturel et visible dès la première séance. Le cadre est propre, agréable et très apaisant. Je recommande sans hésiter à toute personne souhaitant un sourire plus éclatant tout en passant un moment agréable. Merci encore Anaëlle pour ton excellent travail !", rating: 5 },
+    { id: 6, name: "Houda Rhoualem", date: "", avatar: "/avatar2.webp", title: "", content: "J'ai réalisé un blanchiment dentaire chez Anaëlle et je suis absolument ravie du résultat ! Elle est très professionnelle, douce et à l'écoute. Elle a pris le temps de bien expliquer chaque étape du soin et de répondre à toutes mes questions, le résultat est naturel et visible dès la première séance. Le cadre est propre, agréable et très apaisant. Je recommande sans hésiter à toute personne souhaitant un sourire plus éclatant tout en passant un moment agréable.", rating: 5 },
     { id: 7, name: "Jessy Collard", date: "", avatar: "/avatar1.png", title: "", content: "Très satisfait de mon expérience chez Prestige Smile. Prestation professionnelle, explications claires et résultat visible dès la première séance, sans douleur.", rating: 5 },
     { id: 8, name: "Anaïs Mouttet", date: "", avatar: "/avatar2.webp", title: "", content: "Je recommande à 100%! Le résultat est juste incroyable. Je recommande vivement les yeux fermés : tout est absolument au top, que ce soit la qualité du travail, le professionnalisme ou encore l'attention portée aux détails et au confort. On se sent vraiment entre de bonnes mains du début à la fin. Merci encore pour cette superbe expérience !", rating: 5 },
     { id: 9, name: "Tressy Fantasia", date: "", avatar: "/avatar1.png", title: "", content: "Super service mes dents sont super blanche, Et Ana été très professionnel et à l'écoute. Merci", rating: 5 },
@@ -96,12 +96,17 @@ export function ReviewsSection() {
 
                                     {/* Author & Stars */}
                                     <div className="mt-5 flex items-center gap-3">
-                                        <img
-                                            src={testimonial.avatar.startsWith("/") ? testimonial.avatar : `https://www.untitledui.com/images/avatars/${testimonial.avatar}`}
-                                            alt={testimonial.name}
-                                            className="size-14 shrink-0 object-cover"
-                                            style={{ clipPath: "polygon(50% 0%, 59% 2%, 63% 8%, 71% 6%, 78% 12%, 80% 20%, 88% 22%, 92% 30%, 97% 37%, 100% 46%, 98% 55%, 100% 63%, 95% 70%, 92% 78%, 86% 82%, 80% 88%, 74% 92%, 66% 94%, 58% 98%, 50% 100%, 42% 98%, 34% 94%, 26% 92%, 20% 88%, 14% 82%, 8% 78%, 5% 70%, 0% 63%, 2% 55%, 0% 46%, 3% 37%, 8% 30%, 12% 22%, 20% 20%, 22% 12%, 29% 6%, 37% 8%, 41% 2%)" }}
-                                        />
+                                        {testimonial.id <= 2 ? (
+                                            <img
+                                                src={testimonial.avatar}
+                                                alt={testimonial.name}
+                                                className="size-14 shrink-0 rounded-full object-cover"
+                                            />
+                                        ) : (
+                                            <div className="flex size-14 shrink-0 items-center justify-center rounded-full bg-[#f5efe9] text-xl font-semibold text-[#8b6b5a]">
+                                                {testimonial.name.charAt(0).toUpperCase()}
+                                            </div>
+                                        )}
                                         <div className="flex-1">
                                             <div className="text-base font-semibold text-primary">{testimonial.name}</div>
                                             {testimonial.date && <div className="text-xs text-brand-600">{testimonial.date}</div>}

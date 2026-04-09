@@ -63,7 +63,7 @@ export function OpeningHoursSection() {
                     <div className="mb-6 text-center sm:mb-8">
                         <img src="/logobookingnow1.png" alt="Prestige Smile Studio" className="mx-auto h-15 sm:h-10" />
                         <h2
-                            className="text-3xl font-medium uppercase tracking-[0.15em] text-[#5a3d2b] sm:text-5xl"
+                            className="mt-3 text-3xl font-medium uppercase tracking-[0.15em] text-[#5a3d2b] sm:text-5xl"
                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                         >
                             Opening

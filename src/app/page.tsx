@@ -17,6 +17,7 @@ import { AboutSection } from "./components/about-section";
 import { ServiceMenuSection } from "./components/service-menu-section";
 import { ServicesSection } from "./components/services-section";
 import { TaglineSection } from "./components/tagline-section";
+import { WhiteningInfoSection } from "./components/whitening-info-section";
 import { WhiteningResults } from "@/components/whitening-results";
 
 export default function Page() {
@@ -34,6 +35,7 @@ export default function Page() {
 				<FeaturesSection />
 
 				<AboutSection />
+				<WhiteningInfoSection />
 				<ComparisonSlider />
 				<WhiteningResults />
 				<ReviewsSection />
