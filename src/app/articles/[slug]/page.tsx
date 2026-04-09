@@ -255,7 +255,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
 				{/* Meta bar */}
 				<section className="border-b border-secondary bg-white">
-					<div className="mx-auto flex max-w-7xl flex-wrap items-center gap-4 px-4 py-4 sm:gap-6 sm:px-6 lg:px-8">
+					<div className="mx-auto flex max-w-screen-2xl flex-wrap items-center gap-4 px-4 py-4 sm:gap-6 sm:px-6 lg:px-8">
 						<div className="flex items-center gap-3">
 							<div className="flex size-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white">
 								{post.authorInitials}
@@ -282,8 +282,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 				</section>
 
 				{/* Content */}
-				<section className="bg-white py-12 sm:py-8 ">
-					<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+				<section className="bg-white py-12 sm:py-8">
+					<div className="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
 						<div className="grid gap-10 lg:grid-cols-[1fr_360px]">
 							{/* Article */}
 							<article className="min-w-0 space-y-6">
