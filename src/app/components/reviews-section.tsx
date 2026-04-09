@@ -1,6 +1,7 @@
 "use client";
 
 import { Star01 } from "@untitledui/icons";
+import { useEffect, useCallback, useState } from "react";
 
 const testimonials = [
     { id: 1, name: "Mélanie", date: "04 July, 2025", avatar: "/avatar1.png", title: "A Real Confidence Boost", content: "I'm honestly so impressed with the results of my teeth whitening session! I noticed a visible difference right after the treatment, my teeth look so much brighter but still natural. The entire process was comfortable, and the team made me feel at ease from start to finish. Highly recommend for anyone wanting a confidence boost in their smile!", rating: 5 },
@@ -17,7 +18,44 @@ const testimonials = [
     { id: 12, name: "Mélanie Favre-Bonvin", date: "", avatar: "/avatar2.webp", title: "", content: "Résultat bluffant après un blanchiment au fauteuil (3 × 15 min). Dents beaucoup plus lumineuses, teinte uniforme, tâches disparues (environ 7 teintes gagnées). Anaëlle est consciencieuse et très professionnelle, avec une excellente protection des gencives. Intervention rapide pour un résultat exceptionnel. Je recommande", rating: 5 },
 ];
 
+// Group testimonials into pairs
+function getPairs<T>(arr: T[]): T[][] {
+    const pairs: T[][] = [];
+    for (let i = 0; i < arr.length; i += 2) {
+        pairs.push(arr.slice(i, i + 2));
+    }
+    return pairs;
+}
+
 export function ReviewsSection() {
+    const pairs = getPairs(testimonials);
+    const [current, setCurrent] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+
+    const goToNext = useCallback(() => {
+        setIsTransitioning(true);
+        setTimeout(() => {
+            setCurrent((prev) => (prev + 1) % pairs.length);
+            setIsTransitioning(false);
+        }, 300);
+    }, [pairs.length]);
+
+    const goToPrev = useCallback(() => {
+        setIsTransitioning(true);
+        setTimeout(() => {
+            setCurrent((prev) => (prev - 1 + pairs.length) % pairs.length);
+            setIsTransitioning(false);
+        }, 300);
+    }, [pairs.length]);
+
+    // Auto-advance every 5 seconds
+    useEffect(() => {
+        const interval = setInterval(goToNext, 5000);
+        return () => clearInterval(interval);
+    }, [goToNext]);
+
+    const currentPair = pairs[current];
+
     return (
         <section className="bg-[#faf8f6] px-4 py-16 md:px-8 md:py-20 lg:px-16">
             <div className="mx-auto max-w-[1400px]">
@@ -46,35 +84,65 @@ export function ReviewsSection() {
                         </a>
                     </div>
 
-                    {/* Right Side - Testimonial Cards */}
-                    <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-2 md:gap-x-5 md:gap-y-8">
-                        {testimonials.map((testimonial) => (
-                            <div key={testimonial.id} className="relative bg-white border border-gray-200 py-5 pl-6 pr-5 before:absolute before:inset-y-0 before:left-0 before:w-1 before:rounded-full before:bg-gradient-to-b before:from-[#e8ddd5] before:via-[#d4c4b8] before:to-[#c5b5a8]">
-                                {/* Content */}
-                                <p className="text-sm leading-relaxed text-tertiary">
-                                    {testimonial.content}
-                                </p>
+                    {/* Right Side - Carousel */}
+                    <div>
+                        <div className={`grid grid-cols-1 items-start gap-5 md:grid-cols-2 md:gap-x-5 md:gap-y-8 transition-opacity duration-300 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
+                            {currentPair.map((testimonial) => (
+                                <div key={testimonial.id} className="relative flex h-72 flex-col bg-white border border-gray-200 py-5 pl-6 pr-5 before:absolute before:inset-y-0 before:left-0 before:w-1 before:rounded-full before:bg-gradient-to-b before:from-[#e8ddd5] before:via-[#d4c4b8] before:to-[#c5b5a8]">
+                                    {/* Content */}
+                                    <p className="flex-1 overflow-hidden text-sm leading-relaxed text-tertiary line-clamp-6">
+                                        {testimonial.content}
+                                    </p>
 
-                                {/* Author & Stars */}
-                                <div className="mt-5 flex items-center gap-3">
-                                    <img
-                                        src={testimonial.avatar.startsWith("/") ? testimonial.avatar : `https://www.untitledui.com/images/avatars/${testimonial.avatar}`}
-                                        alt={testimonial.name}
-                                        className="size-14 shrink-0 object-cover"
-                                        style={{ clipPath: "polygon(50% 0%, 59% 2%, 63% 8%, 71% 6%, 78% 12%, 80% 20%, 88% 22%, 92% 30%, 97% 37%, 100% 46%, 98% 55%, 100% 63%, 95% 70%, 92% 78%, 86% 82%, 80% 88%, 74% 92%, 66% 94%, 58% 98%, 50% 100%, 42% 98%, 34% 94%, 26% 92%, 20% 88%, 14% 82%, 8% 78%, 5% 70%, 0% 63%, 2% 55%, 0% 46%, 3% 37%, 8% 30%, 12% 22%, 20% 20%, 22% 12%, 29% 6%, 37% 8%, 41% 2%)" }}
-                                    />
-                                    <div className="flex-1">
-                                        <div className="text-base font-semibold text-primary">{testimonial.name}</div>
-                                        <div className="text-xs text-brand-600">{testimonial.date}</div>
-                                    </div>
-                                    <div className="flex gap-0.5">
-                                        {[...Array(testimonial.rating)].map((_, i) => (
-                                            <Star01 key={i} className="size-4 fill-amber-400 text-amber-400" />
-                                        ))}
+                                    {/* Author & Stars */}
+                                    <div className="mt-5 flex items-center gap-3">
+                                        <img
+                                            src={testimonial.avatar.startsWith("/") ? testimonial.avatar : `https://www.untitledui.com/images/avatars/${testimonial.avatar}`}
+                                            alt={testimonial.name}
+                                            className="size-14 shrink-0 object-cover"
+                                            style={{ clipPath: "polygon(50% 0%, 59% 2%, 63% 8%, 71% 6%, 78% 12%, 80% 20%, 88% 22%, 92% 30%, 97% 37%, 100% 46%, 98% 55%, 100% 63%, 95% 70%, 92% 78%, 86% 82%, 80% 88%, 74% 92%, 66% 94%, 58% 98%, 50% 100%, 42% 98%, 34% 94%, 26% 92%, 20% 88%, 14% 82%, 8% 78%, 5% 70%, 0% 63%, 2% 55%, 0% 46%, 3% 37%, 8% 30%, 12% 22%, 20% 20%, 22% 12%, 29% 6%, 37% 8%, 41% 2%)" }}
+                                        />
+                                        <div className="flex-1">
+                                            <div className="text-base font-semibold text-primary">{testimonial.name}</div>
+                                            {testimonial.date && <div className="text-xs text-brand-600">{testimonial.date}</div>}
+                                        </div>
+                                        <div className="flex gap-0.5">
+                                            {[...Array(testimonial.rating)].map((_, i) => (
+                                                <Star01 key={i} className="size-4 fill-amber-400 text-amber-400" />
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
+                            ))}
+                        </div>
+
+                        {/* Carousel Controls */}
+                        <div className="mt-6 flex items-center justify-between">
+                            {/* Dots */}
+                            <div className="flex gap-2">
+                                {pairs.map((_, i) => (
+                                    <button
+                                        key={i}
+                                        onClick={() => { setIsTransitioning(true); setTimeout(() => { setCurrent(i); setIsTransitioning(false); }, 300); }}
+                                        className={`size-2.5 rounded-full transition-all duration-200 ${i === current ? "bg-brand-600 w-6 rounded-full" : "bg-[#d4c4b8]"}`}
+                                    />
+                                ))}
                             </div>
-                        ))}
+
+                            {/* Arrows */}
+                            <div className="flex gap-2">
+                                <button onClick={goToPrev} className="flex size-10 items-center justify-center border border-gray-200 bg-white transition duration-100 ease-linear hover:bg-gray-50">
+                                    <svg className="size-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                                <button onClick={goToNext} className="flex size-10 items-center justify-center border border-gray-200 bg-white transition duration-100 ease-linear hover:bg-gray-50">
+                                    <svg className="size-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
