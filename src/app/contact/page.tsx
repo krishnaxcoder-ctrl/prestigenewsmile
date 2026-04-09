@@ -55,6 +55,8 @@ export default function ContactPage() {
         message: "",
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -62,11 +64,28 @@ export default function ContactPage() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitted(true);
-        setTimeout(() => setIsSubmitted(false), 5000);
-        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+        setIsLoading(true);
+        setError("");
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (!res.ok) throw new Error("Failed to send message");
+
+            setIsSubmitted(true);
+            setTimeout(() => setIsSubmitted(false), 5000);
+            setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+        } catch {
+            setError("Failed to send message. Please try again or contact us directly.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -257,14 +276,20 @@ export default function ContactPage() {
                                                 isRequired
                                             />
 
+                                            {error && (
+                                                <p className="text-sm text-error-500">{error}</p>
+                                            )}
+
                                             <Button
                                                 type="submit"
                                                 color="primary"
                                                 size="lg"
                                                 iconLeading={Send01}
                                                 className="w-full justify-center"
+                                                isLoading={isLoading}
+                                                isDisabled={isLoading}
                                             >
-                                                Send Message
+                                                {isLoading ? "Sending..." : "Send Message"}
                                             </Button>
                                         </form>
                                     )}
