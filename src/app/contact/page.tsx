@@ -76,7 +76,10 @@ export default function ContactPage() {
                 body: JSON.stringify(formData),
             });
 
-            if (!res.ok) throw new Error("Failed to send message");
+            if (!res.ok) {
+                const errData = await res.json();
+                throw new Error(errData.error || "Failed to send message");
+            }
 
             setIsSubmitted(true);
             setTimeout(() => setIsSubmitted(false), 5000);

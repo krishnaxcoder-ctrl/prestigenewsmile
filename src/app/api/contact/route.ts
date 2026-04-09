@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
 
 const transporter = nodemailer.createTransport({
-    host: "smtp.zoho.eu",
+    host: "smtp.zoho.in",
     port: 465,
     secure: true,
     auth: {
@@ -96,9 +96,10 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({ success: true });
     } catch (error) {
-        console.error("Contact email error:", error);
+        const message = error instanceof Error ? error.message : String(error);
+        console.error("Contact email error:", message);
         return NextResponse.json(
-            { error: "Failed to send message" },
+            { error: message },
             { status: 500 }
         );
     }
