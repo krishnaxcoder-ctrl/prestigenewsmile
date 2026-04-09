@@ -1,7 +1,15 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+    host: "smtp.zoho.com",
+    port: 465,
+    secure: true,
+    auth: {
+        user: process.env.ZOHO_EMAIL,
+        pass: process.env.ZOHO_PASSWORD,
+    },
+});
 
 interface OrderEmailData {
     orderNumber: string;
@@ -147,19 +155,14 @@ export async function POST(request: NextRequest) {
 </html>
         `;
 
-        const { data: emailResponse, error } = await resend.emails.send({
-            from: "Prestige Smile Orders <onboarding@resend.dev>",
+        const info = await transporter.sendMail({
+            from: `Prestige Smile Orders <${process.env.ZOHO_EMAIL}>`,
             to: "casethemesstudio@gmail.com",
             subject: `New Order #${data.orderNumber} - ${data.customerName}`,
             html: emailHtml,
         });
 
-        if (error) {
-            console.error("Resend error:", error);
-            return NextResponse.json({ error: error.message }, { status: 500 });
-        }
-
-        return NextResponse.json({ success: true, data: emailResponse });
+        return NextResponse.json({ success: true, data: { messageId: info.messageId } });
     } catch (error) {
         console.error("Email send error:", error);
         return NextResponse.json(
