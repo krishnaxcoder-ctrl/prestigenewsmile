@@ -204,9 +204,26 @@ const MobileNav = () => {
                     </li>
                 ))}
             </ul>
-            <div className="flex flex-col gap-3 border-t border-secondary p-4">
-                <Button href="/contact" size="lg">Book Your Session</Button>
-                <Button href="tel:+41783000619" color="secondary" size="lg">Call +41 78 300 06 19</Button>
+            <div className="border-t border-secondary">
+                {/* Language selector */}
+                <div className="flex items-center gap-2 border-b border-secondary px-4 py-3">
+                    <Globe02 className="size-4 text-tertiary" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-tertiary">Language</span>
+                    <div className="ml-auto flex gap-1">
+                        {languages.map((lang) => (
+                            <button
+                                key={lang.id}
+                                className="rounded-md px-3 py-1.5 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary"
+                            >
+                                {lang.flag} {lang.label}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+                <div className="flex flex-col gap-3 p-4">
+                    <Button href="/contact" size="lg">Book Your Session</Button>
+                    <Button href="tel:+41783000619" color="secondary" size="lg">Call +41 78 300 06 19</Button>
+                </div>
             </div>
         </nav>
     );
@@ -248,7 +265,6 @@ export const Header = () => {
                         </ul>
                     </nav>
                     <div className="flex items-center gap-1 sm:gap-2">
-                        <LanguageSelector />
                         <a href="tel:+41783000619" className="hidden items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary lg:flex">
                             +41 78 300 06 19
                         </a>
