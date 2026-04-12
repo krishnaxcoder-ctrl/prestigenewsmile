@@ -31,12 +31,11 @@ export function WhiteningInfoSection() {
         <section className="bg-[#faf8f6] px-4 py-16 md:px-8 md:py-24">
             <div className="mx-auto max-w-7xl">
                 {/* Section header */}
-                <div className="mb-14 text-center">
-                    <p className="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">
+                <div className="mb-6 text-center">
+                    <p className="text-sm uppercase mb-4  tracking-[0.3em] text-[#8b6b5a]">
                         Tout savoir
                     </p>
-                    <div className="mx-auto my-4 h-px w-16 bg-[#c9bdb3]" />
-                    <h2
+                        <h2
                         className="text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
                         style={{ fontFamily: "'Cormorant Garamond', serif" }}
                     >
@@ -61,18 +60,12 @@ export function WhiteningInfoSection() {
                                 className="aspect-[4/5] w-full object-cover object-[center_65%]"
                             />
                             {/* Bottom bar */}
-                            <div className="flex items-center justify-between bg-[#8b6b5a] px-6 py-4">
+                            <div className="flex items-center bg-[#8b6b5a] px-6 py-4">
                                 <span
-                                    className="text-[13px] italic tracking-wide text-white/70"
+                                    className="text-[16px] italic tracking-wide text-white/70"
                                     style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                 >
                                     @prestige.smile.studio
-                                </span>
-                                <span
-                                    className="text-2xl font-extralight tracking-[0.25em] text-white/50"
-                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                >
-                                    PS
                                 </span>
                             </div>
                         </div>
@@ -84,11 +77,11 @@ export function WhiteningInfoSection() {
                             {items.map((item, i) => (
                                 <div
                                     key={item.number}
-                                    className={`${i < items.length - 1 ? "border-b border-[#e0d5ce]" : ""}`}
+                                    className={`${i < items.length - 1 ? "" : ""}`}
                                 >
-                                    <div className="py-8 lg:py-10">
+                                    <div className="py-2 lg:py-2">
                                         {/* Number + Title row */}
-                                        <div className="mb-4 flex items-start gap-5">
+                                        <div className="mb-2 flex items-start gap-4">
                                             <span
                                                 className="text-[48px] font-light leading-none text-[#c9bdb3] lg:text-[56px]"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
