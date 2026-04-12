@@ -55,7 +55,7 @@ export function WhiteningInfoSection() {
                     <div className="lg:sticky lg:top-24 lg:col-span-5">
                         <div className="overflow-hidden rounded-2xl shadow-xl">
                             <img
-                                src="/bigwhite.jpg"
+                                src="/Toutsavoirbg.png"
                                 alt="Beautiful smile"
                                 className="aspect-[4/5] w-full object-cover object-[center_65%]"
                             />

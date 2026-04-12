@@ -1,97 +1,139 @@
 "use client";
 
 const priceItems = [
-	{ id: 1, name: "Séance de blanchiment dentaire", price: "99 CHF / €", variant: "beige", highlighted: true },
-	{ id: 2, name: "Traitement complet - 2 séances", price: "169 CHF / €", variant: "mauve", highlighted: false },
-	{ id: 3, name: "Séance d'entretien", price: "79 CHF / €", variant: "beige", highlighted: false },
-	{ id: 4, name: "Avantage Duo / Couple", price: "-10%", variant: "mauve", highlighted: false },
+    { id: 1, name: "Séance de blanchiment dentaire", price: "99 CHF / €", highlighted: true },
+    { id: 2, name: "Traitement complet - 2 séances", price: "169 CHF / €", highlighted: false },
+    { id: 3, name: "Séance d'entretien", price: "79 CHF / €", highlighted: false },
+    { id: 4, name: "Avantage Duo / Couple", price: "-10%", highlighted: false },
 ];
 
 const paymentMethods = ["Twint", "Révolut", "Cash"];
 
 export function PriceListSection() {
-	return (
-		<section className="bg-[#F9F7F5]">
-			{/* Top accent line with glow animation */}
-			<div className="h-[2px] w-full animate-[glow_2s_ease-in-out] bg-[#8B6F6F] shadow-[0_0_10px_rgba(139,111,111,0.8)]" />
+    return (
+        <section className="bg-[#F9F7F5]">
+            {/* Top accent line */}
+            <div className="h-[2px] w-full bg-[#8B6F6F] shadow-[0_0_10px_rgba(139,111,111,0.8)]" />
 
-			<div className="mx-auto max-w-[1400px] px-4 py-16 md:px-8 md:py-24">
-				<div className="mx-auto w-full max-w-xl">
-					{/* Header */}
-					<div className="mb-10 text-center">
-						<p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">Our Pricing</p>
-						<h2 className="mt-4 text-3xl font-light text-[#5D4E4E] md:text-4xl lg:text-5xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-							Price{" "}
-							<span className="italic text-brand-600">List</span>
-						</h2>
-						<p className="mt-3 text-lg text-[#8B6F6F] md:text-xl">
-							Teeth Whitening Services
-						</p>
+            <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-8 md:py-24">
+                {/* Desktop: 2-column layout */}
+                <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-20">
+                    {/* Left - Header & payment */}
+                    <div className="lg:col-span-5">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b6b5a]">
+                            Our Pricing
+                        </p>
+                        <h2
+                            className="mt-4 text-4xl font-light text-[#4a3728] md:text-5xl lg:text-6xl"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                            Price{" "}
+                            <span
+                                className="italic"
+                                style={{ fontFamily: "'Eyesome Script', cursive" }}
+                            >
+                                List
+                            </span>
+                        </h2>
+                        <p
+                            className="mt-3 text-lg text-[#8b6b5a] lg:text-xl"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                            Teeth Whitening Services
+                        </p>
 
-						{/* Decorative Divider */}
-						<div className="mt-6 flex items-center justify-center gap-4">
-							<div className="h-px w-16 bg-gradient-to-r from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
-							<div className="size-2 rotate-45 border border-brand-600/60" />
-							<div className="h-px w-16 bg-gradient-to-l from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
-						</div>
+                        {/* Decorative divider */}
+                        <div className="my-8 h-px w-20 bg-[#c9bdb3]" />
 
-						
-					</div>
+                        <p
+                            className="text-[15px] leading-relaxed text-[#8b6b5a]"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                            Des tarifs transparents pour un sourire éclatant. Chaque séance est réalisée avec des produits professionnels dans un cadre confortable et sécurisé.
+                        </p>
 
-					{/* Price items */}
-					<div className="space-y-4">
-						{priceItems.map((item) =>
-							item.highlighted ? (
-								<div
-									key={item.id}
-									className="rounded-lg p-[3px] shadow-[0_0_20px_rgba(212,175,55,0.4)]"
-									style={{
-										backgroundImage: "url('https://img.freepik.com/free-vector/gold-metal-background_78370-154.jpg?semt=ais_hybrid&w=740&q=80')",
-										backgroundSize: "cover",
-										backgroundPosition: "center",
-									}}
-								>
-									<div className={`flex items-center justify-between rounded-md px-6 py-5 ${
-										item.variant === "mauve" ? "bg-[#D4C4C4]" : "bg-[#EDE7E2]"
-									}`}>
-										<span className="text-base font-medium text-[#5D4E4E] md:text-lg">{item.name}</span>
-										<span className="text-base font-semibold text-[#5D4E4E] md:text-lg">{item.price}</span>
-									</div>
-								</div>
-							) : (
-								<div
-									key={item.id}
-									className={`flex items-center justify-between rounded-lg px-6 py-5 ${
-										item.variant === "mauve"
-											? "bg-[#D4C4C4]"
-											: "bg-[#EDE7E2]"
-									}`}
-								>
-									<span className="text-base font-medium text-[#5D4E4E] md:text-lg">{item.name}</span>
-									<span className="text-base font-semibold text-[#5D4E4E] md:text-lg">{item.price}</span>
-								</div>
-							)
-						)}
-					</div>
+                        {/* Payment methods */}
+                        <div className="mt-8">
+                            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#8b6b5a]">
+                                Moyens de paiement
+                            </p>
+                            <div className="flex items-center gap-3">
+                                {paymentMethods.map((method) => (
+                                    <span
+                                        key={method}
+                                        className="rounded-full border border-[#c9bdb3] bg-white px-4 py-1.5 text-[13px] font-medium text-[#5a4639]"
+                                    >
+                                        {method}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
 
-					{/* Payment methods */}
-					<div className="mt-10 text-center">
-						<div className="flex items-center justify-center gap-2 text-sm text-[#8B7B7B]">
-							{paymentMethods.map((method, index) => (
-								<span key={method} className="flex items-center gap-2">
-									{method}
-									{index < paymentMethods.length - 1 && <span className="text-[#C5B8B8]">•</span>}
-								</span>
-							))}
-						</div>
-					</div>
-				</div>
-			</div>
+                    {/* Right - Price cards */}
+                    <div className="lg:col-span-7">
+                        <div className="space-y-4">
+                            {priceItems.map((item) => (
+                                <div
+                                    key={item.id}
+                                    className={`group relative overflow-hidden rounded-xl transition-all duration-200 ${
+                                        item.highlighted
+                                            ? "shadow-lg shadow-[#8b6b5a]/10"
+                                            : "hover:shadow-md hover:shadow-[#8b6b5a]/5"
+                                    }`}
+                                >
+                                    {/* Gold border for highlighted */}
+                                    {item.highlighted && (
+                                        <div
+                                            className="absolute inset-0 rounded-xl p-[2px]"
+                                            style={{
+                                                background: "linear-gradient(135deg, #d4af37, #f5e6a3, #d4af37)",
+                                            }}
+                                        >
+                                            <div className="size-full rounded-[10px] bg-white" />
+                                        </div>
+                                    )}
 
-			{/* Bottom accent line with glow animation */}
-			<div className="h-[2px] w-full animate-[glow_2s_ease-in-out] bg-[#8B6F6F] shadow-[0_0_10px_rgba(139,111,111,0.8)]" />
-		</section>
-	);
+                                    <div
+                                        className={`relative flex items-center justify-between rounded-xl px-7 py-6 lg:px-8 lg:py-7 ${
+                                            item.highlighted
+                                                ? "bg-transparent"
+                                                : "border border-[#e8e0d8] bg-white"
+                                        }`}
+                                    >
+                                        <div className="flex items-center gap-4">
+                                            {item.highlighted && (
+                                                <span className="flex size-6 items-center justify-center text-[14px]">
+                                                    &#9733;
+                                                </span>
+                                            )}
+                                            <span
+                                                className="text-[16px] font-medium text-[#4a3728] lg:text-[18px]"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                {item.name}
+                                            </span>
+                                        </div>
+                                        <span
+                                            className={`shrink-0 text-right text-[18px] font-semibold lg:text-[22px] ${
+                                                item.highlighted ? "text-[#8b6b5a]" : "text-[#4a3728]"
+                                            }`}
+                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                        >
+                                            {item.price}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Bottom accent line */}
+            <div className="h-[2px] w-full bg-[#8B6F6F] shadow-[0_0_10px_rgba(139,111,111,0.8)]" />
+        </section>
+    );
 }
 
 export default PriceListSection;
