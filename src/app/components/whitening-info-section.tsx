@@ -30,27 +30,30 @@ export function WhiteningInfoSection() {
     return (
         <section className="bg-[#faf8f6] px-4 py-16 md:px-8 md:py-24">
             <div className="mx-auto max-w-7xl">
-                <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
-                    {/* Left col - Title + Image */}
-                    <div className="lg:sticky lg:top-24 lg:col-span-5">
-                        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">
-                            Tout savoir
-                        </p>
-                        <h2
-                            className="text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
-                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                        >
-                            5 Choses à savoir sur le
-                        </h2>
-                        <h2
-                            className="mt-1 text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
-                            style={{ fontFamily: "'Eyesome Script', cursive" }}
-                        >
-                            blanchiment dentaire
-                        </h2>
+                {/* Top - Title */}
+                <div className="mb-10 text-center lg:mb-14">
+                    <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">
+                        Tout savoir
+                    </p>
+                    <h2
+                        className="text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
+                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    >
+                        5 Choses à savoir sur le
+                    </h2>
+                    <h2
+                        className="mt-1 text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
+                        style={{ fontFamily: "'Eyesome Script', cursive" }}
+                    >
+                        blanchiment dentaire
+                    </h2>
+                </div>
 
-                        {/* Image */}
-                        <div className="mt-8 overflow-hidden rounded-2xl shadow-xl">
+                {/* Bottom - 2 columns: image left, items right */}
+                <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
+                    {/* Left - Image */}
+                    <div className="lg:sticky lg:top-24 lg:col-span-5">
+                        <div className="overflow-hidden rounded-2xl shadow-xl">
                             <img
                                 src="/bigwhite.jpg"
                                 alt="Beautiful smile"
@@ -67,14 +70,11 @@ export function WhiteningInfoSection() {
                         </div>
                     </div>
 
-                    {/* Right col - Items */}
+                    {/* Right - Items */}
                     <div className="lg:col-span-7">
-                        {items.map((item, i) => (
-                            <div
-                                key={item.number}
-                                className={i < items.length - 1 ? "border-b border-[#e0d5ce]" : ""}
-                            >
-                                <div className="py-6 lg:py-8">
+                        {items.map((item) => (
+                            <div key={item.number}>
+                                <div className="py-3 lg:py-4">
                                     <div className="flex items-start gap-4">
                                         <span
                                             className="text-[48px] font-light leading-none text-[#c9bdb3] lg:text-[56px]"
