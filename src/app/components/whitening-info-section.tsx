@@ -30,36 +30,32 @@ export function WhiteningInfoSection() {
     return (
         <section className="bg-[#faf8f6] px-4 py-16 md:px-8 md:py-24">
             <div className="mx-auto max-w-7xl">
-                {/* Section header */}
-                <div className="mb-6 text-center">
-                    <p className="text-sm uppercase mb-4  tracking-[0.3em] text-[#8b6b5a]">
-                        Tout savoir
-                    </p>
-                        <h2
-                        className="text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
-                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                    >
-                        5 Choses à savoir sur le
-                    </h2>
-                    <h2
-                        className="mt-1 text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
-                        style={{ fontFamily: "'Eyesome Script', cursive" }}
-                    >
-                        blanchiment dentaire
-                    </h2>
-                </div>
-
-                {/* Desktop layout */}
                 <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
-                    {/* Left - Sticky image card */}
+                    {/* Left col - Title + Image */}
                     <div className="lg:sticky lg:top-24 lg:col-span-5">
-                        <div className="overflow-hidden rounded-2xl shadow-xl">
+                        <p className="mb-4 text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">
+                            Tout savoir
+                        </p>
+                        <h2
+                            className="text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                            5 Choses à savoir sur le
+                        </h2>
+                        <h2
+                            className="mt-1 text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
+                            style={{ fontFamily: "'Eyesome Script', cursive" }}
+                        >
+                            blanchiment dentaire
+                        </h2>
+
+                        {/* Image */}
+                        <div className="mt-8 overflow-hidden rounded-2xl shadow-xl">
                             <img
                                 src="/bigwhite.jpg"
                                 alt="Beautiful smile"
                                 className="aspect-[4/5] w-full object-cover object-[center_65%]"
                             />
-                            {/* Bottom bar */}
                             <div className="flex items-center bg-[#8b6b5a] px-6 py-4">
                                 <span
                                     className="text-[16px] italic tracking-wide text-white/70"
@@ -71,42 +67,39 @@ export function WhiteningInfoSection() {
                         </div>
                     </div>
 
-                    {/* Right - Items */}
+                    {/* Right col - Items */}
                     <div className="lg:col-span-7">
-                        <div className="space-y-0">
-                            {items.map((item, i) => (
-                                <div
-                                    key={item.number}
-                                    className={`${i < items.length - 1 ? "" : ""}`}
-                                >
-                                    <div className="py-2 lg:py-2">
-                                        {/* Number + Title row */}
-                                        <div className="mb-2 flex items-start gap-4">
-                                            <span
-                                                className="text-[48px] font-light leading-none text-[#c9bdb3] lg:text-[56px]"
+                        {items.map((item, i) => (
+                            <div
+                                key={item.number}
+                                className={i < items.length - 1 ? "border-b border-[#e0d5ce]" : ""}
+                            >
+                                <div className="py-6 lg:py-8">
+                                    <div className="flex items-start gap-4">
+                                        <span
+                                            className="text-[48px] font-light leading-none text-[#c9bdb3] lg:text-[56px]"
+                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                        >
+                                            {String(item.number).padStart(2, "0")}
+                                        </span>
+                                        <div className="pt-2">
+                                            <h3
+                                                className="text-[17px] font-semibold uppercase tracking-[0.1em] text-[#4a3728] lg:text-[19px]"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                             >
-                                                {String(item.number).padStart(2, "0")}
-                                            </span>
-                                            <div className="pt-2">
-                                                <h3
-                                                    className="text-[17px] font-semibold uppercase tracking-[0.1em] text-[#4a3728] lg:text-[19px]"
-                                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                                >
-                                                    {item.title}
-                                                </h3>
-                                                <p
-                                                    className="mt-3 text-[14px] leading-[1.9] text-[#8b6b5a] lg:text-[15px]"
-                                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                                >
-                                                    {item.text}
-                                                </p>
-                                            </div>
+                                                {item.title}
+                                            </h3>
+                                            <p
+                                                className="mt-3 text-[14px] leading-[1.9] text-[#8b6b5a] lg:text-[15px]"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                {item.text}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
