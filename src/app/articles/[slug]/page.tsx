@@ -1,234 +1,152 @@
+"use client";
+
+import { useEffect, useState, use } from "react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
+import { getPublishedBlogPostBySlug, getPublishedBlogPosts, type BlogPost, type BlogContentBlock } from "@/lib/supabase";
 
-const blogPosts: Record<
-	string,
-	{
-		title: string;
-		category: string;
-		date: string;
-		readTime: string;
-		author: string;
-		authorRole: string;
-		authorInitials: string;
-		heroImage: string;
-		content: { type: "paragraph" | "heading" | "list" | "callout"; text: string; items?: string[] }[];
-		relatedSlugs: string[];
-	}
-> = {
-	"brighter-smile-tips": {
-		title: "10 Tips for a Brighter, Whiter Smile",
-		category: "Whitening",
-		date: "Jan 15, 2026",
-		readTime: "8 min read",
-		author: "Prestige Smile",
-		authorRole: "Dental Aesthetics Team",
-		authorInitials: "PS",
-		heroImage: "https://mp-cms.medparkhospital.com/assets/bb4a30f0-af60-44ab-99cf-6a8ab20d016f/zoom-banner-1.jpeg",
-		content: [
-			{ type: "paragraph", text: "A bright, white smile can boost your confidence and make a lasting first impression. Whether you're preparing for a special event or simply want to enhance your everyday look, these expert tips will help you achieve and maintain a radiant smile." },
-			{ type: "heading", text: "1. Schedule a Professional Whitening Session" },
-			{ type: "paragraph", text: "Nothing beats the results of a professional teeth whitening treatment. At Prestige Smile, our LED-accelerated whitening sessions can brighten your teeth by several shades in just one visit. Professional treatments are safer and more effective than over-the-counter products." },
-			{ type: "heading", text: "2. Brush Twice Daily with Whitening Toothpaste" },
-			{ type: "paragraph", text: "Use a whitening toothpaste with gentle abrasives and hydrogen peroxide. Brush for at least two minutes, covering all surfaces of your teeth. An electric toothbrush can provide more consistent cleaning than manual brushing." },
-			{ type: "heading", text: "3. Avoid Staining Foods and Drinks" },
-			{ type: "list", text: "", items: [
-				"Coffee and tea — the tannins cling to tooth enamel and cause yellowing",
-				"Red wine — one of the most common culprits for tooth stains",
-				"Dark berries and sauces (soy sauce, balsamic vinegar, tomato sauce)",
-				"Curry and turmeric-based dishes",
-				"Sugary sodas and energy drinks that erode enamel",
-			] },
-			{ type: "heading", text: "4. Drink Through a Straw" },
-			{ type: "paragraph", text: "When you do enjoy staining beverages, using a straw minimises contact with your teeth. This simple habit can significantly reduce surface staining over time." },
-			{ type: "heading", text: "5. Rinse After Eating" },
-			{ type: "paragraph", text: "Swish water around your mouth after meals to wash away food particles and acids. Wait 30 minutes before brushing to avoid damaging softened enamel." },
-			{ type: "heading", text: "6. Don't Skip Flossing" },
-			{ type: "paragraph", text: "Flossing removes plaque and staining particles between teeth that your toothbrush can't reach. Floss at least once a day for the best results." },
-			{ type: "heading", text: "7. Quit Smoking" },
-			{ type: "paragraph", text: "Tobacco is one of the worst offenders for tooth discolouration. The tar and nicotine in cigarettes cause stubborn yellow and brown stains that are difficult to remove even with professional cleaning." },
-			{ type: "heading", text: "8. Eat Crunchy Fruits and Vegetables" },
-			{ type: "paragraph", text: "Apples, celery, carrots, and raw cauliflower act as natural tooth scrubbers. Their crisp texture helps remove surface stains and stimulates saliva production, which naturally cleanses your mouth." },
-			{ type: "heading", text: "9. Schedule Regular Touch-Up Sessions" },
-			{ type: "callout", text: "At Prestige Smile, we recommend a professional touch-up session every 6 to 12 months to maintain your results. Our team will assess your teeth and recommend the ideal frequency based on your lifestyle and habits." },
-			{ type: "heading", text: "10. Stay Hydrated" },
-			{ type: "paragraph", text: "Drinking plenty of water throughout the day helps keep your mouth clean and supports saliva production. Saliva is your body's natural defence against staining and tooth decay." },
-			{ type: "paragraph", text: "A brighter smile is within reach. Combine these daily habits with professional whitening treatments at Prestige Smile for the best, longest-lasting results." },
-		],
-		relatedSlugs: ["whitening-session-guide", "maintain-results", "professional-vs-home"],
-	},
-	"whitening-session-guide": {
-		title: "What to Expect During Your Whitening Session",
-		category: "Guide",
-		date: "Jan 12, 2026",
-		readTime: "6 min read",
-		author: "Prestige Smile",
-		authorRole: "Dental Aesthetics Team",
-		authorInitials: "PS",
-		heroImage: "https://mp-cms.medparkhospital.com/assets/7988113b-562a-4f03-94bc-e106ca849e75",
-		content: [
-			{ type: "paragraph", text: "If you're considering a professional teeth whitening treatment, you might be wondering what the experience is actually like. At Prestige Smile, we want you to feel fully informed and comfortable before your visit. Here's a step-by-step guide to what happens during a whitening session." },
-			{ type: "heading", text: "Before Your Appointment" },
-			{ type: "list", text: "", items: [
-				"Brush and floss your teeth normally before arriving",
-				"Avoid very hot or cold foods if you have sensitive teeth",
-				"Let us know about any dental work (crowns, veneers, fillings) as these won't whiten",
-				"Come with clean, makeup-free lips for the best results",
-			] },
-			{ type: "heading", text: "Step 1: Consultation and Shade Assessment" },
-			{ type: "paragraph", text: "Your session begins with a brief consultation. Our specialist will examine your teeth, discuss your whitening goals, and take a shade reading so you can see your before-and-after results clearly." },
-			{ type: "heading", text: "Step 2: Preparation" },
-			{ type: "paragraph", text: "We apply a protective barrier to your gums to shield them from the whitening gel. A comfortable lip retractor is placed to keep your mouth open and your teeth accessible throughout the treatment." },
-			{ type: "heading", text: "Step 3: Whitening Gel Application" },
-			{ type: "paragraph", text: "A professional-grade hydrogen peroxide or carbamide peroxide gel is carefully applied to each tooth. This gel breaks down stains at a molecular level, penetrating the enamel to lift discolouration from within." },
-			{ type: "heading", text: "Step 4: LED Light Activation" },
-			{ type: "paragraph", text: "Our advanced LED light is positioned over your teeth to accelerate the whitening process. The light activates the gel, allowing it to work faster and more effectively. Each light cycle typically lasts 15 to 20 minutes." },
-			{ type: "callout", text: "Most clients relax, listen to music, or simply rest during the LED cycles. The treatment is completely painless for the vast majority of people." },
-			{ type: "heading", text: "Step 5: Results and Aftercare" },
-			{ type: "paragraph", text: "After the final cycle, we remove the gel and protective barriers. You'll immediately see a noticeable difference in your smile. We'll take a final shade reading and provide you with aftercare instructions to maximise the longevity of your results." },
-			{ type: "heading", text: "How Long Does It Take?" },
-			{ type: "paragraph", text: "A full whitening session at Prestige Smile takes approximately 60 to 90 minutes. You'll walk out with a visibly brighter smile in just one visit — no multiple appointments required." },
-			{ type: "heading", text: "Is It Safe?" },
-			{ type: "paragraph", text: "Absolutely. Professional teeth whitening is one of the safest cosmetic dental procedures when performed by trained specialists. Our products are EU-approved and our team follows strict safety protocols to protect your teeth and gums." },
-		],
-		relatedSlugs: ["brighter-smile-tips", "maintain-results", "professional-vs-home"],
-	},
-	"maintain-results": {
-		title: "How to Maintain Your Results After Treatment",
-		category: "Aftercare",
-		date: "Jan 10, 2026",
-		readTime: "5 min read",
-		author: "Prestige Smile",
-		authorRole: "Dental Aesthetics Team",
-		authorInitials: "PS",
-		heroImage: "https://mp-cms.medparkhospital.com/assets/56b474a5-973a-468a-853c-a856f04f6060",
-		content: [
-			{ type: "paragraph", text: "Congratulations on your brighter smile! A professional whitening treatment delivers impressive results, but how long those results last depends largely on your aftercare routine. Follow these guidelines to keep your teeth looking their best for as long as possible." },
-			{ type: "heading", text: "The First 48 Hours Are Critical" },
-			{ type: "paragraph", text: "Right after your whitening treatment, your teeth are more porous and susceptible to staining. The first 48 hours are the most important period for protecting your results." },
-			{ type: "heading", text: "The White Diet: What to Eat and Avoid" },
-			{ type: "paragraph", text: "For the first 48 hours after treatment, stick to white or light-coloured foods and drinks. This is sometimes called the 'white diet'." },
-			{ type: "list", text: "Foods to enjoy:", items: [
-				"White rice, pasta, and bread",
-				"Chicken, fish, and egg whites",
-				"Bananas, apples (peeled), and pears",
-				"Milk, water, and clear/white drinks",
-				"Plain yoghurt and white cheese",
-			] },
-			{ type: "list", text: "Foods to avoid:", items: [
-				"Coffee, tea, and red wine",
-				"Dark sauces (soy, tomato, balsamic)",
-				"Berries, beetroot, and dark fruits",
-				"Coloured sweets and fizzy drinks",
-				"Tobacco products of any kind",
-			] },
-			{ type: "heading", text: "Long-Term Maintenance Tips" },
-			{ type: "list", text: "", items: [
-				"Brush twice daily with a whitening toothpaste",
-				"Floss daily to prevent plaque build-up between teeth",
-				"Use a straw for coffee, tea, and other staining drinks",
-				"Rinse your mouth with water after consuming staining foods",
-				"Visit your dentist for regular cleanings every 6 months",
-				"Avoid smoking — it's the fastest way to undo your results",
-			] },
-			{ type: "heading", text: "When to Schedule a Touch-Up" },
-			{ type: "callout", text: "We recommend a professional touch-up every 6 to 12 months, depending on your diet and lifestyle. Book your next session at Prestige Smile to keep your smile at its brightest. Call us at +41 78 300 06 19 or book online." },
-			{ type: "heading", text: "How Long Do Results Last?" },
-			{ type: "paragraph", text: "With proper care, professional whitening results can last anywhere from 6 months to 2 years. Lifestyle factors like diet, smoking, and oral hygiene habits play the biggest role in how quickly stains return." },
-			{ type: "paragraph", text: "Your smile is an investment — protect it with good habits and regular professional care. At Prestige Smile, we're here to help you maintain your results for the long term." },
-		],
-		relatedSlugs: ["brighter-smile-tips", "whitening-session-guide", "professional-vs-home"],
-	},
-	"professional-vs-home": {
-		title: "Professional vs At-Home Whitening: The Truth",
-		category: "FAQ",
-		date: "Jan 8, 2026",
-		readTime: "7 min read",
-		author: "Prestige Smile",
-		authorRole: "Dental Aesthetics Team",
-		authorInitials: "PS",
-		heroImage: "https://mp-cms.medparkhospital.com/assets/fd8a0998-0ee8-4657-a6db-d92f0c167b13",
-		content: [
-			{ type: "paragraph", text: "With so many whitening products available — from strips and trays to charcoal powders and LED kits — it can be hard to know which option is right for you. Let's break down the key differences between professional in-studio whitening and at-home alternatives." },
-			{ type: "heading", text: "Professional Whitening: The Gold Standard" },
-			{ type: "paragraph", text: "Professional teeth whitening performed by trained specialists uses higher-concentration whitening agents combined with advanced LED technology. This combination delivers dramatic results in a single session that at-home products simply cannot match." },
-			{ type: "list", text: "Advantages of professional whitening:", items: [
-				"Results visible immediately — teeth can lighten several shades in one session",
-				"Higher-concentration gels that are only available to professionals",
-				"Custom application ensures even, consistent whitening across all teeth",
-				"Gum protection applied before treatment to prevent sensitivity",
-				"Supervised by trained specialists who can adjust the treatment to your needs",
-				"Safe, EU-approved products and equipment",
-			] },
-			{ type: "heading", text: "At-Home Whitening Products" },
-			{ type: "paragraph", text: "Over-the-counter whitening products have improved over the years, but they come with significant limitations compared to professional treatments." },
-			{ type: "list", text: "Common at-home options:", items: [
-				"Whitening strips — low-concentration peroxide, results take 1 to 2 weeks",
-				"Whitening toothpaste — removes surface stains only, doesn't change tooth colour",
-				"Charcoal products — can actually damage enamel with excessive use",
-				"At-home LED kits — much weaker light and gel than professional systems",
-				"Custom trays from a dentist — effective but slower than in-studio treatment",
-			] },
-			{ type: "heading", text: "The Key Differences" },
-			{ type: "list", text: "", items: [
-				"Strength: professional gels contain up to 6% hydrogen peroxide (EU limit), while most OTC products contain under 0.1%",
-				"Speed: one professional session vs. weeks of daily at-home application",
-				"Safety: professional treatment includes gum protection and expert supervision",
-				"Consistency: professional application ensures even results; strips and trays often miss spots",
-				"Longevity: professional results typically last 6 to 24 months vs. a few weeks for most OTC products",
-			] },
-			{ type: "heading", text: "What About Sensitivity?" },
-			{ type: "paragraph", text: "Tooth sensitivity is the most common concern with whitening. Professional treatments actually tend to cause less sensitivity than many at-home products because the application is controlled, timed precisely, and includes desensitising agents. At-home overuse of strips or trays is a common cause of unnecessary sensitivity." },
-			{ type: "callout", text: "At Prestige Smile, we use gentle, EU-approved whitening gels with built-in desensitising agents. If you have sensitive teeth, let us know — we'll tailor the treatment to ensure your comfort." },
-			{ type: "heading", text: "The Verdict" },
-			{ type: "paragraph", text: "At-home products can help maintain results between professional sessions, but they're no substitute for the real thing. If you want safe, fast, and dramatic whitening results, a professional session at Prestige Smile is the way to go." },
-			{ type: "paragraph", text: "Ready to see the difference for yourself? Book your whitening session today and experience the Prestige Smile difference." },
-		],
-		relatedSlugs: ["brighter-smile-tips", "whitening-session-guide", "maintain-results"],
-	},
-};
+export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = use(params);
+	const [post, setPost] = useState<BlogPost | null>(null);
+	const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [notFound, setNotFound] = useState(false);
 
-const allPostsMeta = Object.entries(blogPosts).map(([slug, post]) => ({
-	slug,
-	title: post.title,
-	category: post.category,
-	date: post.date,
-	readTime: post.readTime,
-	author: post.author,
-}));
+	useEffect(() => {
+		async function load() {
+			try {
+				const data = await getPublishedBlogPostBySlug(slug);
+				if (!data) {
+					setNotFound(true);
+					return;
+				}
+				setPost(data);
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-	const { slug } = await params;
-	const post = blogPosts[slug];
+				// Set SEO meta tags dynamically
+				document.title = data.seo_title || data.title;
+				const metaDesc = document.querySelector('meta[name="description"]');
+				if (metaDesc) {
+					metaDesc.setAttribute("content", data.seo_description || data.excerpt || "");
+				} else {
+					const meta = document.createElement("meta");
+					meta.name = "description";
+					meta.content = data.seo_description || data.excerpt || "";
+					document.head.appendChild(meta);
+				}
+				// Keywords
+				if (data.seo_keywords?.length) {
+					let metaKw = document.querySelector('meta[name="keywords"]');
+					if (!metaKw) {
+						metaKw = document.createElement("meta");
+						metaKw.setAttribute("name", "keywords");
+						document.head.appendChild(metaKw);
+					}
+					metaKw.setAttribute("content", data.seo_keywords.join(", "));
+				}
+				// OG tags
+				setMetaProperty("og:title", data.seo_title || data.title);
+				setMetaProperty("og:description", data.seo_description || data.excerpt || "");
+				setMetaProperty("og:image", data.og_image || data.hero_image || "");
+				setMetaProperty("og:type", "article");
+				// Canonical
+				if (data.canonical_url) {
+					let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+					if (!link) {
+						link = document.createElement("link");
+						link.rel = "canonical";
+						document.head.appendChild(link);
+					}
+					link.href = data.canonical_url;
+				}
 
-	if (!post) {
-		notFound();
+				// Load related posts (other published posts, excluding current)
+				const allPosts = await getPublishedBlogPosts();
+				setRelatedPosts(allPosts.filter((p) => p.slug !== slug).slice(0, 3));
+			} catch {
+				setNotFound(true);
+			} finally {
+				setLoading(false);
+			}
+		}
+		load();
+	}, [slug]);
+
+	if (loading) {
+		return (
+			<>
+				<Header />
+				<div className="flex min-h-[60vh] items-center justify-center">
+					<div className="size-8 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
+				</div>
+				<Footer />
+			</>
+		);
 	}
 
-	const relatedPosts = post.relatedSlugs
-		.map((s) => {
-			const p = blogPosts[s];
-			return p ? { slug: s, title: p.title, category: p.category, readTime: p.readTime, author: p.author, date: p.date } : null;
-		})
-		.filter(Boolean) as { slug: string; title: string; category: string; readTime: string; author: string; date: string }[];
+	if (notFound || !post) {
+		return (
+			<>
+				<Header />
+				<div className="flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
+					<h1 className="text-2xl font-light text-primary" style={{ fontFamily: "'Cormorant Garamond', serif" }}>Article Not Found</h1>
+					<p className="mt-2 text-sm text-tertiary">This article may have been removed or doesn&apos;t exist.</p>
+					<Link href="/articles" className="mt-6 rounded-lg bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">
+						View All Articles
+					</Link>
+				</div>
+				<Footer />
+			</>
+		);
+	}
+
+	const contentBlocks = (post.content || []) as BlogContentBlock[];
+	const initials = post.author_initials || post.author?.slice(0, 2).toUpperCase() || "PS";
+	const publishedDate = post.published_at
+		? new Date(post.published_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+		: "";
 
 	return (
 		<>
 			<Header />
 			<main>
+				{/* JSON-LD Structured Data for SEO */}
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify({
+							"@context": "https://schema.org",
+							"@type": "BlogPosting",
+							headline: post.seo_title || post.title,
+							description: post.seo_description || post.excerpt || "",
+							image: post.og_image || post.hero_image || "",
+							author: {
+								"@type": "Organization",
+								name: post.author,
+							},
+							datePublished: post.published_at,
+							dateModified: post.updated_at,
+							publisher: {
+								"@type": "Organization",
+								name: "Prestige Smile",
+							},
+							keywords: post.seo_keywords?.join(", ") || post.tags?.join(", ") || "",
+						}),
+					}}
+				/>
+
 				{/* Hero */}
 				<section className="relative overflow-hidden bg-white">
-					<div className="relative h-64 sm:h-80 lg:h-[420px]  mx-auto">
-						<img
-							src={post.heroImage}
-							alt={post.title}
-							className="absolute inset-0 h-full w-full object-cover"
-						/>
+					<div className="relative h-64 sm:h-80 lg:h-[420px] mx-auto">
+						{post.hero_image && (
+							<img
+								src={post.hero_image}
+								alt={post.title}
+								className="absolute inset-0 h-full w-full object-cover"
+							/>
+						)}
 						<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-						{/* Back button */}
 						<div className="absolute left-0 top-0 p-4 sm:p-6 lg:p-8">
 							<Link
 								href="/articles"
@@ -241,12 +159,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 							</Link>
 						</div>
 
-						{/* Category + title */}
-						<div className="absolute bottom-0 left-0 right-0   lg:py-20 max-w-7xl mx-auto p-4" >
+						<div className="absolute bottom-0 left-0 right-0 lg:py-20 max-w-7xl mx-auto p-4">
 							<span className="rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
 								{post.category}
 							</span>
-							<h1 className="mt-4 max-w-6xl text-2xl font-light text-white sm:text-3xl lg:text-4xl xl:text-5xl " style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+							<h1 className="mt-4 max-w-6xl text-2xl font-light text-white sm:text-3xl lg:text-4xl xl:text-5xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
 								{post.title}
 							</h1>
 						</div>
@@ -258,11 +175,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 					<div className="mx-auto flex max-w-screen-2xl flex-wrap items-center gap-4 px-4 py-4 sm:gap-6 sm:px-6 lg:px-8">
 						<div className="flex items-center gap-3">
 							<div className="flex size-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white">
-								{post.authorInitials}
+								{initials}
 							</div>
 							<div>
 								<p className="text-sm font-semibold text-primary">{post.author}</p>
-								<p className="text-xs text-tertiary">{post.authorRole}</p>
+								<p className="text-xs text-tertiary">{post.author_role || ""}</p>
 							</div>
 						</div>
 						<div className="h-5 w-px bg-secondary" />
@@ -270,14 +187,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 							<svg className="size-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
 								<path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
 							</svg>
-							{post.date}
+							{publishedDate}
 						</span>
 						<span className="flex items-center gap-1.5 text-xs text-tertiary">
 							<svg className="size-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
 								<path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 							</svg>
-							{post.readTime}
+							{post.read_time || "5 min read"}
 						</span>
+						{post.tags && post.tags.length > 0 && (
+							<>
+								<div className="h-5 w-px bg-secondary" />
+								<div className="flex flex-wrap gap-1.5">
+									{post.tags.map((tag) => (
+										<span key={tag} className="rounded-full bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">
+											{tag}
+										</span>
+									))}
+								</div>
+							</>
+						)}
 					</div>
 				</section>
 
@@ -287,7 +216,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 						<div className="grid gap-10 lg:grid-cols-[1fr_360px]">
 							{/* Article */}
 							<article className="min-w-0 space-y-6">
-								{post.content.map((block, i) => {
+								{contentBlocks.map((block, i) => {
 									if (block.type === "heading") {
 										return (
 											<h2
@@ -342,11 +271,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 										<p className="text-xs font-semibold uppercase tracking-wider text-tertiary">Written by</p>
 										<div className="mt-3 flex items-center gap-3">
 											<div className="flex size-11 items-center justify-center rounded-full bg-brand-600 text-sm font-bold text-white">
-												{post.authorInitials}
+												{initials}
 											</div>
 											<div>
 												<p className="text-sm font-semibold text-primary">{post.author}</p>
-												<p className="text-xs text-tertiary">{post.authorRole}</p>
+												<p className="text-xs text-tertiary">{post.author_role || ""}</p>
 											</div>
 										</div>
 									</div>
@@ -393,7 +322,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 															<svg className="size-3" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
 																<path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 															</svg>
-															{rp.readTime}
+															{rp.read_time || "5 min read"}
 														</span>
 													</Link>
 												))}
@@ -433,7 +362,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 														<svg className="size-3" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
 															<path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 														</svg>
-														{rp.readTime}
+														{rp.read_time || "5 min read"}
 													</span>
 												</div>
 											</div>
@@ -449,4 +378,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 			<Footer />
 		</>
 	);
+}
+
+function setMetaProperty(property: string, content: string) {
+	if (!content) return;
+	let meta = document.querySelector(`meta[property="${property}"]`);
+	if (!meta) {
+		meta = document.createElement("meta");
+		meta.setAttribute("property", property);
+		document.head.appendChild(meta);
+	}
+	meta.setAttribute("content", content);
 }

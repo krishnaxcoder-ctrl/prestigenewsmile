@@ -1,13 +1,26 @@
 "use client";
 
-const blogPosts = [
-	{ id: 1, category: "Whitening", date: "Jan 15, 2026", title: "10 Tips for a Brighter, Whiter Smile", image: "https://mp-cms.medparkhospital.com/assets/bb4a30f0-af60-44ab-99cf-6a8ab20d016f/zoom-banner-1.jpeg", href: "/articles/brighter-smile-tips" },
-	{ id: 2, category: "Guide", date: "Jan 12, 2026", title: "What to Expect During Your Whitening Session", image: "https://mp-cms.medparkhospital.com/assets/7988113b-562a-4f03-94bc-e106ca849e75", href: "/articles/whitening-session-guide" },
-	{ id: 3, category: "Aftercare", date: "Jan 10, 2026", title: "How to Maintain Your Results After Treatment", image: "https://mp-cms.medparkhospital.com/assets/56b474a5-973a-468a-853c-a856f04f6060", href: "/articles/maintain-results" },
-	{ id: 4, category: "FAQ", date: "Jan 8, 2026", title: "Professional vs At-Home Whitening: The Truth", image: "https://mp-cms.medparkhospital.com/assets/fd8a0998-0ee8-4657-a6db-d92f0c167b13", href: "/articles/professional-vs-home" },
-];
+import { useEffect, useState } from "react";
+import { getPublishedBlogPosts, type BlogPost } from "@/lib/supabase";
 
 export function ArticlesSection() {
+	const [posts, setPosts] = useState<BlogPost[]>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		async function load() {
+			try {
+				const data = await getPublishedBlogPosts();
+				setPosts(data.slice(0, 4));
+			} catch {
+				// silently fail - section just won't show posts
+			} finally {
+				setLoading(false);
+			}
+		}
+		load();
+	}, []);
+
 	return (
 		<section className="bg-white px-4 py-16 md:px-8 md:py-24 lg:px-16">
 			<div className="mx-auto max-w-[1400px]">
@@ -28,25 +41,35 @@ export function ArticlesSection() {
 						<div className="h-px flex-1 max-w-32 bg-gradient-to-l from-transparent via-brand-600/30 to-brand-600/50" />
 					</div>
 				</div>
-				<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-					{blogPosts.map((post) => (
-						<article key={post.id} className="group">
-							<a href={post.href} className="block overflow-hidden">
-								<img src={post.image} alt={post.title} className="aspect-[3/4] w-full object-cover object-[70%_center]" />
-							</a>
-							<div className="mt-5 text-center">
-								<div className="flex items-center justify-center gap-2 text-xs uppercase tracking-widest text-tertiary">
-									<span>{post.category}</span>
-									<span className="size-1 rounded-full bg-tertiary" />
-									<span>{post.date}</span>
+
+				{loading ? (
+					<div className="flex items-center justify-center py-12">
+						<div className="size-8 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
+					</div>
+				) : posts.length === 0 ? (
+					<p className="text-center text-sm text-tertiary">No articles yet. Check back soon!</p>
+				) : (
+					<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+						{posts.map((post) => (
+							<article key={post.id} className="group">
+								<a href={`/articles/${post.slug}`} className="block overflow-hidden">
+									<img src={post.hero_image || ""} alt={post.title} className="aspect-[3/4] w-full object-cover object-[70%_center]" />
+								</a>
+								<div className="mt-5 text-center">
+									<div className="flex items-center justify-center gap-2 text-xs uppercase tracking-widest text-tertiary">
+										<span>{post.category}</span>
+										<span className="size-1 rounded-full bg-tertiary" />
+										<span>{post.published_at ? new Date(post.published_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : ""}</span>
+									</div>
+									<h3 className="mt-3 font-body text-lg font-normal leading-snug text-primary md:text-md">
+										<a href={`/articles/${post.slug}`} className="hover:text-brand-600">{post.title}</a>
+									</h3>
 								</div>
-								<h3 className="mt-3 font-body text-lg font-normal leading-snug text-primary md:text-md">
-									<a href={post.href} className="hover:text-brand-600">{post.title}</a>
-								</h3>
-							</div>
-						</article>
-					))}
-				</div>
+							</article>
+						))}
+					</div>
+				)}
+
 				<div className="mt-16 text-center">
 					<a
 						href="/articles"

@@ -348,7 +348,7 @@ export async function clearCart(sessionId: string) {
 export async function createOrder(
     orderData: Omit<Order, "id" | "order_number" | "created_at">,
     items: Omit<OrderItem, "id" | "order_id">[]
-) {
+): Promise<Order> {
     const orderNumber = `ORD-${Date.now()}-${Math.random().toString(36).substring(2, 7).toUpperCase()}`;
 
     const { data: order, error: orderError } = await supabase
@@ -373,7 +373,7 @@ export async function createOrder(
 
     if (itemsError) throw itemsError;
 
-    return order;
+    return order as Order;
 }
 
 export async function getOrders(email?: string) {
