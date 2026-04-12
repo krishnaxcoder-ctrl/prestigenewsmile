@@ -48,7 +48,8 @@
       "WebFetch(domain:www.cnil.fr)",
       "WebFetch(domain:ec.europa.eu)",
       "WebFetch(domain:consumer-redress.ec.europa.eu)",
-      "Bash(xargs grep:*)"
+      "Bash(xargs grep:*)",
+      "mcp__supabase__list_storage_buckets"
     ]
   },
   "enableAllProjectMcpServers": true,

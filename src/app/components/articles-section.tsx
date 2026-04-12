@@ -53,7 +53,11 @@ export function ArticlesSection() {
 						{posts.map((post) => (
 							<article key={post.id} className="group">
 								<a href={`/articles/${post.slug}`} className="block overflow-hidden">
-									<img src={post.hero_image || ""} alt={post.title} className="aspect-[3/4] w-full object-cover object-[70%_center]" />
+									{post.hero_image ? (
+										<img src={post.hero_image} alt={post.title} className="aspect-[3/4] w-full object-cover object-[70%_center]" />
+									) : (
+										<div className="aspect-[3/4] w-full bg-[#faf8f5]" />
+									)}
 								</a>
 								<div className="mt-5 text-center">
 									<div className="flex items-center justify-center gap-2 text-xs uppercase tracking-widest text-tertiary">

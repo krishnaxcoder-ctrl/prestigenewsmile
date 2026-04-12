@@ -60,7 +60,7 @@ export default function ArticlesPage() {
 									<article key={post.id} className="group">
 										<Link href={`/articles/${post.slug}`} className="block overflow-hidden">
 											<img
-												src={post.hero_image || ""}
+												src={post.hero_image ?? "/placeholder.jpg"}
 												alt={post.title}
 												className="aspect-[3/4] w-full object-cover object-[70%_center] transition duration-300 group-hover:scale-105"
 											/>

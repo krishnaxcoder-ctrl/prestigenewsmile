@@ -393,7 +393,6 @@ export type Database = {
         }
         Relationships: []
       }
-    }
       blog_posts: {
         Row: {
           id: string

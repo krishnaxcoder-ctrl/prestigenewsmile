@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import type { Database } from "./database.types";
+import type { Database, Json } from "./database.types";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -797,7 +797,26 @@ export async function createBlogPost(
 ): Promise<BlogPost> {
     const { data, error } = await supabase
         .from("blog_posts")
-        .insert(post as Record<string, unknown>)
+        .insert({
+            slug: post.slug,
+            title: post.title,
+            excerpt: post.excerpt,
+            content: post.content as unknown as Json,
+            category: post.category,
+            tags: post.tags,
+            hero_image: post.hero_image,
+            author: post.author,
+            author_role: post.author_role,
+            author_initials: post.author_initials,
+            read_time: post.read_time,
+            status: post.status,
+            seo_title: post.seo_title,
+            seo_description: post.seo_description,
+            seo_keywords: post.seo_keywords,
+            og_image: post.og_image,
+            canonical_url: post.canonical_url,
+            published_at: post.published_at,
+        })
         .select()
         .single();
 
@@ -809,12 +828,29 @@ export async function updateBlogPost(
     id: string,
     updates: Partial<Omit<BlogPost, "id" | "created_at">>
 ): Promise<BlogPost> {
+    const updateData: Record<string, unknown> = { updated_at: new Date().toISOString() };
+    if (updates.slug !== undefined) updateData.slug = updates.slug;
+    if (updates.title !== undefined) updateData.title = updates.title;
+    if (updates.excerpt !== undefined) updateData.excerpt = updates.excerpt;
+    if (updates.content !== undefined) updateData.content = updates.content;
+    if (updates.category !== undefined) updateData.category = updates.category;
+    if (updates.tags !== undefined) updateData.tags = updates.tags;
+    if (updates.hero_image !== undefined) updateData.hero_image = updates.hero_image;
+    if (updates.author !== undefined) updateData.author = updates.author;
+    if (updates.author_role !== undefined) updateData.author_role = updates.author_role;
+    if (updates.author_initials !== undefined) updateData.author_initials = updates.author_initials;
+    if (updates.read_time !== undefined) updateData.read_time = updates.read_time;
+    if (updates.status !== undefined) updateData.status = updates.status;
+    if (updates.seo_title !== undefined) updateData.seo_title = updates.seo_title;
+    if (updates.seo_description !== undefined) updateData.seo_description = updates.seo_description;
+    if (updates.seo_keywords !== undefined) updateData.seo_keywords = updates.seo_keywords;
+    if (updates.og_image !== undefined) updateData.og_image = updates.og_image;
+    if (updates.canonical_url !== undefined) updateData.canonical_url = updates.canonical_url;
+    if (updates.published_at !== undefined) updateData.published_at = updates.published_at;
+
     const { data, error } = await supabase
         .from("blog_posts")
-        .update({
-            ...updates,
-            updated_at: new Date().toISOString(),
-        } as Record<string, unknown>)
+        .update(updateData as Database["public"]["Tables"]["blog_posts"]["Update"])
         .eq("id", id)
         .select()
         .single();
