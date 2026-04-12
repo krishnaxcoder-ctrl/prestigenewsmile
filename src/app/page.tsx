@@ -30,19 +30,20 @@ export default function Page() {
 				<ServiceMenuSection />
 				<ServicesSection />
 				<TaglineSection />
+				<AboutSection />
 
+				<WhiteningResults />
 				<PriceListSection />
-				<FavoritePicksSection />
+
 				<FeaturesSection />
 
-				<AboutSection />
 				<WhiteningInfoSection />
 				<SessionNoteSection />
 				<ComparisonSlider />
-				<WhiteningResults />
 				<ReviewsSection />
 				<ArticlesSection />
 				<FAQSection />
+				<FavoritePicksSection />
 
 				<CollectionBanner />
 				<GiftcardSection />
@@ -50,6 +51,7 @@ export default function Page() {
 				<OpeningHoursSection />
 				<InstagramSection />
 				<ContactSection />
+
 				<Footer />
 			</main>
 		</div>

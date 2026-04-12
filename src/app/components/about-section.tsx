@@ -3,7 +3,7 @@ export function AboutSection() {
         <section className="relative overflow-hidden">
             {/* Mobile layout */}
             <div className="bg-gradient-to-b from-[#b8929a] to-[#c9a5ab] md:hidden">
-                <div className="mx-auto grid max-w-[1100px] grid-cols-[1fr_4fr] items-stretch gap-4">
+                <div className="mx-auto grid max-w-7xl grid-cols-[1fr_4fr] items-stretch gap-4">
                     {/* Left - Photo (20%) */}
                     <div className="h-full overflow-hidden">
                         <img
@@ -64,7 +64,7 @@ export function AboutSection() {
 
             {/* Desktop layout */}
             <div className="hidden bg-[#faf8f6] md:block">
-                <div className="mx-auto max-w-[1200px] px-8 py-28">
+                <div className="mx-auto max-w-7xl py-28">
                     <div className="grid grid-cols-[1fr_1.2fr] items-center gap-20">
                         {/* Left - Photo with decorative frame */}
                         <div className="relative">
@@ -135,7 +135,7 @@ export function AboutSection() {
                             </div>
 
                             {/* Signature */}
-                            <div className="mt-10 flex items-center gap-4">
+                            <div className="mt-10 flex items-center justify-end gap-4">
                                 <div className="h-px w-8 bg-[#c9a5ab]/50" />
                                 <p
                                     className="text-4xl text-[#4a2d3a]"
