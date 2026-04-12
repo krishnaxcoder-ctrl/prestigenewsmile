@@ -2,108 +2,119 @@ const items = [
     {
         number: 1,
         title: "Comment agit le blanchiment ?",
-        content: (
-            <p>
-                Un gel professionnel à base de peroxyde est appliqué sur les dents. Il libère de l&apos;oxygène actif qui
-                neutralise les pigments responsables des taches (café, thé, tabac, vieillissement). Les molécules foncées
-                sont fragmentées, révélant ainsi une teinte plus claire et lumineuse.
-            </p>
-        ),
+        text: "Un gel professionnel à base de peroxyde est appliqué sur les dents. Il libère de l'oxygène actif qui neutralise les pigments responsables des taches (café, thé, tabac, vieillissement). Les molécules foncées sont fragmentées, révélant ainsi une teinte plus claire et lumineuse.",
     },
     {
         number: 2,
         title: "Un protocole respectueux de l'émail et des gencives",
-        content: (
-            <p>
-                Une évaluation de la teinte est réalisée à l&apos;aide d&apos;un nuancier avant et après la séance afin
-                d&apos;objectiver le résultat. Une barrière gingivale est ensuite appliquée afin de protéger les
-                gencives. Le temps de pose et la concentration du gel sont soigneusement contrôlés afin d&apos;assurer un
-                traitement sûr et respectueux de la structure naturelle de l&apos;émail.
-            </p>
-        ),
+        text: "Une évaluation de la teinte est réalisée à l'aide d'un nuancier avant et après la séance afin d'objectiver le résultat. Une barrière gingivale est ensuite appliquée afin de protéger les gencives. Le temps de pose et la concentration du gel sont soigneusement contrôlés afin d'assurer un traitement sûr et respectueux de la structure naturelle de l'émail.",
     },
     {
         number: 3,
         title: "À qui s'adresse le blanchiment ?",
-        content: (
-            <>
-                <p>
-                    Le blanchiment s&apos;adresse aux personnes souhaitant éclaircir leur sourire dans un cadre encadré
-                    et sécurisé.
-                </p>
-                <p className="mt-3">La séance ne peut être envisagée dans les situations suivantes :</p>
-                <ul className="mt-2 list-inside list-disc space-y-1">
-                    <li>Grossesse ou allaitement</li>
-                    <li>Caries actives, gingivite ou déchaussement</li>
-                    <li>Hypersensibilité importante</li>
-                    <li>Allergie connue aux composants du gel</li>
-                </ul>
-                <p className="mt-3">
-                    Un questionnaire santé est transmis avant la séance afin de s&apos;assurer de l&apos;éligibilité au
-                    traitement.
-                </p>
-            </>
-        ),
+        text: "Le blanchiment s'adresse aux personnes souhaitant éclaircir leur sourire dans un cadre encadré et sécurisé. La séance ne peut être envisagée en cas de grossesse ou allaitement, caries actives, gingivite, hypersensibilité importante ou allergie aux composants du gel. Un questionnaire santé est transmis avant la séance.",
     },
     {
         number: 4,
         title: "Combien de temps dure le résultat ?",
-        content: (
-            <p>
-                En moyenne, le résultat se maintient entre 8 et 12 mois, selon l&apos;hygiène de vie et les habitudes
-                pigmentaires (café, thé, vin rouge, tabac…). Une séance d&apos;entretien peut être envisagée à partir de
-                6 mois, idéalement entre 6 et 9 mois, si une perte d&apos;éclat est constatée.
-            </p>
-        ),
+        text: "En moyenne, le résultat se maintient entre 8 et 12 mois, selon l'hygiène de vie et les habitudes pigmentaires (café, thé, vin rouge, tabac…). Une séance d'entretien peut être envisagée à partir de 6 mois, idéalement entre 6 et 9 mois, si une perte d'éclat est constatée.",
     },
     {
         number: 5,
         title: "Comment préserver l'éclat du blanchiment ?",
-        content: (
-            <>
-                <p className="font-medium">Les 48 premières heures sont essentielles.</p>
-                <p className="mt-3">
-                    Évitez les aliments et boissons fortement pigmentés (café, thé, vin rouge, sodas, fruits rouges…)
-                    ainsi que le tabac. Maintenez une hygiène bucco-dentaire rigoureuse.
-                </p>
-                <p className="mt-3">
-                    Un dentifrice professionnel adapté est disponible en complément pour prolonger et optimiser le
-                    résultat.
-                </p>
-            </>
-        ),
+        text: "Les 48 premières heures sont essentielles. Évitez les aliments et boissons fortement pigmentés (café, thé, vin rouge, sodas, fruits rouges…) ainsi que le tabac. Maintenez une hygiène bucco-dentaire rigoureuse. Un dentifrice professionnel adapté est disponible en complément pour prolonger et optimiser le résultat.",
     },
 ];
 
 export function WhiteningInfoSection() {
     return (
         <section className="bg-[#faf8f6] px-4 py-16 md:px-8 md:py-24">
-            <div className="mx-auto max-w-[900px]">
-                <h2
-                    className="mb-12 text-center text-2xl font-medium uppercase tracking-[0.15em] text-[#4a2d3a] md:text-3xl lg:text-4xl"
-                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                >
-                    5 Choses à savoir sur le blanchiment dentaire
-                </h2>
+            <div className="mx-auto max-w-7xl">
+                {/* Section header */}
+                <div className="mb-14 text-center">
+                    <p className="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">
+                        Tout savoir
+                    </p>
+                    <div className="mx-auto my-4 h-px w-16 bg-[#c9bdb3]" />
+                    <h2
+                        className="text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
+                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    >
+                        5 Choses à savoir sur le
+                    </h2>
+                    <h2
+                        className="mt-1 text-3xl font-medium text-[#4a3728] md:text-4xl lg:text-5xl"
+                        style={{ fontFamily: "'Eyesome Script', cursive" }}
+                    >
+                        blanchiment dentaire
+                    </h2>
+                </div>
 
-                <div className="space-y-10">
-                    {items.map((item) => (
-                        <div key={item.number} className="border-b border-[#e0d5d8] pb-10 last:border-b-0">
-                            <h3
-                                className="mb-4 text-lg font-semibold uppercase tracking-wide text-[#4a2d3a] md:text-xl"
-                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                            >
-                                <span className="mr-2 text-[#b8929a]">{item.number}.</span>
-                                {item.title}
-                            </h3>
-                            <div
-                                className="text-sm leading-relaxed text-[#5a3d4a] md:text-base"
-                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                            >
-                                {item.content}
+                {/* Desktop layout */}
+                <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
+                    {/* Left - Sticky image card */}
+                    <div className="lg:sticky lg:top-24 lg:col-span-5">
+                        <div className="overflow-hidden rounded-2xl shadow-xl">
+                            <img
+                                src="/bigwhite.jpg"
+                                alt="Beautiful smile"
+                                className="aspect-[4/5] w-full object-cover object-[center_65%]"
+                            />
+                            {/* Bottom bar */}
+                            <div className="flex items-center justify-between bg-[#8b6b5a] px-6 py-4">
+                                <span
+                                    className="text-[13px] italic tracking-wide text-white/70"
+                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                >
+                                    @prestige.smile.studio
+                                </span>
+                                <span
+                                    className="text-2xl font-extralight tracking-[0.25em] text-white/50"
+                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                >
+                                    PS
+                                </span>
                             </div>
                         </div>
-                    ))}
+                    </div>
+
+                    {/* Right - Items */}
+                    <div className="lg:col-span-7">
+                        <div className="space-y-0">
+                            {items.map((item, i) => (
+                                <div
+                                    key={item.number}
+                                    className={`${i < items.length - 1 ? "border-b border-[#e0d5ce]" : ""}`}
+                                >
+                                    <div className="py-8 lg:py-10">
+                                        {/* Number + Title row */}
+                                        <div className="mb-4 flex items-start gap-5">
+                                            <span
+                                                className="text-[48px] font-light leading-none text-[#c9bdb3] lg:text-[56px]"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                {String(item.number).padStart(2, "0")}
+                                            </span>
+                                            <div className="pt-2">
+                                                <h3
+                                                    className="text-[17px] font-semibold uppercase tracking-[0.1em] text-[#4a3728] lg:text-[19px]"
+                                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                >
+                                                    {item.title}
+                                                </h3>
+                                                <p
+                                                    className="mt-3 text-[14px] leading-[1.9] text-[#8b6b5a] lg:text-[15px]"
+                                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                >
+                                                    {item.text}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
