@@ -169,16 +169,7 @@ export default function RegisterPage() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="mx-auto w-full max-w-md"
                 >
-                    {/* Logo */}
-                    <a href="/" className="mb-4  flex items-center gap-2">
-                        <div className="flex size-10 items-center justify-center rounded-lg bg-brand-600">
-                            <svg className="size-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                            </svg>
-                        </div>
-                        <span className="text-xl font-semibold text-brand-600">Prestige Smile</span>
-                    </a>
-
+                    
                     {/* Heading */}
                     <h1 className="text-3xl font-semibold text-primary">Create Account</h1>
                     <p className="mt-2 text-secondary">
