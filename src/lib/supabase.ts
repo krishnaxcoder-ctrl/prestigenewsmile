@@ -73,6 +73,7 @@ export interface Profile {
     last_name: string | null;
     phone: string | null;
     avatar_url: string | null;
+    is_admin: boolean | null;
     created_at: string;
     updated_at: string;
 }
@@ -692,6 +693,141 @@ export async function setDefaultAddress(addressId: string, userId: string): Prom
         .update({ is_default: true, updated_at: new Date().toISOString() })
         .eq("id", addressId)
         .eq("user_id", userId);
+
+    if (error) throw error;
+}
+
+// Blog Post types
+export interface BlogContentBlock {
+    type: "paragraph" | "heading" | "list" | "callout";
+    text: string;
+    items?: string[];
+}
+
+export interface BlogPost {
+    id: string;
+    slug: string;
+    title: string;
+    excerpt: string | null;
+    content: BlogContentBlock[];
+    category: string;
+    tags: string[] | null;
+    hero_image: string | null;
+    author: string;
+    author_role: string | null;
+    author_initials: string | null;
+    read_time: string | null;
+    status: "draft" | "published";
+    seo_title: string | null;
+    seo_description: string | null;
+    seo_keywords: string[] | null;
+    og_image: string | null;
+    canonical_url: string | null;
+    published_at: string | null;
+    created_at: string | null;
+    updated_at: string | null;
+}
+
+// Admin check
+export async function checkIsAdmin(userId: string): Promise<boolean> {
+    const { data, error } = await supabase
+        .from("profiles")
+        .select("is_admin")
+        .eq("id", userId)
+        .single();
+
+    if (error) return false;
+    return data?.is_admin === true;
+}
+
+// Blog functions - Public
+export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
+    const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("status", "published")
+        .order("published_at", { ascending: false });
+
+    if (error) throw error;
+    return (data ?? []) as unknown as BlogPost[];
+}
+
+export async function getPublishedBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+    const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("slug", slug)
+        .eq("status", "published")
+        .single();
+
+    if (error) {
+        if (error.code === "PGRST116") return null;
+        throw error;
+    }
+    return data as unknown as BlogPost;
+}
+
+// Blog functions - Admin
+export async function getAllBlogPosts(): Promise<BlogPost[]> {
+    const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    if (error) throw error;
+    return (data ?? []) as unknown as BlogPost[];
+}
+
+export async function getBlogPostById(id: string): Promise<BlogPost | null> {
+    const { data, error } = await supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+    if (error) {
+        if (error.code === "PGRST116") return null;
+        throw error;
+    }
+    return data as unknown as BlogPost;
+}
+
+export async function createBlogPost(
+    post: Omit<BlogPost, "id" | "created_at" | "updated_at">
+): Promise<BlogPost> {
+    const { data, error } = await supabase
+        .from("blog_posts")
+        .insert(post as Record<string, unknown>)
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data as unknown as BlogPost;
+}
+
+export async function updateBlogPost(
+    id: string,
+    updates: Partial<Omit<BlogPost, "id" | "created_at">>
+): Promise<BlogPost> {
+    const { data, error } = await supabase
+        .from("blog_posts")
+        .update({
+            ...updates,
+            updated_at: new Date().toISOString(),
+        } as Record<string, unknown>)
+        .eq("id", id)
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data as unknown as BlogPost;
+}
+
+export async function deleteBlogPost(id: string): Promise<void> {
+    const { error } = await supabase
+        .from("blog_posts")
+        .delete()
+        .eq("id", id);
 
     if (error) throw error;
 }

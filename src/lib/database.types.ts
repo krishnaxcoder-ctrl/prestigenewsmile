@@ -343,6 +343,7 @@ export type Database = {
           email: string | null
           first_name: string | null
           id: string
+          is_admin: boolean | null
           last_name: string | null
           phone: string | null
           updated_at: string | null
@@ -353,6 +354,7 @@ export type Database = {
           email?: string | null
           first_name?: string | null
           id: string
+          is_admin?: boolean | null
           last_name?: string | null
           phone?: string | null
           updated_at?: string | null
@@ -363,6 +365,7 @@ export type Database = {
           email?: string | null
           first_name?: string | null
           id?: string
+          is_admin?: boolean | null
           last_name?: string | null
           phone?: string | null
           updated_at?: string | null
@@ -387,6 +390,79 @@ export type Database = {
           id?: string
           product_id?: string | null
           user_id?: string | null
+        }
+        Relationships: []
+      }
+    }
+      blog_posts: {
+        Row: {
+          id: string
+          slug: string
+          title: string
+          excerpt: string | null
+          content: Json
+          category: string
+          tags: string[] | null
+          hero_image: string | null
+          author: string
+          author_role: string | null
+          author_initials: string | null
+          read_time: string | null
+          status: string
+          seo_title: string | null
+          seo_description: string | null
+          seo_keywords: string[] | null
+          og_image: string | null
+          canonical_url: string | null
+          published_at: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          slug: string
+          title: string
+          excerpt?: string | null
+          content?: Json
+          category?: string
+          tags?: string[] | null
+          hero_image?: string | null
+          author?: string
+          author_role?: string | null
+          author_initials?: string | null
+          read_time?: string | null
+          status?: string
+          seo_title?: string | null
+          seo_description?: string | null
+          seo_keywords?: string[] | null
+          og_image?: string | null
+          canonical_url?: string | null
+          published_at?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          slug?: string
+          title?: string
+          excerpt?: string | null
+          content?: Json
+          category?: string
+          tags?: string[] | null
+          hero_image?: string | null
+          author?: string
+          author_role?: string | null
+          author_initials?: string | null
+          read_time?: string | null
+          status?: string
+          seo_title?: string | null
+          seo_description?: string | null
+          seo_keywords?: string[] | null
+          og_image?: string | null
+          canonical_url?: string | null
+          published_at?: string | null
+          created_at?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
