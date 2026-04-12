@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createBlogPost, updateBlogPost, type BlogPost, type BlogContentBlock } from "@/lib/supabase";
+import { ImageUpload } from "./image-upload";
 
 interface BlogFormProps {
     post?: BlogPost;
@@ -226,17 +227,13 @@ export function BlogForm({ post }: BlogFormProps) {
                         />
                     </div>
                     <div className="sm:col-span-2">
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-tertiary">Hero Image URL</label>
-                        <input
-                            type="url"
+                        <ImageUpload
                             value={heroImage}
-                            onChange={(e) => setHeroImage(e.target.value)}
-                            className="mt-1.5 w-full rounded-lg border border-secondary bg-white px-4 py-2.5 text-sm text-primary outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
-                            placeholder="https://example.com/image.jpg"
+                            onChange={setHeroImage}
+                            label="Hero Image"
+                            hint="Displayed at the top of the article"
+                            aspect="hero"
                         />
-                        {heroImage && (
-                            <img src={heroImage} alt="Preview" className="mt-3 h-32 w-full rounded-lg object-cover" />
-                        )}
                     </div>
                     <div>
                         <label className="block text-xs font-semibold uppercase tracking-wider text-tertiary">Tags</label>
@@ -384,27 +381,24 @@ export function BlogForm({ post }: BlogFormProps) {
                         />
                         <p className="mt-1 text-xs text-tertiary">Comma-separated keywords for search engines</p>
                     </div>
-                    <div className="grid gap-5 sm:grid-cols-2">
-                        <div>
-                            <label className="block text-xs font-semibold uppercase tracking-wider text-tertiary">OG Image URL</label>
-                            <input
-                                type="url"
-                                value={ogImage}
-                                onChange={(e) => setOgImage(e.target.value)}
-                                className="mt-1.5 w-full rounded-lg border border-secondary bg-white px-4 py-2.5 text-sm text-primary outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
-                                placeholder="Image for social sharing (1200x630 recommended)"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-xs font-semibold uppercase tracking-wider text-tertiary">Canonical URL</label>
-                            <input
-                                type="url"
-                                value={canonicalUrl}
-                                onChange={(e) => setCanonicalUrl(e.target.value)}
-                                className="mt-1.5 w-full rounded-lg border border-secondary bg-white px-4 py-2.5 text-sm text-primary outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
-                                placeholder="https://yoursite.com/articles/..."
-                            />
-                        </div>
+                    <div>
+                        <ImageUpload
+                            value={ogImage}
+                            onChange={setOgImage}
+                            label="OG Image (Social Sharing)"
+                            hint="Shown when shared on Facebook, Twitter, LinkedIn"
+                            aspect="og"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-xs font-semibold uppercase tracking-wider text-tertiary">Canonical URL</label>
+                        <input
+                            type="url"
+                            value={canonicalUrl}
+                            onChange={(e) => setCanonicalUrl(e.target.value)}
+                            className="mt-1.5 w-full rounded-lg border border-secondary bg-white px-4 py-2.5 text-sm text-primary outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600"
+                            placeholder="https://yoursite.com/articles/..."
+                        />
                     </div>
                 </div>
             </div>

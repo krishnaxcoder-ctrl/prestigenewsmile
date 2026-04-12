@@ -78,7 +78,7 @@ export function ServiceMenuSection() {
         <section className="bg-gradient-to-b from-[#fff0f4  ] to-white py-12 md:py-24">
             <div className="mx-auto max-w-4xl">
                 {/* Section Header */}
-                <div className="mb-10 text-center md:mb-16">
+                <div className="mb-10 text-center md:mb-10">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-600">What We Offer</p>
                     <h2 className="mt-4 text-3xl font-light text-primary md:text-4xl lg:text-5xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                         Service{" "}
