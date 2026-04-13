@@ -119,6 +119,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <head>
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-DV7R2XQ11J" />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-DV7R2XQ11J');`,
+                    }}
+                />
+            </head>
             <body className={cx(jost.variable, playfairDisplay.variable, tangerine.variable, "bg-primary antialiased")}>
                 <script
                     type="application/ld+json"
