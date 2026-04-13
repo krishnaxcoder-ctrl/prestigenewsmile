@@ -79,10 +79,10 @@ export default function ServicesPage() {
 	return (
 		<>
 			<Header />
-			<main className="overflow-x-hidden bg-primary">
+			<main className="mx-auto max-w-7xl overflow-x-hidden bg-primary">
 				{/* Hero Header */}
 				<section className="border-b border-brand-400 bg-brand-50 px-4 py-8 md:px-8 md:py-10 lg:px-16">
-					<div className="mx-auto max-w-7xl">
+					<div>
 						<nav className="mb-3 flex items-center gap-2 text-sm text-tertiary">
 							<a href="/" className="uppercase transition hover:text-brand-600">Home</a>
 							<span>/</span>
@@ -98,7 +98,7 @@ export default function ServicesPage() {
 				</section>
 
 				{/* Services */}
-				<div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-24 lg:px-16">
+				<div className="px-4 py-10 md:px-8 md:py-24 lg:px-16">
 					<div className="space-y-16 md:space-y-32">
 						{services.map((service, index) => (
 							<section key={service.id} id={service.id} className="scroll-mt-24">
