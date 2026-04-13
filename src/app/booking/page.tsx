@@ -2,7 +2,6 @@
 
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
-import Script from "next/script";
 
 export default function BookingPage() {
     const hours = [
@@ -120,7 +119,7 @@ export default function BookingPage() {
                     </div>
                 </section>
 
-                {/* Calendly Booking Section */}
+                {/* Salonized Booking Section */}
                 <section
                     className="px-4 py-12 md:px-8 md:py-16 lg:px-16"
                     style={{ backgroundColor: "#fcf5f0" }}
@@ -140,23 +139,19 @@ export default function BookingPage() {
                                 Choose a convenient time for your professional teeth whitening session. Quick, easy, and hassle-free booking.
                             </p>
                         </div>
-                        <div className="rounded-2xl border border-[#c9bdb3] shadow-lg">
-                            <div
-                                className="calendly-inline-widget relative z-10"
-                                data-url="https://calendly.com/casethemesstudio/new-meeting?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=8b6b5a"
-                                style={{ minWidth: "100%", height: "700px" }}
+                        <div className="overflow-hidden rounded-2xl border border-[#c9bdb3] shadow-lg">
+                            <iframe
+                                src="https://institut-prestige-smile.salonized.com/widget_bookings/new"
+                                title="Book an appointment at Prestige Smile"
+                                className="relative z-10 w-full border-0"
+                                style={{ height: "700px" }}
+                                allow="payment"
                             />
                         </div>
                     </div>
                 </section>
             </main>
             <Footer />
-
-            {/* Calendly Script */}
-            <Script
-                src="https://assets.calendly.com/assets/external/widget.js"
-                strategy="lazyOnload"
-            />
         </div>
     );
 }
