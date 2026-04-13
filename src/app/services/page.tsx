@@ -79,7 +79,7 @@ export default function ServicesPage() {
 	return (
 		<>
 			<Header />
-			<main className="mx-auto max-w-7xl overflow-x-hidden bg-primary">
+			<main className="mx-auto overflow-x-hidden bg-primary">
 				{/* Hero Header */}
 				<section className="border-b border-brand-400 bg-brand-50 px-4 py-8 md:px-8 md:py-10 lg:px-16">
 					<div>
@@ -98,8 +98,8 @@ export default function ServicesPage() {
 				</section>
 
 				{/* Services */}
-				<div className="px-4 py-10 md:px-8 md:py-24 lg:px-16">
-					<div className="space-y-16 md:space-y-32">
+				<div className="px-4  max-w-7xl mx-auto py-10 md:px-8 md:py-10 lg:px-0">
+					<div className="space-y-16 md:space-y-20">
 						{services.map((service, index) => (
 							<section key={service.id} id={service.id} className="scroll-mt-24">
 								{/* Service Header */}
@@ -113,12 +113,7 @@ export default function ServicesPage() {
 									>
 										{service.title}
 									</h2>
-									{/* Divider */}
-									<div className="mt-4 flex items-center gap-3 md:mt-6 md:gap-4">
-										<div className="h-px w-12 bg-gradient-to-r from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
-										<div className="size-1.5 rotate-45 border border-brand-600/60 md:size-2" />
-										<div className="h-px w-12 bg-gradient-to-l from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
-									</div>
+									
 								</div>
 
 								{/* Image + Details */}
