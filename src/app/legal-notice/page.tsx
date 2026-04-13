@@ -14,7 +14,7 @@ RCS Registration: [To be completed]
 VAT Number (TVA Intracommunautaire): [To be completed if applicable]
 
 Director / Responsible Person: [Name to be completed]
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19`,
     },
     {
@@ -47,7 +47,7 @@ The Prestige Smile name, logo, and all related trademarks are the exclusive prop
 • Right to withdraw consent at any time
 
 Data Controller: Prestige Smile
-Contact for data protection matters: hello@prestigesmile.ch
+Contact for data protection matters:  contact@prestige-smile.com
 
 For more information, please consult our Privacy Policy.
 
@@ -91,7 +91,7 @@ For consumers residing in the European Union, you may also use the European Onli
 Consumer Mediator: [Mediator name and contact to be completed]
 
 Before contacting the mediator, you must first attempt to resolve the dispute directly with Prestige Smile by sending a written complaint to:
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
 
 The mediator can be contacted within one year of the date of your written complaint.`,
@@ -102,7 +102,7 @@ The mediator can be contacted within one year of the date of your written compla
 
 Prestige Smile
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 Instagram: @prestige.smile.studio
 

@@ -10,7 +10,7 @@ const sections = [
 Seller Information:
 Company Name: Prestige Smile
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 SIRET: [To be completed]
 
@@ -158,7 +158,7 @@ The withdrawal period expires 14 days from the day:
 
 7.2 How to Exercise Your Right
 To exercise your right of withdrawal, you must inform us of your decision by:
-• Email: hello@prestigesmile.ch
+• Email:  contact@prestige-smile.com
 • Using the withdrawal form below
 
 You must clearly state your intention to withdraw. We recommend using the following model form:
@@ -210,7 +210,7 @@ The following cannot be returned:
 • Services already rendered
 
 8.4 Return Process
-1. Contact us at hello@prestigesmile.ch with your order number
+1. Contact us at  contact@prestige-smile.com with your order number
 2. Receive return authorization and instructions
 3. Ship products securely in original packaging
 4. We inspect returned items upon receipt
@@ -279,7 +279,7 @@ For complete information about:
 Please consult our Privacy Policy at /privacy.
 
 Data Controller: Prestige Smile
-Contact: hello@prestigesmile.ch`,
+Contact:  contact@prestige-smile.com`,
     },
     {
         title: "12. User Accounts (Comptes Utilisateurs)",
@@ -401,7 +401,7 @@ These terms are provided in English. In case of any conflict with translations, 
         title: "16. Dispute Resolution (Règlement des Litiges)",
         content: `16.1 Amicable Resolution
 In case of dispute, please contact us first to seek an amicable resolution:
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 
 We commit to responding within 30 days.
 
@@ -456,7 +456,7 @@ We encourage you to review these terms periodically.`,
 
 Prestige Smile
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 Instagram: @prestige.smile.studio
 

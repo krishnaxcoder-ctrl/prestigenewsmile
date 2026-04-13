@@ -30,8 +30,8 @@ const contactInfo = [
     {
         icon: Mail01,
         title: "Email",
-        details: ["hello@prestigesmile.ch"],
-        action: { label: "Email us", href: "mailto:hello@prestigesmile.ch" },
+        details: [" contact@prestige-smile.com"],
+        action: { label: "Email us", href: "mailto: contact@prestige-smile.com" },
     },
     {
         icon: MarkerPin01,

@@ -30,7 +30,7 @@ The withdrawal period expires 14 days from:
 2.2 How to Exercise Your Right
 To exercise your right of withdrawal, you must inform us of your decision by a clear statement:
 
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
 
@@ -40,7 +40,7 @@ You may use the following model withdrawal form (but it is not obligatory):
 WITHDRAWAL FORM
 
 To: Prestige Smile, 1 rue Jean Moulin, 74100 Ambilly, France
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 
 I hereby give notice that I withdraw from my contract of sale of the following goods/services:
 
@@ -197,7 +197,7 @@ ELIGIBILITY ERRORS:
         title: "7. How to Request a Refund",
         content: `7.1 Contact Us
 Send your refund request to:
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 
 Include the following information:
@@ -334,7 +334,7 @@ If you paid import duties on your original order, you may be able to reclaim the
 
 Prestige Smile
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 Instagram: @prestige.smile.studio
 

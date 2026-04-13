@@ -80,7 +80,7 @@ const faqCategories = [
             },
             {
                 question: "How can I contact customer support?",
-                answer: "You can reach our support team via email at hello@prestigesmile.ch, by phone at +41 78 300 06 19 (Mon-Fri 10am-8pm, Sat 10am-7pm), or through the contact form on our website. We aim to respond to all inquiries within 24 hours.",
+                answer: "You can reach our support team via email at contact@prestige-smile.com, by phone at +41 78 300 06 19 (Mon-Fri 10am-8pm, Sat 10am-7pm), or through the contact form on our website. We aim to respond to all inquiries within 24 hours.",
             },
         ],
     },

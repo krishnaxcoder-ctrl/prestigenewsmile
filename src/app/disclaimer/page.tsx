@@ -229,7 +229,7 @@ For significant changes, we may notify you directly or request renewed consent.`
 
 Prestige Smile
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 Instagram: @prestige.smile.studio
 

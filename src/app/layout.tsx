@@ -26,16 +26,34 @@ const tangerine = Tangerine({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://www.prestige-smile.com"),
     title: {
         default: "Prestige Smile | Professional Teeth Whitening in Geneva",
         template: "%s | Prestige Smile",
     },
-    description: "Private aesthetic teeth whitening studio at 1 rue Jean Moulin, 74100 Ambilly, near Geneva. Give your smile a visibly whiter, brighter and more natural glow. Up to 7 shades lighter in one session.",
-    keywords: ["teeth whitening", "Geneva", "Ambilly", "cosmetic dentistry", "smile", "whitening treatment", "aesthetic"],
+    description:
+        "Private aesthetic teeth whitening studio at 1 rue Jean Moulin, 74100 Ambilly, near Geneva. Give your smile a visibly whiter, brighter and more natural glow. Up to 7 shades lighter in one session.",
+    keywords: [
+        "teeth whitening",
+        "Geneva",
+        "Ambilly",
+        "cosmetic dentistry",
+        "smile",
+        "whitening treatment",
+        "aesthetic",
+        "teeth whitening near me",
+        "professional teeth whitening Geneva",
+        "blanchiment dentaire Genève",
+    ],
     authors: [{ name: "Prestige Smile" }],
+    alternates: {
+        canonical: "https://www.prestige-smile.com",
+    },
     openGraph: {
         title: "Prestige Smile | Professional Teeth Whitening",
-        description: "Private aesthetic teeth whitening studio. Give your smile a visibly whiter, brighter and more natural glow.",
+        description:
+            "Private aesthetic teeth whitening studio near Geneva. Give your smile a visibly whiter, brighter and more natural glow.",
+        url: "https://www.prestige-smile.com",
         type: "website",
         locale: "en_US",
         siteName: "Prestige Smile",
@@ -43,13 +61,55 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "Prestige Smile | Professional Teeth Whitening",
-        description: "Private aesthetic teeth whitening studio. Give your smile a visibly whiter, brighter and more natural glow.",
+        description:
+            "Private aesthetic teeth whitening studio. Give your smile a visibly whiter, brighter and more natural glow.",
     },
 };
 
 export const viewport: Viewport = {
     themeColor: "#14aa9e",
     colorScheme: "light dark",
+};
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://www.prestige-smile.com",
+    name: "Prestige Smile",
+    description:
+        "Private aesthetic teeth whitening studio at 1 rue Jean Moulin, 74100 Ambilly, near Geneva. Up to 7 shades lighter in one session.",
+    url: "https://www.prestige-smile.com",
+    telephone: "+41783000619",
+    email: "contact@prestige-smile.com",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "1 rue Jean Moulin",
+        addressLocality: "Ambilly",
+        postalCode: "74100",
+        addressCountry: "FR",
+    },
+    geo: {
+        "@type": "GeoCoordinates",
+        latitude: 46.1965,
+        longitude: 6.1481,
+    },
+    openingHoursSpecification: [
+        {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            opens: "10:00",
+            closes: "20:00",
+        },
+        {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: "Saturday",
+            opens: "10:00",
+            closes: "19:00",
+        },
+    ],
+    priceRange: "$$",
+    image: "https://www.prestige-smile.com/logo.svg",
+    sameAs: [],
 };
 
 export default function RootLayout({
@@ -60,6 +120,10 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={cx(jost.variable, playfairDisplay.variable, tangerine.variable, "bg-primary antialiased")}>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
                 <RouteProvider>
                     <Theme>
                         <ToastProvider>{children}</ToastProvider>

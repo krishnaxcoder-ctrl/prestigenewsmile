@@ -10,11 +10,11 @@ const sections = [
 Data Controller:
 Prestige Smile
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 SIRET: [To be completed]
 
-For all data protection inquiries, please contact us at hello@prestigesmile.ch.`,
+For all data protection inquiries, please contact us at  contact@prestige-smile.com.`,
     },
     {
         title: "2. Information We Collect (Données Collectées)",
@@ -231,7 +231,7 @@ You have the right not to be subject to decisions based solely on automated proc
         title: "8. Exercising Your Rights",
         content: `To exercise any of your rights, please contact us:
 
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
 
@@ -322,7 +322,7 @@ If we learn that we have collected personal data from a child without proper par
 • We will notify the parent or guardian
 
 11.3 Reporting
-If you believe we have collected data from a minor, please contact us immediately at hello@prestigesmile.ch.`,
+If you believe we have collected data from a minor, please contact us immediately at  contact@prestige-smile.com.`,
     },
     {
         title: "12. Third-Party Links",
@@ -365,7 +365,7 @@ We Do NOT:
 • Share your personal information for cross-context behavioral advertising
 • Use or disclose sensitive personal information for purposes other than those permitted by CCPA
 
-To exercise your California rights, contact us at hello@prestigesmile.ch or call +41 78 300 06 19.
+To exercise your California rights, contact us at  contact@prestige-smile.com or call +41 78 300 06 19.
 
 Categories of Personal Information Collected (past 12 months):
 • Identifiers (name, email, phone, address)
@@ -421,7 +421,7 @@ Continued use of our services after changes constitutes acceptance of the update
 Data Controller:
 Prestige Smile
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 
 We will respond to your inquiry within 30 days.

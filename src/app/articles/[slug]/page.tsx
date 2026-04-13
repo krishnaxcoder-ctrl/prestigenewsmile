@@ -23,43 +23,6 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 				}
 				setPost(data);
 
-				// Set SEO meta tags dynamically
-				document.title = data.seo_title || data.title;
-				const metaDesc = document.querySelector('meta[name="description"]');
-				if (metaDesc) {
-					metaDesc.setAttribute("content", data.seo_description || data.excerpt || "");
-				} else {
-					const meta = document.createElement("meta");
-					meta.name = "description";
-					meta.content = data.seo_description || data.excerpt || "";
-					document.head.appendChild(meta);
-				}
-				// Keywords
-				if (data.seo_keywords?.length) {
-					let metaKw = document.querySelector('meta[name="keywords"]');
-					if (!metaKw) {
-						metaKw = document.createElement("meta");
-						metaKw.setAttribute("name", "keywords");
-						document.head.appendChild(metaKw);
-					}
-					metaKw.setAttribute("content", data.seo_keywords.join(", "));
-				}
-				// OG tags
-				setMetaProperty("og:title", data.seo_title || data.title);
-				setMetaProperty("og:description", data.seo_description || data.excerpt || "");
-				setMetaProperty("og:image", data.og_image || data.hero_image || "");
-				setMetaProperty("og:type", "article");
-				// Canonical
-				if (data.canonical_url) {
-					let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-					if (!link) {
-						link = document.createElement("link");
-						link.rel = "canonical";
-						document.head.appendChild(link);
-					}
-					link.href = data.canonical_url;
-				}
-
 				// Load related posts (other published posts, excluding current)
 				const allPosts = await getPublishedBlogPosts();
 				setRelatedPosts(allPosts.filter((p) => p.slug !== slug).slice(0, 3));
@@ -380,13 +343,3 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
 	);
 }
 
-function setMetaProperty(property: string, content: string) {
-	if (!content) return;
-	let meta = document.querySelector(`meta[property="${property}"]`);
-	if (!meta) {
-		meta = document.createElement("meta");
-		meta.setAttribute("property", property);
-		document.head.appendChild(meta);
-	}
-	meta.setAttribute("content", content);
-}

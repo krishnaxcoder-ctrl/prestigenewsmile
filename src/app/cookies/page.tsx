@@ -146,7 +146,7 @@ Address: 3 Place de Fontenoy - TSA 80715 - 75334 Paris Cedex 07`,
         content: `If you have any questions about our use of cookies or this Cookie Policy, please contact us:
 
 Prestige Smile
-Email: hello@prestigesmile.ch
+Email:  contact@prestige-smile.com
 Phone: +41 78 300 06 19
 Address: 1 rue Jean Moulin, 74100 Ambilly, France
 

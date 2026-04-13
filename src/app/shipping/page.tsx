@@ -27,7 +27,7 @@ const returnSteps = [
     {
         step: 1,
         title: "Contact Us",
-        description: "Email us at hello@prestigesmile.ch with your order number and reason for return within 14 days of delivery.",
+        description: "Email us at  contact@prestige-smile.com with your order number and reason for return within 14 days of delivery.",
     },
     {
         step: 2,
@@ -273,7 +273,7 @@ export default function ShippingPage() {
                                 <div className="mt-6 rounded-lg bg-white p-4">
                                     <h4 className="font-medium text-primary">How to Exercise Your Right</h4>
                                     <p className="mt-2 text-sm text-tertiary">
-                                        Send a clear statement to: <strong>hello@prestigesmile.ch</strong>
+                                        Send a clear statement to: <strong> contact@prestige-smile.com</strong>
                                     </p>
                                     <div className="mt-3 rounded bg-gray-50 p-3 text-xs text-tertiary">
                                         <p className="font-medium text-primary">Model Withdrawal Form:</p>
@@ -431,7 +431,7 @@ export default function ShippingPage() {
                         <div className="mt-12 text-center">
                             <h3 className="text-lg font-semibold text-primary">Questions?</h3>
                             <p className="mt-2 text-tertiary">
-                                Contact us at <a href="mailto:hello@prestigesmile.ch" className="text-brand-600 hover:underline">hello@prestigesmile.ch</a> or call <a href="tel:+41783000619" className="text-brand-600 hover:underline">+41 78 300 06 19</a>
+                                Contact us at <a href="mailto: contact@prestige-smile.com" className="text-brand-600 hover:underline"> contact@prestige-smile.com</a> or call <a href="tel:+41783000619" className="text-brand-600 hover:underline">+41 78 300 06 19</a>
                             </p>
                         </div>
                     </div>
