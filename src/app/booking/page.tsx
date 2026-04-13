@@ -119,12 +119,12 @@ export default function BookingPage() {
                     </div>
                 </section>
 
-                {/* Salonized Booking Section */}
+                {/* Salonized Booking Section - 2 Column */}
                 <section
                     className="px-4 py-12 md:px-8 md:py-16 lg:px-16"
                     style={{ backgroundColor: "#fcf5f0" }}
                 >
-                    <div className="mx-auto max-w-5xl">
+                    <div className="mx-auto max-w-6xl">
                         <div className="mb-10 text-center">
                             <p className="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">
                                 Schedule Online
@@ -139,14 +139,77 @@ export default function BookingPage() {
                                 Choose a convenient time for your professional teeth whitening session. Quick, easy, and hassle-free booking.
                             </p>
                         </div>
-                        <div className="overflow-hidden rounded-2xl border border-[#c9bdb3] shadow-lg">
-                            <iframe
-                                src="https://institut-prestige-smile.salonized.com/widget_bookings/new"
-                                title="Book an appointment at Prestige Smile"
-                                className="relative z-10 w-full border-0"
-                                style={{ height: "700px" }}
-                                allow="payment"
-                            />
+
+                        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[480px_1fr]">
+                            {/* Left - Why Book / How It Works / Info */}
+                            <div className="space-y-6 lg:sticky lg:top-8 lg:self-start">
+                                {/* How It Works */}
+                                <div className="overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-lg">
+                                    <div className="bg-brand-50 px-6 py-5">
+                                        <h3
+                                            className="text-xl font-medium text-primary"
+                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                        >
+                                            Comment se d&eacute;roule votre s&eacute;ance
+                                        </h3>
+                                    </div>
+
+                                    <div className="p-5">
+                                        <div className="space-y-4">
+                                            {[
+                                                { step: "1", title: "Diagnostic & &Eacute;ligibilit&eacute;", desc: "Questionnaire de sant&eacute; confidentiel avant votre rendez-vous" },
+                                                { step: "2", title: "Analyse de la teinte", desc: "&Eacute;valuation avec un teintier professionnel" },
+                                                { step: "3", title: "Protection gencives", desc: "Application d&apos;une protection gingivale" },
+                                                { step: "4", title: "Gel blanchissant", desc: "Application du gel professionnel sur les dents" },
+                                                { step: "5", title: "Activation LED", desc: "La lampe LED active le gel pour un &eacute;claircissement uniforme" },
+                                                { step: "6", title: "R&eacute;sultats", desc: "Comparaison de teinte pour observer l&apos;&eacute;claircissement" },
+                                            ].map((item) => (
+                                                <div key={item.step} className="flex gap-3">
+                                                    <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white">
+                                                        {item.step}
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-sm font-semibold text-primary" dangerouslySetInnerHTML={{ __html: item.title }} />
+                                                        <p className="mt-0.5 text-xs text-tertiary" dangerouslySetInnerHTML={{ __html: item.desc }} />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="mt-5 flex items-center gap-2 rounded-xl bg-brand-50 p-3">
+                                            <svg className="size-4 shrink-0 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            <p className="text-xs text-tertiary">Dur&eacute;e de la s&eacute;ance : environ <strong className="text-primary">1 heure</strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Duo Offer */}
+                                <div className="flex items-center gap-4 rounded-2xl border border-brand-200 bg-white p-5 shadow-lg">
+                                    <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-brand-100">
+                                        <svg className="size-6 text-brand-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-semibold text-primary">Offre Duo &mdash; <span className="text-brand-600">-10%</span></p>
+                                        <p className="mt-0.5 text-xs text-tertiary">Pour toute r&eacute;servation &agrave; deux personnes le m&ecirc;me jour</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            {/* Right - Salonized Widget */}
+                            <div className="overflow-hidden rounded-2xl border border-[#c9bdb3] bg-white shadow-lg">
+                                <iframe
+                                    src="https://institut-prestige-smile.salonized.com/widget_bookings/new"
+                                    title="Book an appointment at Prestige Smile"
+                                    className="w-full border-0"
+                                    style={{ height: "800px" }}
+                                    allow="payment"
+                                />
+                            </div>
                         </div>
                     </div>
                 </section>
