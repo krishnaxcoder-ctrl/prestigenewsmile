@@ -12,7 +12,7 @@ const services = [
 		duration: "60 minutes",
 		shades: "Up to 7 shades lighter",
 		description:
-			"Our signature single session treatment is perfect for a first whitening experience. Using professional-grade LED technology and EU-approved whitening gels, we deliver visible results from the very first appointment. Ideal for those looking to brighten their smile quickly and safely.",
+			"Our signature single session treatment is the perfect introduction to professional teeth whitening. Using advanced LED technology combined with EU-approved, enamel-safe whitening gels, we deliver visible results from the very first appointment. Our specialists assess your current shade and tailor the treatment to your sensitivity and goals. The process is entirely painless — simply relax while three carefully timed activation cycles work their magic. Whether you have a special event, an interview, or simply want to boost your confidence, this one-hour treatment delivers up to 7 shades brighter in a single visit.",
 		includes: [
 			"Initial consultation and shade assessment",
 			"Gum protection application",
@@ -33,7 +33,7 @@ const services = [
 		duration: "2 × 60 minutes (spaced 48h apart)",
 		shades: "Up to 9+ shades lighter",
 		description:
-			"Our most comprehensive whitening programme, designed for deeper discolouration or those seeking maximum results. Two sessions spaced 48 hours apart allow the whitening agents to work progressively, delivering intensified lightening with longer-lasting results.",
+			"Our most comprehensive whitening programme is designed for clients seeking maximum results. Two sessions spaced 48 hours apart allow the whitening agents to work progressively — the first lifts surface and embedded stains from coffee, tea, wine, or tobacco, while the second pushes brightness to its full potential, often achieving 9+ shades lighter. Each session includes a consultation, gum protection, and three cycles of LED-activated whitening. Between appointments, we track your progress and adjust the plan for optimal results. This is the gold standard for a truly radiant smile that lasts.",
 		includes: [
 			"Two full whitening sessions (48h apart)",
 			"Initial consultation and shade assessment",
@@ -55,7 +55,7 @@ const services = [
 		duration: "45 minutes",
 		shades: "Restore original brightness",
 		description:
-			"Keep your smile at its brightest with regular maintenance sessions. Recommended approximately 6 months after your initial treatment, the touch-up session revives the radiance of your smile and prolongs your whitening results over time.",
+			"Keep your smile at its brightest with regular maintenance sessions. Recommended every 6 to 12 months after your initial treatment, this touch-up is designed to combat natural re-staining from everyday habits like coffee, tea, or wine. In just 45 minutes, we refresh your brightness with professional whitening gel and two targeted LED activation cycles. Each visit begins with a shade assessment to track your results and personalise the session. Think of it as a reset button for your smile — quick, comfortable, and effective. Clients who invest in regular touch-ups maintain a brighter appearance year after year.",
 		includes: [
 			"Shade check and progress assessment",
 			"Gum protection application",
@@ -79,7 +79,7 @@ export default function ServicesPage() {
 	return (
 		<>
 			<Header />
-			<main className="mx-auto max-w-7xl overflow-x-hidden bg-primary">
+			<main className="mx-auto overflow-x-hidden bg-primary">
 				{/* Hero Header */}
 				<section className="border-b border-brand-400 bg-brand-50 px-4 py-8 md:px-8 md:py-10 lg:px-16">
 					<div>
@@ -98,8 +98,8 @@ export default function ServicesPage() {
 				</section>
 
 				{/* Services */}
-				<div className="px-4 py-10 md:px-8 md:py-24 lg:px-16">
-					<div className="space-y-16 md:space-y-32">
+				<div className="px-4  max-w-7xl mx-auto py-10 md:px-8 md:py-10 lg:px-0">
+					<div className="space-y-16 md:space-y-20">
 						{services.map((service, index) => (
 							<section key={service.id} id={service.id} className="scroll-mt-24">
 								{/* Service Header */}
@@ -113,12 +113,7 @@ export default function ServicesPage() {
 									>
 										{service.title}
 									</h2>
-									{/* Divider */}
-									<div className="mt-4 flex items-center gap-3 md:mt-6 md:gap-4">
-										<div className="h-px w-12 bg-gradient-to-r from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
-										<div className="size-1.5 rotate-45 border border-brand-600/60 md:size-2" />
-										<div className="h-px w-12 bg-gradient-to-l from-transparent via-brand-600/30 to-brand-600/50 md:w-24" />
-									</div>
+									
 								</div>
 
 								{/* Image + Details */}
