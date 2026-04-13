@@ -201,12 +201,12 @@ export default function BookingPage() {
                             </div>
 
                             {/* Right - Salonized Widget */}
-                            <div className="overflow-hidden rounded-2xl border border-[#c9bdb3] bg-white shadow-lg">
+                            <div className="overflow-hidden rounded-2xl border border-[#c9bdb3] shadow-lg">
                                 <iframe
                                     src="https://institut-prestige-smile.salonized.com/widget_bookings/new"
                                     title="Book an appointment at Prestige Smile"
                                     className="w-full border-0"
-                                    style={{ height: "800px" }}
+                                    style={{ height: "800px", backgroundColor: "transparent" }}
                                     allow="payment"
                                 />
                             </div>
