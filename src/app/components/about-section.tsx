@@ -26,7 +26,7 @@ export function AboutSection() {
                             className="text-3xl font-medium uppercase tracking-[0.15em] text-white"
                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                         >
-                            About Me
+                            About Me    
                         </h2>
 
                         <div className="my-4 w-16 bg-white/40" />
@@ -109,7 +109,6 @@ export function AboutSection() {
 
                             <div
                                 className="space-y-5 text-[17px] leading-[1.9] text-[#5a3d4a]/85"
-                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
                             >
                                 <p>
                                     I&apos;m <span className="font-semibold text-[#4a2d3a]">Anaëlle</span>, founder
@@ -129,7 +128,7 @@ export function AboutSection() {
                                     I pay close attention to every client, ensuring a natural, radiant result that is
                                     perfectly aligned with each smile.
                                 </p>
-                                <p className="italic text-[#4a2d3a]">
+                                <p  >
                                     Because a smile is much more than a detail… it is a true source of confidence.
                                 </p>
                             </div>
