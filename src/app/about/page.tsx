@@ -178,67 +178,38 @@ export default function AboutPage() {
                     <div className="pointer-events-none absolute -bottom-24 right-0 size-[420px] rounded-full bg-[radial-gradient(circle,#e8d4c7_0%,transparent_70%)] opacity-30" />
 
                     <div className="relative mx-auto max-w-7xl">
-                        <div className="grid gap-16 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-24">
-                            {/* Left - Sticky Header */}
+                        <div className="grid items-start gap-16 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-24">
+                            {/* Left - Header */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6 }}
-                                className="lg:sticky lg:top-28 lg:self-start"
+                                className="lg:self-start"
                             >
-                                {/* Eyebrow with ornament */}
-                                <div className="mb-6 flex items-center gap-3">
-                                    <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
-                                    <div className="h-px w-10 bg-[#c9a5ab]" />
-                                    <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-[#b8929a]">
-                                        Our Values
-                                    </p>
-                                </div>
+                                <p className="text-sm font-medium uppercase tracking-widest text-brand-600">Our Values</p>
 
-                                {/* Heading */}
                                 <h2
-                                    className="leading-[0.95] text-[#4a2d3a]"
+                                    className="mt-3 text-display-sm font-medium leading-[1.05] text-primary md:text-display-md lg:text-display-lg"
                                     style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                 >
-                                    <span className="block pl-1 text-3xl font-light uppercase tracking-[0.35em] text-[#b8929a] md:text-4xl">
-                                        What
-                                    </span>
-                                    <span className="-mt-1 block text-[88px] font-light italic tracking-[-0.02em] text-[#4a2d3a] md:text-[120px] lg:text-[140px]">
-                                        Drives
-                                    </span>
-                                    <span className="mt-2 flex items-end gap-4 pl-1">
-                                        <span className="text-3xl font-light uppercase tracking-[0.35em] text-[#b8929a] md:text-4xl">
-                                            Us
-                                        </span>
-                                        <span className="mb-1 h-px flex-1 bg-[#c9a5ab]/50" />
-                                        <span className="mb-2 size-1.5 rotate-45 bg-[#c9a5ab]" />
-                                    </span>
+                                    The Values That <br className="hidden lg:block" />
+                                    <span className="italic text-brand-600">Shape Every Smile</span>
                                 </h2>
 
-                                {/* Decorative flourish */}
-                                <div className="mt-8 flex items-center gap-3">
-                                    <div className="h-px w-6 bg-[#c9a5ab]/60" />
-                                    <div className="size-1 rotate-45 bg-[#c9a5ab]" />
-                                    <div className="h-px w-16 bg-[#c9a5ab]/60" />
-                                    <div className="size-1 rotate-45 bg-[#c9a5ab]/40" />
-                                </div>
+                                <p className="mt-6 text-sm leading-relaxed text-gray-500">
+                                    The principles that guide every treatment, every detail, and every smile we create.
+                                </p>
 
-                                {/* Quote */}
-                                <div className="relative mt-8 border-l border-[#c9a5ab]/50 pl-5">
-                                    <span
-                                        className="absolute -left-[3px] -top-2 text-3xl leading-none text-[#c9a5ab]"
-                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                    >
-                                        &ldquo;
-                                    </span>
-                                    <p
-                                        className="text-[17px] italic leading-[1.8] text-[#5a3d4a]"
-                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                    >
-                                        The principles that guide every treatment, every detail, and every smile we create.
-                                    </p>
-                                </div>
+                                <a
+                                    href="/contact"
+                                    className="mt-8 hidden items-center gap-2 border border-brand-600 bg-transparent px-8 py-3 text-sm font-medium uppercase text-brand-600 transition duration-200 ease-linear hover:bg-brand-600 hover:text-white lg:inline-flex"
+                                >
+                                    Book Your Session
+                                    <svg className="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </a>
 
                                 {/* Signature */}
                                 <div className="mt-10 hidden items-center gap-4 lg:flex">
