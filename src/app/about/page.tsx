@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Star01, Heart, Award01, Users01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
-import { NewsletterSection } from "@/app/components/newsletter-section";
 import { AboutSection } from "@/app/components/about-section";
 
 const stats = [
@@ -294,8 +293,6 @@ export default function AboutPage() {
                         </div>
                     </div>
                 </section>
-
-                <NewsletterSection />
             </main>
             <Footer />
         </div>
