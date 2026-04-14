@@ -187,11 +187,8 @@ export default function AboutPage() {
                                 Our Values
                             </p>
 
-                            <h2
-                                className="text-4xl font-light uppercase tracking-[0.15em] text-[#4a2d3a] md:text-5xl lg:text-6xl"
-                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                            >
-                                What <span className="italic">Drives</span> Us
+                            <h2 className="text-3xl font-bold uppercase tracking-[0.15em] text-[#4a2d3a] md:text-4xl lg:text-5xl">
+                                What Drives Us
                             </h2>
 
                             {/* Decorative divider */}
