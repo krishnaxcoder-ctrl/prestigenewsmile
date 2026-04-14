@@ -5,7 +5,7 @@ import { Star01, Heart, Award01, Users01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { NewsletterSection } from "@/app/components/newsletter-section";
-import { RatingBadge } from "@/components/foundations/rating-badge";
+import { AboutSection } from "@/app/components/about-section";
 
 const stats = [
     { value: "50K+", label: "Happy Customers" },
@@ -51,44 +51,7 @@ export default function AboutPage() {
         <div className="overflow-x-hidden">
             <Header />
             <main className="bg-primary">
-                {/* Hero Header */}
-                <section className="border-b border-brand-400 bg-brand-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
-                    <div className="mx-auto max-w-7xl">
-                        <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="uppercase transition hover:text-brand-600">Home</a>
-                            <span>/</span>
-                            <span className="uppercase text-brand-600">About</span>
-                        </nav>
-                        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-                            <div className="max-w-3xl">
-                                <motion.h1
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.1 }}
-                                    className="text-2xl font-semibold uppercase text-primary md:text-3xl"
-                                >
-                                    About <span className="text-brand-600">Prestige Smile</span>
-                                </motion.h1>
-                                <motion.p
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.2 }}
-                                    className="mt-4 text-lg text-tertiary"
-                                >
-                                    We're on a mission to help everyone achieve a confident, radiant smile through professional teeth whitening treatments.
-                                </motion.p>
-                            </div>
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                                className="hidden shrink-0 md:block"
-                            >
-                                <RatingBadge rating={4.9} title="15+ Years Experience" subtitle="50K+ happy customers" />
-                            </motion.div>
-                        </div>
-                    </div>
-                </section>
+                <AboutSection />
 
                 {/* Stats */}
                 <section className="border-b border-secondary py-12">
