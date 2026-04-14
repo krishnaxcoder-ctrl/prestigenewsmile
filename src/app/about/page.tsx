@@ -83,94 +83,6 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                {/* Story Section */}
-                <section className="relative overflow-hidden bg-gradient-to-b from-[#f7f2ec] via-[#f3ede6] to-[#ebe2d8] px-4 py-20 md:px-8 md:py-28 lg:px-16">
-                    {/* Ambient glow */}
-                    <div className="pointer-events-none absolute -top-24 right-1/4 size-[520px] translate-x-1/2 rounded-full bg-[radial-gradient(circle,#f5efe7_0%,transparent_70%)] opacity-60" />
-                    <div className="pointer-events-none absolute -bottom-32 left-0 size-[380px] rounded-full bg-[radial-gradient(circle,#d4b5a0_0%,transparent_70%)] opacity-25" />
-
-                    <div className="relative mx-auto max-w-7xl">
-                        <div className="grid items-center gap-16 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
-                            {/* Left - Image with decorative frame */}
-                            <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                                className="relative order-2 lg:order-1"
-                            >
-                                {/* Decorative offset border */}
-                                <div className="absolute -left-6 -top-6 bottom-6 right-6 border border-[#c9a5ab]/40" />
-
-                                {/* Main image */}
-                                <div className="relative aspect-[4/5] overflow-hidden">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800"
-                                        alt="Our Studio"
-                                        className="size-full object-cover"
-                                    />
-                                </div>
-
-                                {/* Floating accent line */}
-                                <div className="absolute -right-6 top-1/3 h-px w-12 bg-[#c9a5ab]/60" />
-
-                                {/* Minimal years badge */}
-                                <div className="absolute -bottom-8 left-8 bg-[#f7f2ec] px-6 py-4 border border-[#c9a5ab]/40">
-                                    <p
-                                        className="text-3xl font-light text-[#4a2d3a]"
-                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                    >
-                                        15+
-                                    </p>
-                                    <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.25em] text-[#b8929a]">
-                                        Years of Excellence
-                                    </p>
-                                </div>
-                            </motion.div>
-
-                            {/* Right - Text content */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                                className="order-1 lg:order-2"
-                            >
-                                <p className="mb-2 text-xs font-medium uppercase tracking-[0.3em] text-[#b8929a]">
-                                    Our Story
-                                </p>
-
-                                <h2
-                                    className="text-4xl font-light uppercase tracking-[0.15em] text-[#4a2d3a] md:text-5xl lg:text-6xl"
-                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                >
-                                    Our Journey to{" "}
-                                    <span className="italic">Brighter Smiles</span>
-                                </h2>
-
-                                {/* Decorative divider */}
-                                <div className="my-6 flex items-center gap-3">
-                                    <div className="h-px w-12 bg-[#c9a5ab]" />
-                                    <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
-                                    <div className="h-px w-12 bg-[#c9a5ab]" />
-                                </div>
-
-                                <div className="space-y-5 text-[16px] leading-[1.9] text-[#5a3d4a]/85">
-                                    <p>
-                                        Founded in Geneva, <span className="font-semibold text-[#4a2d3a]">Prestige Smile</span> was born from a simple belief: everyone deserves a smile they&apos;re proud to show. What started as a small studio has grown into a trusted destination for teeth whitening in the region.
-                                    </p>
-                                    <p>
-                                        We combine <span className="italic">Swiss precision</span> with cutting-edge technology to deliver safe, effective, and long-lasting results. Our team of specialists is dedicated to providing a comfortable, personalized experience for every client.
-                                    </p>
-                                    <p>
-                                        Today, we&apos;re proud to have helped over <span className="font-semibold text-[#4a2d3a]">50,000 customers</span> achieve their dream smile. Our commitment to quality, safety, and satisfaction remains at the heart of everything we do.
-                                    </p>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </section>
-
                 {/* Values */}
                 <section className="relative overflow-hidden bg-[#faf6f1] px-4 py-20 md:px-8 md:py-28 lg:px-16">
                     {/* Ambient glow */}
@@ -241,7 +153,7 @@ export default function AboutPage() {
                                             </div>
 
                                             {/* Content */}
-                                            <div className="pt-2 md:pt-3">
+                                            <div className="">
                                                 <div className="flex items-baseline gap-3">
                                                     <span
                                                         className="text-lg font-light text-[#b8929a]"
