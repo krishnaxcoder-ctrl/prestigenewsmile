@@ -57,104 +57,157 @@ export default function AboutPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero */}
-                <section className="relative overflow-hidden bg-gradient-to-b from-[#f7f2ec] via-[#f3ede6] to-[#ebe2d8] px-4 py-24 md:px-8 md:py-32 lg:px-16 lg:py-40">
+                <section className="relative flex flex-col overflow-hidden bg-gradient-to-b from-[#f7f2ec] via-[#f3ede6] to-[#ebe2d8] px-4 pb-8 pt-4 md:px-8 md:pb-10 md:pt-6 lg:h-[700px] lg:min-h-0 lg:px-16 lg:pb-6 lg:pt-4">
                     {/* Ambient glows */}
                     <div className="pointer-events-none absolute -top-32 left-1/4 size-[560px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#f5efe7_0%,transparent_70%)] opacity-70" />
                     <div className="pointer-events-none absolute -bottom-40 right-0 size-[480px] rounded-full bg-[radial-gradient(circle,#d4b5a0_0%,transparent_70%)] opacity-25" />
 
-                    {/* Decorative corner ornaments */}
-                    <div className="pointer-events-none absolute left-8 top-8 hidden items-center gap-3 md:flex">
-                        <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
-                        <div className="h-px w-12 bg-[#c9a5ab]/60" />
+                    <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col">
+                        <div className="grid flex-1 items-center gap-6 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
+                            {/* Left - Text content */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.7 }}
+                                className="order-2 text-center lg:order-1 lg:text-left"
+                            >
+                                {/* Script accent */}
+                                <p
+                                    className="mb-1 text-2xl text-[#8b5a6a] md:text-3xl"
+                                    style={{ fontFamily: "'Eyesome Script', cursive" }}
+                                >
+                                    Welcome to
+                                </p>
+
+                                {/* Headline */}
+                                <h1
+                                    className="text-4xl font-light leading-[1.05] text-[#4a2d3a] md:text-5xl lg:text-[44px] xl:text-6xl"
+                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                >
+                                    The Art of a <br className="hidden md:block" />
+                                    <span className="italic text-[#8b5a6a]">Confident</span> Smile
+                                </h1>
+
+                                {/* Decorative divider */}
+                                <div className="mt-4 flex items-center justify-center gap-3 lg:justify-start">
+                                    <div className="h-px w-10 bg-[#c9a5ab]" />
+                                    <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
+                                    <div className="h-px w-20 bg-[#c9a5ab]/60" />
+                                    <div className="size-1 rotate-45 bg-[#c9a5ab]/50" />
+                                </div>
+
+                                {/* Subtitle */}
+                                <p
+                                    className="mx-auto mt-4 max-w-lg text-[14px] italic leading-[1.7] text-[#5a3d4a]/85 lg:mx-0 md:text-[15px]"
+                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                >
+                                    Born in Geneva, crafted with Swiss precision. Where refinement meets artistry — every session, a gentle step toward your most radiant self.
+                                </p>
+
+                                {/* Founder signature line */}
+                                <div className="mt-5 flex items-center justify-center gap-4 lg:justify-start">
+                                    <div className="h-px w-8 bg-[#c9a5ab]/60" />
+                                    <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-[#b8929a]">
+                                        By
+                                    </p>
+                                    <p
+                                        className="text-2xl text-[#4a2d3a]"
+                                        style={{ fontFamily: "'Eyesome Script', cursive" }}
+                                    >
+                                        Anaëlle
+                                    </p>
+                                </div>
+
+                                {/* Trust strip - directly below text content */}
+                                <div className="mt-8 border-t border-[#c9a5ab]/30 pt-6">
+                                    <div className="flex flex-wrap items-center justify-center gap-y-4 divide-x divide-[#c9a5ab]/40 text-center md:flex-nowrap lg:justify-start">
+                                        <div className="min-w-[110px] px-4 md:min-w-[120px]">
+                                            <p
+                                                className="text-2xl font-light text-[#4a2d3a] md:text-3xl"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                15+
+                                            </p>
+                                            <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                                Years of Craft
+                                            </p>
+                                        </div>
+                                        <div className="min-w-[110px] px-4 md:min-w-[120px]">
+                                            <p
+                                                className="text-2xl font-light italic text-[#8b5a6a] md:text-3xl"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                50K+
+                                            </p>
+                                            <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                                Radiant Smiles
+                                            </p>
+                                        </div>
+                                        <div className="min-w-[110px] px-4 md:min-w-[120px]">
+                                            <p
+                                                className="text-2xl font-light text-[#4a2d3a] md:text-3xl"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                4.9
+                                            </p>
+                                            <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                                Average Rating
+                                            </p>
+                                        </div>
+                                        <div className="min-w-[110px] px-4 md:min-w-[120px]">
+                                            <p
+                                                className="text-2xl font-light italic text-[#8b5a6a] md:text-3xl"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                100%
+                                            </p>
+                                            <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                                Natural Finish
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+
+                            {/* Right - Full bleed image */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.96 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.7, delay: 0.15 }}
+                                className="relative order-1 h-[320px] w-full sm:h-[400px] lg:order-2 lg:h-full"
+                            >
+                                {/* Image */}
+                                <div className="relative size-full overflow-hidden">
+                                    <img
+                                        src="/client.webp"
+                                        alt="Anaëlle — Prestige Smile Studio"
+                                        className="size-full object-cover"
+                                    />
+                                </div>
+
+                                {/* Years label */}
+                                <div className="absolute bottom-6 left-6 z-20 bg-[#f7f2ec] px-5 py-3 shadow-sm md:bottom-8 md:left-8 md:px-6 md:py-4">
+                                    <p className="flex items-baseline gap-2">
+                                        <span
+                                            className="text-2xl font-light text-[#4a2d3a] md:text-3xl"
+                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                        >
+                                            Est.
+                                        </span>
+                                        <span
+                                            className="text-2xl font-light italic text-[#8b5a6a] md:text-3xl"
+                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                        >
+                                            2010
+                                        </span>
+                                    </p>
+                                    <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                        Geneva, Switzerland
+                                    </p>
+                                </div>
+                            </motion.div>
+                        </div>
                     </div>
-                    <div className="pointer-events-none absolute bottom-8 right-8 hidden items-center gap-3 md:flex">
-                        <div className="h-px w-12 bg-[#c9a5ab]/60" />
-                        <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
-                    </div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7 }}
-                        className="relative mx-auto max-w-5xl text-center"
-                    >
-                        {/* Breadcrumb */}
-                        <div className="mb-8 flex items-center justify-center gap-3 text-[11px] font-medium uppercase tracking-[0.35em] text-[#b8929a]">
-                            <a href="/" className="transition-colors hover:text-[#4a2d3a]">
-                                Home
-                            </a>
-                            <span className="size-1 rotate-45 bg-[#c9a5ab]" />
-                            <span className="text-[#4a2d3a]">About</span>
-                        </div>
-
-                        {/* Eyebrow */}
-                        <p className="text-xs font-medium uppercase tracking-[0.4em] text-[#b8929a]">
-                            Our Story
-                        </p>
-
-                        {/* Headline */}
-                        <h1
-                            className="mt-6 text-5xl font-light leading-[1] text-[#4a2d3a] md:text-6xl lg:text-7xl xl:text-8xl"
-                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                        >
-                            The Art of a <br />
-                            <span className="italic text-[#8b5a6a]">Confident</span> Smile
-                        </h1>
-
-                        {/* Decorative divider */}
-                        <div className="mx-auto mt-8 flex items-center justify-center gap-4">
-                            <div className="h-px w-16 bg-gradient-to-r from-transparent to-[#c9a5ab]" />
-                            <div className="size-2 rotate-45 border border-[#c9a5ab]" />
-                            <div className="h-px w-16 bg-gradient-to-l from-transparent to-[#c9a5ab]" />
-                        </div>
-
-                        {/* Subtitle */}
-                        <p
-                            className="mx-auto mt-8 max-w-2xl text-lg italic leading-[1.8] text-[#5a3d4a]/80 md:text-xl"
-                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                        >
-                            Born in Geneva, crafted with Swiss precision. Prestige Smile Studio is where refinement meets artistry — every session, a personal step toward your most radiant self.
-                        </p>
-
-                        {/* Trust badges */}
-                        <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-center md:gap-14">
-                            <div>
-                                <p
-                                    className="text-3xl font-light text-[#4a2d3a] md:text-4xl"
-                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                >
-                                    15+
-                                </p>
-                                <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
-                                    Years
-                                </p>
-                            </div>
-                            <div className="hidden h-12 w-px bg-[#c9a5ab]/40 md:block" />
-                            <div>
-                                <p
-                                    className="text-3xl font-light text-[#4a2d3a] md:text-4xl"
-                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                >
-                                    50K+
-                                </p>
-                                <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
-                                    Radiant Smiles
-                                </p>
-                            </div>
-                            <div className="hidden h-12 w-px bg-[#c9a5ab]/40 md:block" />
-                            <div>
-                                <p
-                                    className="text-3xl font-light text-[#4a2d3a] md:text-4xl"
-                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                >
-                                    4.9
-                                </p>
-                                <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
-                                    Avg. Rating
-                                </p>
-                            </div>
-                        </div>
-                    </motion.div>
                 </section>
 
                 <AboutSection />
