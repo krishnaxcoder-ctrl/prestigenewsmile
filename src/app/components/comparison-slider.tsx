@@ -60,7 +60,7 @@ export function ComparisonSlider() {
                 {/* Comparison Container */}
                 <div
                     ref={containerRef}
-                    className="relative mx-auto aspect-[9/4] max-w-8xl cursor-ew-resize select-none overflow-hidden"
+                    className="relative mx-auto aspect-[7/4] lg:aspect-[9/4] max-w-8xl cursor-ew-resize select-none overflow-hidden"
                     onMouseDown={handleMouseDown}
                     onMouseUp={handleMouseUp}
                     onMouseLeave={handleMouseUp}
