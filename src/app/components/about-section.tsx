@@ -1,6 +1,6 @@
 export function AboutSection() {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-b from-[#ece5de] via-[#e8e2dc] to-[#ddd3c8]">
+        <section className="relative overflow-hidden bg-gradient-to-b from-[#f7f2ec] via-[#f3ede6] to-[#ebe2d8]">
             {/* Ambient glow */}
             <div className="pointer-events-none absolute -top-24 left-1/4 size-[520px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#f5efe7_0%,transparent_70%)] opacity-60" />
             <div className="pointer-events-none absolute -bottom-32 right-0 size-[380px] rounded-full bg-[radial-gradient(circle,#d4b5a0_0%,transparent_70%)] opacity-25" />
@@ -91,8 +91,7 @@ export function AboutSection() {
                         {/* Right - Text content */}
                         <div>
                             <p
-                                className="mb-3 text-xs uppercase tracking-[0.3em] text-[#b8929a]"
-                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                className="mb-2 text-xs font-medium uppercase tracking-[0.3em] text-[#b8929a]"
                             >
                                 La fondatrice
                             </p>
@@ -105,7 +104,7 @@ export function AboutSection() {
                             </h2>
 
                             {/* Decorative divider */}
-                            <div className="my-8 flex items-center gap-3">
+                            <div className="my-5 flex items-center gap-3">
                                 <div className="h-px w-12 bg-[#c9a5ab]" />
                                 <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
                                 <div className="h-px w-12 bg-[#c9a5ab]" />

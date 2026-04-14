@@ -32,13 +32,15 @@ export default function Page() {
 				<AboutSection />
 				<ComparisonSlider />
 
-				<WhiteningResults />
 				<PriceListSection />
 
 				<FeaturesSection />
 
 				<WhiteningInfoSection />
 				<SessionNoteSection />
+
+								<WhiteningResults />
+
 				<ReviewsSection />
 				<ArticlesSection />
 				<FAQSection />

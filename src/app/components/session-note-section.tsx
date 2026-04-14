@@ -16,7 +16,7 @@ const stats = [
 
 export function SessionNoteSection() {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-b from-[#ece5de] via-[#e8e2dc] to-[#ddd3c8] px-4 py-20 md:px-8 md:py-28">
+        <section className="relative overflow-hidden bg-gradient-to-b from-[#f7f2ec] via-[#f3ede6] to-[#ebe2d8] px-4 py-20 md:px-8 md:py-28">
             {/* Ambient glow */}
             <div className="pointer-events-none absolute -top-24 left-1/4 size-[520px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#f5efe7_0%,transparent_70%)] opacity-60" />
             <div className="pointer-events-none absolute -bottom-32 right-0 size-[380px] rounded-full bg-[radial-gradient(circle,#d4b5a0_0%,transparent_70%)] opacity-25" />
