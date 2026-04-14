@@ -5,6 +5,10 @@ import { Star01, Heart, Award01, Users01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { AboutSection } from "@/app/components/about-section";
+import { ReviewsSection } from "@/app/components/reviews-sectionaother";
+import { ArticlesSection } from "@/app/components/articles-section";
+import { FAQSection } from "@/app/components/faq-section";
+import { CollectionBanner } from "@/app/components/collection-banner";
 
 const stats = [
     { value: "18+", label: "Years of Experience" },
@@ -293,6 +297,11 @@ export default function AboutPage() {
                         </div>
                     </div>
                 </section>
+
+                <ReviewsSection />
+                <ArticlesSection />
+                <FAQSection />
+                <CollectionBanner />
             </main>
             <Footer />
         </div>
