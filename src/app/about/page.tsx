@@ -178,69 +178,134 @@ export default function AboutPage() {
                     <div className="pointer-events-none absolute -bottom-24 right-0 size-[420px] rounded-full bg-[radial-gradient(circle,#e8d4c7_0%,transparent_70%)] opacity-30" />
 
                     <div className="relative mx-auto max-w-7xl">
-                        {/* Header */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="text-center"
-                        >
-                            <p className="mb-2 text-xs font-medium uppercase tracking-[0.3em] text-[#b8929a]">
-                                Our Values
-                            </p>
-
-                            <h2
-                                className="text-4xl font-light uppercase tracking-[0.18em] text-[#4a2d3a] md:text-5xl lg:text-6xl"
-                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        <div className="grid gap-16 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-24">
+                            {/* Left - Sticky Header */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6 }}
+                                className="lg:sticky lg:top-28 lg:self-start"
                             >
-                                What Drives Us
-                            </h2>
+                                {/* Eyebrow with ornament */}
+                                <div className="mb-6 flex items-center gap-3">
+                                    <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
+                                    <div className="h-px w-10 bg-[#c9a5ab]" />
+                                    <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-[#b8929a]">
+                                        Our Values
+                                    </p>
+                                </div>
 
-                           
-
-                            <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-[#5a3d4a]/75">
-                                The principles that guide every treatment, every detail, and every smile we create.
-                            </p>
-                        </motion.div>
-
-                        {/* Values Grid */}
-                        <div className="mt-16 grid gap-px bg-[#c9a5ab]/30 sm:grid-cols-2 lg:grid-cols-4">
-                            {values.map((value, index) => (
-                                <motion.div
-                                    key={value.title}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="group relative bg-[#faf6f1] px-8 py-12 text-center transition-colors duration-500 hover:bg-[#f3e8de]"
+                                {/* Heading */}
+                                <h2
+                                    className="leading-[0.95] text-[#4a2d3a]"
+                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                 >
-                                    {/* Corner accents */}
-                                    <div className="absolute left-4 top-4 h-3 w-px bg-[#c9a5ab]/0 transition-all duration-500 group-hover:h-6 group-hover:bg-[#c9a5ab]/60" />
-                                    <div className="absolute left-4 top-4 h-px w-3 bg-[#c9a5ab]/0 transition-all duration-500 group-hover:w-6 group-hover:bg-[#c9a5ab]/60" />
-                                    <div className="absolute bottom-4 right-4 h-3 w-px bg-[#c9a5ab]/0 transition-all duration-500 group-hover:h-6 group-hover:bg-[#c9a5ab]/60" />
-                                    <div className="absolute bottom-4 right-4 h-px w-3 bg-[#c9a5ab]/0 transition-all duration-500 group-hover:w-6 group-hover:bg-[#c9a5ab]/60" />
+                                    <span className="block pl-1 text-3xl font-light uppercase tracking-[0.35em] text-[#b8929a] md:text-4xl">
+                                        What
+                                    </span>
+                                    <span className="-mt-1 block text-[88px] font-light italic tracking-[-0.02em] text-[#4a2d3a] md:text-[120px] lg:text-[140px]">
+                                        Drives
+                                    </span>
+                                    <span className="mt-2 flex items-end gap-4 pl-1">
+                                        <span className="text-3xl font-light uppercase tracking-[0.35em] text-[#b8929a] md:text-4xl">
+                                            Us
+                                        </span>
+                                        <span className="mb-1 h-px flex-1 bg-[#c9a5ab]/50" />
+                                        <span className="mb-2 size-1.5 rotate-45 bg-[#c9a5ab]" />
+                                    </span>
+                                </h2>
 
-                                    {/* Icon */}
-                                    <div className="mx-auto flex size-16 items-center justify-center border border-[#c9a5ab]/50 transition-all duration-500 group-hover:border-[#c9a5ab] group-hover:bg-white/40">
-                                        <value.icon className="size-6 text-[#4a2d3a]" strokeWidth={1.25} />
-                                    </div>
+                                {/* Decorative flourish */}
+                                <div className="mt-8 flex items-center gap-3">
+                                    <div className="h-px w-6 bg-[#c9a5ab]/60" />
+                                    <div className="size-1 rotate-45 bg-[#c9a5ab]" />
+                                    <div className="h-px w-16 bg-[#c9a5ab]/60" />
+                                    <div className="size-1 rotate-45 bg-[#c9a5ab]/40" />
+                                </div>
 
-                                    {/* Thin divider */}
-                                    <div className="mx-auto my-5 h-px w-8 bg-[#c9a5ab]/60 transition-all duration-500 group-hover:w-12" />
-
-                                    <h3
-                                        className="text-xl font-medium uppercase tracking-[0.12em] text-[#4a2d3a]"
+                                {/* Quote */}
+                                <div className="relative mt-8 border-l border-[#c9a5ab]/50 pl-5">
+                                    <span
+                                        className="absolute -left-[3px] -top-2 text-3xl leading-none text-[#c9a5ab]"
                                         style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                     >
-                                        {value.title}
-                                    </h3>
-
-                                    <p className="mt-4 text-[14px] leading-[1.8] text-[#5a3d4a]/80">
-                                        {value.description}
+                                        &ldquo;
+                                    </span>
+                                    <p
+                                        className="text-[17px] italic leading-[1.8] text-[#5a3d4a]"
+                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                    >
+                                        The principles that guide every treatment, every detail, and every smile we create.
                                     </p>
-                                </motion.div>
-                            ))}
+                                </div>
+
+                                {/* Signature */}
+                                <div className="mt-10 hidden items-center gap-4 lg:flex">
+                                    <div className="h-px w-10 bg-[#c9a5ab]/60" />
+                                    <p
+                                        className="text-3xl text-[#4a2d3a]"
+                                        style={{ fontFamily: "'Eyesome Script', cursive" }}
+                                    >
+                                        Anaëlle
+                                    </p>
+                                </div>
+                            </motion.div>
+
+                            {/* Right - Values list */}
+                            <div className="relative">
+                                {/* Vertical rail */}
+                                <div className="pointer-events-none absolute left-[30px] top-4 bottom-4 w-px bg-gradient-to-b from-transparent via-[#c9a5ab]/40 to-transparent md:left-[38px]" />
+
+                                <div className="space-y-10 md:space-y-14">
+                                    {values.map((value, index) => (
+                                        <motion.div
+                                            key={value.title}
+                                            initial={{ opacity: 0, x: 20 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                                            className="group relative grid grid-cols-[60px_1fr] items-start gap-5 md:grid-cols-[76px_1fr] md:gap-8"
+                                        >
+                                            {/* Icon badge */}
+                                            <div className="relative z-10">
+                                                <div className="relative flex size-[60px] items-center justify-center bg-[#faf6f1] transition-all duration-500 md:size-[76px]">
+                                                    {/* Outer ring */}
+                                                    <div className="absolute inset-0 rotate-45 border border-[#c9a5ab]/40 transition-all duration-500 group-hover:rotate-[60deg] group-hover:border-[#c9a5ab]" />
+                                                    {/* Inner circle */}
+                                                    <div className="relative flex size-10 items-center justify-center rounded-full bg-white/60 md:size-12">
+                                                        <value.icon className="size-5 text-[#4a2d3a] md:size-6" strokeWidth={1.25} />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Content */}
+                                            <div className="pt-2 md:pt-3">
+                                                <div className="flex items-baseline gap-3">
+                                                    <span
+                                                        className="text-lg font-light text-[#b8929a]"
+                                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                    >
+                                                        {String(index + 1).padStart(2, "0")}
+                                                    </span>
+                                                    <span className="h-px flex-1 bg-[#c9a5ab]/30 transition-all duration-500 group-hover:bg-[#c9a5ab]/60" />
+                                                </div>
+
+                                                <h3
+                                                    className="mt-3 text-2xl font-medium uppercase tracking-[0.12em] text-[#4a2d3a] transition-colors duration-500 group-hover:text-[#3a1d2a] md:text-3xl"
+                                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                >
+                                                    {value.title}
+                                                </h3>
+
+                                                <p className="mt-3 text-[15px] leading-[1.9] text-[#5a3d4a]/80">
+                                                    {value.description}
+                                                </p>
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
