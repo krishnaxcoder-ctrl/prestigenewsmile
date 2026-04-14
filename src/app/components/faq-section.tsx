@@ -77,8 +77,8 @@ export function FAQSection() {
                         return (
                             <div key={index} className="overflow-hidden rounded-xl border border-gray-200 bg-white transition-shadow duration-200 hover:shadow-sm">
                                 <button onClick={() => toggleItem(index)} className="flex w-full items-center justify-between p-4 text-left">
-                                    <span className="pr-4 font-medium text-gray-900">{faq.question}</span>
-                                    <div className={`flex size-8 shrink-0 items-center justify-center rounded-full bg-[#f5f0ec] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}>
+                                    <span className="pr-4 font-medium text-gray-900" style={{ fontFamily: "Jost, 'Jost Fallback'" }}>{faq.question}</span>
+                                    <div className={`flex size-5 shrink-0 items-center justify-center rounded-full bg-[#f5f0ec] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}>
                                         <ChevronDown className="size-4 text-brand-600" />
                                     </div>
                                 </button>
