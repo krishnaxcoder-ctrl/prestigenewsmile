@@ -211,16 +211,6 @@ export default function AboutPage() {
                                     </svg>
                                 </a>
 
-                                {/* Signature */}
-                                <div className="mt-10 hidden items-center gap-4 lg:flex">
-                                    <div className="h-px w-10 bg-[#c9a5ab]/60" />
-                                    <p
-                                        className="text-3xl text-[#4a2d3a]"
-                                        style={{ fontFamily: "'Eyesome Script', cursive" }}
-                                    >
-                                        Anaëlle
-                                    </p>
-                                </div>
                             </motion.div>
 
                             {/* Right - Values list */}
@@ -281,8 +271,10 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                <ReviewsSection />
                 <ArticlesSection />
+                
+                                <ReviewsSection />
+
                 <FAQSection />
                 <CollectionBanner />
             </main>
