@@ -18,7 +18,7 @@ export function ContactSection() {
                             <div>
                                 <h3 className="text-base font-semibold uppercase tracking-[0.15em] text-primary">Contact</h3>
                                 <p className="mt-2 text-lg text-tertiary">+41 78 300 06 19</p>
-                                <p className="text-lg text-brand-600">hello@prestigesmile.studio</p>
+                                <p className="text-lg text-brand-600">contact@prestige-smile.com</p>
                             </div>
                         </div>
 

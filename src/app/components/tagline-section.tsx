@@ -15,7 +15,6 @@ export const TaglineSection = () => {
                 >
                     <span>More Than</span>
                     <span>Just A</span>
-                    <span className="text-brand-600">Detail,</span>
                     <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-12 md:w-32 lg:h-14 lg:w-36">
                         <img
                             src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=200&auto=format&fit=crop"
@@ -23,17 +22,20 @@ export const TaglineSection = () => {
                             className="size-full object-cover"
                         />
                     </span>
+                    <span className="text-brand-600">Detail,</span>
+                    
                     <span>Your</span>
-                    <span className="text-brand-600">Smile</span>
-                    <span>Reflects</span>
-                    <span>The</span>
-                    <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-12 md:w-32 lg:h-14 lg:w-36">
+                     <span className="inline-flex h-8 w-20 overflow-hidden rounded-full md:h-12 md:w-32 lg:h-14 lg:w-36">
                         <img
                             src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=200&auto=format&fit=crop"
                             alt="Teeth whitening treatment"
                             className="size-full object-cover"
                         />
                     </span>
+                    <span className="text-brand-600">Smile</span>
+                    <span>Reflects</span>
+                    <span>The</span>
+                   
                     <span className="text-brand-600">Confidence</span>
                     <span>Within</span>
                     <span className="text-brand-600">You.</span>

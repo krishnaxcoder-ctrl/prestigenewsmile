@@ -414,7 +414,7 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                                         Download Invoice
                                     </Button>
                                     <Button
-                                        href={`mailto:support@prestige-smile.com?subject=Order ${order.order_number}`}
+                                        href={`mailto:contact@prestige-smile.com?subject=Order ${order.order_number}`}
                                         color="tertiary"
                                         size="md"
                                         iconLeading={Mail01}

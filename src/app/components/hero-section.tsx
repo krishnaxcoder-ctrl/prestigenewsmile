@@ -78,7 +78,7 @@ export function HeroSection() {
                                 </h3>
                                 <div className="mt-2 space-y-0.5">
                                     <p className="text-sm text-white/80">T: +41 78 300 06 19</p>
-                                    <p className="text-sm text-white/80">hello@prestigesmile.studio</p>
+                                    <p className="text-sm text-white/80">contact@prestige-smile.com</p>
                                 </div>
                             </div>
 
@@ -121,7 +121,7 @@ export function HeroSection() {
                         <div>
                             <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-primary">Contact</h3>
                             <p className="mt-1.5 text-sm text-tertiary">+41 78 300 06 19</p>
-                            <p className="text-sm text-brand-600">hello@prestigesmile.studio</p>
+                            <p className="text-sm text-brand-600">contact@prestige-smile.com</p>
                         </div>
                     </div>
 
