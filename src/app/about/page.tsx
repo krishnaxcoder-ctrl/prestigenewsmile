@@ -188,18 +188,13 @@ export default function AboutPage() {
                             </p>
 
                             <h2
-                                className="text-4xl font-light uppercase tracking-[0.15em] text-[#4a2d3a] md:text-5xl lg:text-6xl"
+                                className="text-4xl font-light uppercase tracking-[0.18em] text-[#4a2d3a] md:text-5xl lg:text-6xl"
                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
                             >
-                                What <span className="italic">Drives</span> Us
+                                What Drives Us
                             </h2>
 
-                            {/* Decorative divider */}
-                            <div className="mx-auto mt-6 flex items-center justify-center gap-3">
-                                <div className="h-px w-12 bg-[#c9a5ab]" />
-                                <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
-                                <div className="h-px w-12 bg-[#c9a5ab]" />
-                            </div>
+                           
 
                             <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-[#5a3d4a]/75">
                                 The principles that guide every treatment, every detail, and every smile we create.
