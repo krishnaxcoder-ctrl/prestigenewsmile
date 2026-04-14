@@ -242,7 +242,7 @@ export default function AboutPage() {
                                             <div className="relative z-10">
                                                 <div className="relative flex size-[60px] items-center justify-center bg-[#faf6f1] transition-all duration-500 md:size-[76px]">
                                                     {/* Outer ring */}
-                                                    <div className="absolute inset-0 rotate-45 border border-[#c9a5ab]/40 transition-all duration-500 group-hover:rotate-[60deg] group-hover:border-[#c9a5ab]" />
+                                                    <div className="absolute inset-0 rotate-45 border border-[#c9a5ab]/40 transition-colors duration-500 group-hover:border-[#c9a5ab]" />
                                                     {/* Inner circle */}
                                                     <div className="relative flex size-10 items-center justify-center rounded-full bg-white/60 md:size-12">
                                                         <value.icon className="size-5 text-[#4a2d3a] md:size-6" strokeWidth={1.25} />
