@@ -1,8 +1,10 @@
+import { Stars02, Calendar, HeartHand, Diamond01 } from "@untitledui/icons";
+
 const sessionNotes = [
-    { icon: "\u2728", text: "Soin esth\u00e9tique professionnel" },
-    { icon: "\ud83e\uddbc", text: "D\u00e9tartrage conseill\u00e9 1 \u00e0 2 mois avant la s\u00e9ance" },
-    { icon: "\ud83d\udc97", text: "Sensibilit\u00e9 transitoire possible" },
-    { icon: "\ud83d\udc8e", text: "Un sourire sain = r\u00e9sultat optimal" },
+    { icon: Stars02, text: "Soin esth\u00e9tique professionnel" },
+    { icon: Calendar, text: "D\u00e9tartrage conseill\u00e9 1 \u00e0 2 mois avant la s\u00e9ance" },
+    { icon: HeartHand, text: "Sensibilit\u00e9 transitoire possible" },
+    { icon: Diamond01, text: "Un sourire sain = r\u00e9sultat optimal" },
 ];
 
 export function SessionNoteSection() {
@@ -40,8 +42,7 @@ export function SessionNoteSection() {
                         {/* Title */}
                         <div className="relative mb-2 text-center">
                             <p
-                                className="text-[22px] italic text-[#5a4639] sm:text-[26px]"
-                                style={{ fontFamily: "'Eyesome Script', 'Great Vibes', cursive" }}
+                                className="text-[22px]  text-[#5a4639] sm:text-[26px]"
                             >
                                 Déroulement de la séance
                             </p>
@@ -54,19 +55,22 @@ export function SessionNoteSection() {
 
                         {/* Items */}
                         <ul className="relative mt-8 space-y-5">
-                            {sessionNotes.map((note, i) => (
-                                <li key={i} className="group flex items-start gap-4">
-                                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#f5ede3] to-[#e8d4c4] text-[16px] shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_2px_4px_rgba(90,70,57,0.1)] ring-1 ring-[#c9a37a]/20">
-                                        {note.icon}
-                                    </span>
-                                    <p
-                                        className="flex-1 pt-1.5 text-[15px] italic leading-relaxed text-[#5a4639] sm:text-[16px]"
-                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                    >
-                                        {note.text}
-                                    </p>
-                                </li>
-                            ))}
+                            {sessionNotes.map((note, i) => {
+                                const Icon = note.icon;
+                                return (
+                                    <li key={i} className="group flex items-start gap-4">
+                                        <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#f5ede3] to-[#e8d4c4] shadow-[inset_0_1px_2px_rgba(255,255,255,0.6),0_2px_4px_rgba(90,70,57,0.1)] ring-1 ring-[#c9a37a]/30">
+                                            <Icon className="size-4 text-[#8b6b5a]" />
+                                        </span>
+                                        <p
+                                            className="flex-1 pt-1.5 text-[15px] italic leading-relaxed text-[#5a4639] sm:text-[16px]"
+                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                        >
+                                            {note.text}
+                                        </p>
+                                    </li>
+                                );
+                            })}
                         </ul>
 
                         {/* Signature */}
@@ -85,7 +89,7 @@ export function SessionNoteSection() {
                     </div>
                 </div>
             </div>
-        </section>
+        </section>  
     );
 }
 
