@@ -1,4 +1,5 @@
 import { Stars02, Calendar, HeartHand, Diamond01 } from "@untitledui/icons";
+import { Avatar } from "@/components/base/avatar/avatar";
 
 const sessionNotes = [
     { icon: Stars02, text: "Soin esth\u00e9tique professionnel" },
@@ -58,12 +59,9 @@ export function SessionNoteSection() {
 
                     <div className="mt-8 flex items-center gap-3">
                         <div className="flex -space-x-2">
-                            {[1, 2, 3].map((i) => (
-                                <div
-                                    key={i}
-                                    className="size-8 rounded-full border-2 border-[#faf6f0] bg-gradient-to-br from-[#e8d4c4] to-[#c9a37a]"
-                                />
-                            ))}
+                            <Avatar size="sm" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop" alt="Client" contrastBorder />
+                            <Avatar size="sm" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop" alt="Client" contrastBorder />
+                            <Avatar size="sm" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop" alt="Client" contrastBorder />
                         </div>
                         <p className="text-sm italic text-[#6b5448]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                             Plus de 500 sourires sublimés

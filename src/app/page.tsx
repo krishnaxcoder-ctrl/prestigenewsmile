@@ -43,11 +43,12 @@ export default function Page() {
 				<ArticlesSection />
 				<FAQSection />
 
-				<CollectionBanner />
 				<GiftcardSection />
-				<InstagramSection />
+								<InstagramSection />
 
 				<OpeningHoursSection />
+				<CollectionBanner />
+
 				<ContactSection />
 
 				<Footer />

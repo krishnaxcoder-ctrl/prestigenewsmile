@@ -13,7 +13,7 @@ const instagramPosts = [
 
 export function InstagramSection() {
     return (
-        <section className="bg-secondary py-16 md:py-24">
+        <section className="bg-white py-16 md:py-24">
             <div className="mx-auto max-w-[1400px] ">
             <div className="mb-10 text-center md:mb-12">
                 <div className="mb-4 flex items-center justify-center gap-3">

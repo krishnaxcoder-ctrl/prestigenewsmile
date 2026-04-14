@@ -1,8 +1,12 @@
 export function AboutSection() {
     return (
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden bg-gradient-to-b from-[#ece5de] via-[#e8e2dc] to-[#ddd3c8]">
+            {/* Ambient glow */}
+            <div className="pointer-events-none absolute -top-24 left-1/4 size-[520px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#f5efe7_0%,transparent_70%)] opacity-60" />
+            <div className="pointer-events-none absolute -bottom-32 right-0 size-[380px] rounded-full bg-[radial-gradient(circle,#d4b5a0_0%,transparent_70%)] opacity-25" />
+
             {/* Mobile layout */}
-            <div className="bg-gradient-to-b from-[#b8929a] to-[#c9a5ab] md:hidden">
+            <div className="relative md:hidden">
                 <div className="mx-auto grid max-w-7xl grid-cols-[1fr_4fr] items-stretch gap-4">
                     {/* Left - Photo (20%) */}
                     <div className="h-full overflow-hidden">
@@ -23,16 +27,16 @@ export function AboutSection() {
                             />
                         </div>
                         <h2
-                            className="text-3xl font-medium uppercase tracking-[0.15em] text-white"
+                            className="text-3xl font-medium uppercase tracking-[0.15em] text-[#4a2d3a]"
                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                         >
-                            About Me    
+                            About Me
                         </h2>
 
-                        <div className="my-4 w-16 bg-white/40" />
+                        <div className="my-4 h-px w-16 bg-[#c9a5ab]" />
 
                         <div
-                            className="space-y-4 text-base italic leading-relaxed text-white/90"
+                            className="space-y-4 text-base italic leading-relaxed text-[#5a3d4a]/85"
                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                         >
                             <p>
@@ -53,7 +57,7 @@ export function AboutSection() {
                         </div>
 
                         <p
-                            className="mt-6 pb-10 text-2xl text-white"
+                            className="mt-6 pb-10 text-2xl text-[#4a2d3a]"
                             style={{ fontFamily: "'Eyesome Script', cursive" }}
                         >
                             Anaëlle
@@ -63,7 +67,7 @@ export function AboutSection() {
             </div>
 
             {/* Desktop layout */}
-            <div className="hidden bg-[#faf8f6] md:block">
+            <div className="relative hidden md:block">
                 <div className="mx-auto max-w-7xl py-28">
                     <div className="grid grid-cols-[1fr_1.2fr] items-center gap-20">
                         {/* Left - Photo with decorative frame */}
