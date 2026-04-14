@@ -169,8 +169,13 @@ export default function AboutPage() {
                 </section>
 
                 {/* Values */}
-                <section className="bg-secondary px-4 py-16 md:px-8 md:py-24 lg:px-16">
-                    <div className="mx-auto max-w-7xl">
+                <section className="relative overflow-hidden bg-[#faf6f1] px-4 py-20 md:px-8 md:py-28 lg:px-16">
+                    {/* Ambient glow */}
+                    <div className="pointer-events-none absolute -top-32 left-1/3 size-[480px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#f3e8de_0%,transparent_70%)] opacity-70" />
+                    <div className="pointer-events-none absolute -bottom-24 right-0 size-[420px] rounded-full bg-[radial-gradient(circle,#e8d4c7_0%,transparent_70%)] opacity-30" />
+
+                    <div className="relative mx-auto max-w-7xl">
+                        {/* Header */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -178,15 +183,31 @@ export default function AboutPage() {
                             transition={{ duration: 0.6 }}
                             className="text-center"
                         >
-                            <span className="mb-4 inline-block rounded-full bg-brand-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-700">
+                            <p className="mb-2 text-xs font-medium uppercase tracking-[0.3em] text-[#b8929a]">
                                 Our Values
-                            </span>
-                            <h2 className="text-2xl font-semibold text-primary md:text-3xl lg:text-4xl">
-                                What Drives Us
+                            </p>
+
+                            <h2
+                                className="text-4xl font-light uppercase tracking-[0.15em] text-[#4a2d3a] md:text-5xl lg:text-6xl"
+                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                            >
+                                What <span className="italic">Drives</span> Us
                             </h2>
+
+                            {/* Decorative divider */}
+                            <div className="mx-auto mt-6 flex items-center justify-center gap-3">
+                                <div className="h-px w-12 bg-[#c9a5ab]" />
+                                <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
+                                <div className="h-px w-12 bg-[#c9a5ab]" />
+                            </div>
+
+                            <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-[#5a3d4a]/75">
+                                The principles that guide every treatment, every detail, and every smile we create.
+                            </p>
                         </motion.div>
 
-                        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                        {/* Values Grid */}
+                        <div className="mt-16 grid gap-px bg-[#c9a5ab]/30 sm:grid-cols-2 lg:grid-cols-4">
                             {values.map((value, index) => (
                                 <motion.div
                                     key={value.title}
@@ -194,15 +215,30 @@ export default function AboutPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="rounded-2xl bg-primary p-6 text-center"
+                                    className="group relative bg-[#faf6f1] px-8 py-12 text-center transition-colors duration-500 hover:bg-[#f3e8de]"
                                 >
-                                    <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-brand-50">
-                                        <value.icon className="size-7 text-brand-600" />
+                                    {/* Corner accents */}
+                                    <div className="absolute left-4 top-4 h-3 w-px bg-[#c9a5ab]/0 transition-all duration-500 group-hover:h-6 group-hover:bg-[#c9a5ab]/60" />
+                                    <div className="absolute left-4 top-4 h-px w-3 bg-[#c9a5ab]/0 transition-all duration-500 group-hover:w-6 group-hover:bg-[#c9a5ab]/60" />
+                                    <div className="absolute bottom-4 right-4 h-3 w-px bg-[#c9a5ab]/0 transition-all duration-500 group-hover:h-6 group-hover:bg-[#c9a5ab]/60" />
+                                    <div className="absolute bottom-4 right-4 h-px w-3 bg-[#c9a5ab]/0 transition-all duration-500 group-hover:w-6 group-hover:bg-[#c9a5ab]/60" />
+
+                                    {/* Icon */}
+                                    <div className="mx-auto flex size-16 items-center justify-center border border-[#c9a5ab]/50 transition-all duration-500 group-hover:border-[#c9a5ab] group-hover:bg-white/40">
+                                        <value.icon className="size-6 text-[#4a2d3a]" strokeWidth={1.25} />
                                     </div>
-                                    <h3 className="mt-4 text-lg font-semibold text-primary">
+
+                                    {/* Thin divider */}
+                                    <div className="mx-auto my-5 h-px w-8 bg-[#c9a5ab]/60 transition-all duration-500 group-hover:w-12" />
+
+                                    <h3
+                                        className="text-xl font-medium uppercase tracking-[0.12em] text-[#4a2d3a]"
+                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                    >
                                         {value.title}
                                     </h3>
-                                    <p className="mt-2 text-sm text-tertiary">
+
+                                    <p className="mt-4 text-[14px] leading-[1.8] text-[#5a3d4a]/80">
                                         {value.description}
                                     </p>
                                 </motion.div>
