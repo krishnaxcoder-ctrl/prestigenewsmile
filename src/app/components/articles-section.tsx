@@ -1,35 +1,27 @@
-const posts = [
-	{
-		slug: "how-professional-teeth-whitening-works",
-		title: "How Professional Teeth Whitening Works",
-		category: "Whitening",
-		date: "Mar 12, 2026",
-		image: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=1200&auto=format&fit=crop",
-	},
-	{
-		slug: "aftercare-tips-for-a-lasting-bright-smile",
-		title: "Aftercare Tips for a Lasting Bright Smile",
-		category: "Aftercare",
-		date: "Feb 28, 2026",
-		image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1200&auto=format&fit=crop",
-	},
-	{
-		slug: "foods-and-drinks-that-stain-your-teeth",
-		title: "Foods and Drinks That Stain Your Teeth",
-		category: "Lifestyle",
-		date: "Feb 14, 2026",
-		image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=1200&auto=format&fit=crop",
-	},
-	{
-		slug: "is-teeth-whitening-safe-for-enamel",
-		title: "Is Teeth Whitening Safe for Your Enamel?",
-		category: "Dental Health",
-		date: "Jan 30, 2026",
-		image: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=1200&auto=format&fit=crop",
-	},
-];
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { getPublishedBlogPosts, type BlogPost } from "@/lib/supabase";
 
 export function ArticlesSection() {
+	const [posts, setPosts] = useState<BlogPost[]>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		async function load() {
+			try {
+				const data = await getPublishedBlogPosts();
+				setPosts(data.slice(0, 4));
+			} catch {
+				// silently fail
+			} finally {
+				setLoading(false);
+			}
+		}
+		load();
+	}, []);
+
 	return (
 		<section className="bg-white px-4 py-16 md:px-8 md:py-24 lg:px-16">
 			<div className="mx-auto max-w-[1400px]">
@@ -51,33 +43,51 @@ export function ArticlesSection() {
 					</div>
 				</div>
 
-				<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-					{posts.map((post) => (
-						<article key={post.slug} className="group">
-							<a href={`/articles/${post.slug}`} className="block overflow-hidden">
-								<img src={post.image} alt={post.title} className="aspect-[3/4] w-full object-cover object-[70%_center]" />
-							</a>
-							<div className="mt-5 text-center">
-								<div className="flex items-center justify-center gap-2 text-xs uppercase tracking-widest text-tertiary">
-									<span>{post.category}</span>
-									<span className="size-1 rounded-full bg-tertiary" />
-									<span>{post.date}</span>
+				{loading ? (
+					<div className="flex items-center justify-center py-12">
+						<div className="size-8 animate-spin rounded-full border-2 border-brand-600 border-t-transparent" />
+					</div>
+				) : posts.length === 0 ? (
+					<p className="text-center text-sm text-tertiary">No articles yet. Check back soon!</p>
+				) : (
+					<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+						{posts.map((post) => (
+							<article key={post.id} className="group">
+								<Link href={`/articles/${post.slug}`} className="block overflow-hidden">
+									<img
+										src={post.hero_image ?? "/placeholder.jpg"}
+										alt={post.title}
+										className="aspect-[3/4] w-full object-cover object-[70%_center] transition duration-300 group-hover:scale-105"
+									/>
+								</Link>
+								<div className="mt-5 text-center">
+									<div className="flex items-center justify-center gap-2 text-xs uppercase tracking-widest text-tertiary">
+										<span>{post.category}</span>
+										<span className="size-1 rounded-full bg-tertiary" />
+										<span>
+											{post.published_at
+												? new Date(post.published_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+												: ""}
+										</span>
+									</div>
+									<h3 className="mt-3 font-body text-lg font-normal leading-snug text-primary md:text-md">
+										<Link href={`/articles/${post.slug}`} className="hover:text-brand-600 transition duration-100 ease-linear">
+											{post.title}
+										</Link>
+									</h3>
 								</div>
-								<h3 className="mt-3 font-body text-lg font-normal leading-snug text-primary md:text-md">
-									<a href={`/articles/${post.slug}`} className="hover:text-brand-600">{post.title}</a>
-								</h3>
-							</div>
-						</article>
-					))}
-				</div>
+							</article>
+						))}
+					</div>
+				)}
 
 				<div className="mt-16 text-center">
-					<a
+					<Link
 						href="/articles"
-						className="inline-block border border-gray-900 bg-transparent px-12 py-4 text-sm uppercase tracking-[0.2em] text-gray-900 hover:bg-gray-900 hover:text-white"
+						className="inline-block border border-gray-900 bg-transparent px-12 py-4 text-sm uppercase tracking-[0.2em] text-gray-900 hover:bg-gray-900 hover:text-white transition duration-100 ease-linear"
 					>
 						View All Posts
-					</a>
+					</Link>
 				</div>
 			</div>
 		</section>
