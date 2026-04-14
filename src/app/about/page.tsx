@@ -245,59 +245,6 @@ export default function AboutPage() {
                     </div>
                 </section>
 
-                {/* Team */}
-                <section className="px-4 py-16 md:px-8 md:py-24 lg:px-16">
-                    <div className="mx-auto max-w-7xl">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="text-center"
-                        >
-                            <span className="mb-4 inline-block rounded-full bg-brand-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-700">
-                                Our Team
-                            </span>
-                            <h2 className="text-2xl font-semibold text-primary md:text-3xl lg:text-4xl">
-                                Meet the Founder
-                            </h2>
-                            <p className="mx-auto mt-4 max-w-2xl text-tertiary">
-                                The person behind Prestige Smile Studio, dedicated to helping you achieve your best smile.
-                            </p>
-                        </motion.div>
-
-                        <div className="mt-12 mx-auto max-w-sm">
-                            {team.map((member, index) => (
-                                <motion.div
-                                    key={member.name}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="text-center"
-                                >
-                                    <div className="mx-auto size-32 overflow-hidden rounded-full">
-                                        <img
-                                            src={member.image}
-                                            alt={member.name}
-                                            className="size-full object-cover"
-                                        />
-                                    </div>
-                                    <h3 className="mt-4 text-lg font-semibold text-primary">
-                                        {member.name}
-                                    </h3>
-                                    <p className="text-sm font-medium text-brand-600">
-                                        {member.role}
-                                    </p>
-                                    <p className="mt-3 text-sm text-tertiary">
-                                        {member.bio}
-                                    </p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
                 <ReviewsSection />
                 <ArticlesSection />
                 <FAQSection />
