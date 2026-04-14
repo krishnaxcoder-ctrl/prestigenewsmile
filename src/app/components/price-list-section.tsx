@@ -86,8 +86,6 @@ export function PriceListSection() {
 				</div>
 			</div>
 
-			{/* Bottom accent line with glow animation */}
-			<div className="h-[2px] w-full animate-[glow_2s_ease-in-out] bg-[#8B6F6F] shadow-[0_0_10px_rgba(139,111,111,0.8)]" />
 		</section>
 	);
 }
