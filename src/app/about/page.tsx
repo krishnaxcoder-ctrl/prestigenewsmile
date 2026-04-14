@@ -8,10 +8,12 @@ import { NewsletterSection } from "@/app/components/newsletter-section";
 import { AboutSection } from "@/app/components/about-section";
 
 const stats = [
-    { value: "50K+", label: "Happy Customers" },
-    { value: "15+", label: "Years Experience" },
-    { value: "100%", label: "Natural Ingredients" },
-    { value: "4.9", label: "Average Rating" },
+    { value: "18+", label: "Years of Experience" },
+    { value: "4", label: "Comprehensive Modules" },
+    { value: "1:1", label: "Personal Training" },
+    { value: "90%", label: "Practical Focus" },
+    { value: "454+", label: "Students Trained" },
+    { value: "24/7", label: "Support Available" },
 ];
 
 const values = [
@@ -54,9 +56,9 @@ export default function AboutPage() {
                 <AboutSection />
 
                 {/* Stats */}
-                <section className="border-b border-secondary py-12">
-                    <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-16">
-                        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+                <section className="bg-white px-4 py-0 md:px-8 lg:px-16">
+                    <div className="mx-auto max-w-[1400px] border border-secondary">
+                        <div className="grid grid-cols-2 divide-x divide-y divide-secondary sm:grid-cols-3 sm:divide-y-0 lg:grid-cols-6">
                             {stats.map((stat, index) => (
                                 <motion.div
                                     key={stat.label}
@@ -64,12 +66,14 @@ export default function AboutPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="text-center"
+                                    className="flex flex-col items-center justify-center px-6 py-10 text-center"
                                 >
-                                    <p className="text-3xl font-bold text-brand-600 md:text-4xl">
+                                    <p className="text-3xl font-semibold text-primary md:text-4xl">
                                         {stat.value}
                                     </p>
-                                    <p className="mt-2 text-sm text-tertiary">{stat.label}</p>
+                                    <p className="mt-3 text-xs font-medium uppercase tracking-[0.15em] text-tertiary">
+                                        {stat.label}
+                                    </p>
                                 </motion.div>
                             ))}
                         </div>
