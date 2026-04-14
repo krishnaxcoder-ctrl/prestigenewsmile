@@ -42,11 +42,11 @@ export function ComparisonSlider() {
             <div className="mx-auto max-w-[1400px]">
                 {/* Header */}
                 <div className="mb-8 text-center md:mb-12">
-                    <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-brand-600 md:text-xs">
+                    <p className="text-[13px] font-medium uppercase tracking-[0.25em] text-brand-600 md:text-xs">
                         Clear Contrast
                     </p>
                     <h2
-                        className="mt-3 text-2xl font-medium leading-tight tracking-tight text-primary md:text-3xl  lg:text-5xl"
+                        className="mt-3 text-4xl font-medium leading-tight tracking-tight text-primary md:text-3xl  lg:text-5xl"
                         style={{ fontFamily: "'Cormorant Garamond', serif" }}
                     >
                         See The{" "}

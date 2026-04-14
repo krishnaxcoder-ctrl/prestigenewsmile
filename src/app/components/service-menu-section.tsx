@@ -75,7 +75,7 @@ export function ServiceMenuSection() {
     const activeServiceData = services.find((s) => s.id === activeService);
 
     return (
-        <section className="bg-gradient-to-b from-[#fff0f4  ] to-white py-12 md:py-24">
+        <section className="bg-gradient-to-b from-[#fff0f4  ] to-white py-24 md:py-24">
             <div className="mx-auto max-w-4xl">
                 {/* Section Header */}
                 <div className="mb-6 text-center md:mb-10">

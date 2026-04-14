@@ -2,7 +2,7 @@
 
 export const TaglineSection = () => {
     return (
-        <section className="bg-primary px-4 py-12 md:py-20 lg:py-34">
+        <section className="bg-primary px-4 py-24 md:py-20 lg:py-34">
             <div className="mx-auto max-w-6xl">
                 <div className="mb-6 text-center">
                     <span className="text-xs font-medium uppercase tracking-[0.2em] text-tertiary">
@@ -10,7 +10,7 @@ export const TaglineSection = () => {
                     </span>
                 </div>
                 <div
-                    className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-display-sm font-normal uppercase tracking-wide text-primary md:gap-x-5 md:gap-y-3 md:text-display-lg lg:text-display-xl"
+                    className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-display-lg font-normal uppercase tracking-wide text-primary md:gap-x-5 md:gap-y-3 md:text-display-lg lg:text-display-xl"
                     style={{ fontFamily: "var(--global-heading-font-family)" }}
                 >
                     <span>More Than</span>
