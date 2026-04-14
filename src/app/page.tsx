@@ -3,7 +3,6 @@ import { CollectionBanner } from "./components/collection-banner";
 import { ComparisonSlider } from "./components/comparison-slider";
 import { ContactSection } from "./components/contact-section";
 import { FAQSection } from "./components/faq-section";
-import { FavoritePicksSection } from "./components/favorite-picks-section";
 import { FeaturesSection } from "./components/features-section";
 import { Footer } from "./components/footer";
 import { GiftcardSection } from "./components/giftcard-section";
@@ -31,6 +30,7 @@ export default function Page() {
 				<ServicesSection />
 				<TaglineSection />
 				<AboutSection />
+				<ComparisonSlider />
 
 				<WhiteningResults />
 				<PriceListSection />
@@ -39,17 +39,15 @@ export default function Page() {
 
 				<WhiteningInfoSection />
 				<SessionNoteSection />
-				<ComparisonSlider />
 				<ReviewsSection />
 				<ArticlesSection />
 				<FAQSection />
-				<FavoritePicksSection />
 
 				<CollectionBanner />
 				<GiftcardSection />
+				<InstagramSection />
 
 				<OpeningHoursSection />
-				<InstagramSection />
 				<ContactSection />
 
 				<Footer />

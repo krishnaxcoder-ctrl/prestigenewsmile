@@ -3,7 +3,7 @@
 export const TaglineSection = () => {
     return (
         <section className="bg-primary px-4 py-12 md:py-20 lg:py-34">
-            <div className="mx-auto max-w-[1400px]">
+            <div className="mx-auto max-w-6xl">
                 <div className="mb-6 text-center">
                     <span className="text-xs font-medium uppercase tracking-[0.2em] text-tertiary">
                         Professional Teeth Whitening Studio

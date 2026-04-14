@@ -118,7 +118,7 @@ export function WhiteningInfoSection() {
                                                 {String(item.number).padStart(2, "0")}
                                             </span>
                                             <h3
-                                                className="text-[17px] font-semibold uppercase tracking-[0.1em] text-[#4a3728] lg:text-[15px]"
+                                                className="text-[14px] font-semibold uppercase tracking-[0.1em]  text-[#4a3728] lg:text-[15px]"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                             >
                                                 {item.title}
