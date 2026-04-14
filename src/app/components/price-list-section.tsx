@@ -51,24 +51,24 @@ export function PriceListSection() {
 										backgroundPosition: "center",
 									}}
 								>
-									<div className={`flex items-center justify-between rounded-md px-6 py-5 ${
+									<div className={`flex items-center justify-between gap-3 rounded-md px-4 py-4 sm:px-6 sm:py-5 ${
 										item.variant === "mauve" ? "bg-[#D4C4C4]" : "bg-[#EDE7E2]"
 									}`}>
-										<span className="text-base font-medium text-[#5D4E4E] md:text-lg">{item.name}</span>
-										<span className="text-base font-semibold text-[#5D4E4E] md:text-lg">{item.price}</span>
+										<span className="min-w-0 flex-1 text-sm font-medium text-[#5D4E4E] sm:text-base md:text-lg">{item.name}</span>
+										<span className="shrink-0 whitespace-nowrap text-sm font-semibold text-[#5D4E4E] sm:text-base md:text-lg">{item.price}</span>
 									</div>
 								</div>
 							) : (
 								<div
 									key={item.id}
-									className={`flex items-center justify-between rounded-lg px-6 py-5 ${
+									className={`flex items-center justify-between gap-3 rounded-lg px-4 py-4 sm:px-6 sm:py-5 ${
 										item.variant === "mauve"
 											? "bg-[#D4C4C4]"
 											: "bg-[#EDE7E2]"
 									}`}
 								>
-									<span className="text-base font-medium text-[#5D4E4E] md:text-lg">{item.name}</span>
-									<span className="text-base font-semibold text-[#5D4E4E] md:text-lg">{item.price}</span>
+									<span className="min-w-0 flex-1 text-sm font-medium text-[#5D4E4E] sm:text-base md:text-lg">{item.name}</span>
+									<span className="shrink-0 whitespace-nowrap text-sm font-semibold text-[#5D4E4E] sm:text-base md:text-lg">{item.price}</span>
 								</div>
 							)
 						)}
