@@ -96,12 +96,36 @@ const languages = [
     { id: "fr", label: "Français", flag: "🇫🇷" },
 ];
 
+const LANG_STORAGE_KEY = "preferred-language";
+
+const setLanguagePreference = (lang: string) => {
+    if (typeof window === "undefined") return;
+    localStorage.setItem(LANG_STORAGE_KEY, lang);
+    document.cookie = `${LANG_STORAGE_KEY}=${lang}; path=/; max-age=31536000; SameSite=Lax`;
+    document.documentElement.lang = lang;
+    window.dispatchEvent(new CustomEvent("languagechange", { detail: { lang } }));
+};
+
+const getLanguagePreference = (): string => {
+    if (typeof window === "undefined") return "en";
+    return localStorage.getItem(LANG_STORAGE_KEY) || "en";
+};
+
 const LanguageSelector = () => {
     const [mounted, setMounted] = useState(false);
+    const [currentLang, setCurrentLang] = useState<string>("en");
 
     useEffect(() => {
         setMounted(true);
+        setCurrentLang(getLanguagePreference());
     }, []);
+
+    const handleChange = (lang: string) => {
+        setCurrentLang(lang);
+        setLanguagePreference(lang);
+    };
+
+    const current = languages.find((l) => l.id === currentLang) ?? languages[0];
 
     // Render static placeholder during SSR to avoid hydration mismatch
     if (!mounted) {
@@ -115,16 +139,29 @@ const LanguageSelector = () => {
     }
 
     return (
-        <AriaSelect id="language-selector" defaultSelectedKey="en" aria-label="Select language" className="relative">
+        <AriaSelect
+            id="language-selector"
+            selectedKey={currentLang}
+            onSelectionChange={(key) => handleChange(key as string)}
+            aria-label="Select language"
+            className="relative"
+        >
             <AriaButton className="flex cursor-pointer items-center gap-1.5 rounded-lg px-2 py-2 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary">
                 <Globe02 className="size-4" />
-                <AriaSelectValue className="hidden sm:inline">{({ selectedText }) => selectedText}</AriaSelectValue>
+                <span className="hidden sm:inline">
+                    <AriaSelectValue>{() => `${current.flag} ${current.label}`}</AriaSelectValue>
+                </span>
                 <ChevronDown className="size-3.5 text-quaternary" />
             </AriaButton>
-            <AriaPopover className="min-w-32 overflow-hidden rounded-xl bg-primary py-1 shadow-lg ring-1 ring-secondary_alt" offset={8}>
+            <AriaPopover className="min-w-36 overflow-hidden rounded-xl bg-primary py-1 shadow-lg ring-1 ring-secondary_alt" offset={8}>
                 <AriaListBox className="outline-none">
                     {languages.map((lang) => (
-                        <AriaListBoxItem key={lang.id} id={lang.id} textValue={lang.label} className="flex cursor-pointer items-center gap-2.5 px-3 py-2 text-sm text-secondary outline-none hover:bg-primary_hover hover:text-primary focus:bg-primary_hover focus:text-primary">
+                        <AriaListBoxItem
+                            key={lang.id}
+                            id={lang.id}
+                            textValue={lang.label}
+                            className="flex cursor-pointer items-center gap-2.5 px-3 py-2 text-sm text-secondary outline-none hover:bg-primary_hover hover:text-primary focus:bg-primary_hover focus:text-primary aria-selected:bg-primary_hover aria-selected:text-primary"
+                        >
                             <span>{lang.flag}</span>
                             <span>{lang.label}</span>
                         </AriaListBoxItem>
@@ -168,6 +205,16 @@ const mobileMenuSections = [
 const MobileNav = () => {
     const [expandedItems, setExpandedItems] = useState<string[]>([]);
     const toggleItem = (title: string) => setExpandedItems((prev) => prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title]);
+    const [mobileLang, setMobileLang] = useState<string>("en");
+
+    useEffect(() => {
+        setMobileLang(getLanguagePreference());
+    }, []);
+
+    const handleLangChange = (lang: string) => {
+        setMobileLang(lang);
+        setLanguagePreference(lang);
+    };
 
     return (
         <nav className="flex h-[calc(100vh-64px)] flex-col bg-primary md:h-[calc(100vh-72px)]">
@@ -210,14 +257,24 @@ const MobileNav = () => {
                     <Globe02 className="size-4 text-tertiary" />
                     <span className="text-xs font-semibold uppercase tracking-wider text-tertiary">Language</span>
                     <div className="ml-auto flex gap-1">
-                        {languages.map((lang) => (
-                            <button
-                                key={lang.id}
-                                className="rounded-md px-3 py-1.5 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary"
-                            >
-                                {lang.flag} {lang.label}
-                            </button>
-                        ))}
+                        {languages.map((lang) => {
+                            const isActive = mobileLang === lang.id;
+                            return (
+                                <button
+                                    key={lang.id}
+                                    onClick={() => handleLangChange(lang.id)}
+                                    aria-pressed={isActive}
+                                    className={cx(
+                                        "rounded-md px-3 py-1.5 text-sm font-medium transition",
+                                        isActive
+                                            ? "bg-primary_hover text-primary"
+                                            : "text-secondary hover:bg-primary_hover hover:text-primary"
+                                    )}
+                                >
+                                    {lang.flag} {lang.label}
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
                 <div className="flex flex-col gap-3 p-4">
@@ -265,9 +322,9 @@ export const Header = () => {
                         </ul>
                     </nav>
                     <div className="flex items-center gap-1 sm:gap-2">
-                        <a href="tel:+41783000619" className="hidden items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary lg:flex">
-                            +41 78 300 06 19
-                        </a>
+                        <div className="hidden lg:block">
+                            <LanguageSelector />
+                        </div>
                         <Link href="/booking" className="rounded-lg bg-[#7c5d48] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-amber-800 sm:px-5 sm:py-2.5 sm:text-sm">
                             Book Now
                         </Link>
