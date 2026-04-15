@@ -102,7 +102,7 @@ export default function ServicesPage() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
-                            className="mx-auto mt-4 max-w-xl text-[14px] italic leading-[1.7] text-[#5a3d4a]/85 md:text-[15px]"
+                            className="mx-auto mt-4 max-w-xl text-[14px] leading-[1.7] text-[#5a3d4a]/85 md:text-[17px]"
                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                         >
                             Professional teeth whitening treatments tailored to your needs. Safe, effective, visible results from the very first session.
