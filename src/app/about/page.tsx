@@ -9,6 +9,8 @@ import { ReviewsSection } from "@/app/components/reviews-sectionaother";
 import { ArticlesSection } from "@/app/components/articles-section";
 import { FAQSection } from "@/app/components/faq-section";
 import { CollectionBanner } from "@/app/components/collection-banner";
+import TaglineSection from "../components/tagline-section";
+
 
 const stats = [
     { value: "18+", label: "Years of Experience" },
@@ -57,13 +59,13 @@ export default function AboutPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero */}
-                <section className="relative flex flex-col overflow-hidden bg-gradient-to-b from-[#f7f2ec] via-[#f3ede6] to-[#ebe2d8] px-4 pb-8 pt-4 md:px-8 md:pb-10 md:pt-6 lg:h-[700px] lg:min-h-0 lg:px-16 lg:pb-6 lg:pt-4">
+                <section className="relative flex flex-col overflow-hidden bg-gradient-to-b from-[#f7f2ec] via-[#f3ede6] to-[#ebe2d8] px-4 pb-10 pt-6 md:px-8 md:pb-12 md:pt-8 lg:h-[700px] lg:min-h-0 lg:px-16 lg:pb-6 lg:pt-0">
                     {/* Ambient glows */}
                     <div className="pointer-events-none absolute -top-32 left-1/4 size-[560px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#f5efe7_0%,transparent_70%)] opacity-70" />
                     <div className="pointer-events-none absolute -bottom-40 right-0 size-[480px] rounded-full bg-[radial-gradient(circle,#d4b5a0_0%,transparent_70%)] opacity-25" />
 
                     <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col">
-                        <div className="grid flex-1 items-center gap-6 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
+                        <div className="grid flex-1 items-center gap-8 md:gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
                             {/* Left - Text content */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
@@ -81,7 +83,7 @@ export default function AboutPage() {
 
                                 {/* Headline */}
                                 <h1
-                                    className="text-4xl font-light leading-[1.05] text-[#4a2d3a] md:text-5xl lg:text-[44px] xl:text-6xl"
+                                    className="text-[32px] font-light leading-[1.1] text-[#4a2d3a] sm:text-4xl md:text-5xl lg:text-[44px] xl:text-6xl"
                                     style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                 >
                                     The Art of a <br className="hidden md:block" />
@@ -105,7 +107,7 @@ export default function AboutPage() {
                                 </p>
 
                                 {/* Founder signature line */}
-                                <div className="mt-5 flex items-center justify-center gap-4 lg:justify-start">
+                                <div className="mt-2 flex items-center justify-center gap-4 lg:justify-end">
                                     <div className="h-px w-8 bg-[#c9a5ab]/60" />
                                     <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-[#b8929a]">
                                         By
@@ -120,48 +122,48 @@ export default function AboutPage() {
 
                                 {/* Trust strip - directly below text content */}
                                 <div className="mt-8 border-t border-[#c9a5ab]/30 pt-6">
-                                    <div className="flex flex-wrap items-center justify-center gap-y-4 divide-x divide-[#c9a5ab]/40 border-x border-[#c9a5ab]/40 text-center md:flex-nowrap lg:justify-start">
-                                        <div className="min-w-[110px] px-4 md:min-w-[120px]">
+                                    <div className="grid grid-cols-2 border-x border-y border-[#c9a5ab]/40 text-center md:flex md:flex-nowrap md:items-center md:justify-center md:divide-x md:divide-[#c9a5ab]/40 md:border-y-0 lg:justify-start">
+                                        <div className="border-b border-r border-[#c9a5ab]/40 px-3 py-3 md:min-w-[120px] md:border-0 md:px-4 md:py-0">
                                             <p
-                                                className="text-2xl font-light text-[#4a2d3a] md:text-3xl"
+                                                className="text-xl font-light text-[#4a2d3a] sm:text-2xl md:text-3xl"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                             >
                                                 15+
                                             </p>
-                                            <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                            <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.3em] text-[#b8929a] sm:text-[10px]">
                                                 Years of Craft
                                             </p>
                                         </div>
-                                        <div className="min-w-[110px] px-4 md:min-w-[120px]">
+                                        <div className="border-b border-[#c9a5ab]/40 px-3 py-3 md:min-w-[120px] md:border-0 md:px-4 md:py-0">
                                             <p
-                                                className="text-2xl font-light italic text-[#8b5a6a] md:text-3xl"
+                                                className="text-xl font-light italic text-[#8b5a6a] sm:text-2xl md:text-3xl"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                             >
                                                 50K+
                                             </p>
-                                            <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                            <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.3em] text-[#b8929a] sm:text-[10px]">
                                                 Radiant Smiles
                                             </p>
                                         </div>
-                                        <div className="min-w-[110px] px-4 md:min-w-[120px]">
+                                        <div className="border-r border-[#c9a5ab]/40 px-3 py-3 md:min-w-[120px] md:border-r-0 md:px-4 md:py-0">
                                             <p
-                                                className="text-2xl font-light text-[#4a2d3a] md:text-3xl"
+                                                className="text-xl font-light text-[#4a2d3a] sm:text-2xl md:text-3xl"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                             >
                                                 4.9
                                             </p>
-                                            <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                            <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.3em] text-[#b8929a] sm:text-[10px]">
                                                 Average Rating
                                             </p>
                                         </div>
-                                        <div className="min-w-[110px] px-4 md:min-w-[120px]">
+                                        <div className="px-3 py-3 md:min-w-[120px] md:px-4 md:py-0">
                                             <p
-                                                className="text-2xl font-light italic text-[#8b5a6a] md:text-3xl"
+                                                className="text-xl font-light italic text-[#8b5a6a] sm:text-2xl md:text-3xl"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                             >
                                                 100%
                                             </p>
-                                            <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                            <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.3em] text-[#b8929a] sm:text-[10px]">
                                                 Natural Finish
                                             </p>
                                         </div>
@@ -174,7 +176,7 @@ export default function AboutPage() {
                                 initial={{ opacity: 0, scale: 0.96 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.7, delay: 0.15 }}
-                                className="relative order-1 h-[320px] w-full sm:h-[400px] lg:order-2 lg:h-full"
+                                className="relative order-1 h-[280px] w-full sm:h-[400px] lg:order-2 lg:h-full"
                             >
                                 {/* Image */}
                                 <div className="relative size-full overflow-hidden">
@@ -186,22 +188,22 @@ export default function AboutPage() {
                                 </div>
 
                                 {/* Years label */}
-                                <div className="absolute bottom-6 left-6 z-20 bg-[#f7f2ec] px-5 py-3 shadow-sm md:bottom-8 md:left-8 md:px-6 md:py-4">
-                                    <p className="flex items-baseline gap-2">
+                                <div className="absolute bottom-4 left-4 z-20 bg-[#f7f2ec] px-3 py-2 shadow-sm sm:bottom-6 sm:left-6 sm:px-5 sm:py-3 md:bottom-8 md:left-8 md:px-6 md:py-4">
+                                    <p className="flex items-baseline gap-1.5 sm:gap-2">
                                         <span
-                                            className="text-2xl font-light text-[#4a2d3a] md:text-3xl"
+                                            className="text-lg font-light text-[#4a2d3a] sm:text-2xl md:text-3xl"
                                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                         >
                                             Est.
                                         </span>
                                         <span
-                                            className="text-2xl font-light italic text-[#8b5a6a] md:text-3xl"
+                                            className="text-lg font-light italic text-[#8b5a6a] sm:text-2xl md:text-3xl"
                                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                         >
                                             2010
                                         </span>
                                     </p>
-                                    <p className="mt-1 text-[9px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                    <p className="mt-1 text-[8px] font-medium uppercase tracking-[0.25em] text-[#b8929a] sm:text-[9px] sm:tracking-[0.3em]">
                                         Geneva, Switzerland
                                     </p>
                                 </div>
@@ -210,6 +212,7 @@ export default function AboutPage() {
                     </div>
                 </section>
 
+                <TaglineSection/>
                 <AboutSection />
 
                 {/* Stats */}
@@ -223,12 +226,12 @@ export default function AboutPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="flex flex-col items-center justify-center px-6 py-10 text-center"
+                                    className="flex flex-col items-center justify-center px-3 py-6 text-center sm:px-6 sm:py-10"
                                 >
-                                    <p className="text-xl font-semibold text-primary md:text-2xl">
+                                    <p className="text-lg font-semibold text-primary sm:text-xl md:text-2xl">
                                         {stat.value}
                                     </p>
-                                    <p className="mt-3 text-xs font-medium uppercase tracking-[0.15em] text-tertiary">
+                                    <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.15em] text-tertiary sm:mt-3 sm:text-xs">
                                         {stat.label}
                                     </p>
                                 </motion.div>
@@ -238,13 +241,13 @@ export default function AboutPage() {
                 </section>
 
                 {/* Values */}
-                <section className="relative overflow-hidden bg-[#faf6f1] px-4 py-20 md:px-8 md:py-28 lg:px-16">
+                <section className="relative overflow-hidden bg-[#faf6f1] px-4 py-14 sm:py-20 md:px-8 md:py-28 lg:px-16">
                     {/* Ambient glow */}
                     <div className="pointer-events-none absolute -top-32 left-1/3 size-[480px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#f3e8de_0%,transparent_70%)] opacity-70" />
                     <div className="pointer-events-none absolute -bottom-24 right-0 size-[420px] rounded-full bg-[radial-gradient(circle,#e8d4c7_0%,transparent_70%)] opacity-30" />
 
                     <div className="relative mx-auto max-w-7xl">
-                        <div className="grid items-start gap-16 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-24">
+                        <div className="grid items-start gap-10 sm:gap-16 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-24">
                             {/* Left - Header */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
@@ -319,13 +322,13 @@ export default function AboutPage() {
                                                 </div>
 
                                                 <h3
-                                                    className="mt-3 text-2xl font-medium uppercase tracking-[0.12em] text-[#4a2d3a] transition-colors duration-500 group-hover:text-[#3a1d2a] md:text-3xl"
+                                                    className="mt-3 text-xl font-medium uppercase tracking-[0.1em] text-[#4a2d3a] transition-colors duration-500 group-hover:text-[#3a1d2a] sm:text-2xl sm:tracking-[0.12em] md:text-3xl"
                                                     style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                                 >
                                                     {value.title}
                                                 </h3>
 
-                                                <p className="mt-3 text-[15px] leading-[1.9] text-[#5a3d4a]/80">
+                                                <p className="mt-3 text-sm leading-[1.8] text-[#5a3d4a]/80 sm:text-[15px] sm:leading-[1.9]">
                                                     {value.description}
                                                 </p>
                                             </div>
@@ -341,8 +344,9 @@ export default function AboutPage() {
                 
                                 <ReviewsSection />
 
-                <FAQSection />
                 <CollectionBanner />
+                                <FAQSection />
+
             </main>
             <Footer />
         </div>
