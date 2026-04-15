@@ -73,13 +73,17 @@ export default function AboutPage() {
                                 transition={{ duration: 0.7 }}
                                 className="order-2 text-center lg:order-1 lg:text-left"
                             >
-                                {/* Script accent */}
-                                <p
-                                    className="mb-1 text-2xl text-[#8b5a6a] md:text-3xl"
-                                    style={{ fontFamily: "'Eyesome Script', cursive" }}
-                                >
-                                    Welcome to
-                                </p>
+                                {/* Script accent with flourish */}
+                                <div className="flex items-center justify-center gap-2 lg:justify-start">
+                                    <span className="h-px w-5 bg-[#c9a5ab]/60 lg:hidden" />
+                                    <p
+                                        className="mb-0.5 text-[22px] text-[#8b5a6a] sm:text-2xl md:text-3xl"
+                                        style={{ fontFamily: "'Eyesome Script', cursive" }}
+                                    >
+                                        Welcome to
+                                    </p>
+                                    <span className="h-px w-5 bg-[#c9a5ab]/60 lg:hidden" />
+                                </div>
 
                                 {/* Headline */}
                                 <h1
@@ -90,12 +94,14 @@ export default function AboutPage() {
                                     <span className="italic text-[#8b5a6a]">Confident</span> Smile
                                 </h1>
 
-                                {/* Decorative divider */}
+                                {/* Decorative divider — symmetric on mobile, asymmetric on desktop */}
                                 <div className="mt-4 flex items-center justify-center gap-3 lg:justify-start">
-                                    <div className="h-px w-10 bg-[#c9a5ab]" />
+                                    <div className="h-px w-12 bg-[#c9a5ab]/60 lg:hidden" />
+                                    <div className="h-px w-10 bg-[#c9a5ab] hidden lg:block" />
                                     <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
-                                    <div className="h-px w-20 bg-[#c9a5ab]/60" />
+                                    <div className="h-px w-16 bg-[#c9a5ab]/60 lg:w-20" />
                                     <div className="size-1 rotate-45 bg-[#c9a5ab]/50" />
+                                    <div className="h-px w-12 bg-[#c9a5ab]/60 lg:hidden" />
                                 </div>
 
                                 {/* Subtitle */}
@@ -106,24 +112,32 @@ export default function AboutPage() {
                                     Born in Geneva, crafted with Swiss precision. Where refinement meets artistry — every session, a gentle step toward your most radiant self.
                                 </p>
 
-                                {/* Founder signature line */}
-                                <div className="mt-2 flex items-center justify-center gap-4 lg:justify-end">
-                                    <div className="h-px w-8 bg-[#c9a5ab]/60" />
-                                    <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-[#b8929a]">
+                                {/* Founder signature line — symmetric on mobile */}
+                                <div className="mt-3 flex items-center justify-center gap-3 sm:gap-4 lg:mt-2 lg:justify-end">
+                                    <div className="h-px w-6 bg-[#c9a5ab]/60 sm:w-8" />
+                                    <p className="text-[10px] font-medium uppercase tracking-[0.35em] text-[#b8929a] sm:text-[11px]">
                                         By
                                     </p>
                                     <p
-                                        className="text-2xl text-[#4a2d3a]"
+                                        className="text-[22px] text-[#4a2d3a] sm:text-2xl"
                                         style={{ fontFamily: "'Eyesome Script', cursive" }}
                                     >
                                         Anaëlle
                                     </p>
+                                    <div className="h-px w-6 bg-[#c9a5ab]/60 sm:w-8 lg:hidden" />
                                 </div>
 
-                                {/* Trust strip - directly below text content */}
-                                <div className="mt-8 border-t border-[#c9a5ab]/30 pt-6">
-                                    <div className="grid grid-cols-2 border-x border-y border-[#c9a5ab]/40 text-center md:flex md:flex-nowrap md:items-center md:justify-center md:divide-x md:divide-[#c9a5ab]/40 md:border-y-0 lg:justify-start">
-                                        <div className="border-b border-r border-[#c9a5ab]/40 px-3 py-3 md:min-w-[120px] md:border-0 md:px-4 md:py-0">
+                                {/* Trust strip */}
+                                <div className="mt-7 sm:mt-8">
+                                    {/* Decorative hairline with centered diamond */}
+                                    <div className="flex items-center justify-center gap-3 pb-5 sm:pb-6 lg:justify-start">
+                                        <div className="h-px flex-1 max-w-[80px] bg-[#c9a5ab]/40 lg:hidden" />
+                                        <div className="size-1 rotate-45 bg-[#c9a5ab]/60 lg:hidden" />
+                                        <div className="h-px flex-1 max-w-[80px] bg-[#c9a5ab]/40 lg:hidden" />
+                                        <div className="hidden h-px w-full bg-[#c9a5ab]/30 lg:block" />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-2 sm:gap-3 md:flex md:flex-nowrap md:items-center md:justify-center md:gap-0 md:divide-x md:divide-[#c9a5ab]/40 lg:justify-start">
+                                        <div className="rounded-sm bg-white/40 px-3 py-3.5 text-center backdrop-blur-sm ring-1 ring-inset ring-[#c9a5ab]/25 md:min-w-[120px] md:rounded-none md:bg-transparent md:px-4 md:py-0 md:ring-0 md:backdrop-blur-none">
                                             <p
                                                 className="text-xl font-light text-[#4a2d3a] sm:text-2xl md:text-3xl"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
@@ -134,7 +148,7 @@ export default function AboutPage() {
                                                 Years of Craft
                                             </p>
                                         </div>
-                                        <div className="border-b border-[#c9a5ab]/40 px-3 py-3 md:min-w-[120px] md:border-0 md:px-4 md:py-0">
+                                        <div className="rounded-sm bg-white/40 px-3 py-3.5 text-center backdrop-blur-sm ring-1 ring-inset ring-[#c9a5ab]/25 md:min-w-[120px] md:rounded-none md:bg-transparent md:px-4 md:py-0 md:ring-0 md:backdrop-blur-none">
                                             <p
                                                 className="text-xl font-light italic text-[#8b5a6a] sm:text-2xl md:text-3xl"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
@@ -145,7 +159,7 @@ export default function AboutPage() {
                                                 Radiant Smiles
                                             </p>
                                         </div>
-                                        <div className="border-r border-[#c9a5ab]/40 px-3 py-3 md:min-w-[120px] md:border-r-0 md:px-4 md:py-0">
+                                        <div className="rounded-sm bg-white/40 px-3 py-3.5 text-center backdrop-blur-sm ring-1 ring-inset ring-[#c9a5ab]/25 md:min-w-[120px] md:rounded-none md:bg-transparent md:px-4 md:py-0 md:ring-0 md:backdrop-blur-none">
                                             <p
                                                 className="text-xl font-light text-[#4a2d3a] sm:text-2xl md:text-3xl"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
@@ -156,7 +170,7 @@ export default function AboutPage() {
                                                 Average Rating
                                             </p>
                                         </div>
-                                        <div className="px-3 py-3 md:min-w-[120px] md:px-4 md:py-0">
+                                        <div className="rounded-sm bg-white/40 px-3 py-3.5 text-center backdrop-blur-sm ring-1 ring-inset ring-[#c9a5ab]/25 md:min-w-[120px] md:rounded-none md:bg-transparent md:px-4 md:py-0 md:ring-0 md:backdrop-blur-none">
                                             <p
                                                 className="text-xl font-light italic text-[#8b5a6a] sm:text-2xl md:text-3xl"
                                                 style={{ fontFamily: "'Cormorant Garamond', serif" }}
@@ -176,36 +190,46 @@ export default function AboutPage() {
                                 initial={{ opacity: 0, scale: 0.96 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.7, delay: 0.15 }}
-                                className="relative order-1 h-[280px] w-full sm:h-[400px] lg:order-2 lg:h-full"
+                                className="relative order-1 h-[340px] w-full sm:h-[420px] lg:order-2 lg:h-full"
                             >
+                                {/* Decorative frame corners — mobile only */}
+                                <div className="pointer-events-none absolute -top-1.5 -left-1.5 z-30 size-6 border-l border-t border-[#c9a5ab]/70 lg:hidden" />
+                                <div className="pointer-events-none absolute -bottom-1.5 -right-1.5 z-30 size-6 border-b border-r border-[#c9a5ab]/70 lg:hidden" />
+
                                 {/* Image */}
-                                <div className="relative size-full overflow-hidden">
+                                <div className="relative size-full overflow-hidden rounded-sm shadow-md ring-1 ring-inset ring-white/30 lg:rounded-none lg:shadow-none lg:ring-0">
                                     <img
                                         src="/client.webp"
                                         alt="Anaëlle — Prestige Smile Studio"
                                         className="size-full object-cover"
                                     />
+                                    {/* Subtle bottom gradient for label legibility — mobile only */}
+                                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/25 to-transparent lg:hidden" />
                                 </div>
 
                                 {/* Years label */}
-                                <div className="absolute bottom-4 left-4 z-20 bg-[#f7f2ec] px-3 py-2 shadow-sm sm:bottom-6 sm:left-6 sm:px-5 sm:py-3 md:bottom-8 md:left-8 md:px-6 md:py-4">
-                                    <p className="flex items-baseline gap-1.5 sm:gap-2">
-                                        <span
-                                            className="text-lg font-light text-[#4a2d3a] sm:text-2xl md:text-3xl"
-                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                        >
-                                            Est.
-                                        </span>
-                                        <span
-                                            className="text-lg font-light italic text-[#8b5a6a] sm:text-2xl md:text-3xl"
-                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                        >
-                                            2010
-                                        </span>
-                                    </p>
-                                    <p className="mt-1 text-[8px] font-medium uppercase tracking-[0.25em] text-[#b8929a] sm:text-[9px] sm:tracking-[0.3em]">
-                                        Geneva, Switzerland
-                                    </p>
+                                <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 items-center gap-3 bg-[#f7f2ec]/95 px-4 py-2.5 shadow-lg ring-1 ring-inset ring-[#c9a5ab]/30 backdrop-blur-sm sm:bottom-6 sm:left-6 sm:translate-x-0 sm:gap-0 sm:px-5 sm:py-3 sm:ring-0 md:bottom-8 md:left-8 md:px-6 md:py-4">
+                                    <div className="size-1 rotate-45 bg-[#c9a5ab]/70 sm:hidden" />
+                                    <div className="flex flex-col items-center sm:items-start">
+                                        <p className="flex items-baseline gap-1.5 sm:gap-2">
+                                            <span
+                                                className="text-xl font-light text-[#4a2d3a] sm:text-2xl md:text-3xl"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                Est.
+                                            </span>
+                                            <span
+                                                className="text-xl font-light italic text-[#8b5a6a] sm:text-2xl md:text-3xl"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                2010
+                                            </span>
+                                        </p>
+                                        <p className="mt-0.5 text-[8px] font-medium uppercase tracking-[0.28em] text-[#b8929a] sm:mt-1 sm:text-[9px] sm:tracking-[0.3em]">
+                                            Geneva, Switzerland
+                                        </p>
+                                    </div>
+                                    <div className="size-1 rotate-45 bg-[#c9a5ab]/70 sm:hidden" />
                                 </div>
                             </motion.div>
                         </div>
