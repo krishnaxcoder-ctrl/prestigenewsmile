@@ -253,8 +253,11 @@ export default function ContactPage() {
                                 <p className="text-xs font-medium uppercase tracking-[0.3em] text-[#8b5a6a]">
                                     Find us
                                 </p>
-                                <h2 className="mt-3 text-2xl font-semibold text-[#4a2d3a] md:text-3xl">
-                                    Studio <span className="text-[#8b5a6a]">Details</span>
+                                <h2
+                                    className="mt-2 text-3xl font-light text-[#4a2d3a] md:text-4xl"
+                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                >
+                                    Studio <span className="italic text-[#8b5a6a]">Details</span>
                                 </h2>
                                 <div className="mt-4 flex items-center gap-3">
                                     <div className="h-px w-10 bg-[#c9a5ab]" />
@@ -313,8 +316,11 @@ export default function ContactPage() {
                                     <p className="text-xs font-medium uppercase tracking-[0.3em] text-[#8b5a6a]">
                                         Write to us
                                     </p>
-                                    <h2 className="mt-3 text-2xl font-semibold text-[#4a2d3a] md:text-3xl">
-                                        Send a <span className="text-[#8b5a6a]">Message</span>
+                                    <h2
+                                        className="mt-2 text-3xl font-light text-[#4a2d3a] md:text-4xl"
+                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                    >
+                                        Send a <span className="italic text-[#8b5a6a]">Message</span>
                                     </h2>
                                     <p className="mt-3 text-sm leading-relaxed text-[#5a3d4a]/85">
                                         Fill out the form below and we&apos;ll get back to you within 24 hours.

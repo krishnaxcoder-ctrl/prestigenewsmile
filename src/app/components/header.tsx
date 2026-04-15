@@ -84,7 +84,7 @@ const ServicesDropdown = () => {
                         <span className="rounded-full bg-brand-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-brand-700">Limited</span>
                         <span className="text-sm text-secondary">1 rue Jean Moulin, 74100 Ambilly — Professional teeth whitening studio</span>
                     </div>
-                    <Link href="/contact" className="text-xs font-semibold uppercase tracking-wider text-brand-secondary hover:text-brand-primary">Book Now →</Link>
+                    <Link href="/booking" className="text-xs font-semibold uppercase tracking-wider text-brand-secondary hover:text-brand-primary">Book Now →</Link>
                 </div>
             </div>
         </div>
@@ -221,7 +221,7 @@ const MobileNav = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-3 p-4">
-                    <Button href="/contact" size="lg">Book Your Session</Button>
+                    <Button href="/booking" size="lg">Book Your Session</Button>
                     <Button href="tel:+41783000619" color="secondary" size="lg">Call +41 78 300 06 19</Button>
                 </div>
             </div>
@@ -268,7 +268,7 @@ export const Header = () => {
                         <a href="tel:+41783000619" className="hidden items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary lg:flex">
                             +41 78 300 06 19
                         </a>
-                        <Link href="/contact" className="rounded-lg bg-[#7c5d48] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-amber-800 sm:px-5 sm:py-2.5 sm:text-sm">
+                        <Link href="/booking" className="rounded-lg bg-[#7c5d48] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-amber-800 sm:px-5 sm:py-2.5 sm:text-sm">
                             Book Now
                         </Link>
                         <AriaDialogTrigger>
