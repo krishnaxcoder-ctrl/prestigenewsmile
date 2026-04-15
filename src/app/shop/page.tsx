@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Star01, ShoppingBag01, Loading01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
-import { RatingBadge } from "@/components/foundations/rating-badge";
 import { WishlistButton } from "@/components/base/wishlist-button/wishlist-button";
 import { getProducts, type Product } from "@/lib/supabase";
 
@@ -143,78 +142,36 @@ export default function ShopPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <section className="relative overflow-hidden bg-gradient-to-b from-[#f7f2ec] via-[#f3ede6] to-[#ebe2d8] px-4 py-14 md:px-8 md:py-20 lg:px-16">
-                    {/* Ambient glows */}
-                    <div className="pointer-events-none absolute -top-32 left-1/4 size-[480px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#f5efe7_0%,transparent_70%)] opacity-70" />
-                    <div className="pointer-events-none absolute -bottom-40 right-0 size-[420px] rounded-full bg-[radial-gradient(circle,#d4b5a0_0%,transparent_70%)] opacity-25" />
-
-                    <div className="relative mx-auto max-w-7xl">
+                <section className="relative overflow-hidden bg-gradient-to-b from-[#f7f2ec] to-[#f3ede6] px-4 py-12 md:px-8 md:py-16 lg:px-16">
+                    <div className="relative mx-auto max-w-7xl text-center">
                         {/* Breadcrumb */}
-                        <nav className="mb-8 flex items-center justify-center gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-[#b8929a] md:justify-start">
+                        <nav className="mb-6 flex items-center justify-center gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
                             <a href="/" className="transition hover:text-[#4a2d3a]">Home</a>
                             <span className="size-1 rotate-45 bg-[#c9a5ab]/60" />
                             <span className="text-[#4a2d3a]">Shop</span>
                         </nav>
 
-                        <div className="flex flex-col items-center gap-10 text-center md:flex-row md:items-end md:justify-between md:gap-12 md:text-left">
-                            <div className="max-w-2xl">
-                                {/* Script accent */}
-                                <motion.p
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="text-2xl text-[#8b5a6a] md:text-3xl"
-                                    style={{ fontFamily: "'Eyesome Script', cursive" }}
-                                >
-                                    Our Collection
-                                </motion.p>
+                        {/* Headline */}
+                        <motion.h1
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="text-3xl font-light leading-[1.1] text-[#4a2d3a] md:text-4xl lg:text-5xl"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                            Crafted for a <span className="italic text-[#8b5a6a]">Radiant</span> Smile
+                        </motion.h1>
 
-                                {/* Headline */}
-                                <motion.h1
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: 0.1 }}
-                                    className="mt-1 text-[32px] font-light leading-[1.05] text-[#4a2d3a] sm:text-4xl md:text-5xl lg:text-6xl"
-                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                >
-                                    Crafted for a <br className="hidden md:block" />
-                                    <span className="italic text-[#8b5a6a]">Radiant</span> Smile
-                                </motion.h1>
-
-                                {/* Decorative divider */}
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.6, delay: 0.2 }}
-                                    className="mt-5 flex items-center justify-center gap-3 md:justify-start"
-                                >
-                                    <div className="h-px w-10 bg-[#c9a5ab]" />
-                                    <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
-                                    <div className="h-px w-16 bg-[#c9a5ab]/60 md:w-20" />
-                                    <div className="size-1 rotate-45 bg-[#c9a5ab]/50" />
-                                </motion.div>
-
-                                {/* Subtitle */}
-                                <motion.p
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.6, delay: 0.25 }}
-                                    className="mx-auto mt-5 max-w-lg text-[14px] italic leading-[1.7] text-[#5a3d4a]/85 md:mx-0 md:text-[15px]"
-                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                >
-                                    Professional teeth whitening, thoughtfully formulated. Every product crafted to reveal your most confident, natural smile — from the comfort of home.
-                                </motion.p>
-                            </div>
-
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: 0.3 }}
-                                className="hidden shrink-0 md:block"
-                            >
-                                <RatingBadge rating={4.9} title="Top Rated Products" subtitle="500+ happy customers" />
-                            </motion.div>
-                        </div>
+                        {/* Subtitle */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="mx-auto mt-4 max-w-xl text-[14px] italic leading-[1.7] text-[#5a3d4a]/85 md:text-[15px]"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                            Professional teeth whitening, thoughtfully formulated for confident smiles.
+                        </motion.p>
                     </div>
                 </section>
 
