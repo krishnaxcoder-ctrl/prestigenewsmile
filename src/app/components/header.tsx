@@ -15,6 +15,7 @@ import {
 } from "react-aria-components";
 import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
+import { applyLanguage } from "@/app/components/google-translate-provider";
 
 const navItems = [
     { label: "Home", href: "/" },
@@ -104,6 +105,8 @@ const setLanguagePreference = (lang: string) => {
     document.cookie = `${LANG_STORAGE_KEY}=${lang}; path=/; max-age=31536000; SameSite=Lax`;
     document.documentElement.lang = lang;
     window.dispatchEvent(new CustomEvent("languagechange", { detail: { lang } }));
+    // Trigger Google Translate + page reload so the translation applies
+    applyLanguage(lang);
 };
 
 const getLanguagePreference = (): string => {

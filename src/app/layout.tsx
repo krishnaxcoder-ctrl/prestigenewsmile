@@ -3,6 +3,7 @@ import { Jost, Playfair_Display, Tangerine } from "next/font/google";
 import { RouteProvider } from "@/providers/router-provider";
 import { Theme } from "@/providers/theme";
 import { ToastProvider } from "@/components/base/toast/toast";
+import { GoogleTranslateProvider } from "@/app/components/google-translate-provider";
 import "@/styles/globals.css";
 import { cx } from "@/utils/cx";
 
@@ -282,6 +283,7 @@ export default function RootLayout({
                         <ToastProvider>{children}</ToastProvider>
                     </Theme>
                 </RouteProvider>
+                <GoogleTranslateProvider />
             </body>
         </html>
     );
