@@ -15,17 +15,13 @@ const services = [
         duration: "60 minutes",
         shades: "Up to 7 shades lighter",
         description:
-            "Our signature single session treatment is the perfect introduction to professional teeth whitening. Using advanced LED technology combined with EU-approved, enamel-safe whitening gels, we deliver visible results from the very first appointment. Our specialists assess your current shade and tailor the treatment to your sensitivity and goals. The process is entirely painless — simply relax while three carefully timed activation cycles work their magic. Whether you have a special event, an interview, or simply want to boost your confidence, this one-hour treatment delivers up to 7 shades brighter in a single visit.",
+            "Our signature single session treatment is the perfect introduction to professional teeth whitening. Using advanced LED technology combined with EU-approved, enamel-safe whitening gels, we deliver visible results from the very first appointment. Our specialists assess your current shade and tailor the treatment to your sensitivity and goals.",
         includes: [
             "Initial consultation and shade assessment",
             "Gum protection application",
             "Professional whitening gel application",
             "LED light activation (3 cycles of 15–20 min)",
-            "Post-treatment shade comparison",
-            "Personalised aftercare advice",
         ],
-        idealFor:
-            "First-time clients, special events, or anyone wanting a noticeable improvement in a single visit.",
         image: "/RADIANCE SESSION.png",
     },
     {
@@ -37,18 +33,14 @@ const services = [
         duration: "2 × 60 minutes (spaced 48h apart)",
         shades: "Up to 9+ shades lighter",
         description:
-            "Our most comprehensive whitening programme is designed for clients seeking maximum results. Two sessions spaced 48 hours apart allow the whitening agents to work progressively — the first lifts surface and embedded stains from coffee, tea, wine, or tobacco, while the second pushes brightness to its full potential, often achieving 9+ shades lighter. Each session includes a consultation, gum protection, and three cycles of LED-activated whitening. Between appointments, we track your progress and adjust the plan for optimal results. This is the gold standard for a truly radiant smile that lasts.",
+            "Our most comprehensive whitening programme is designed for clients seeking maximum results. Two sessions spaced 48 hours apart allow the whitening agents to work progressively — the first lifts surface and embedded stains from coffee, tea, wine, or tobacco, while the second pushes brightness to its full potential, often achieving 9+ shades lighter. Each session includes a consultation, gum protection, and three cycles of LED-activated whitening.",
         includes: [
             "Two full whitening sessions (48h apart)",
             "Initial consultation and shade assessment",
             "Gum protection at each session",
             "Professional whitening gel application × 2",
             "LED light activation × 2 (3 cycles per session)",
-            "Progress tracking between sessions",
-            "Comprehensive aftercare plan",
         ],
-        idealFor:
-            "Clients with darker teeth, heavy staining from coffee/tea/smoking, or those wanting the most dramatic transformation.",
         image: "/COMPLETE TREATMENT.avif",
     },
     {
@@ -60,7 +52,7 @@ const services = [
         duration: "45 minutes",
         shades: "Restore original brightness",
         description:
-            "Keep your smile at its brightest with regular maintenance sessions. Recommended every 6 to 12 months after your initial treatment, this touch-up is designed to combat natural re-staining from everyday habits like coffee, tea, or wine. In just 45 minutes, we refresh your brightness with professional whitening gel and two targeted LED activation cycles. Each visit begins with a shade assessment to track your results and personalise the session. Think of it as a reset button for your smile — quick, comfortable, and effective. Clients who invest in regular touch-ups maintain a brighter appearance year after year.",
+            "Keep your smile at its brightest with regular maintenance sessions. Recommended every 6 to 12 months after your initial treatment, this touch-up is designed to combat natural re-staining from everyday habits like coffee, tea, or wine. In just 45 minutes, we refresh your brightness with professional whitening gel and two targeted LED activation cycles.",
         includes: [
             "Shade check and progress assessment",
             "Gum protection application",
@@ -68,8 +60,6 @@ const services = [
             "LED light activation (2 cycles of 15–20 min)",
             "Updated aftercare recommendations",
         ],
-        idealFor:
-            "Existing clients who want to maintain their results. Recommended every 6–12 months depending on lifestyle.",
         image:
             "https://images.unsplash.com/photo-1445527815219-ecbfec67492e?q=80&w=2070&auto=format&fit=crop",
     },
@@ -121,10 +111,11 @@ export default function ServicesPage() {
                 </section>
 
                 {/* Services */}
-                <div className="bg-[#faf6f1] px-4 py-16 md:px-8 md:py-24 lg:px-16">
-                    <div className="mx-auto max-w-6xl space-y-24 md:space-y-32">
+                <div className="bg-[#faf6f1] px-4 py-16 md:px-8 md:py-14 lg:px-16">
+                    <div className="mx-auto max-w-6xl space-y-12 md:space-y-16">
                         {services.map((service, index) => {
                             const isReversed = index % 2 === 1;
+                            const isWhiteBg = index === 1;
                             const num = String(index + 1).padStart(2, "0");
 
                             return (
@@ -135,23 +126,30 @@ export default function ServicesPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: "-100px" }}
                                     transition={{ duration: 0.6 }}
-                                    className="scroll-mt-24"
+                                    className={`relative scroll-mt-24 ${isWhiteBg ? "isolate py-12 md:py-10" : ""}`}
                                 >
-                                    <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+                                    {/* Full-bleed white background for the 2nd service */}
+                                    {isWhiteBg && (
+                                        <div
+                                            aria-hidden
+                                            className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[calc(100%+3rem)] w-screen -translate-x-1/2 -translate-y-1/2 bg-white md:h-[calc(100%+4rem)]"
+                                        />
+                                    )}
+                                    <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-16">
                                         {/* Service Image */}
                                         <div className={isReversed ? "lg:order-2" : ""}>
-                                            <div className="relative">
+                                            <div className="relative h-full">
                                                 {/* Corner accents */}
                                                 <div className="pointer-events-none absolute -top-2 -left-2 z-10 size-6 border-l border-t border-[#c9a5ab]/70" />
                                                 <div className="pointer-events-none absolute -top-2 -right-2 z-10 size-6 border-r border-t border-[#c9a5ab]/70" />
                                                 <div className="pointer-events-none absolute -bottom-2 -left-2 z-10 size-6 border-b border-l border-[#c9a5ab]/70" />
                                                 <div className="pointer-events-none absolute -bottom-2 -right-2 z-10 size-6 border-b border-r border-[#c9a5ab]/70" />
 
-                                                <div className="overflow-hidden bg-[#f7f2ec] ring-1 ring-inset ring-[#c9a5ab]/30">
+                                                <div className="h-full overflow-hidden bg-[#f7f2ec] ring-1 ring-inset ring-[#c9a5ab]/30">
                                                     <img
                                                         src={service.image}
                                                         alt={service.title}
-                                                        className="aspect-[3/4] w-full object-cover"
+                                                        className="aspect-[3/4] w-full object-cover lg:aspect-auto lg:h-full"
                                                     />
                                                 </div>
 
@@ -261,17 +259,19 @@ export default function ServicesPage() {
                                             </div>
 
                                             {/* Ideal for */}
-                                            <div className="relative mt-8 border border-[#c9a5ab]/40 bg-white/50 p-5 backdrop-blur-sm">
-                                                <div className="pointer-events-none absolute -top-1 -left-1 size-4 border-l border-t border-[#c9a5ab]" />
-                                                <div className="pointer-events-none absolute -bottom-1 -right-1 size-4 border-b border-r border-[#c9a5ab]" />
+                                            {service.idealFor && (
+                                                <div className="relative mt-8 border border-[#c9a5ab]/40 bg-white/50 p-5 backdrop-blur-sm">
+                                                    <div className="pointer-events-none absolute -top-1 -left-1 size-4 border-l border-t border-[#c9a5ab]" />
+                                                    <div className="pointer-events-none absolute -bottom-1 -right-1 size-4 border-b border-r border-[#c9a5ab]" />
 
-                                                <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#8b5a6a]">
-                                                    Ideal For
-                                                </p>
-                                                <p className="mt-2 text-sm italic leading-relaxed text-[#5a3d4a]/85">
-                                                    {service.idealFor}
-                                                </p>
-                                            </div>
+                                                    <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#8b5a6a]">
+                                                        Ideal For
+                                                    </p>
+                                                    <p className="mt-2 text-sm italic leading-relaxed text-[#5a3d4a]/85">
+                                                        {service.idealFor}
+                                                    </p>
+                                                </div>
+                                            )}
 
                                             {/* CTA */}
                                             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -301,7 +301,7 @@ export default function ServicesPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="mx-auto mt-24 max-w-4xl md:mt-32"
+                        className="mx-auto mt-24 max-w-7xl md:mt-32"
                     >
                         <div className="relative">
                             {/* Corner accents */}
