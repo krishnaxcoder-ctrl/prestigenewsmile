@@ -28,41 +28,55 @@ const tangerine = Tangerine({
 export const metadata: Metadata = {
     metadataBase: new URL("https://www.prestige-smile.com"),
     title: {
-        default: "Prestige Smile | Professional Teeth Whitening in Geneva",
+        default: "Prestige Smile | Professional Teeth Whitening Geneva · Blanchiment Dentaire Genève",
         template: "%s | Prestige Smile",
     },
     description:
-        "Private aesthetic teeth whitening studio at 1 rue Jean Moulin, 74100 Ambilly, near Geneva. Give your smile a visibly whiter, brighter and more natural glow. Up to 7 shades lighter in one session.",
+        "Professional teeth whitening in Geneva — blanchiment dentaire professionnel. Private aesthetic clinic at 1 rue Jean Moulin, 74100 Ambilly. The best teeth whitening clinic near Geneva with visible results in one session, up to 7 shades lighter.",
     keywords: [
-        "teeth whitening",
-        "Geneva",
+        // English
+        "teeth whitening Geneva",
+        "professional teeth whitening",
+        "teeth whitening services Geneva",
+        "teeth whitening clinic Geneva",
+        "teeth whitening near me",
+        "best teeth whitening Geneva",
         "Ambilly",
         "cosmetic dentistry",
-        "smile",
         "whitening treatment",
-        "aesthetic",
-        "teeth whitening near me",
-        "professional teeth whitening Geneva",
+        // French
         "blanchiment dentaire Genève",
+        "blanchiment dentaire professionnel",
+        "services de blanchiment dentaire Genève",
+        "clinique de blanchiment dentaire Genève",
+        "blanchiment dentaire près de chez moi",
+        "meilleur blanchiment dentaire Genève",
+        "dentisterie esthétique",
     ],
     authors: [{ name: "Prestige Smile" }],
     alternates: {
         canonical: "https://www.prestige-smile.com",
+        languages: {
+            "en": "https://www.prestige-smile.com",
+            "fr": "https://www.prestige-smile.com",
+            "x-default": "https://www.prestige-smile.com",
+        },
     },
     openGraph: {
-        title: "Prestige Smile | Professional Teeth Whitening",
+        title: "Prestige Smile | Professional Teeth Whitening Geneva · Blanchiment Dentaire",
         description:
-            "Private aesthetic teeth whitening studio near Geneva. Give your smile a visibly whiter, brighter and more natural glow.",
+            "Professional teeth whitening services in Geneva. Blanchiment dentaire professionnel dans une clinique esthétique privée près de la frontière suisse.",
         url: "https://www.prestige-smile.com",
         type: "website",
         locale: "en_US",
+        alternateLocale: ["fr_FR", "fr_CH"],
         siteName: "Prestige Smile",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Prestige Smile | Professional Teeth Whitening",
+        title: "Prestige Smile | Teeth Whitening Geneva · Blanchiment Dentaire",
         description:
-            "Private aesthetic teeth whitening studio. Give your smile a visibly whiter, brighter and more natural glow.",
+            "The best teeth whitening clinic near Geneva. Up to 7 shades lighter in one professional session.",
     },
 };
 
@@ -73,11 +87,12 @@ export const viewport: Viewport = {
 
 const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": ["LocalBusiness", "HealthAndBeautyBusiness"],
     "@id": "https://www.prestige-smile.com",
     name: "Prestige Smile",
+    alternateName: "Prestige Smile Studio",
     description:
-        "Private aesthetic teeth whitening studio at 1 rue Jean Moulin, 74100 Ambilly, near Geneva. Up to 7 shades lighter in one session.",
+        "Professional teeth whitening clinic — blanchiment dentaire professionnel — at 1 rue Jean Moulin, 74100 Ambilly, near Geneva. Up to 7 shades lighter in one session.",
     url: "https://www.prestige-smile.com",
     telephone: "+41783000619",
     email: "contact@prestige-smile.com",
@@ -93,6 +108,15 @@ const jsonLd = {
         latitude: 46.1965,
         longitude: 6.1481,
     },
+    areaServed: [
+        { "@type": "City", name: "Geneva" },
+        { "@type": "City", name: "Genève" },
+        { "@type": "City", name: "Annecy" },
+        { "@type": "AdministrativeArea", name: "Haute-Savoie" },
+        { "@type": "AdministrativeArea", name: "French-speaking Switzerland" },
+        { "@type": "AdministrativeArea", name: "Suisse romande" },
+    ],
+    knowsLanguage: ["en", "fr"],
     openingHoursSpecification: [
         {
             "@type": "OpeningHoursSpecification",
@@ -109,6 +133,49 @@ const jsonLd = {
     ],
     priceRange: "$$",
     image: "https://www.prestige-smile.com/logo.svg",
+    aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "500",
+        bestRating: "5",
+        worstRating: "1",
+    },
+    hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Teeth Whitening Services · Services de blanchiment dentaire",
+        itemListElement: [
+            {
+                "@type": "Offer",
+                itemOffered: {
+                    "@type": "Service",
+                    name: "Initial Teeth Whitening Session",
+                    alternateName: "Séance de blanchiment dentaire",
+                },
+                price: "99",
+                priceCurrency: "CHF",
+            },
+            {
+                "@type": "Offer",
+                itemOffered: {
+                    "@type": "Service",
+                    name: "Complete Treatment",
+                    alternateName: "Traitement complet - 2 séances",
+                },
+                price: "169",
+                priceCurrency: "CHF",
+            },
+            {
+                "@type": "Offer",
+                itemOffered: {
+                    "@type": "Service",
+                    name: "Maintenance Session",
+                    alternateName: "Séance d'entretien",
+                },
+                price: "79",
+                priceCurrency: "CHF",
+            },
+        ],
+    },
     sameAs: [],
 };
 

@@ -3,19 +3,35 @@ import type { Metadata } from "next";
 const SITE_URL = "https://www.prestige-smile.com";
 
 export const metadata: Metadata = {
-    title: "Frequently Asked Questions",
+    title: "Frequently Asked Questions · FAQ",
     description:
-        "Find answers to common questions about teeth whitening at Prestige Smile. Learn about the treatment, results, contraindications, and more.",
+        "How long does teeth whitening last? Is teeth whitening safe? How many sessions for visible results? Le blanchiment dentaire est-il sûr ? Combien de temps dure-t-il ? Réponses à toutes vos questions sur la sensibilité et l'entretien.",
+    keywords: [
+        // English
+        "how long does teeth whitening last",
+        "how many sessions for teeth whitening results",
+        "is teeth whitening safe",
+        "teeth whitening maintenance duration",
+        "teeth whitening pain or sensitivity",
+        // French
+        "combien de temps dure le blanchiment dentaire",
+        "combien de séances pour un blanchiment dentaire",
+        "le blanchiment dentaire est-il sûr",
+        "durée entretien blanchiment dentaire",
+        "blanchiment dentaire douleur sensibilité",
+    ],
     alternates: {
         canonical: `${SITE_URL}/faq`,
     },
     openGraph: {
-        title: "Frequently Asked Questions | Prestige Smile",
+        title: "FAQ · Questions Fréquentes | Prestige Smile",
         description:
-            "Find answers to common questions about teeth whitening at Prestige Smile.",
+            "Is teeth whitening safe? How long do results last? Le blanchiment dentaire est-il sûr ? Combien de temps dure-t-il ?",
         url: `${SITE_URL}/faq`,
         type: "website",
         siteName: "Prestige Smile",
+        locale: "en_US",
+        alternateLocale: ["fr_FR", "fr_CH"],
     },
 };
 

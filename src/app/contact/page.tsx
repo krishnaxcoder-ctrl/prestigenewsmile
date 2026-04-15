@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/base/buttons/button";
-import { Input } from "@/components/base/input/input";
-import { TextArea } from "@/components/base/textarea/textarea";
 import {
     Mail01,
     Phone01,
@@ -12,13 +9,133 @@ import {
     Clock,
     Send01,
     CheckCircle,
-    User01,
-    ChevronDown,
-    MessageTextSquare01,
 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
-import { RatingBadge } from "@/components/foundations/rating-badge";
+
+const fieldLabelClass = "block text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]";
+const fieldInputClass =
+    "mt-2 w-full border-b border-[#c9a5ab]/50 bg-transparent py-3 text-[15px] text-[#4a2d3a] placeholder:text-[#b8929a] focus:border-[#4a2d3a] focus:outline-none transition";
+
+function FieldInput({
+    label,
+    name,
+    type,
+    placeholder,
+    required,
+    value,
+    onChange,
+}: {
+    label: string;
+    name: string;
+    type: string;
+    placeholder?: string;
+    required?: boolean;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) {
+    return (
+        <div>
+            <label htmlFor={name} className={fieldLabelClass}>
+                {label} {required && <span className="text-[#8b5a6a]">*</span>}
+            </label>
+            <input
+                id={name}
+                name={name}
+                type={type}
+                placeholder={placeholder}
+                required={required}
+                value={value}
+                onChange={onChange}
+                className={fieldInputClass}
+                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            />
+        </div>
+    );
+}
+
+function FieldSelect({
+    label,
+    name,
+    required,
+    value,
+    onChange,
+}: {
+    label: string;
+    name: string;
+    required?: boolean;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}) {
+    return (
+        <div>
+            <label htmlFor={name} className={fieldLabelClass}>
+                {label} {required && <span className="text-[#8b5a6a]">*</span>}
+            </label>
+            <div className="relative">
+                <select
+                    id={name}
+                    name={name}
+                    required={required}
+                    value={value}
+                    onChange={onChange}
+                    className={`${fieldInputClass} appearance-none pr-8`}
+                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                >
+                    <option value="">Select a subject</option>
+                    <option value="booking">Book an Appointment</option>
+                    <option value="products">Product Inquiry</option>
+                    <option value="support">Customer Support</option>
+                    <option value="other">Other</option>
+                </select>
+                <svg
+                    className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 text-[#8b5a6a]"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+        </div>
+    );
+}
+
+function FieldTextarea({
+    label,
+    name,
+    placeholder,
+    required,
+    value,
+    onChange,
+}: {
+    label: string;
+    name: string;
+    placeholder?: string;
+    required?: boolean;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}) {
+    return (
+        <div>
+            <label htmlFor={name} className={fieldLabelClass}>
+                {label} {required && <span className="text-[#8b5a6a]">*</span>}
+            </label>
+            <textarea
+                id={name}
+                name={name}
+                placeholder={placeholder}
+                required={required}
+                value={value}
+                onChange={onChange}
+                rows={5}
+                className={`${fieldInputClass} resize-none`}
+                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            />
+        </div>
+    );
+}
 
 const contactInfo = [
     {
@@ -96,81 +213,95 @@ export default function ContactPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <section className="border-b border-brand-400 bg-brand-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
-                    <div className="mx-auto max-w-7xl">
-                        <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="uppercase transition hover:text-brand-600">Home</a>
-                            <span>/</span>
-                            <span className="uppercase text-brand-600">Contact</span>
+                <section className="relative overflow-hidden bg-gradient-to-b from-[#f7f2ec] to-[#f3ede6] px-4 py-12 md:px-8 md:py-16 lg:px-16">
+                    <div className="relative mx-auto max-w-7xl text-center">
+                        <nav className="mb-6 flex items-center justify-center gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                            <a href="/" className="transition hover:text-[#4a2d3a]">Home</a>
+                            <span className="size-1 rotate-45 bg-[#c9a5ab]/60" />
+                            <span className="text-[#4a2d3a]">Contact</span>
                         </nav>
-                        <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
-                            <div className="max-w-3xl">
-                                <motion.h1
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.1 }}
-                                    className="text-2xl font-semibold uppercase text-primary md:text-3xl"
-                                >
-                                    Get in <span className="text-brand-600">Touch</span>
-                                </motion.h1>
-                                <motion.p
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.2 }}
-                                    className="mt-4 text-lg text-tertiary"
-                                >
-                                    Have a question or want to book an appointment? We'd love to hear from you.
-                                </motion.p>
-                            </div>
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                                className="hidden shrink-0 md:block"
-                            >
-                                <RatingBadge rating={4.9} title="Fast Response" subtitle="Within 24 hours" />
-                            </motion.div>
-                        </div>
+
+                        <motion.h1
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="text-3xl font-light leading-[1.1] text-[#4a2d3a] md:text-4xl lg:text-5xl"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                            Get in <span className="italic text-[#8b5a6a]">Touch</span>
+                        </motion.h1>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: 0.1 }}
+                            className="mx-auto mt-4 max-w-xl text-[14px] italic leading-[1.7] text-[#5a3d4a]/85 md:text-[15px]"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                            Have a question or want to book an appointment? We&apos;d love to hear from you.
+                        </motion.p>
                     </div>
                 </section>
 
                 {/* Contact Content */}
-                <section className="px-4 py-12 md:px-8 md:py-16 lg:px-16">
-                    <div className="mx-auto max-w-7xl">
-                        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+                <section className="bg-[#faf6f1] px-4 py-14 md:px-8 md:py-20 lg:px-16">
+                    <div className="mx-auto max-w-6xl">
+                        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_1.2fr] lg:gap-16">
                             {/* Contact Info */}
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <div className="grid gap-6 sm:grid-cols-2">
+                                <p
+                                    className="text-xl text-[#8b5a6a] md:text-2xl"
+                                    style={{ fontFamily: "'Eyesome Script', cursive" }}
+                                >
+                                    Find us
+                                </p>
+                                <h2
+                                    className="mt-1 text-2xl font-light text-[#4a2d3a] md:text-3xl"
+                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                >
+                                    Studio <span className="italic text-[#8b5a6a]">Details</span>
+                                </h2>
+                                <div className="mt-4 flex items-center gap-3">
+                                    <div className="h-px w-10 bg-[#c9a5ab]" />
+                                    <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
+                                    <div className="h-px w-16 bg-[#c9a5ab]/60" />
+                                </div>
+
+                                <div className="mt-8 divide-y divide-[#c9a5ab]/25 border-y border-[#c9a5ab]/25">
                                     {contactInfo.map((item) => (
-                                        <div
-                                            key={item.title}
-                                            className="rounded-2xl border border-secondary bg-primary p-6"
-                                        >
-                                            <div className="flex size-12 items-center justify-center rounded-full bg-brand-50">
-                                                <item.icon className="size-6 text-brand-600" />
+                                        <div key={item.title} className="flex items-start gap-5 py-6">
+                                            <div className="flex size-11 shrink-0 items-center justify-center border border-[#c9a5ab]/50 bg-white/60">
+                                                <item.icon className="size-4 text-[#8b5a6a]" />
                                             </div>
-                                            <h3 className="mt-4 font-semibold text-primary">
-                                                {item.title}
-                                            </h3>
-                                            <div className="mt-2 space-y-1">
-                                                {item.details.map((detail, i) => (
-                                                    <p key={i} className="text-sm text-tertiary">
-                                                        {detail}
-                                                    </p>
-                                                ))}
+                                            <div className="flex-1">
+                                                <h3 className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
+                                                    {item.title}
+                                                </h3>
+                                                <div className="mt-2 space-y-0.5">
+                                                    {item.details.map((detail, i) => (
+                                                        <p
+                                                            key={i}
+                                                            className="text-[15px] text-[#4a2d3a]"
+                                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                        >
+                                                            {detail}
+                                                        </p>
+                                                    ))}
+                                                </div>
+                                                {item.action && (
+                                                    <a
+                                                        href={item.action.href}
+                                                        className="mt-2 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.25em] text-[#8b5a6a] transition hover:text-[#4a2d3a]"
+                                                    >
+                                                        {item.action.label}
+                                                        <span className="transition group-hover:translate-x-0.5">→</span>
+                                                    </a>
+                                                )}
                                             </div>
-                                            {item.action && (
-                                                <a
-                                                    href={item.action.href}
-                                                    className="mt-3 inline-block text-sm font-medium text-brand-600 transition hover:text-brand-700"
-                                                >
-                                                    {item.action.label} →
-                                                </a>
-                                            )}
                                         </div>
                                     ))}
                                 </div>
@@ -182,118 +313,121 @@ export default function ContactPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <div className="rounded-2xl border border-secondary bg-primary p-8">
-                                    <h2 className="text-xl font-semibold text-primary">
-                                        Send Us a Message
+                                <div className="relative border border-[#c9a5ab]/40 bg-white/70 p-8 backdrop-blur-sm md:p-10">
+                                    {/* Corner accents */}
+                                    <div className="pointer-events-none absolute -top-1.5 -left-1.5 size-5 border-l border-t border-[#c9a5ab]/70" />
+                                    <div className="pointer-events-none absolute -top-1.5 -right-1.5 size-5 border-r border-t border-[#c9a5ab]/70" />
+                                    <div className="pointer-events-none absolute -bottom-1.5 -left-1.5 size-5 border-b border-l border-[#c9a5ab]/70" />
+                                    <div className="pointer-events-none absolute -bottom-1.5 -right-1.5 size-5 border-b border-r border-[#c9a5ab]/70" />
+
+                                    <p
+                                        className="text-xl text-[#8b5a6a] md:text-2xl"
+                                        style={{ fontFamily: "'Eyesome Script', cursive" }}
+                                    >
+                                        Write to us
+                                    </p>
+                                    <h2
+                                        className="mt-1 text-2xl font-light text-[#4a2d3a] md:text-3xl"
+                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                    >
+                                        Send a <span className="italic text-[#8b5a6a]">Message</span>
                                     </h2>
-                                    <p className="mt-2 text-sm text-tertiary">
-                                        Fill out the form below and we'll get back to you within 24 hours.
+                                    <p
+                                        className="mt-3 text-[14px] italic leading-[1.7] text-[#5a3d4a]/85"
+                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                    >
+                                        Fill out the form below and we&apos;ll get back to you within 24 hours.
                                     </p>
 
                                     {isSubmitted ? (
                                         <motion.div
                                             initial={{ opacity: 0, scale: 0.95 }}
                                             animate={{ opacity: 1, scale: 1 }}
-                                            className="mt-8 rounded-xl bg-success-50 p-6 text-center"
+                                            className="mt-8 border border-[#c9a5ab]/40 bg-[#f7f2ec]/60 p-8 text-center"
                                         >
-                                            <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-success-100">
-                                                <CheckCircle className="size-8 text-success-600" />
+                                            <div className="mx-auto flex size-14 items-center justify-center border border-[#c9a5ab]/50 bg-white/80">
+                                                <CheckCircle className="size-6 text-[#8b5a6a]" />
                                             </div>
-                                            <h3 className="mt-4 font-semibold text-success-900">
-                                                Message Sent!
+                                            <h3
+                                                className="mt-5 text-2xl font-light text-[#4a2d3a]"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                Message <span className="italic text-[#8b5a6a]">Sent</span>
                                             </h3>
-                                            <p className="mt-2 text-sm text-success-700">
-                                                Thank you for contacting us. We'll get back to you soon.
+                                            <p
+                                                className="mt-2 text-[14px] italic text-[#5a3d4a]/85"
+                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                            >
+                                                Thank you for reaching out. We&apos;ll be in touch soon.
                                             </p>
                                         </motion.div>
                                     ) : (
-                                        <form onSubmit={handleSubmit} className="mt-6 space-y-5">
-                                            <div className="grid gap-5 sm:grid-cols-2">
-                                                <Input
-                                                    type="text"
-                                                    name="name"
+                                        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+                                            <div className="grid gap-6 sm:grid-cols-2">
+                                                <FieldInput
                                                     label="Name"
-                                                    icon={User01}
-                                                    value={formData.name}
-                                                    onChange={(value) => setFormData({ ...formData, name: value })}
+                                                    name="name"
+                                                    type="text"
+                                                    required
                                                     placeholder="Your name"
-                                                    isRequired
-                                                    size="md"
+                                                    value={formData.name}
+                                                    onChange={handleInputChange}
                                                 />
-                                                <Input
-                                                    type="email"
-                                                    name="email"
+                                                <FieldInput
                                                     label="Email"
-                                                    icon={Mail01}
-                                                    value={formData.email}
-                                                    onChange={(value) => setFormData({ ...formData, email: value })}
+                                                    name="email"
+                                                    type="email"
+                                                    required
                                                     placeholder="your@email.com"
-                                                    isRequired
-                                                    size="md"
+                                                    value={formData.email}
+                                                    onChange={handleInputChange}
                                                 />
                                             </div>
 
-                                            <div className="grid gap-5 sm:grid-cols-2">
-                                                <Input
-                                                    type="tel"
-                                                    name="phone"
+                                            <div className="grid gap-6 sm:grid-cols-2">
+                                                <FieldInput
                                                     label="Phone"
-                                                    icon={Phone01}
-                                                    value={formData.phone}
-                                                    onChange={(value) => setFormData({ ...formData, phone: value })}
+                                                    name="phone"
+                                                    type="tel"
                                                     placeholder="+41 XX XXX XX XX"
-                                                    size="md"
+                                                    value={formData.phone}
+                                                    onChange={handleInputChange}
                                                 />
-                                                <div className="space-y-1.5">
-                                                    <label className="text-sm font-medium text-secondary">
-                                                        Subject <span className="text-error-500">*</span>
-                                                    </label>
-                                                    <div className="relative">
-                                                        <div className="pointer-events-none absolute left-3 top-1/2 z-10 -translate-y-1/2">
-                                                            <MessageTextSquare01 className="size-5 text-fg-quaternary" />
-                                                        </div>
-                                                        <select
-                                                            name="subject"
-                                                            value={formData.subject}
-                                                            onChange={handleInputChange}
-                                                            className="w-full appearance-none rounded-lg bg-primary py-2.5 pl-10 pr-10 text-md text-primary shadow-xs ring-1 ring-primary ring-inset focus:ring-2 focus:ring-brand focus:outline-none"
-                                                            required
-                                                        >
-                                                            <option value="">Select a subject</option>
-                                                            <option value="booking">Book an Appointment</option>
-                                                            <option value="products">Product Inquiry</option>
-                                                            <option value="support">Customer Support</option>
-                                                            <option value="other">Other</option>
-                                                        </select>
-                                                        <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-5 -translate-y-1/2 text-fg-quaternary" />
-                                                    </div>
-                                                </div>
+                                                <FieldSelect
+                                                    label="Subject"
+                                                    name="subject"
+                                                    required
+                                                    value={formData.subject}
+                                                    onChange={handleInputChange}
+                                                />
                                             </div>
 
-                                            <TextArea
-                                                name="message"
+                                            <FieldTextarea
                                                 label="Message"
-                                                value={formData.message}
-                                                onChange={(value) => setFormData({ ...formData, message: value })}
+                                                name="message"
+                                                required
                                                 placeholder="How can we help you?"
-                                                isRequired
+                                                value={formData.message}
+                                                onChange={handleInputChange}
                                             />
 
                                             {error && (
-                                                <p className="text-sm text-error-500">{error}</p>
+                                                <p
+                                                    className="text-[13px] italic text-[#b8929a]"
+                                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                >
+                                                    {error}
+                                                </p>
                                             )}
 
-                                            <Button
+                                            <button
                                                 type="submit"
-                                                color="primary"
-                                                size="lg"
-                                                iconLeading={Send01}
-                                                className="w-full justify-center"
-                                                isLoading={isLoading}
-                                                isDisabled={isLoading}
+                                                disabled={isLoading}
+                                                className="inline-flex w-full items-center justify-center gap-2 border border-[#4a2d3a] bg-[#4a2d3a] px-8 py-4 text-[11px] font-medium uppercase tracking-[0.3em] text-white transition duration-200 ease-linear hover:bg-[#3a1d2a] disabled:opacity-60"
                                             >
-                                                {isLoading ? "Sending..." : "Send Message"}
-                                            </Button>
+                                                <Send01 className="size-3.5" />
+                                                {isLoading ? "Sending…" : "Send Message"}
+                                            </button>
                                         </form>
                                     )}
                                 </div>
@@ -302,89 +436,114 @@ export default function ContactPage() {
                     </div>
                 </section>
 
-                {/* Book Your Appointment Section */}
-                <section className="bg-brand-50 px-4 py-12 md:px-8 md:py-16 lg:px-16">
-                    <div className="mx-auto max-w-7xl">
-                        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-                            {/* Left Column - Booking Info */}
-                            <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5 }}
+                {/* Booking Section - matches homepage/booking page */}
+                <section
+                    className="bg-cover bg-center bg-no-repeat px-4 py-12 md:py-16"
+                    style={{ backgroundImage: "url('/bgreviewssection.webp')" }}
+                >
+                    <div className="mx-auto grid max-w-5xl grid-cols-1 overflow-hidden rounded-2xl lg:grid-cols-2">
+                        {/* Left - CTA */}
+                        <div className="hidden flex-col justify-center bg-white px-5 py-10 text-left lg:flex lg:py-20">
+                            <p className="text-sm uppercase tracking-[0.3em] text-[#8b6b5a]">
+                                Ready for a brighter smile?
+                            </p>
+
+                            <div className="my-5 h-px w-full bg-[#c9bdb3]" />
+
+                            <h2
+                                className="text-3xl font-medium leading-snug text-[#4a3728] xl:text-5xl"
+                                style={{ fontFamily: "'Eyesome Script', cursive" }}
                             >
-                                <h2 className="text-2xl font-semibold text-primary md:text-3xl">
-                                    Book Your Appointment
+                                Book your whitening consultation today!
+                            </h2>
+
+                            <p className="mt-4 text-sm leading-relaxed text-[#8b6b5a]">
+                                Transform your smile with our professional teeth whitening treatments. Safe, effective, and tailored to your needs.
+                            </p>
+
+                            <div className="my-5 h-px w-full bg-[#c9bdb3]" />
+
+                            {/* Features */}
+                            <div className="space-y-3">
+                                <div className="flex items-center gap-3">
+                                    <div className="flex size-8 items-center justify-center rounded-full bg-[#f5efe9]">
+                                        <svg className="size-4 text-[#8b6b5a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                    </div>
+                                    <span className="text-sm text-[#5a4639]">Professional whitening in 30 minutes</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="flex size-8 items-center justify-center rounded-full bg-[#f5efe9]">
+                                        <svg className="size-4 text-[#8b6b5a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                    </div>
+                                    <span className="text-sm text-[#5a4639]">Safe &amp; gentle on sensitive teeth</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <div className="flex size-8 items-center justify-center rounded-full bg-[#f5efe9]">
+                                        <svg className="size-4 text-[#8b6b5a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                    </div>
+                                    <span className="text-sm text-[#5a4639]">Up to 8 shades whiter</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right - Opening Hours Card */}
+                        <div className="bg-[#fcf5f0] px-6 py-8 sm:px-10 sm:py-10">
+                            {/* Title */}
+                            <div className="mb-6 text-center sm:mb-8">
+                                <img src="/logobookingnow1.png" alt="Prestige Smile Studio" className="mx-auto h-15 sm:h-10" />
+                                <h2
+                                    className="mt-3 text-3xl font-medium uppercase tracking-[0.15em] text-[#5a3d2b] sm:text-5xl"
+                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                >
+                                    Opening
                                 </h2>
-                                <p className="mt-2 text-lg font-medium text-brand-600">
-                                    @prestige.smile.studio
+                                <p
+                                    className="mt-1 text-6xl text-[#8b6b5a]"
+                                    style={{ fontFamily: "'Abramo Script', cursive" }}
+                                >
+                                    hours
                                 </p>
+                            </div>
 
-                                <div className="mt-8 rounded-2xl border border-secondary bg-primary p-8 shadow-sm">
-                                    <div className="flex items-center gap-2">
-                                        <Clock className="size-6 text-brand-600" />
-                                        <h3 className="text-lg font-semibold text-primary">
-                                            Opening Hours
-                                        </h3>
+                            {/* Hours list */}
+                            <div className="space-y-0">
+                                {[
+                                    { day: "Monday", time: "10am - 8pm" },
+                                    { day: "Tuesday", time: "10am - 8pm" },
+                                    { day: "Wednesday", time: "10am - 8pm" },
+                                    { day: "Thursday", time: "10am - 8pm" },
+                                    { day: "Friday", time: "10am - 8pm" },
+                                    { day: "Saturday", time: "10am - 7pm" },
+                                    { day: "Sunday", time: "Closed" },
+                                ].map((item, i, arr) => (
+                                    <div
+                                        key={item.day}
+                                        className={`flex items-center justify-between py-2.5 text-sm sm:py-3 sm:text-base ${i < arr.length - 1 ? "border-b border-[#c9bdb3]" : ""}`}
+                                    >
+                                        <span className="font-semibold text-[#4a3728]">{item.day}</span>
+                                        <span className={`font-medium ${item.time === "Closed" ? "text-[#8b6b5a]" : "text-[#5a4639]"}`}>
+                                            {item.time}
+                                        </span>
                                     </div>
+                                ))}
+                            </div>
 
-                                    <div className="mt-6 space-y-3">
-                                        {[
-                                            { day: "Monday", hours: "10am - 8pm" },
-                                            { day: "Tuesday", hours: "10am - 8pm" },
-                                            { day: "Wednesday", hours: "10am - 8pm" },
-                                            { day: "Thursday", hours: "10am - 8pm" },
-                                            { day: "Friday", hours: "10am - 8pm" },
-                                            { day: "Saturday", hours: "10am - 7pm" },
-                                            { day: "Sunday", hours: "Closed" },
-                                        ].map((item) => (
-                                            <div
-                                                key={item.day}
-                                                className="flex items-center justify-between border-b border-secondary pb-3 last:border-0 last:pb-0"
-                                            >
-                                                <span className="font-medium text-primary">{item.day}</span>
-                                                <span className={item.hours === "Closed" ? "font-medium text-error-500" : "text-tertiary"}>
-                                                    {item.hours}
-                                                </span>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    <div className="mt-8">
-                                        <Button
-                                            href="tel:+41783000619"
-                                            color="primary"
-                                            size="lg"
-                                            iconLeading={Phone01}
-                                            className="w-full justify-center"
-                                        >
-                                            Call to Book
-                                        </Button>
-                                    </div>
+                            {/* QR Code */}
+                            <div className="mt-8 flex items-center justify-center gap-4 sm:gap-6">
+                                <div>
+                                    <p className="text-2xl font-bold text-primary sm:text-3xl" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                                        Scan here.
+                                    </p>
+                                    <p className="text-sm uppercase tracking-widest text-tertiary sm:text-base">
+                                        To book your<br />appointment.
+                                    </p>
                                 </div>
-                            </motion.div>
-
-                            {/* Right Column - Map */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5 }}
-                                className="flex flex-col"
-                            >
-                                <div id="map" className="aspect-video overflow-hidden rounded-2xl bg-secondary lg:aspect-auto lg:h-full">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.0!2d6.1!3d46.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDEyJzAwLjAiTiA2wrAwNicwMC4wIkU!5e0!3m2!1sen!2sch!4v1234567890"
-                                        width="100%"
-                                        height="100%"
-                                        style={{ border: 0, minHeight: "300px" }}
-                                        allowFullScreen
-                                        loading="lazy"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        title="Location Map"
-                                    />
-                                </div>
-                            </motion.div>
+                                <img
+                                    src="/qrcode.png"
+                                    alt="QR code to book appointment"
+                                    className="size-28 border-2 border-[#c9bdb3] sm:size-32"
+                                />
+                            </div>
                         </div>
                     </div>
                 </section>

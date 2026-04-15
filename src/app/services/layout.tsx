@@ -3,19 +3,39 @@ import type { Metadata } from "next";
 const SITE_URL = "https://www.prestige-smile.com";
 
 export const metadata: Metadata = {
-    title: "Our Services",
+    title: "Our Services · Nos Services",
     description:
-        "Professional teeth whitening services at Prestige Smile near Geneva. Single sessions from CHF 99, complete treatments, and maintenance plans. Up to 7 shades lighter.",
+        "Cosmetic and safe teeth whitening with instant results for a natural white smile. Blanchiment dentaire esthétique, sans danger, avec résultats immédiats. Serving Annecy and Haute-Savoie. Single sessions from CHF 99.",
+    keywords: [
+        // English
+        "cosmetic teeth whitening",
+        "safe teeth whitening",
+        "instant teeth whitening results",
+        "teeth whitening session",
+        "natural white smile",
+        "teeth whitening Haute-Savoie",
+        "teeth whitening Annecy",
+        // French
+        "blanchiment dentaire esthétique",
+        "blanchiment dentaire sans danger",
+        "résultats immédiats blanchiment dentaire",
+        "séance de blanchiment dentaire",
+        "sourire naturellement blanc",
+        "blanchiment dentaire Haute-Savoie",
+        "blanchiment dentaire Annecy",
+    ],
     alternates: {
         canonical: `${SITE_URL}/services`,
     },
     openGraph: {
-        title: "Teeth Whitening Services | Prestige Smile",
+        title: "Teeth Whitening Services · Services de blanchiment dentaire | Prestige Smile",
         description:
-            "Professional teeth whitening services near Geneva. Single sessions, complete treatments, and maintenance plans.",
+            "Cosmetic, safe teeth whitening in Haute-Savoie and Annecy. Blanchiment dentaire esthétique sans danger avec résultats immédiats.",
         url: `${SITE_URL}/services`,
         type: "website",
         siteName: "Prestige Smile",
+        locale: "en_US",
+        alternateLocale: ["fr_FR", "fr_CH"],
     },
 };
 
