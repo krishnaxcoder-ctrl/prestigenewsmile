@@ -2,18 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/base/buttons/button";
-import {
-    Heart,
-    Star01,
-    ShoppingBag01,
-    FilterLines,
-    Grid01,
-    List,
-    ChevronDown,
-    X,
-    Loading01,
-} from "@untitledui/icons";
+import { Star01, ShoppingBag01, Loading01 } from "@untitledui/icons";
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
@@ -133,10 +122,15 @@ export default function ShopPage() {
         return (
             <div className="overflow-x-hidden">
                 <Header />
-                <main className="flex min-h-screen items-center justify-center bg-primary">
-                    <div className="flex flex-col items-center gap-4">
-                        <Loading01 className="size-8 animate-spin text-brand-600" />
-                        <p className="text-tertiary">Loading products...</p>
+                <main className="flex min-h-screen items-center justify-center bg-[#faf6f1]">
+                    <div className="flex flex-col items-center gap-5">
+                        <Loading01 className="size-7 animate-spin text-[#8b5a6a]" />
+                        <p
+                            className="text-sm italic text-[#8b5a6a]"
+                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                        >
+                            Curating your collection…
+                        </p>
                     </div>
                 </main>
                 <Footer />
@@ -149,36 +143,73 @@ export default function ShopPage() {
             <Header />
             <main className="bg-primary">
                 {/* Hero Header */}
-                <section className="border-b border-brand-400 bg-brand-50 px-4 py-12 md:px-8 md:py-10 lg:px-16">
-                    <div className="mx-auto max-w-7xl">
-                        <nav className="mb-4 flex items-center gap-2 text-sm text-tertiary">
-                            <a href="/" className="transition uppercase hover:text-brand-600">Home</a>
-                            <span>/</span>
-                            <span className="uppercase  text-brand-600">Shop</span>
+                <section className="relative overflow-hidden bg-gradient-to-b from-[#f7f2ec] via-[#f3ede6] to-[#ebe2d8] px-4 py-14 md:px-8 md:py-20 lg:px-16">
+                    {/* Ambient glows */}
+                    <div className="pointer-events-none absolute -top-32 left-1/4 size-[480px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#f5efe7_0%,transparent_70%)] opacity-70" />
+                    <div className="pointer-events-none absolute -bottom-40 right-0 size-[420px] rounded-full bg-[radial-gradient(circle,#d4b5a0_0%,transparent_70%)] opacity-25" />
+
+                    <div className="relative mx-auto max-w-7xl">
+                        {/* Breadcrumb */}
+                        <nav className="mb-8 flex items-center justify-center gap-3 text-[11px] font-medium uppercase tracking-[0.3em] text-[#b8929a] md:justify-start">
+                            <a href="/" className="transition hover:text-[#4a2d3a]">Home</a>
+                            <span className="size-1 rotate-45 bg-[#c9a5ab]/60" />
+                            <span className="text-[#4a2d3a]">Shop</span>
                         </nav>
-                        <div className="flex flex-col items-start  justify-between gap-8 md:flex-row md:items-center">
-                            <div className="max-w-3xl ">
+
+                        <div className="flex flex-col items-center gap-10 text-center md:flex-row md:items-end md:justify-between md:gap-12 md:text-left">
+                            <div className="max-w-2xl">
+                                {/* Script accent */}
+                                <motion.p
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="text-2xl text-[#8b5a6a] md:text-3xl"
+                                    style={{ fontFamily: "'Eyesome Script', cursive" }}
+                                >
+                                    Our Collection
+                                </motion.p>
+
+                                {/* Headline */}
                                 <motion.h1
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.1 }}
-                                    className="text-2xl font-semibold text-primary md:text-3xl"
+                                    transition={{ duration: 0.6, delay: 0.1 }}
+                                    className="mt-1 text-[32px] font-light leading-[1.05] text-[#4a2d3a] sm:text-4xl md:text-5xl lg:text-6xl"
+                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
                                 >
-                                    Shop Our <span className="text-brand-600">Premium</span> Collection
+                                    Crafted for a <br className="hidden md:block" />
+                                    <span className="italic text-[#8b5a6a]">Radiant</span> Smile
                                 </motion.h1>
-                                <motion.p
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: 0.2 }}
-                                    className="mt-4 text-lg text-tertiary"
+
+                                {/* Decorative divider */}
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.6, delay: 0.2 }}
+                                    className="mt-5 flex items-center justify-center gap-3 md:justify-start"
                                 >
-                                    Discover our range of teeth whitening products designed for professional results at home.
+                                    <div className="h-px w-10 bg-[#c9a5ab]" />
+                                    <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
+                                    <div className="h-px w-16 bg-[#c9a5ab]/60 md:w-20" />
+                                    <div className="size-1 rotate-45 bg-[#c9a5ab]/50" />
+                                </motion.div>
+
+                                {/* Subtitle */}
+                                <motion.p
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.25 }}
+                                    className="mx-auto mt-5 max-w-lg text-[14px] italic leading-[1.7] text-[#5a3d4a]/85 md:mx-0 md:text-[15px]"
+                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                >
+                                    Professional teeth whitening, thoughtfully formulated. Every product crafted to reveal your most confident, natural smile — from the comfort of home.
                                 </motion.p>
                             </div>
+
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
+                                initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
                                 className="hidden shrink-0 md:block"
                             >
                                 <RatingBadge rating={4.9} title="Top Rated Products" subtitle="500+ happy customers" />
@@ -188,29 +219,29 @@ export default function ShopPage() {
                 </section>
 
                 {/* Shop Content */}
-                <section className="px-4 py-12 md:px-8 md:py-6 lg:px-16">
+                <section className="bg-[#faf6f1] px-4 py-16 md:px-8 md:py-24 lg:px-16">
                     <div className="mx-auto max-w-7xl">
                         <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
                             {/* Main Content */}
                             <div className="flex-1">
                                 {/* Product List */}
-                                <div className="space-y-6">
+                                <div className="space-y-8 md:space-y-10">
                                     {sortedProducts.map((product, index) => (
                                         <motion.div
                                             key={product.slug}
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.4, delay: index * 0.05 }}
-                                            className="group overflow-hidden rounded-2xl border border-secondary bg-white shadow-sm transition hover:shadow-md"
+                                            transition={{ duration: 0.5, delay: index * 0.05 }}
+                                            className="group overflow-hidden border border-[#c9a5ab]/30 bg-white/70 backdrop-blur-sm transition duration-300 hover:border-[#c9a5ab]/60 hover:bg-white"
                                         >
                                             <div className="flex flex-col md:flex-row">
                                                 {/* Product Image */}
-                                                <div className="relative aspect-square w-full shrink-0 overflow-hidden bg-gray-50 md:w-80">
+                                                <div className="relative aspect-square w-full shrink-0 overflow-hidden bg-[#f7f2ec] md:w-80">
                                                     <a href={`/product/${product.slug}`} className="block size-full">
                                                         <img
                                                             src={product.images?.[0] ?? ""}
                                                             alt={product.name}
-                                                            className="size-full object-cover transition duration-500 group-hover:scale-105"
+                                                            className="size-full object-cover transition duration-700 group-hover:scale-105"
                                                         />
                                                     </a>
 
@@ -219,13 +250,7 @@ export default function ShopPage() {
                                                         {(product.badges ?? []).slice(0, 1).map((badge) => (
                                                             <span
                                                                 key={badge}
-                                                                className={`rounded-full px-3 py-1.5 text-xs font-semibold uppercase ${
-                                                                    badge === "Sale"
-                                                                        ? "bg-error-500 text-white"
-                                                                        : badge === "Best Seller"
-                                                                        ? "bg-warning-500 text-white"
-                                                                        : "bg-brand-600 text-white"
-                                                                }`}
+                                                                className="bg-[#f7f2ec]/95 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.2em] text-[#4a2d3a] ring-1 ring-inset ring-[#c9a5ab]/40 backdrop-blur-sm"
                                                             >
                                                                 {badge}
                                                             </span>
@@ -243,85 +268,98 @@ export default function ShopPage() {
                                                 </div>
 
                                                 {/* Product Details */}
-                                                <div className="flex flex-1 flex-col justify-between p-6 md:p-8">
+                                                <div className="flex flex-1 flex-col justify-between p-6 md:p-10">
                                                     <div>
                                                         {/* Category & Rating */}
-                                                        <div className="flex items-center justify-between">
-                                                            <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
+                                                        <div className="flex flex-wrap items-center justify-between gap-3">
+                                                            <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#b8929a]">
                                                                 {product.category}
                                                             </span>
                                                             <div className="flex items-center gap-2">
                                                                 <StarRating rating={product.rating ?? 0} />
-                                                                <span className="text-sm text-tertiary">(124 reviews)</span>
+                                                                <span className="text-xs italic text-[#8b5a6a]/80" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                                                                    (124 reviews)
+                                                                </span>
                                                             </div>
                                                         </div>
 
                                                         {/* Title */}
-                                                        <h3 className="mt-4 text-xl font-semibold text-primary md:text-2xl">
+                                                        <h3
+                                                            className="mt-4 text-2xl font-light leading-tight text-[#4a2d3a] md:text-3xl"
+                                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                        >
                                                             <a
                                                                 href={`/product/${product.slug}`}
-                                                                className="transition hover:text-brand-600"
+                                                                className="transition duration-300 hover:text-[#8b5a6a]"
                                                             >
                                                                 {product.name}
                                                             </a>
                                                         </h3>
 
+                                                        {/* Thin divider */}
+                                                        <div className="mt-3 flex items-center gap-2">
+                                                            <div className="h-px w-8 bg-[#c9a5ab]" />
+                                                            <div className="size-1 rotate-45 bg-[#c9a5ab]/60" />
+                                                            <div className="h-px w-12 bg-[#c9a5ab]/40" />
+                                                        </div>
+
                                                         {/* Description */}
-                                                        <p className="mt-3 text-sm leading-relaxed text-tertiary line-clamp-2 md:line-clamp-3">
+                                                        <p
+                                                            className="mt-4 text-sm italic leading-[1.8] text-[#5a3d4a]/85 line-clamp-2 md:line-clamp-3"
+                                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                        >
                                                             {product.description || "Professional teeth whitening product for a brighter, more confident smile. Gentle formula suitable for sensitive teeth."}
                                                         </p>
 
                                                         {/* Features */}
-                                                        <div className="mt-4 flex flex-wrap gap-2">
-                                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
-                                                                <svg className="size-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                                                                Fast Results
-                                                            </span>
-                                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
-                                                                <svg className="size-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                                                                Enamel Safe
-                                                            </span>
-                                                            <span className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
-                                                                <svg className="size-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-                                                                Professional Grade
-                                                            </span>
+                                                        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+                                                            {["Fast Results", "Enamel Safe", "Professional Grade"].map((feat) => (
+                                                                <span key={feat} className="inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-[#8b5a6a]">
+                                                                    <span className="size-1 rotate-45 bg-[#c9a5ab]" />
+                                                                    {feat}
+                                                                </span>
+                                                            ))}
                                                         </div>
                                                     </div>
 
                                                     {/* Price & Actions */}
-                                                    <div className="mt-6 flex flex-col gap-4 border-t border-gray-100 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                                                    <div className="mt-6 flex flex-col gap-5 border-t border-[#c9a5ab]/30 pt-6 sm:flex-row sm:items-center sm:justify-between">
                                                         <div className="flex items-baseline gap-3">
-                                                            <span className="text-2xl font-bold text-primary md:text-3xl">
+                                                            <span
+                                                                className="text-3xl font-light text-[#4a2d3a] md:text-4xl"
+                                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                            >
                                                                 {product.price.toFixed(2)}€
                                                             </span>
                                                             {product.original_price && product.original_price > product.price && (
-                                                                <span className="text-lg text-tertiary line-through">
+                                                                <span
+                                                                    className="text-lg text-[#b8929a] line-through"
+                                                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                                >
                                                                     {product.original_price.toFixed(2)}€
                                                                 </span>
                                                             )}
                                                             {product.in_stock && (
-                                                                <span className="rounded-full bg-success-50 px-2 py-0.5 text-xs font-medium text-success-700">
-                                                                    In Stock
+                                                                <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-[#8b5a6a]">
+                                                                    · In Stock
                                                                 </span>
                                                             )}
                                                         </div>
 
                                                         <div className="flex gap-3">
-                                                            <Button
+                                                            <a
                                                                 href={`/product/${product.slug}`}
-                                                                color="secondary"
-                                                                size="md"
+                                                                className="inline-flex items-center justify-center border border-[#c9a5ab]/60 bg-transparent px-6 py-3 text-[11px] font-medium uppercase tracking-[0.25em] text-[#4a2d3a] transition duration-200 ease-linear hover:border-[#4a2d3a] hover:bg-[#4a2d3a] hover:text-white"
                                                             >
                                                                 View Details
-                                                            </Button>
-                                                            <Button
+                                                            </a>
+                                                            <a
                                                                 href={`/product/${product.slug}`}
-                                                                color="primary"
-                                                                size="md"
-                                                                iconLeading={ShoppingBag01}
+                                                                className="inline-flex items-center justify-center gap-2 border border-[#4a2d3a] bg-[#4a2d3a] px-6 py-3 text-[11px] font-medium uppercase tracking-[0.25em] text-white transition duration-200 ease-linear hover:bg-[#3a1d2a]"
                                                             >
+                                                                <ShoppingBag01 className="size-3.5" />
                                                                 Add to Cart
-                                                            </Button>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -331,8 +369,29 @@ export default function ShopPage() {
                                 </div>
 
                                 {/* Featured Images Gallery */}
-                                <div className="mt-12">
-                                    <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                                <div className="mt-20 md:mt-28">
+                                    {/* Section header */}
+                                    <div className="mb-10 text-center md:mb-14">
+                                        <p
+                                            className="text-xl text-[#8b5a6a] md:text-2xl"
+                                            style={{ fontFamily: "'Eyesome Script', cursive" }}
+                                        >
+                                            The Essence
+                                        </p>
+                                        <h2
+                                            className="mt-1 text-3xl font-light text-[#4a2d3a] md:text-4xl lg:text-5xl"
+                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                        >
+                                            Crafted with <span className="italic text-[#8b5a6a]">Intention</span>
+                                        </h2>
+                                        <div className="mt-5 flex items-center justify-center gap-3">
+                                            <div className="h-px w-12 bg-[#c9a5ab]/60" />
+                                            <div className="size-1.5 rotate-45 border border-[#c9a5ab]" />
+                                            <div className="h-px w-12 bg-[#c9a5ab]/60" />
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
                                         {[
                                             { src: "/images/newnew1.png", label: "Natural Care" },
                                             { src: "/images/newnew2.png", label: "Herbal Formula" },
@@ -343,16 +402,18 @@ export default function ShopPage() {
                                                 key={index}
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={{ opacity: 1, y: 0 }}
-                                                transition={{ duration: 0.4, delay: index * 0.1 }}
-                                                className="group relative aspect-square overflow-hidden bg-gray-50 shadow-sm"
+                                                transition={{ duration: 0.5, delay: index * 0.08 }}
+                                                className="group relative aspect-square overflow-hidden bg-[#f7f2ec] ring-1 ring-inset ring-[#c9a5ab]/30"
                                             >
                                                 <img
                                                     src={image.src}
                                                     alt={image.label}
-                                                    className="size-full object-cover transition duration-500 group-hover:scale-105"
+                                                    className="size-full object-cover transition duration-700 group-hover:scale-105"
                                                 />
-                                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-                                                    <span className="text-sm font-medium text-white">{image.label}</span>
+                                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#4a2d3a]/70 via-[#4a2d3a]/30 to-transparent p-4 md:p-5">
+                                                    <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-white/95">
+                                                        {image.label}
+                                                    </span>
                                                 </div>
                                             </motion.div>
                                         ))}
