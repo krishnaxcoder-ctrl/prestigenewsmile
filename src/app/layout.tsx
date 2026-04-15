@@ -179,6 +179,72 @@ const jsonLd = {
     sameAs: [],
 };
 
+// WebSite schema — enables the Google search box sitelink and signals brand identity
+const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.prestige-smile.com/#website",
+    url: "https://www.prestige-smile.com",
+    name: "Prestige Smile",
+    alternateName: ["Prestige Smile Studio", "Prestige Smile Geneva"],
+    description:
+        "Professional teeth whitening clinic in Geneva — blanchiment dentaire professionnel près de Genève.",
+    publisher: {
+        "@id": "https://www.prestige-smile.com",
+    },
+    inLanguage: ["en", "fr"],
+    potentialAction: {
+        "@type": "SearchAction",
+        target: {
+            "@type": "EntryPoint",
+            urlTemplate: "https://www.prestige-smile.com/shop?q={search_term_string}",
+        },
+        "query-input": "required name=search_term_string",
+    },
+};
+
+// Organization schema — reinforces brand identity for knowledge panel / sitelinks
+const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://www.prestige-smile.com/#organization",
+    name: "Prestige Smile",
+    url: "https://www.prestige-smile.com",
+    logo: {
+        "@type": "ImageObject",
+        url: "https://www.prestige-smile.com/logo.svg",
+        width: 512,
+        height: 512,
+    },
+    contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+41783000619",
+        email: "contact@prestige-smile.com",
+        contactType: "customer service",
+        availableLanguage: ["English", "French"],
+        areaServed: ["FR", "CH"],
+    },
+    sameAs: [],
+};
+
+// SiteNavigationElement — explicit signals about main navigation (helps Google build sitelinks)
+const siteNavigationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Main Navigation",
+    itemListElement: [
+        { "@type": "SiteNavigationElement", position: 1, name: "Home", url: "https://www.prestige-smile.com" },
+        { "@type": "SiteNavigationElement", position: 2, name: "Services", url: "https://www.prestige-smile.com/services" },
+        { "@type": "SiteNavigationElement", position: 3, name: "Shop", url: "https://www.prestige-smile.com/shop" },
+        { "@type": "SiteNavigationElement", position: 4, name: "About", url: "https://www.prestige-smile.com/about" },
+        { "@type": "SiteNavigationElement", position: 5, name: "Booking", url: "https://www.prestige-smile.com/booking" },
+        { "@type": "SiteNavigationElement", position: 6, name: "Reviews", url: "https://www.prestige-smile.com/reviews" },
+        { "@type": "SiteNavigationElement", position: 7, name: "Gift Cards", url: "https://www.prestige-smile.com/gift-cards" },
+        { "@type": "SiteNavigationElement", position: 8, name: "FAQ", url: "https://www.prestige-smile.com/faq" },
+        { "@type": "SiteNavigationElement", position: 9, name: "Contact", url: "https://www.prestige-smile.com/contact" },
+    ],
+};
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -198,6 +264,18 @@ export default function RootLayout({
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+                />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationJsonLd) }}
                 />
                 <RouteProvider>
                     <Theme>
