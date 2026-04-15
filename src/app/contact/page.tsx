@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
     Mail01,
@@ -53,6 +53,13 @@ function FieldInput({
     );
 }
 
+const subjectOptions = [
+    { value: "booking", label: "Book an Appointment", hint: "Schedule a whitening session" },
+    { value: "products", label: "Product Inquiry", hint: "Questions about our products" },
+    { value: "support", label: "Customer Support", hint: "Help with an order or issue" },
+    { value: "other", label: "Other", hint: "Something else" },
+];
+
 function FieldSelect({
     label,
     name,
@@ -64,30 +71,60 @@ function FieldSelect({
     name: string;
     required?: boolean;
     value: string;
-    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    onChange: (value: string) => void;
 }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!isOpen) return;
+        const handleClickOutside = (e: MouseEvent) => {
+            if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+                setIsOpen(false);
+            }
+        };
+        const handleEscape = (e: KeyboardEvent) => {
+            if (e.key === "Escape") setIsOpen(false);
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("keydown", handleEscape);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleEscape);
+        };
+    }, [isOpen]);
+
+    const selected = subjectOptions.find((o) => o.value === value);
+
     return (
-        <div>
+        <div ref={containerRef} className="relative">
             <label htmlFor={name} className={fieldLabelClass}>
                 {label} {required && <span className="text-[#8b5a6a]">*</span>}
             </label>
-            <div className="relative">
-                <select
-                    id={name}
-                    name={name}
-                    required={required}
-                    value={value}
-                    onChange={onChange}
-                    className={`${fieldInputClass} appearance-none pr-8`}
-                >
-                    <option value="">Select a subject</option>
-                    <option value="booking">Book an Appointment</option>
-                    <option value="products">Product Inquiry</option>
-                    <option value="support">Customer Support</option>
-                    <option value="other">Other</option>
-                </select>
+
+            {/* Hidden input preserves form submission + native validation */}
+            <input
+                type="hidden"
+                name={name}
+                value={value}
+                required={required}
+            />
+
+            <button
+                type="button"
+                id={name}
+                onClick={() => setIsOpen((v) => !v)}
+                aria-haspopup="listbox"
+                aria-expanded={isOpen}
+                className={`${fieldInputClass} flex items-center justify-between text-left pr-8 ${
+                    !selected ? "text-[#b8929a]" : ""
+                }`}
+            >
+                <span>{selected ? selected.label : "Select a subject"}</span>
                 <svg
-                    className="pointer-events-none absolute right-0 top-1/2 size-4 -translate-y-1/2 text-[#8b5a6a]"
+                    className={`absolute right-0 top-1/2 size-4 -translate-y-1/2 text-[#8b5a6a] transition-transform duration-200 ${
+                        isOpen ? "rotate-180" : ""
+                    }`}
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -95,7 +132,64 @@ function FieldSelect({
                 >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
-            </div>
+            </button>
+
+            {isOpen && (
+                <div
+                    role="listbox"
+                    className="absolute left-0 right-0 top-full z-20 mt-2 overflow-hidden border border-[#c9a5ab]/50 bg-white shadow-[0_8px_24px_-8px_rgba(74,45,58,0.15)]"
+                >
+                    {/* Corner accents */}
+                    <div className="pointer-events-none absolute left-0 top-0 size-3 border-l border-t border-[#c9a5ab]" />
+                    <div className="pointer-events-none absolute right-0 top-0 size-3 border-r border-t border-[#c9a5ab]" />
+                    <div className="pointer-events-none absolute bottom-0 left-0 size-3 border-b border-l border-[#c9a5ab]" />
+                    <div className="pointer-events-none absolute bottom-0 right-0 size-3 border-b border-r border-[#c9a5ab]" />
+
+                    <ul className="divide-y divide-[#c9a5ab]/25">
+                        {subjectOptions.map((option) => {
+                            const isSelected = option.value === value;
+                            return (
+                                <li key={option.value}>
+                                    <button
+                                        type="button"
+                                        role="option"
+                                        aria-selected={isSelected}
+                                        onClick={() => {
+                                            onChange(option.value);
+                                            setIsOpen(false);
+                                        }}
+                                        className={`group flex w-full items-start gap-3 px-4 py-3 text-left transition duration-150 hover:bg-[#faf6f1] ${
+                                            isSelected ? "bg-[#faf6f1]" : ""
+                                        }`}
+                                    >
+                                        <span
+                                            className={`mt-1.5 size-1.5 shrink-0 rotate-45 transition ${
+                                                isSelected
+                                                    ? "bg-[#8b5a6a]"
+                                                    : "border border-[#c9a5ab]/50 bg-transparent group-hover:bg-[#c9a5ab]/40"
+                                            }`}
+                                        />
+                                        <div className="flex-1">
+                                            <p
+                                                className={`text-sm transition ${
+                                                    isSelected
+                                                        ? "font-medium text-[#4a2d3a]"
+                                                        : "text-[#4a2d3a] group-hover:text-[#4a2d3a]"
+                                                }`}
+                                            >
+                                                {option.label}
+                                            </p>
+                                            <p className="mt-0.5 text-xs text-[#b8929a]">
+                                                {option.hint}
+                                            </p>
+                                        </div>
+                                    </button>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+            )}
         </div>
     );
 }
@@ -379,7 +473,7 @@ export default function ContactPage() {
                                                     name="subject"
                                                     required
                                                     value={formData.subject}
-                                                    onChange={handleInputChange}
+                                                    onChange={(v) => setFormData({ ...formData, subject: v })}
                                                 />
                                             </div>
 
