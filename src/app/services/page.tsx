@@ -259,7 +259,7 @@ export default function ServicesPage() {
                                             </div>
 
                                             {/* Ideal for */}
-                                            {service.idealFor && (
+                                            {(service as { idealFor?: string }).idealFor && (
                                                 <div className="relative mt-8 border border-[#c9a5ab]/40 bg-white/50 p-5 backdrop-blur-sm">
                                                     <div className="pointer-events-none absolute -top-1 -left-1 size-4 border-l border-t border-[#c9a5ab]" />
                                                     <div className="pointer-events-none absolute -bottom-1 -right-1 size-4 border-b border-r border-[#c9a5ab]" />
@@ -268,7 +268,7 @@ export default function ServicesPage() {
                                                         Ideal For
                                                     </p>
                                                     <p className="mt-2 text-sm italic leading-relaxed text-[#5a3d4a]/85">
-                                                        {service.idealFor}
+                                                        {(service as { idealFor?: string }).idealFor}
                                                     </p>
                                                 </div>
                                             )}
