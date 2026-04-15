@@ -120,7 +120,7 @@ export default function AboutPage() {
 
                                 {/* Trust strip - directly below text content */}
                                 <div className="mt-8 border-t border-[#c9a5ab]/30 pt-6">
-                                    <div className="flex flex-wrap items-center justify-center gap-y-4 divide-x divide-[#c9a5ab]/40 text-center md:flex-nowrap lg:justify-start">
+                                    <div className="flex flex-wrap items-center justify-center gap-y-4 divide-x divide-[#c9a5ab]/40 border-x border-[#c9a5ab]/40 text-center md:flex-nowrap lg:justify-start">
                                         <div className="min-w-[110px] px-4 md:min-w-[120px]">
                                             <p
                                                 className="text-2xl font-light text-[#4a2d3a] md:text-3xl"
