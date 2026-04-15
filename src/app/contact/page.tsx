@@ -48,7 +48,6 @@ function FieldInput({
                 value={value}
                 onChange={onChange}
                 className={fieldInputClass}
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
             />
         </div>
     );
@@ -80,7 +79,6 @@ function FieldSelect({
                     value={value}
                     onChange={onChange}
                     className={`${fieldInputClass} appearance-none pr-8`}
-                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
                 >
                     <option value="">Select a subject</option>
                     <option value="booking">Book an Appointment</option>
@@ -131,7 +129,6 @@ function FieldTextarea({
                 onChange={onChange}
                 rows={5}
                 className={`${fieldInputClass} resize-none`}
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
             />
         </div>
     );
@@ -253,17 +250,11 @@ export default function ContactPage() {
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <p
-                                    className="text-xl text-[#8b5a6a] md:text-2xl"
-                                    style={{ fontFamily: "'Eyesome Script', cursive" }}
-                                >
+                                <p className="text-xs font-medium uppercase tracking-[0.3em] text-[#8b5a6a]">
                                     Find us
                                 </p>
-                                <h2
-                                    className="mt-1 text-2xl font-light text-[#4a2d3a] md:text-3xl"
-                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                >
-                                    Studio <span className="italic text-[#8b5a6a]">Details</span>
+                                <h2 className="mt-3 text-2xl font-semibold text-[#4a2d3a] md:text-3xl">
+                                    Studio <span className="text-[#8b5a6a]">Details</span>
                                 </h2>
                                 <div className="mt-4 flex items-center gap-3">
                                     <div className="h-px w-10 bg-[#c9a5ab]" />
@@ -285,8 +276,7 @@ export default function ContactPage() {
                                                     {item.details.map((detail, i) => (
                                                         <p
                                                             key={i}
-                                                            className="text-[15px] text-[#4a2d3a]"
-                                                            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                                                            className="text-sm text-[#4a2d3a]"
                                                         >
                                                             {detail}
                                                         </p>
@@ -320,22 +310,13 @@ export default function ContactPage() {
                                     <div className="pointer-events-none absolute -bottom-1.5 -left-1.5 size-5 border-b border-l border-[#c9a5ab]/70" />
                                     <div className="pointer-events-none absolute -bottom-1.5 -right-1.5 size-5 border-b border-r border-[#c9a5ab]/70" />
 
-                                    <p
-                                        className="text-xl text-[#8b5a6a] md:text-2xl"
-                                        style={{ fontFamily: "'Eyesome Script', cursive" }}
-                                    >
+                                    <p className="text-xs font-medium uppercase tracking-[0.3em] text-[#8b5a6a]">
                                         Write to us
                                     </p>
-                                    <h2
-                                        className="mt-1 text-2xl font-light text-[#4a2d3a] md:text-3xl"
-                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                    >
-                                        Send a <span className="italic text-[#8b5a6a]">Message</span>
+                                    <h2 className="mt-3 text-2xl font-semibold text-[#4a2d3a] md:text-3xl">
+                                        Send a <span className="text-[#8b5a6a]">Message</span>
                                     </h2>
-                                    <p
-                                        className="mt-3 text-[14px] italic leading-[1.7] text-[#5a3d4a]/85"
-                                        style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                    >
+                                    <p className="mt-3 text-sm leading-relaxed text-[#5a3d4a]/85">
                                         Fill out the form below and we&apos;ll get back to you within 24 hours.
                                     </p>
 
@@ -348,16 +329,10 @@ export default function ContactPage() {
                                             <div className="mx-auto flex size-14 items-center justify-center border border-[#c9a5ab]/50 bg-white/80">
                                                 <CheckCircle className="size-6 text-[#8b5a6a]" />
                                             </div>
-                                            <h3
-                                                className="mt-5 text-2xl font-light text-[#4a2d3a]"
-                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                            >
-                                                Message <span className="italic text-[#8b5a6a]">Sent</span>
+                                            <h3 className="mt-5 text-2xl font-semibold text-[#4a2d3a]">
+                                                Message <span className="text-[#8b5a6a]">Sent</span>
                                             </h3>
-                                            <p
-                                                className="mt-2 text-[14px] italic text-[#5a3d4a]/85"
-                                                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                            >
+                                            <p className="mt-2 text-sm text-[#5a3d4a]/85">
                                                 Thank you for reaching out. We&apos;ll be in touch soon.
                                             </p>
                                         </motion.div>
@@ -412,10 +387,7 @@ export default function ContactPage() {
                                             />
 
                                             {error && (
-                                                <p
-                                                    className="text-[13px] italic text-[#b8929a]"
-                                                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                                                >
+                                                <p className="text-sm text-[#b8929a]">
                                                     {error}
                                                 </p>
                                             )}
