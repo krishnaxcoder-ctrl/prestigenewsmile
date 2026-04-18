@@ -22,7 +22,7 @@ const services = [
             "Professional whitening gel application",
             "LED light activation (3 cycles of 15–20 min)",
         ],
-        image: "/RADIANCE SESSION.png",
+        image: "/technology-left-img1.jpg",
     },
     {
         id: "complete-treatment",

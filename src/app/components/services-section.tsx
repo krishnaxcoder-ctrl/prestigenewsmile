@@ -8,7 +8,7 @@ const categories = [
         id: 1,
         title: "INITIAL TEETH WHITENING SESSION",
         description: "A first whitening or maintenance treatment. Results visible from the very first session with up to 7 shades lighter.",
-        image: "/RADIANCE SESSION.png",
+        image: "/technology-left-img1.jpg",
         href: "/services/radiance-session",
         price: "CHF/€ 99",
     },
