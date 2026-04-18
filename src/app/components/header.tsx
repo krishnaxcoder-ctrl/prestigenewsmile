@@ -17,10 +17,12 @@ import { Button } from "@/components/base/buttons/button";
 import { cx } from "@/utils/cx";
 import { applyLanguage } from "@/app/components/google-translate-provider";
 
-const navItems = [
-    { label: "Home", href: "/" },
+type NavItem = { label: string; labelFr?: string; href: string; hasDropdown?: boolean };
+
+const navItems: NavItem[] = [
+    { label: "Home", labelFr: "Accueil", href: "/" },
     { label: "Services", href: "/about#services", hasDropdown: true },
-    { label: "Shop", href: "/shop" },
+    { label: "Shop", labelFr: "Produits", href: "/shop" },
     { label: "About", href: "/about" },
     { label: "Gift Cards", href: "/gift-cards" },
     { label: "FAQ", href: "/faq" },
@@ -175,7 +177,7 @@ const LanguageSelector = () => {
     );
 };
 
-const mobileMenuSections = [
+const mobileMenuSections: { title: string; titleFr?: string; items: { label: string; href: string }[] }[] = [
     { title: "Services", items: [
         { label: "Initial Teeth Whitening Session", href: "/about#services" },
         { label: "Complete Treatment", href: "/about#services" },
@@ -183,7 +185,7 @@ const mobileMenuSections = [
         { label: "Duo Offer", href: "/about#services" },
         { label: "Gift Cards", href: "/gift-cards" },
     ]},
-    { title: "Shop", items: [
+    { title: "Shop", titleFr: "Produits", items: [
         { label: "All Products", href: "/shop" },
         { label: "My Cart", href: "/cart" },
         { label: "My Account", href: "/account" },
@@ -224,7 +226,9 @@ const MobileNav = () => {
             <ul className="flex flex-1 flex-col overflow-y-auto">
                 {/* Main nav links */}
                 <li className="border-b border-secondary">
-                    <Link href="/" className="block px-4 py-4 text-md font-medium text-primary">Home</Link>
+                    <Link href="/" className="block px-4 py-4 text-md font-medium text-primary">
+                        <span className="notranslate" translate="no">{mobileLang === "fr" ? "Accueil" : "Home"}</span>
+                    </Link>
                 </li>
                 <li className="border-b border-secondary">
                     <Link href="/contact" className="block px-4 py-4 text-md font-medium text-primary">Contact</Link>
@@ -237,7 +241,9 @@ const MobileNav = () => {
                             onClick={() => toggleItem(section.title)}
                             className="flex w-full items-center justify-between px-4 py-4 text-md font-medium text-primary"
                         >
-                            {section.title}
+                            <span className={section.titleFr ? "notranslate" : undefined} translate={section.titleFr ? "no" : undefined}>
+                                {mobileLang === "fr" && section.titleFr ? section.titleFr : section.title}
+                            </span>
                             <ChevronDown className={cx("size-5 text-quaternary transition-transform", expandedItems.includes(section.title) && "-rotate-180")} />
                         </button>
                         {expandedItems.includes(section.title) && (
@@ -291,6 +297,19 @@ const MobileNav = () => {
 
 export const Header = () => {
     const headerRef = useRef<HTMLElement>(null);
+    const [lang, setLang] = useState<string>("en");
+
+    useEffect(() => {
+        setLang(getLanguagePreference());
+        const onChange = (e: Event) => {
+            const detail = (e as CustomEvent).detail as { lang?: string } | undefined;
+            if (detail?.lang) setLang(detail.lang);
+        };
+        window.addEventListener("languagechange", onChange);
+        return () => window.removeEventListener("languagechange", onChange);
+    }, []);
+
+    const getLabel = (item: NavItem) => (lang === "fr" && item.labelFr ? item.labelFr : item.label);
 
     return (
         <header ref={headerRef} className="sticky top-0 z-50 w-full bg-primary">
@@ -317,7 +336,9 @@ export const Header = () => {
                                         </AriaDialogTrigger>
                                     ) : (
                                         <Link href={item.href} className="flex cursor-pointer items-center rounded-lg px-3 py-2 text-xs font-semibold uppercase tracking-widest text-secondary outline-focus-ring hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2">
-                                            {item.label}
+                                            <span className={item.labelFr ? "notranslate" : undefined} translate={item.labelFr ? "no" : undefined}>
+                                                {getLabel(item)}
+                                            </span>
                                         </Link>
                                     )}
                                 </li>
