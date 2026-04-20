@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { BarChart03, ShoppingBag01, Package, BookOpen01, Menu01, X, ArrowLeft } from "@untitledui/icons";
+import { BarChart03, ShoppingBag01, Package, BookOpen01, Mail01, Menu01, X, ArrowLeft } from "@untitledui/icons";
 import { supabase, checkIsAdmin } from "@/lib/supabase";
 
 const navItems = [
@@ -11,6 +11,7 @@ const navItems = [
     { href: "/admin/orders", label: "Orders", icon: ShoppingBag01 },
     { href: "/admin/products", label: "Products", icon: Package },
     { href: "/admin/blog", label: "Blog Posts", icon: BookOpen01 },
+    { href: "https://mail.zoho.in", label: "Mail", icon: Mail01, external: true },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -125,19 +126,31 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </div>
                 <nav className="flex flex-1 flex-col gap-1 overflow-y-auto px-4 pb-4">
                     {navItems.map((item) => {
-                        const active = isActive(item.href, item.exact);
+                        const active = !item.external && isActive(item.href, item.exact);
                         const Icon = item.icon;
+                        const className = active
+                            ? "flex items-center gap-3 rounded-lg bg-brand-50 px-3 py-2.5 text-sm font-semibold text-brand-700"
+                            : "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary";
+                        const iconClassName = active ? "size-5 text-brand-700" : "size-5 text-fg-secondary";
+
+                        if (item.external) {
+                            return (
+                                <a
+                                    key={item.href}
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={className}
+                                >
+                                    <Icon className={iconClassName} />
+                                    {item.label}
+                                </a>
+                            );
+                        }
+
                         return (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className={
-                                    active
-                                        ? "flex items-center gap-3 rounded-lg bg-brand-50 px-3 py-2.5 text-sm font-semibold text-brand-700"
-                                        : "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary"
-                                }
-                            >
-                                <Icon className={active ? "size-5 text-brand-700" : "size-5 text-fg-secondary"} />
+                            <Link key={item.href} href={item.href} className={className}>
+                                <Icon className={iconClassName} />
                                 {item.label}
                             </Link>
                         );
