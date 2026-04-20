@@ -2,8 +2,8 @@
 
 import { Suspense, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { SearchLg } from "@untitledui/icons";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowRight, SearchLg } from "@untitledui/icons";
 import { getAllOrders, type Order } from "@/lib/supabase";
 
 const statusStyles: Record<Order["status"], string> = {
@@ -32,6 +32,7 @@ function formatDate(iso: string) {
 }
 
 function OrdersList() {
+    const router = useRouter();
     const searchParams = useSearchParams();
     const initialStatus = (searchParams.get("status") as Order["status"] | null) ?? "all";
     const [status, setStatus] = useState<"all" | Order["status"]>(initialStatus as "all" | Order["status"]);
@@ -118,8 +119,8 @@ function OrdersList() {
                     No orders match the current filter.
                 </div>
             ) : (
-                <div className="overflow-hidden rounded-2xl border border-secondary bg-white">
-                    <table className="w-full text-left text-sm">
+                <div className="overflow-x-auto rounded-2xl border border-secondary bg-white">
+                    <table className="w-full min-w-[720px] text-left text-sm">
                         <thead className="bg-secondary/40 text-xs uppercase tracking-wider text-tertiary">
                             <tr>
                                 <th className="px-4 py-3 font-medium">Order</th>
@@ -128,25 +129,26 @@ function OrdersList() {
                                 <th className="px-4 py-3 font-medium">Payment</th>
                                 <th className="px-4 py-3 font-medium">Status</th>
                                 <th className="px-4 py-3 text-right font-medium">Total</th>
+                                <th className="px-4 py-3 text-right font-medium">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-secondary">
                             {filtered.map((o) => (
-                                <tr key={o.id} className="hover:bg-secondary/20">
+                                <tr
+                                    key={o.id}
+                                    onClick={() => router.push(`/admin/orders/${o.id}`)}
+                                    className="cursor-pointer hover:bg-secondary/20"
+                                >
                                     <td className="px-4 py-3">
-                                        <Link
-                                            href={`/admin/orders/${o.id}`}
-                                            className="font-semibold text-primary hover:text-brand-700"
-                                        >
-                                            {o.order_number}
-                                        </Link>
+                                        <span className="font-semibold text-primary">{o.order_number}</span>
                                         {o.tracking_number && (
                                             <div className="text-xs text-tertiary">Tracking: {o.tracking_number}</div>
                                         )}
                                     </td>
                                     <td className="px-4 py-3">
-                                        <div className="text-secondary">{o.first_name} {o.last_name}</div>
+                                        <div className="font-medium text-primary">{o.first_name} {o.last_name}</div>
                                         <div className="text-xs text-tertiary">{o.email}</div>
+                                        {o.phone && <div className="text-xs text-tertiary">{o.phone}</div>}
                                     </td>
                                     <td className="px-4 py-3 text-tertiary">{formatDate(o.created_at)}</td>
                                     <td className="px-4 py-3 capitalize text-secondary">{o.payment_method}</td>
@@ -157,6 +159,14 @@ function OrdersList() {
                                     </td>
                                     <td className="px-4 py-3 text-right font-semibold text-primary">
                                         {Number(o.total).toFixed(2)}€
+                                    </td>
+                                    <td className="px-4 py-3 text-right" onClick={(e) => e.stopPropagation()}>
+                                        <Link
+                                            href={`/admin/orders/${o.id}`}
+                                            className="inline-flex items-center gap-1 rounded-lg border border-secondary px-3 py-1.5 text-xs font-medium text-secondary hover:border-brand-300 hover:text-brand-700"
+                                        >
+                                            View <ArrowRight className="size-3.5" />
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}

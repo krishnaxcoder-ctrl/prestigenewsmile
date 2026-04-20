@@ -103,7 +103,7 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="flex items-start justify-between">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                     <Link
                         href="/admin/products"
@@ -121,7 +121,7 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
                 <button
                     type="submit"
                     disabled={saving}
-                    className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-50"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-50 sm:w-auto"
                 >
                     <Save01 className="size-4" />
                     {saving ? "Saving..." : mode === "create" ? "Create" : "Save changes"}

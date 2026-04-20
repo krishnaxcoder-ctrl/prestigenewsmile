@@ -67,7 +67,7 @@ export default function AdminProductsPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-start justify-between">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                     <h1 className="text-2xl font-light text-primary" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                         Products
@@ -78,7 +78,7 @@ export default function AdminProductsPage() {
                 </div>
                 <Link
                     href="/admin/products/new"
-                    className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-700 sm:w-auto"
                 >
                     <Plus className="size-4" /> New product
                 </Link>
@@ -129,8 +129,8 @@ export default function AdminProductsPage() {
                     No products match.
                 </div>
             ) : (
-                <div className="overflow-hidden rounded-2xl border border-secondary bg-white">
-                    <table className="w-full text-left text-sm">
+                <div className="overflow-x-auto rounded-2xl border border-secondary bg-white">
+                    <table className="w-full min-w-[720px] text-left text-sm">
                         <thead className="bg-secondary/40 text-xs uppercase tracking-wider text-tertiary">
                             <tr>
                                 <th className="px-4 py-3 font-medium">Product</th>
