@@ -10,6 +10,7 @@ import {
     type Product,
     type ProductInput,
 } from "@/lib/supabase";
+import { ProductImageUpload } from "./product-image-upload";
 
 interface ProductFormProps {
     mode: "create" | "edit";
@@ -46,7 +47,7 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
     const [reviewsCount, setReviewsCount] = useState(
         initial?.reviews != null ? String(initial.reviews) : "",
     );
-    const [images, setImages] = useState(toCsv(initial?.images));
+    const [images, setImages] = useState<string[]>(initial?.images ?? []);
     const [badges, setBadges] = useState(toCsv(initial?.badges));
     const [sizes, setSizes] = useState(toCsv(initial?.sizes));
     const [colors, setColors] = useState(toCsv(initial?.colors));
@@ -74,7 +75,7 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
             reviews: reviewsCount ? Number(reviewsCount) : null,
             in_stock: inStock,
             description: description.trim() || null,
-            images: fromCsv(images).length ? fromCsv(images) : null,
+            images: images.length ? images : null,
             badges: fromCsv(badges).length ? fromCsv(badges) : null,
             sizes: fromCsv(sizes).length ? fromCsv(sizes) : null,
             colors: fromCsv(colors).length ? fromCsv(colors) : null,
@@ -145,44 +146,49 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
                     <section className="rounded-2xl border border-secondary bg-white p-6">
                         <h2 className="text-sm font-semibold uppercase tracking-wider text-tertiary">Basics</h2>
                         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                            <Field label="Name" required>
+                            <Field label="Name" required hint="The product's display name shown on shop, cart, and checkout">
                                 <input
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     className="form-input"
+                                    placeholder="e.g. Prestige Teeth Whitening Kit"
                                     required
                                 />
                             </Field>
-                            <Field label="Slug" required hint="Lowercase, hyphenated">
+                            <Field label="Slug" required hint="URL-friendly version of the name. Lowercase, use hyphens, no spaces or accents">
                                 <input
                                     value={slug}
                                     onChange={(e) => setSlug(e.target.value)}
                                     className="form-input"
+                                    placeholder="e.g. prestige-teeth-whitening-kit"
                                     required
                                 />
                             </Field>
-                            <Field label="Category" required>
+                            <Field label="Category" required hint="Main product category (used for filtering on shop page)">
                                 <input
                                     value={category}
                                     onChange={(e) => setCategory(e.target.value)}
                                     className="form-input"
+                                    placeholder="e.g. Whitening Kits, Toothpaste, Accessories"
                                     required
                                 />
                             </Field>
-                            <Field label="Description">
+                            <Field label="Description" hint="Short summary shown on product page under the title (1-3 sentences)">
                                 <textarea
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                     rows={3}
                                     className="form-input"
+                                    placeholder="e.g. Our professional-grade whitening kit delivers visibly brighter teeth in just 7 days. Safe on enamel, gentle on sensitive teeth, and dentist-approved."
                                 />
                             </Field>
-                            <Field label="Benefits (long text)">
+                            <Field label="Benefits (long text)" hint="Detailed benefits shown on the product page. You can use line breaks for multiple points">
                                 <textarea
                                     value={benefits}
                                     onChange={(e) => setBenefits(e.target.value)}
                                     rows={3}
                                     className="form-input"
+                                    placeholder="e.g. Removes stains from coffee, tea, and wine. Enamel-safe formula. Visible results in 7 days. Dentist-formulated in Switzerland. Up to 8 shades whiter."
                                 />
                             </Field>
                         </div>
@@ -191,29 +197,43 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
                     <section className="rounded-2xl border border-secondary bg-white p-6">
                         <h2 className="text-sm font-semibold uppercase tracking-wider text-tertiary">Media &amp; variants</h2>
                         <div className="mt-4 space-y-4">
-                            <Field label="Image URLs" hint="Comma-separated">
-                                <textarea
-                                    value={images}
-                                    onChange={(e) => setImages(e.target.value)}
-                                    rows={2}
+                            <ProductImageUpload
+                                label="Product images"
+                                hint="Upload photos from your computer or paste image URLs. The first image is used as the main product photo — hover over a thumbnail to reorder or remove."
+                                value={images}
+                                onChange={setImages}
+                            />
+                            <Field label="Badges" hint="Labels displayed on the product card (comma-separated). Leave empty if not needed">
+                                <input
+                                    value={badges}
+                                    onChange={(e) => setBadges(e.target.value)}
                                     className="form-input"
+                                    placeholder="e.g. Bestseller, New, Limited Edition, -20%"
                                 />
                             </Field>
-                            <Field label="Badges" hint="e.g. Bestseller, Limited">
-                                <input value={badges} onChange={(e) => setBadges(e.target.value)} className="form-input" />
+                            <Field label="Sizes" hint="Available sizes separated by commas. Leave empty if the product has no size option">
+                                <input
+                                    value={sizes}
+                                    onChange={(e) => setSizes(e.target.value)}
+                                    className="form-input"
+                                    placeholder="e.g. Small, Medium, Large  —  or  —  30ml, 50ml, 100ml"
+                                />
                             </Field>
-                            <Field label="Sizes" hint="e.g. S, M, L">
-                                <input value={sizes} onChange={(e) => setSizes(e.target.value)} className="form-input" />
+                            <Field label="Colors" hint="Available colors separated by commas. Use color names or hex codes (#FFFFFF)">
+                                <input
+                                    value={colors}
+                                    onChange={(e) => setColors(e.target.value)}
+                                    className="form-input"
+                                    placeholder="e.g. White, Rose Gold, Black  —  or  —  #FFFFFF, #E8B4B8, #000000"
+                                />
                             </Field>
-                            <Field label="Colors" hint="Hex values or names, comma-separated">
-                                <input value={colors} onChange={(e) => setColors(e.target.value)} className="form-input" />
-                            </Field>
-                            <Field label="Features">
+                            <Field label="Features" hint="Key product features displayed as a list on the product page (comma-separated)">
                                 <textarea
                                     value={features}
                                     onChange={(e) => setFeatures(e.target.value)}
                                     rows={2}
                                     className="form-input"
+                                    placeholder="e.g. Enamel-safe, Peroxide-free, Vegan, Made in Switzerland, 30-day satisfaction guarantee"
                                 />
                             </Field>
                         </div>
@@ -224,7 +244,7 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
                     <section className="rounded-2xl border border-secondary bg-white p-6">
                         <h2 className="text-sm font-semibold uppercase tracking-wider text-tertiary">Pricing &amp; stock</h2>
                         <div className="mt-4 space-y-4">
-                            <Field label="Price (€)" required>
+                            <Field label="Price (€)" required hint="Current selling price in Euros. Use a dot for decimals (e.g. 29.90)">
                                 <input
                                     type="number"
                                     step="0.01"
@@ -232,10 +252,11 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
                                     value={price}
                                     onChange={(e) => setPrice(e.target.value)}
                                     className="form-input"
+                                    placeholder="e.g. 29.90"
                                     required
                                 />
                             </Field>
-                            <Field label="Original price (€)" hint="Optional, shown as struck-through">
+                            <Field label="Original price (€)" hint="Optional. If you set this, it will appear struck-through to show a discount. Must be higher than the current price">
                                 <input
                                     type="number"
                                     step="0.01"
@@ -243,6 +264,7 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
                                     value={originalPrice}
                                     onChange={(e) => setOriginalPrice(e.target.value)}
                                     className="form-input"
+                                    placeholder="e.g. 39.90"
                                 />
                             </Field>
                             <label className="flex items-center gap-2 text-sm text-secondary">
@@ -260,7 +282,7 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
                     <section className="rounded-2xl border border-secondary bg-white p-6">
                         <h2 className="text-sm font-semibold uppercase tracking-wider text-tertiary">Reviews</h2>
                         <div className="mt-4 space-y-4">
-                            <Field label="Average rating" hint="0-5">
+                            <Field label="Average rating" hint="Star rating shown on the product card. Value between 0 and 5 (one decimal allowed, e.g. 4.8)">
                                 <input
                                     type="number"
                                     step="0.1"
@@ -269,15 +291,17 @@ export function ProductForm({ mode, initial }: ProductFormProps) {
                                     value={rating}
                                     onChange={(e) => setRating(e.target.value)}
                                     className="form-input"
+                                    placeholder="e.g. 4.8"
                                 />
                             </Field>
-                            <Field label="Review count">
+                            <Field label="Review count" hint="How many reviews this product has. Displayed next to the star rating">
                                 <input
                                     type="number"
                                     min="0"
                                     value={reviewsCount}
                                     onChange={(e) => setReviewsCount(e.target.value)}
                                     className="form-input"
+                                    placeholder="e.g. 127"
                                 />
                             </Field>
                         </div>

@@ -80,7 +80,7 @@ export default function AdminBlogPage() {
                     </Link>
                 </div>
             ) : (
-                <div className="overflow-x-auto rounded-2xl border border-secondary bg-white">
+                <div className="w-full max-w-full overflow-x-auto rounded-2xl border border-secondary bg-white">
                     <table className="w-full min-w-[800px]">
                         <thead>
                             <tr className="border-b border-secondary bg-[#faf8f5]">
