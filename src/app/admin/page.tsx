@@ -195,19 +195,29 @@ export default function AdminDashboardPage() {
                                 : `No new orders yet today. ${formatEuro(stats.revenueWeek)} earned this week.`}
                         </p>
                     </div>
-                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:w-auto">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4 lg:w-auto">
                         {quickActions.map((action) => (
                             <Link
                                 key={action.label}
                                 href={action.href}
-                                className={`flex flex-col items-start gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition ${action.color}`}
+                                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition ${action.color}`}
                             >
-                                <action.icon className="size-5" />
-                                <span>{action.label}</span>
                                 <span
-                                    className={`text-xs font-normal ${action.primary ? "text-white/80" : "text-tertiary"}`}
+                                    className={`flex size-10 shrink-0 items-center justify-center rounded-lg ${
+                                        action.primary ? "bg-white/15" : "bg-brand-50 text-brand-600"
+                                    }`}
                                 >
-                                    {action.hint}
+                                    <action.icon className="size-5" />
+                                </span>
+                                <span className="flex min-w-0 flex-col items-start">
+                                    <span className="truncate">{action.label}</span>
+                                    <span
+                                        className={`truncate text-xs font-normal ${
+                                            action.primary ? "text-white/80" : "text-tertiary"
+                                        }`}
+                                    >
+                                        {action.hint}
+                                    </span>
                                 </span>
                             </Link>
                         ))}
@@ -274,21 +284,18 @@ export default function AdminDashboardPage() {
                         <Link
                             key={kpi.label}
                             href={kpi.href}
-                            className="group rounded-2xl border border-secondary bg-white p-6 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-sm"
+                            className="group rounded-2xl border border-secondary bg-white px-5 py-4 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-sm"
                         >
                             <div className="flex items-center justify-between">
                                 <p className="text-xs font-semibold uppercase tracking-wider text-tertiary">
                                     {kpi.label}
                                 </p>
-                                <div className={`flex size-10 items-center justify-center rounded-full ${kpi.iconBg}`}>
-                                    <kpi.icon className="size-5" />
+                                <div className={`flex size-9 items-center justify-center rounded-full ${kpi.iconBg}`}>
+                                    <kpi.icon className="size-4" />
                                 </div>
                             </div>
-                            <p className="mt-4 text-3xl font-semibold text-primary">{kpi.value}</p>
-                            <p className="mt-1 text-xs text-tertiary">{kpi.sub}</p>
-                            <p className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-brand-700 opacity-0 transition group-hover:opacity-100">
-                                View details <ArrowRight className="size-3" />
-                            </p>
+                            <p className="mt-2 text-2xl font-semibold text-primary">{kpi.value}</p>
+                            <p className="mt-0.5 text-xs text-tertiary">{kpi.sub}</p>
                         </Link>
                     ))}
                 </div>
