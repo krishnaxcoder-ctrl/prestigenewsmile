@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { Mail01, Lock01, Eye, EyeOff } from "@untitledui/icons";
-import { signIn, signInWithGoogle, supabase } from "@/lib/supabase";
+import { signIn, signInWithGoogle, signInWithMagicLink, supabase } from "@/lib/supabase";
 import { useToastActions } from "@/components/base/toast/toast";
 import { Avatar } from "@/components/base/avatar/avatar";
 
@@ -32,6 +32,8 @@ function LoginPageContent() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+    const [isMagicLoading, setIsMagicLoading] = useState(false);
+    const [magicLinkSent, setMagicLinkSent] = useState(false);
     const [checkingAuth, setCheckingAuth] = useState(true);
     const [formData, setFormData] = useState({
         email: "",
@@ -96,6 +98,24 @@ function LoginPageContent() {
             console.error("Google sign-in error:", error);
             toast.error("Google sign-in failed", error.message || "Please try again.");
             setIsGoogleLoading(false);
+        }
+    };
+
+    const handleMagicLink = async () => {
+        if (!formData.email) {
+            toast.error("Email required", "Please enter your email above first.");
+            return;
+        }
+        setIsMagicLoading(true);
+        try {
+            await signInWithMagicLink(formData.email, redirectTo);
+            setMagicLinkSent(true);
+            toast.success("Check your email", `We sent a sign-in link to ${formData.email}.`);
+        } catch (error: any) {
+            console.error("Magic link error:", error);
+            toast.error("Couldn't send link", error.message || "Please try again.");
+        } finally {
+            setIsMagicLoading(false);
         }
     };
 
@@ -215,11 +235,18 @@ function LoginPageContent() {
                             </svg>
                             {isGoogleLoading ? "Redirecting..." : "Continue with Google"}
                         </button>
-                        <button className="flex w-full items-center justify-center gap-3 rounded-lg border border-secondary bg-primary px-4 py-3 text-sm font-medium text-primary transition hover:bg-secondary">
-                            <svg className="size-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                            </svg>
-                            Continue with Apple
+                        <button
+                            type="button"
+                            onClick={handleMagicLink}
+                            disabled={isMagicLoading || magicLinkSent}
+                            className="flex w-full items-center justify-center gap-3 rounded-lg border border-secondary bg-primary px-4 py-3 text-sm font-medium text-primary transition hover:bg-secondary disabled:opacity-60"
+                        >
+                            <Mail01 className="size-5 text-fg-secondary" />
+                            {magicLinkSent
+                                ? "Link sent — check your email"
+                                : isMagicLoading
+                                    ? "Sending..."
+                                    : "Email me a sign-in link"}
                         </button>
                     </div>
 

@@ -53,6 +53,23 @@ export async function signOut() {
     if (error) throw error;
 }
 
+export async function signInWithMagicLink(
+    email: string,
+    redirectTo: string = "/account",
+    metadata?: { first_name?: string; last_name?: string },
+) {
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    const { data, error } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+            emailRedirectTo: `${origin}/auth/callback?redirect=${encodeURIComponent(redirectTo)}`,
+            data: metadata,
+        },
+    });
+    if (error) throw error;
+    return data;
+}
+
 export async function signInWithGoogle(redirectTo: string = "/account") {
     const origin = typeof window !== "undefined" ? window.location.origin : "";
     const { data, error } = await supabase.auth.signInWithOAuth({
