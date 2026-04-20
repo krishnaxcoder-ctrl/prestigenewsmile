@@ -177,12 +177,10 @@ export default function AdminDashboardPage() {
     return (
         <div className="space-y-10">
             {/* Hero greeting */}
-            <section className="rounded-3xl border border-secondary bg-gradient-to-br from-brand-50 via-white to-white p-6 sm:p-8">
+            <section className="rounded-xl border border-secondary bg-gradient-to-br from-brand-50 via-white to-white p-6 sm:p-4">
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                     <div>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-brand-700">
-                            {greeting()}
-                        </p>
+                       
                         <h1
                             className="mt-1 text-3xl font-light text-primary sm:text-4xl"
                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
