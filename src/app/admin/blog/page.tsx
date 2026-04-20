@@ -47,7 +47,7 @@ export default function AdminBlogPage() {
 
     return (
         <div>
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <h1 className="text-2xl font-light text-primary" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                         Blog Posts
@@ -80,8 +80,8 @@ export default function AdminBlogPage() {
                     </Link>
                 </div>
             ) : (
-                <div className="overflow-hidden rounded-2xl border border-secondary bg-white">
-                    <table className="w-full">
+                <div className="overflow-x-auto rounded-2xl border border-secondary bg-white">
+                    <table className="w-full min-w-[800px]">
                         <thead>
                             <tr className="border-b border-secondary bg-[#faf8f5]">
                                 <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider text-tertiary">Title</th>

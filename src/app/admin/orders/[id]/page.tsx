@@ -130,7 +130,7 @@ export default function AdminOrderDetailPage({ params }: { params: Promise<{ id:
 
     return (
         <div className="space-y-6">
-            <div className="flex items-start justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                     <Link href="/admin/orders" className="inline-flex items-center gap-2 text-sm text-tertiary hover:text-primary">
                         <ArrowLeft className="size-4" /> Back to orders
@@ -140,7 +140,7 @@ export default function AdminOrderDetailPage({ params }: { params: Promise<{ id:
                     </h1>
                     <p className="mt-1 text-sm text-tertiary">Placed {formatDateTime(order.created_at)}</p>
                 </div>
-                <span className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-semibold capitalize ${statusStyles[order.status]}`}>
+                <span className={`inline-flex w-fit items-center gap-1 rounded-full border px-3 py-1 text-xs font-semibold capitalize ${statusStyles[order.status]}`}>
                     {order.status}
                 </span>
             </div>
