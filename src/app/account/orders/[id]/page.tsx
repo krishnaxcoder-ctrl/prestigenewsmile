@@ -22,7 +22,6 @@ import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import {
     supabase,
-    getSession,
     type Order,
     type OrderItem,
 } from "@/lib/supabase";
@@ -72,17 +71,8 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
     const [error, setError] = useState("");
 
     useEffect(() => {
-        async function fetchOrder() {
+        async function loadOrder(userId: string, userEmail: string | undefined) {
             try {
-                // Check authentication
-                const session = await getSession();
-
-                if (!session?.user) {
-                    router.push("/login");
-                    return;
-                }
-
-                // Fetch the order
                 const { data: orderData, error: orderError } = await supabase
                     .from("orders")
                     .select("*")
@@ -98,17 +88,15 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
                     return;
                 }
 
-                // Verify the order belongs to the authenticated user
                 const order = orderData as Order;
-                const userOwnsOrder = order.user_id === session.user.id ||
-                                      order.email === session.user.email;
+                const userOwnsOrder = order.user_id === userId ||
+                                      order.email === userEmail;
 
                 if (!userOwnsOrder) {
                     setError("You don't have permission to view this order");
                     return;
                 }
 
-                // Fetch order items
                 const { data: items, error: itemsError } = await supabase
                     .from("order_items")
                     .select("*")
@@ -128,7 +116,21 @@ export default function OrderDetailPage({ params }: { params: Promise<{ id: stri
             }
         }
 
-        fetchOrder();
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (!session?.user) {
+                router.push("/login");
+                return;
+            }
+            loadOrder(session.user.id, session.user.email);
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (!session?.user) {
+                router.push("/login");
+            }
+        });
+
+        return () => subscription.unsubscribe();
     }, [id, router]);
 
     const formatDate = (dateString: string) => {

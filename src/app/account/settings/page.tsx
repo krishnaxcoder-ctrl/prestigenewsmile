@@ -21,7 +21,6 @@ import { Footer } from "@/app/components/footer";
 import { Avatar } from "@/components/base/avatar/avatar";
 import { RatingBadge } from "@/components/foundations/rating-badge";
 import {
-    getSession,
     getProfile,
     updateProfile,
     supabase,
@@ -55,18 +54,10 @@ export default function SettingsPage() {
     const [changingPassword, setChangingPassword] = useState(false);
 
     useEffect(() => {
-        async function fetchProfile() {
+        async function loadProfile(uid: string) {
             try {
-                const session = await getSession();
-
-                if (!session?.user) {
-                    router.push("/login");
-                    return;
-                }
-
-                setUserId(session.user.id);
-                const profileData = await getProfile(session.user.id);
-
+                setUserId(uid);
+                const profileData = await getProfile(uid);
                 if (profileData) {
                     setProfile(profileData);
                     setFormData({
@@ -83,7 +74,21 @@ export default function SettingsPage() {
             }
         }
 
-        fetchProfile();
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (!session?.user) {
+                router.push("/login");
+                return;
+            }
+            loadProfile(session.user.id);
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (!session?.user) {
+                router.push("/login");
+            }
+        });
+
+        return () => subscription.unsubscribe();
     }, [router, toast]);
 
     const handleSaveProfile = async (e: React.FormEvent) => {

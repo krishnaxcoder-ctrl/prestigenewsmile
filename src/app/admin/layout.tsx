@@ -11,13 +11,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
-        async function checkAuth() {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) {
-                router.push("/login");
-                return;
-            }
-            const admin = await checkIsAdmin(user.id);
+        async function verifyAdmin(userId: string) {
+            const admin = await checkIsAdmin(userId);
             if (!admin) {
                 router.push("/");
                 return;
@@ -25,7 +20,23 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             setIsAdmin(true);
             setLoading(false);
         }
-        checkAuth();
+
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (!session?.user) {
+                router.push("/login");
+                return;
+            }
+            verifyAdmin(session.user.id);
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (!session?.user) {
+                setIsAdmin(false);
+                router.push("/login");
+            }
+        });
+
+        return () => subscription.unsubscribe();
     }, [router]);
 
     if (loading) {

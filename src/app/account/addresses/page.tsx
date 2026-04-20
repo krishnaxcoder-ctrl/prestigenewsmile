@@ -20,7 +20,7 @@ import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
 import {
-    getSession,
+    supabase,
     getAddresses,
     addAddress,
     updateAddress,
@@ -75,17 +75,10 @@ export default function AddressesPage() {
     const [deletingId, setDeletingId] = useState<string | null>(null);
 
     useEffect(() => {
-        async function fetchAddresses() {
+        async function loadAddresses(uid: string) {
             try {
-                const session = await getSession();
-
-                if (!session?.user) {
-                    router.push("/login");
-                    return;
-                }
-
-                setUserId(session.user.id);
-                const data = await getAddresses(session.user.id);
+                setUserId(uid);
+                const data = await getAddresses(uid);
                 setAddresses(data);
             } catch (err) {
                 console.error("Error fetching addresses:", err);
@@ -95,7 +88,21 @@ export default function AddressesPage() {
             }
         }
 
-        fetchAddresses();
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (!session?.user) {
+                router.push("/login");
+                return;
+            }
+            loadAddresses(session.user.id);
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (!session?.user) {
+                router.push("/login");
+            }
+        });
+
+        return () => subscription.unsubscribe();
     }, [router, toast]);
 
     const handleEdit = (address: Address) => {

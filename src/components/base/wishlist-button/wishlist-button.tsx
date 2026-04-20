@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Heart, Loading01 } from "@untitledui/icons";
 import { cx } from "@/utils/cx";
 import {
-    getSession,
+    supabase,
     isInWishlist,
     addToWishlist,
     removeFromWishlist,
@@ -47,13 +47,14 @@ export function WishlistButton({
     const [checking, setChecking] = useState(true);
 
     useEffect(() => {
-        async function checkWishlistStatus() {
+        async function syncStatus(uid: string | null) {
             try {
-                const session = await getSession();
-                if (session?.user) {
-                    setUserId(session.user.id);
-                    const inWishlist = await isInWishlist(session.user.id, productId);
+                setUserId(uid);
+                if (uid) {
+                    const inWishlist = await isInWishlist(uid, productId);
                     setIsWishlisted(inWishlist);
+                } else {
+                    setIsWishlisted(false);
                 }
             } catch (err) {
                 console.error("Error checking wishlist:", err);
@@ -62,7 +63,15 @@ export function WishlistButton({
             }
         }
 
-        checkWishlistStatus();
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            syncStatus(session?.user?.id ?? null);
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            syncStatus(session?.user?.id ?? null);
+        });
+
+        return () => subscription.unsubscribe();
     }, [productId]);
 
     const handleToggle = async (e: React.MouseEvent) => {

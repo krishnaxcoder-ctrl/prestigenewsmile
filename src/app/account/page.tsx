@@ -20,7 +20,7 @@ import { Footer } from "@/app/components/footer";
 import { Avatar } from "@/components/base/avatar/avatar";
 import { RatingBadge } from "@/components/foundations/rating-badge";
 import {
-    getSession,
+    supabase,
     getProfile,
     getUserOrders,
     getWishlist,
@@ -47,21 +47,13 @@ export default function AccountPage() {
     const [loggingOut, setLoggingOut] = useState(false);
 
     useEffect(() => {
-        async function fetchData() {
+        async function loadData(userId: string) {
             try {
-                const session = await getSession();
-
-                if (!session?.user) {
-                    router.push("/login");
-                    return;
-                }
-
                 const [profileData, ordersData, wishlistData] = await Promise.all([
-                    getProfile(session.user.id),
-                    getUserOrders(session.user.id),
-                    getWishlist(session.user.id),
+                    getProfile(userId),
+                    getUserOrders(userId),
+                    getWishlist(userId),
                 ]);
-
                 setProfile(profileData);
                 setOrders(ordersData);
                 setWishlistCount(wishlistData.length);
@@ -73,7 +65,21 @@ export default function AccountPage() {
             }
         }
 
-        fetchData();
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (!session?.user) {
+                router.push("/login");
+                return;
+            }
+            loadData(session.user.id);
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (!session?.user) {
+                router.push("/login");
+            }
+        });
+
+        return () => subscription.unsubscribe();
     }, [router, toast]);
 
     const handleLogout = async () => {

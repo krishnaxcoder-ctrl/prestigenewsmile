@@ -11,7 +11,6 @@ import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
 import {
     supabase,
-    getSession,
     getUserOrders,
     type Order,
     type OrderItem,
@@ -44,30 +43,30 @@ export default function OrdersPage() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        async function checkAuthAndFetch() {
-            try {
-                const session = await getSession();
-
-                if (session?.user) {
-                    // User is authenticated - fetch their orders directly
-                    setIsAuthenticated(true);
-                    await fetchUserOrders(session.user.id, session.user.email);
-                } else {
-                    // Not authenticated - show email lookup form
-                    setIsAuthenticated(false);
-                    setLoading(false);
-                    const savedEmail = localStorage.getItem("order_lookup_email");
-                    if (savedEmail) {
-                        setEmail(savedEmail);
-                    }
-                }
-            } catch (err) {
-                console.error("Error checking auth:", err);
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (session?.user) {
+                setIsAuthenticated(true);
+                fetchUserOrders(session.user.id, session.user.email);
+            } else {
+                setIsAuthenticated(false);
                 setLoading(false);
+                const savedEmail = localStorage.getItem("order_lookup_email");
+                if (savedEmail) {
+                    setEmail(savedEmail);
+                }
             }
-        }
+        });
 
-        checkAuthAndFetch();
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (session?.user) {
+                setIsAuthenticated(true);
+                fetchUserOrders(session.user.id, session.user.email);
+            } else {
+                setIsAuthenticated(false);
+            }
+        });
+
+        return () => subscription.unsubscribe();
     }, []);
 
     const fetchUserOrders = async (userId: string, userEmail?: string) => {

@@ -27,13 +27,13 @@ import {
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import {
+    supabase,
     getCartItems,
     createOrder,
     clearCart,
     getSessionId,
     getCustomer,
     saveCustomer,
-    getSession,
     type Product,
 } from "@/lib/supabase";
 import { useToastActions } from "@/components/base/toast/toast";
@@ -94,17 +94,13 @@ export default function CheckoutPage() {
     });
 
     useEffect(() => {
-        async function fetchData() {
+        async function loadData(uid: string, userEmail: string | undefined) {
             try {
+                setUserId(uid);
                 const sessionId = getSessionId();
                 if (!sessionId) {
                     setLoading(false);
                     return;
-                }
-
-                const session = await getSession();
-                if (session?.user) {
-                    setUserId(session.user.id);
                 }
 
                 const cartData = await getCartItems(sessionId);
@@ -126,6 +122,8 @@ export default function CheckoutPage() {
                         shippingMethod: customer.shipping_method || "standard",
                         paymentMethod: customer.payment_method || "twint",
                     }));
+                } else if (userEmail) {
+                    setFormData((prev) => ({ ...prev, email: userEmail }));
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -133,8 +131,23 @@ export default function CheckoutPage() {
                 setLoading(false);
             }
         }
-        fetchData();
-    }, []);
+
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (!session?.user) {
+                router.push("/login?redirect=/checkout");
+                return;
+            }
+            loadData(session.user.id, session.user.email);
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (!session?.user) {
+                router.push("/login?redirect=/checkout");
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, [router]);
 
     const subtotal = cartItems.reduce(
         (sum, item) => sum + item.product.price * item.quantity,

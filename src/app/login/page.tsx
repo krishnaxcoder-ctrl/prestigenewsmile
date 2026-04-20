@@ -1,17 +1,33 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { Mail01, Lock01, Eye, EyeOff } from "@untitledui/icons";
-import { signIn, getSession } from "@/lib/supabase";
+import { signIn, supabase } from "@/lib/supabase";
 import { useToastActions } from "@/components/base/toast/toast";
 import { Avatar } from "@/components/base/avatar/avatar";
 
 export default function LoginPage() {
+    return (
+        <Suspense
+            fallback={
+                <div className="flex min-h-screen items-center justify-center">
+                    <div className="size-8 animate-spin rounded-full border-4 border-brand-200 border-t-brand-600" />
+                </div>
+            }
+        >
+            <LoginPageContent />
+        </Suspense>
+    );
+}
+
+function LoginPageContent() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const redirectTo = searchParams.get("redirect") || "/account";
     const toast = useToastActions();
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -21,23 +37,23 @@ export default function LoginPage() {
         password: "",
     });
 
-    // Redirect if already authenticated
     useEffect(() => {
-        async function checkAuth() {
-            try {
-                const session = await getSession();
-                if (session?.user) {
-                    router.push("/account");
-                    return;
-                }
-            } catch (err) {
-                console.error("Auth check error:", err);
-            } finally {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (session?.user) {
+                router.push(redirectTo);
+            } else {
                 setCheckingAuth(false);
             }
-        }
-        checkAuth();
-    }, [router]);
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (session?.user) {
+                router.push(redirectTo);
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, [router, redirectTo]);
 
     if (checkingAuth) {
         return (
@@ -62,7 +78,7 @@ export default function LoginPage() {
         try {
             await signIn(formData.email, formData.password);
             toast.success("Welcome back!", "You have been signed in successfully.");
-            router.push("/");
+            router.push(redirectTo);
         } catch (error: any) {
             console.error("Login error:", error);
             toast.error("Login failed", error.message || "Invalid email or password.");

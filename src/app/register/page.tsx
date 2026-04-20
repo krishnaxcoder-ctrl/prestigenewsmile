@@ -7,7 +7,7 @@ import { Button } from "@/components/base/buttons/button";
 import { Input } from "@/components/base/input/input";
 import { Mail01, Lock01, Eye, EyeOff, User01 } from "@untitledui/icons";
 import { Checkbox } from "@/components/base/checkbox/checkbox";
-import { signUp, getSession } from "@/lib/supabase";
+import { signUp, supabase } from "@/lib/supabase";
 import { useToastActions } from "@/components/base/toast/toast";
 
 export default function RegisterPage() {
@@ -25,22 +25,22 @@ export default function RegisterPage() {
         acceptTerms: false,
     });
 
-    // Redirect if already authenticated
     useEffect(() => {
-        async function checkAuth() {
-            try {
-                const session = await getSession();
-                if (session?.user) {
-                    router.push("/account");
-                    return;
-                }
-            } catch (err) {
-                console.error("Auth check error:", err);
-            } finally {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (session?.user) {
+                router.push("/account");
+            } else {
                 setCheckingAuth(false);
             }
-        }
-        checkAuth();
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (session?.user) {
+                router.push("/account");
+            }
+        });
+
+        return () => subscription.unsubscribe();
     }, [router]);
 
     if (checkingAuth) {

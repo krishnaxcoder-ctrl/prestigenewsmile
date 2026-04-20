@@ -16,7 +16,7 @@ import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import { RatingBadge } from "@/components/foundations/rating-badge";
 import {
-    getSession,
+    supabase,
     getWishlist,
     removeFromWishlist,
     clearWishlist,
@@ -49,17 +49,10 @@ export default function WishlistPage() {
     const [removingIds, setRemovingIds] = useState<Set<string>>(new Set());
 
     useEffect(() => {
-        async function fetchWishlist() {
+        async function loadWishlist(uid: string) {
             try {
-                const session = await getSession();
-
-                if (!session?.user) {
-                    router.push("/login");
-                    return;
-                }
-
-                setUserId(session.user.id);
-                const data = await getWishlist(session.user.id);
+                setUserId(uid);
+                const data = await getWishlist(uid);
                 setWishlist(data);
             } catch (err) {
                 console.error("Error fetching wishlist:", err);
@@ -69,7 +62,21 @@ export default function WishlistPage() {
             }
         }
 
-        fetchWishlist();
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (!session?.user) {
+                router.push("/login");
+                return;
+            }
+            loadWishlist(session.user.id);
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (!session?.user) {
+                router.push("/login");
+            }
+        });
+
+        return () => subscription.unsubscribe();
     }, [router, toast]);
 
     const handleRemoveItem = async (productId: string) => {

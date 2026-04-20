@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/base/buttons/button";
 import {
@@ -22,6 +23,7 @@ import {
 import { Header } from "@/app/components/header";
 import { Footer } from "@/app/components/footer";
 import {
+    supabase,
     getCartItems,
     updateCartItemQuantity,
     removeFromCart,
@@ -65,6 +67,7 @@ const features = [
 ];
 
 export default function CartPage() {
+    const router = useRouter();
     const [cartItems, setCartItems] = useState<CartItemWithProduct[]>([]);
     const [loading, setLoading] = useState(true);
     const [couponCode, setCouponCode] = useState("");
@@ -73,7 +76,7 @@ export default function CartPage() {
     const [removingItem, setRemovingItem] = useState<string | null>(null);
 
     useEffect(() => {
-        async function fetchCartItems() {
+        async function loadCart() {
             try {
                 const sessionId = getSessionId();
                 if (!sessionId) {
@@ -88,8 +91,23 @@ export default function CartPage() {
                 setLoading(false);
             }
         }
-        fetchCartItems();
-    }, []);
+
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (!session?.user) {
+                router.push("/login?redirect=/cart");
+                return;
+            }
+            loadCart();
+        });
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (!session?.user) {
+                router.push("/login?redirect=/cart");
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, [router]);
 
     const updateQuantity = async (id: string, delta: number) => {
         const item = cartItems.find((i) => i.id === id);
