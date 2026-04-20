@@ -1,6 +1,6 @@
 "use client";
 
-import { useControlledState } from "@react-stately/utils";
+import { useControlledState } from "react-stately/useControlledState";
 import { HintText } from "@/components/base/input/hint-text";
 import type { InputBaseProps } from "@/components/base/input/input";
 import { InputBase, TextField } from "@/components/base/input/input";
