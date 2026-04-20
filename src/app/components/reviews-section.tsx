@@ -1,7 +1,7 @@
 "use client";
 
 import { Star01 } from "@untitledui/icons";
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState, useRef } from "react";
 
 const testimonials = [
     { id: 1, name: "Mélanie", date: "04 July, 2025", avatar: "/avatar1.png", title: "A Real Confidence Boost", content: "I'm honestly so impressed with the results of my teeth whitening session! I noticed a visible difference right after the treatment, my teeth look so much brighter but still natural. The entire process was comfortable, and the team made me feel at ease from start to finish. Highly recommend for anyone wanting a confidence boost in their smile!", rating: 5 },
@@ -32,6 +32,8 @@ export function ReviewsSection() {
     const pairs = getPairs(testimonials);
     const [current, setCurrent] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const [isInView, setIsInView] = useState(false);
+    const sectionRef = useRef<HTMLElement | null>(null);
 
     const goToNext = useCallback(() => {
         setIsTransitioning(true);
@@ -49,16 +51,30 @@ export function ReviewsSection() {
         }, 300);
     }, [pairs.length]);
 
-    // Auto-advance every 5 seconds
+    // Detect when section enters the viewport
     useEffect(() => {
+        const node = sectionRef.current;
+        if (!node) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => setIsInView(entry.isIntersecting),
+            { threshold: 0.25 },
+        );
+        observer.observe(node);
+        return () => observer.disconnect();
+    }, []);
+
+    // Auto-advance every 5 seconds, only while in view
+    useEffect(() => {
+        if (!isInView) return;
         const interval = setInterval(goToNext, 5000);
         return () => clearInterval(interval);
-    }, [goToNext]);
+    }, [goToNext, isInView]);
 
     const currentPair = pairs[current];
 
     return (
-        <section className="bg-[#faf8f6] px-4 py-16 md:px-8 md:py-20 lg:px-16">
+        <section ref={sectionRef} className="bg-[#faf8f6] px-4 py-16 md:px-8 md:py-20 lg:px-16">
             <div className="mx-auto max-w-[1400px]">
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-[400px_1fr] lg:gap-16">
                     {/* Left Side - Heading */}
