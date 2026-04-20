@@ -1,14 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { supabase, checkIsAdmin } from "@/lib/supabase";
 
+const navItems = [
+    { href: "/admin", label: "Dashboard", exact: true },
+    { href: "/admin/orders", label: "Orders" },
+    { href: "/admin/products", label: "Products" },
+    { href: "/admin/blog", label: "Blog Posts" },
+];
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
     const router = useRouter();
+    const pathname = usePathname();
     const [loading, setLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
+
+    const isActive = (href: string, exact?: boolean) =>
+        exact ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
 
     useEffect(() => {
         async function verifyAdmin(userId: string) {
@@ -63,12 +74,22 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         </Link>
                         <div className="h-6 w-px bg-secondary" />
                         <nav className="flex items-center gap-1">
-                            <Link
-                                href="/admin/blog"
-                                className="rounded-lg px-3 py-2 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary"
-                            >
-                                Blog Posts
-                            </Link>
+                            {navItems.map((item) => {
+                                const active = isActive(item.href, item.exact);
+                                return (
+                                    <Link
+                                        key={item.href}
+                                        href={item.href}
+                                        className={
+                                            active
+                                                ? "rounded-lg bg-brand-50 px-3 py-2 text-sm font-semibold text-brand-700"
+                                                : "rounded-lg px-3 py-2 text-sm font-medium text-secondary hover:bg-primary_hover hover:text-primary"
+                                        }
+                                    >
+                                        {item.label}
+                                    </Link>
+                                );
+                            })}
                         </nav>
                     </div>
                     <div className="flex items-center gap-3">

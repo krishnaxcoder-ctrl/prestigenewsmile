@@ -867,3 +867,165 @@ export async function deleteBlogPost(id: string): Promise<void> {
 
     if (error) throw error;
 }
+
+// ================= Admin: Products =================
+
+export type ProductInput = Omit<Product, "id">;
+
+export async function createProduct(input: ProductInput): Promise<Product> {
+    const { data, error } = await supabase
+        .from("products")
+        .insert(input as never)
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data as unknown as Product;
+}
+
+export async function updateProduct(id: string, input: Partial<ProductInput>): Promise<Product> {
+    const { data, error } = await supabase
+        .from("products")
+        .update(input as never)
+        .eq("id", id)
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data as unknown as Product;
+}
+
+export async function deleteProduct(id: string): Promise<void> {
+    const { error } = await supabase.from("products").delete().eq("id", id);
+    if (error) throw error;
+}
+
+export async function getProductById(id: string): Promise<Product | null> {
+    const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+    if (error) {
+        if (error.code === "PGRST116") return null;
+        throw error;
+    }
+    return data as unknown as Product;
+}
+
+// ================= Admin: Orders =================
+
+export async function getAllOrders(): Promise<Order[]> {
+    const { data, error } = await supabase
+        .from("orders")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    if (error) throw error;
+    return (data || []) as Order[];
+}
+
+export async function updateOrderStatus(
+    orderId: string,
+    status: Order["status"],
+): Promise<Order> {
+    const { data, error } = await supabase
+        .from("orders")
+        .update({ status } as never)
+        .eq("id", orderId)
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data as Order;
+}
+
+export async function updateOrderTracking(
+    orderId: string,
+    trackingNumber: string | null,
+    deliveryDate?: string | null,
+): Promise<Order> {
+    const payload: Record<string, unknown> = { tracking_number: trackingNumber };
+    if (deliveryDate !== undefined) payload.delivery_date = deliveryDate;
+
+    const { data, error } = await supabase
+        .from("orders")
+        .update(payload as never)
+        .eq("id", orderId)
+        .select()
+        .single();
+
+    if (error) throw error;
+    return data as Order;
+}
+
+// ================= Admin: Dashboard stats =================
+
+export interface AdminOverviewStats {
+    ordersTotal: number;
+    ordersToday: number;
+    ordersWeek: number;
+    revenueTotal: number;
+    revenueWeek: number;
+    productsTotal: number;
+    productsOutOfStock: number;
+    customersTotal: number;
+    ordersByStatus: Record<Order["status"], number>;
+    recentOrders: Order[];
+}
+
+export async function getAdminOverviewStats(): Promise<AdminOverviewStats> {
+    const now = new Date();
+    const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
+    const startOfWeek = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
+
+    const [ordersRes, productsRes, profilesRes] = await Promise.all([
+        supabase.from("orders").select("*").order("created_at", { ascending: false }),
+        supabase.from("products").select("id, in_stock"),
+        supabase.from("profiles").select("id", { count: "exact", head: true }),
+    ]);
+
+    if (ordersRes.error) throw ordersRes.error;
+    if (productsRes.error) throw productsRes.error;
+    if (profilesRes.error) throw profilesRes.error;
+
+    const orders = (ordersRes.data || []) as Order[];
+    const products = (productsRes.data || []) as { id: string; in_stock: boolean | null }[];
+
+    const ordersByStatus: Record<Order["status"], number> = {
+        processing: 0,
+        shipped: 0,
+        delivered: 0,
+        cancelled: 0,
+    };
+
+    let revenueTotal = 0;
+    let revenueWeek = 0;
+    let ordersToday = 0;
+    let ordersWeek = 0;
+
+    for (const o of orders) {
+        ordersByStatus[o.status] = (ordersByStatus[o.status] || 0) + 1;
+        const total = Number(o.total) || 0;
+        if (o.status !== "cancelled") {
+            revenueTotal += total;
+            if (o.created_at >= startOfWeek) revenueWeek += total;
+        }
+        if (o.created_at >= startOfDay) ordersToday += 1;
+        if (o.created_at >= startOfWeek) ordersWeek += 1;
+    }
+
+    return {
+        ordersTotal: orders.length,
+        ordersToday,
+        ordersWeek,
+        revenueTotal,
+        revenueWeek,
+        productsTotal: products.length,
+        productsOutOfStock: products.filter((p) => p.in_stock === false).length,
+        customersTotal: profilesRes.count || 0,
+        ordersByStatus,
+        recentOrders: orders.slice(0, 5),
+    };
+}
