@@ -177,12 +177,11 @@ export default function AdminDashboardPage() {
     return (
         <div className="space-y-10">
             {/* Hero greeting */}
-            <section className="rounded-xl border border-secondary bg-gradient-to-br from-brand-50 via-white to-white p-6 sm:p-4">
-                <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                    <div>
-                       
+            <section className="rounded-xl border border-secondary bg-gradient-to-br from-brand-50 via-white to-white p-5 sm:p-6 lg:p-8">
+                <div className="flex flex-col gap-6 2xl:flex-row 2xl:items-center 2xl:justify-between">
+                    <div className="min-w-0">
                         <h1
-                            className="mt-1 text-3xl font-light text-primary sm:text-4xl"
+                            className="text-2xl font-light text-primary sm:text-3xl lg:text-4xl"
                             style={{ fontFamily: "'Cormorant Garamond', serif" }}
                         >
                             Welcome back
@@ -193,12 +192,12 @@ export default function AdminDashboardPage() {
                                 : `No new orders yet today. ${formatEuro(stats.revenueWeek)} earned this week.`}
                         </p>
                     </div>
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4 lg:w-auto">
+                    <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 2xl:w-auto 2xl:grid-cols-4">
                         {quickActions.map((action) => (
                             <Link
                                 key={action.label}
                                 href={action.href}
-                                className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition ${action.color}`}
+                                className={`flex min-w-0 items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition ${action.color}`}
                             >
                                 <span
                                     className={`flex size-10 shrink-0 items-center justify-center rounded-lg ${
@@ -282,26 +281,26 @@ export default function AdminDashboardPage() {
                         <Link
                             key={kpi.label}
                             href={kpi.href}
-                            className="group rounded-2xl border border-secondary bg-white px-5 py-4 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-sm"
+                            className="group min-w-0 rounded-2xl border border-secondary bg-white px-5 py-4 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-sm"
                         >
-                            <div className="flex items-center justify-between">
-                                <p className="text-xs font-semibold uppercase tracking-wider text-tertiary">
+                            <div className="flex items-center justify-between gap-2">
+                                <p className="truncate text-xs font-semibold uppercase tracking-wider text-tertiary">
                                     {kpi.label}
                                 </p>
-                                <div className={`flex size-9 items-center justify-center rounded-full ${kpi.iconBg}`}>
+                                <div className={`flex size-9 shrink-0 items-center justify-center rounded-full ${kpi.iconBg}`}>
                                     <kpi.icon className="size-4" />
                                 </div>
                             </div>
-                            <p className="mt-2 text-2xl font-semibold text-primary">{kpi.value}</p>
-                            <p className="mt-0.5 text-xs text-tertiary">{kpi.sub}</p>
+                            <p className="mt-2 truncate text-2xl font-semibold text-primary">{kpi.value}</p>
+                            <p className="mt-0.5 truncate text-xs text-tertiary">{kpi.sub}</p>
                         </Link>
                     ))}
                 </div>
             </section>
 
             {/* Two-column: recent orders + status funnel */}
-            <section className="grid gap-6 lg:grid-cols-3">
-                <div className="lg:col-span-2">
+            <section className="grid gap-6 xl:grid-cols-3">
+                <div className="min-w-0 xl:col-span-2">
                     <div className="mb-4 flex items-center justify-between">
                         <h2 className="text-sm font-semibold uppercase tracking-wider text-tertiary">
                             Recent orders
@@ -327,7 +326,7 @@ export default function AdminDashboardPage() {
                                     <button
                                         key={order.id}
                                         onClick={() => router.push(`/admin/orders/${order.id}`)}
-                                        className="flex w-full items-center gap-4 px-5 py-4 text-left transition hover:bg-secondary/20"
+                                        className="flex w-full items-center gap-3 px-4 py-4 text-left transition hover:bg-secondary/20 sm:gap-4 sm:px-5"
                                     >
                                         <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-50 text-xs font-semibold text-brand-700">
                                             {(order.first_name?.[0] || "").toUpperCase()}
@@ -335,18 +334,17 @@ export default function AdminDashboardPage() {
                                         </div>
                                         <div className="min-w-0 flex-1">
                                             <div className="flex items-baseline justify-between gap-3">
-                                                <p className="truncate text-sm font-semibold text-primary">
+                                                <p className="min-w-0 truncate text-sm font-semibold text-primary">
                                                     {order.first_name} {order.last_name}
                                                 </p>
                                                 <p className="shrink-0 text-sm font-semibold text-primary">
                                                     {formatEuro(Number(order.total))}
                                                 </p>
                                             </div>
-                                            <div className="mt-1 flex items-center gap-2 text-xs text-tertiary">
+                                            <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-tertiary">
                                                 <span className="truncate">{order.order_number}</span>
-                                                <span>·</span>
+                                                <span className="hidden sm:inline">·</span>
                                                 <span className="truncate">{formatDate(order.created_at)}</span>
-                                                <span>·</span>
                                                 <span
                                                     className={`inline-flex rounded-full px-2 py-0.5 font-semibold capitalize ${statusStyles[order.status]}`}
                                                 >

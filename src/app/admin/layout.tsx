@@ -70,7 +70,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     if (!isAdmin) return null;
 
     return (
-        <div className="min-h-screen bg-[#faf8f5]">
+        <div className="min-h-screen overflow-x-hidden bg-[#faf8f5]">
             {/* Mobile top bar */}
             <div className="sticky top-0 z-40 flex items-center justify-between border-b border-secondary bg-white px-4 py-3 lg:hidden">
                 <Link href="/" className="flex shrink-0 items-center">
@@ -154,7 +154,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </div>
             </aside>
 
-            <main className="w-full px-4 py-6 sm:px-6 sm:py-8 lg:pl-68 lg:pr-4">
+            <main className="min-w-0 max-w-full px-4 py-6 sm:px-6 sm:py-8 lg:pl-68 lg:pr-4">
                 {children}
             </main>
         </div>

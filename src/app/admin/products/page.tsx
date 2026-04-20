@@ -129,7 +129,7 @@ export default function AdminProductsPage() {
                     No products match.
                 </div>
             ) : (
-                <div className="overflow-x-auto rounded-2xl border border-secondary bg-white">
+                <div className="w-full max-w-full overflow-x-auto rounded-2xl border border-secondary bg-white">
                     <table className="w-full min-w-[720px] text-left text-sm">
                         <thead className="bg-secondary/40 text-xs uppercase tracking-wider text-tertiary">
                             <tr>
