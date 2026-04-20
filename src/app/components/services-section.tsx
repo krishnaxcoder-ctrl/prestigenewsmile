@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "@untitledui/icons";
 
@@ -39,10 +40,12 @@ export const ServicesSection = () => {
                         <div key={category.id} className="group">
                             <a href={category.href} className="block">
                                 <div className="relative aspect-[850/1080] overflow-hidden rounded-2xl">
-                                    <img
+                                    <Image
                                         src={category.image}
                                         alt={category.title}
-                                        className="size-full object-cover"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 450px"
+                                        className="object-cover"
                                     />
                                 </div>
                             </a>

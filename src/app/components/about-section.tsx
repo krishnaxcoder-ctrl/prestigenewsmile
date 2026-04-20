@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function AboutSection() {
     return (
         <section className="relative overflow-hidden bg-gradient-to-b from-[#f7f2ec] via-[#f3ede6] to-[#ebe2d8]">
@@ -9,21 +11,25 @@ export function AboutSection() {
             <div className="relative md:hidden">
                 <div className="mx-auto grid max-w-7xl grid-cols-[1fr_4fr] items-stretch gap-4">
                     {/* Left - Photo (20%) */}
-                    <div className="h-full overflow-hidden">
-                        <img
+                    <div className="relative h-full overflow-hidden">
+                        <Image
                             src="/bgreviewssection.webp"
                             alt=""
-                            className="size-full object-cover"
+                            fill
+                            sizes="20vw"
+                            className="object-cover"
                         />
                     </div>
 
                     {/* Right - About text (80%) */}
                     <div>
-                        <div className="relative -left-18 my-6 max-w-[200px] overflow-hidden rounded-lg border border-secondary">
-                            <img
+                        <div className="relative -left-18 my-6 aspect-[3/4] max-w-[200px] overflow-hidden rounded-lg border border-secondary">
+                            <Image
                                 src="/client.webp"
                                 alt="Anaëlle - Prestige Smile Studio"
-                                className="size-full object-cover"
+                                fill
+                                sizes="200px"
+                                className="object-cover"
                             />
                         </div>
                         <h2
@@ -77,10 +83,12 @@ export function AboutSection() {
 
                             {/* Main image */}
                             <div className="relative aspect-[3/4] overflow-hidden">
-                                <img
+                                <Image
                                     src="/client.webp"
                                     alt="Anaëlle - Fondatrice de Prestige Smile"
-                                    className="size-full object-cover"
+                                    fill
+                                    sizes="(max-width: 768px) 80vw, 600px"
+                                    className="object-cover"
                                 />
                             </div>
 

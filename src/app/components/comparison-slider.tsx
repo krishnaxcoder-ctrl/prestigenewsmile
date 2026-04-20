@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "@untitledui/icons";
 
 export function ComparisonSlider() {
@@ -70,10 +71,12 @@ export function ComparisonSlider() {
                     onClick={handleClick}
                 >
                     {/* After Image (Background) */}
-                    <img
+                    <Image
                         src="/compareafter.jpg"
                         alt="After treatment"
-                        className="absolute inset-0 size-full object-cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1400px) 90vw, 1400px"
+                        className="object-cover"
                         draggable={false}
                     />
 
@@ -82,10 +85,12 @@ export function ComparisonSlider() {
                         className="absolute inset-0 overflow-hidden"
                         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
                     >
-                        <img
+                        <Image
                             src="/comparebefore.png"
                             alt="Before treatment"
-                            className="absolute inset-0 size-full object-cover"
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1400px) 90vw, 1400px"
+                            className="object-cover"
                             draggable={false}
                         />
                     </div>

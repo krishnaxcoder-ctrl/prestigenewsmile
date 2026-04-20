@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 export function HeroSection() {
@@ -9,10 +10,14 @@ export function HeroSection() {
             <div className="relative min-h-[50vh] md:min-h-[calc(100vh-72px)]">
                 {/* Background Image */}
                 <div className="absolute inset-0">
-                    <img
+                    <Image
                         src="/bghero.webp"
                         alt="Teeth whitening treatment"
-                        className="size-full object-cover object-center"
+                        fill
+                        priority
+                        fetchPriority="high"
+                        sizes="100vw"
+                        className="object-cover object-center"
                     />
                     {/* Overlay for text readability */}
                     <div className="absolute inset-0 bg-gradient-to-r from-amber-950/70 via-amber-900/30 to-transparent md:from-amber-950/60 md:via-amber-900/20" />

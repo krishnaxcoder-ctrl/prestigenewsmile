@@ -9,6 +9,15 @@ const nextConfig = {
             "motion",
         ],
     },
+    images: {
+        formats: ["image/avif", "image/webp"],
+        minimumCacheTTL: 60 * 60 * 24 * 30,
+        remotePatterns: [
+            { protocol: "https", hostname: "images.unsplash.com" },
+            { protocol: "https", hostname: "plus.unsplash.com" },
+            { protocol: "https", hostname: "firstsight.design" },
+        ],
+    },
     devIndicators: false,
 };
 

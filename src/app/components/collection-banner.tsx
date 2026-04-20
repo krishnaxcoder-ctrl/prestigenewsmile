@@ -1,21 +1,29 @@
 "use client";
 
+import Image from "next/image";
+
 export function CollectionBanner() {
     return (
         <section className="bg-primary px-4 py-8 md:px-6 md:py-12 ">
             {/* Background Image */}
             <div className="relative mx-auto h-[500px] rounded-sm w-full max-w-[1400px] overflow-hidden md:h-[650px] lg:h-[650px]">
                 {/* Mobile Image */}
-                <img
+                <Image
                     src="/images/collection-banner-mobile1.png"
                     alt="Collection Banner"
-                    className="size-full object-cover object-top md:hidden"
+                    fill
+                    sizes="100vw"
+                    loading="lazy"
+                    className="object-cover object-top md:hidden"
                 />
                 {/* Desktop Image */}
-                <img
+                <Image
                     src="/images/collection-banner.png"
                     alt="Collection Banner"
-                    className="hidden size-full object-cover object-center md:block"
+                    fill
+                    sizes="(max-width: 1400px) 100vw, 1400px"
+                    loading="lazy"
+                    className="hidden object-cover object-center md:block"
                 />
 
                 {/* Gradient Overlay - Bottom black to top transparent */}

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Jost, Playfair_Display, Tangerine } from "next/font/google";
+import Script from "next/script";
 import { RouteProvider } from "@/providers/router-provider";
 import { Theme } from "@/providers/theme";
 import { ToastProvider } from "@/components/base/toast/toast";
@@ -254,11 +255,30 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-DV7R2XQ11J" />
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-DV7R2XQ11J');`,
-                    }}
+                {/* Preconnect to origins used early in the page lifecycle */}
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+                <link rel="dns-prefetch" href="https://images.unsplash.com" />
+                <link rel="dns-prefetch" href="https://translate.googleapis.com" />
+                <link rel="dns-prefetch" href="https://translate.google.com" />
+
+                {/* Preload the LCP image (hero background) */}
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/bghero.webp"
+                    fetchPriority="high"
+                    type="image/webp"
+                />
+
+                {/* Preload the Abramo Script font used in above-the-fold sections */}
+                <link
+                    rel="preload"
+                    as="font"
+                    href="/Abramo-Font/Abramo%20Script.woff2"
+                    type="font/woff2"
+                    crossOrigin=""
                 />
             </head>
             <body className={cx(jost.variable, playfairDisplay.variable, tangerine.variable, "bg-primary antialiased")}>
@@ -284,6 +304,16 @@ export default function RootLayout({
                     </Theme>
                 </RouteProvider>
                 <GoogleTranslateProvider />
+
+                {/* Defer GTM until the browser is idle so it does not compete with LCP */}
+                <Script
+                    id="gtag-src"
+                    src="https://www.googletagmanager.com/gtag/js?id=G-DV7R2XQ11J"
+                    strategy="lazyOnload"
+                />
+                <Script id="gtag-init" strategy="lazyOnload">
+                    {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-DV7R2XQ11J');`}
+                </Script>
             </body>
         </html>
     );

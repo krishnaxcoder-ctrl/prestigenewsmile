@@ -49,7 +49,9 @@
       "WebFetch(domain:ec.europa.eu)",
       "WebFetch(domain:consumer-redress.ec.europa.eu)",
       "Bash(xargs grep:*)",
-      "mcp__supabase__list_storage_buckets"
+      "mcp__supabase__list_storage_buckets",
+      "Bash(grep -oE '\"id\":\"[a-z-]+\",\"title\":\"[^\"]+\",\"description\":\"[^\"]+\"[^}]{0,200}' \"C:/Users/Dell/Downloads/PageSpeed Insights.html\")",
+      "Bash(awk NR==2319 || NR==2453 || NR==2457 || NR==2470 || NR==2522 {print NR\":\"substr\\($0,1,300\\)} *)"
     ]
   },
   "enableAllProjectMcpServers": true,

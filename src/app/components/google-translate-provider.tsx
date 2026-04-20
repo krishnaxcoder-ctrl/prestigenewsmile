@@ -27,11 +27,24 @@ export function GoogleTranslateProvider() {
             }
         };
 
-        if (!document.querySelector('script[src*="translate.google.com/translate_a/element.js"]')) {
+        const inject = () => {
+            if (document.querySelector('script[src*="translate.google.com/translate_a/element.js"]')) return;
             const script = document.createElement("script");
             script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
             script.async = true;
             document.body.appendChild(script);
+        };
+
+        // Defer until the browser is idle so the ~150 KiB widget does not compete with LCP.
+        // requestIdleCallback isn't on Safari yet — fall back to a generous timeout.
+        const ric = (
+            window as unknown as { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }
+        ).requestIdleCallback;
+        if (typeof ric === "function") {
+            ric(inject, { timeout: 4000 });
+        } else {
+            const t = window.setTimeout(inject, 3000);
+            return () => window.clearTimeout(t);
         }
     }, []);
 
