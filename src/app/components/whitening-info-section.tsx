@@ -80,7 +80,7 @@ export function WhiteningInfoSection() {
                                 <ul className="mt-3 space-y-2">
                                     <li className="flex items-center gap-2 text-[12px] text-white/80">
                                         <span className="size-1 shrink-0 rounded-full bg-white/60" />
-                                        Blanchiment professionnel en 30 min
+                                        Blanchiment professionnel en 45 min
                                     </li>
                                     <li className="flex items-center gap-2 text-[12px] text-white/80">
                                         <span className="size-1 shrink-0 rounded-full bg-white/60" />
