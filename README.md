@@ -55,4 +55,4 @@ Untitled UI React open-source components are licensed under the MIT license, whi
 
 [Untitled UI license agreement →](https://www.untitledui.com/license)
 
-[Frequently asked questions →](https://www.untitledui.com/faqs)
+[Frequently asked questions →](https://www.untitledui.com/faqs) 
